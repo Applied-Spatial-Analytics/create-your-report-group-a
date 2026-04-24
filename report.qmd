@@ -1,6 +1,6 @@
 ---
 title: "Title of your report"
-subtitle: "Project report of Group #"
+subtitle: "Project report of Group A"
 author:
   - name: "Faried Nurmohamed"
     affiliation: "MSc Geomatics"

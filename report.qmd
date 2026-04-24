@@ -4,14 +4,12 @@ subtitle: "Project report of Group #"
 author:
   - name: "Faried Nurmohamed"
     affiliation: "MSc Geomatics"
-  - name: "Student 2"
-    affiliation: "MSc Landscape Architecture"
-  - name: "Student 3"
-    affiliation: "MSc Urbanism"
-  - name: "Student 4"
-    affiliation: "MSc Urbanism"
-  - name: "Student 5"
-    affiliation: "MSc Landscape Architecture"
+  - name: "Karlijn Huissen"
+    affiliation: "MSc Geomatics"
+  - name: "Austėja Tarvydaitė" 
+    affiliation: "MSc Geomatics"
+  - name: "Marta Zolnowska"
+    affiliation: "MSc Geomatics"
 format: html
 ---
 

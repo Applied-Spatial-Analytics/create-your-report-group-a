@@ -2,7 +2,7 @@
 title: "Title of your report"
 subtitle: "Project report of Group #"
 author:
-  - name: "Student 1"
+  - name: "Faried Nurmohamed"
     affiliation: "MSc Geomatics"
   - name: "Student 2"
     affiliation: "MSc Landscape Architecture"

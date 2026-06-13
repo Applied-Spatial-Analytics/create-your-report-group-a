@@ -79,13 +79,34 @@ these comparable areas; and (4) proposing targeted Nature-based Solutions for th
 
 ## Methods
 ### Data
+
+#### Envelope
+why we used it, how in rt and how in gz 
+
+#### Spatial Grid
+
+A regular spatial grid of 500 × 500 m cells was constructed for each city in QGIS software (Vector → Research Tools → Create Grid), covering the set envelope boundary of each city. The grid was created specifically for the typology 
+construction process, providing a consistent spatial unit for aggregating and comparing data layers (LCZ classes, betweenness centrality links, and green patches). It is not used in further analysis steps beyond typology construction and study area selection. why? - write more on that later 
+
 ### Ecological Connectivity Analysis
 #### MSPA
 #### Graphab (BC + DPC)
 ### Typology Construction
+
+To identify spatially comparable areas between Rotterdam and Guangzhou, a multi-criteria typology was constructed for each city based on three data layers: Local Climate Zones, ecological connectivity (betweenness centrality), and green patch characteristics. The typology boundaries were derived from the data itself through unsupervised clustering.
+
 #### Local Climate Zones
+Quick info on what local climate zones are and where we got datasets for both cities. 
++ two maps of lcz in both cities 
+
 #### Clustering (BC + patches + LCZ)
+A regular spatial grid was used as the common analysis unit for both cities, with all three criteria summarised per grid cell. Betweenness centrality values from the top 500 links were spatially joined to the grid using an intersection, with the mean normalised BC value computed per cell. Green patch metrics (patch count and mean patch capacity based on the dpc_sum field from Graphab) were similarly joined to the grid. 
+Grid cells with no links or patches passing through them were assigned a value of zero, since they simply have no green connectivity (this is not missing data but a meaningful absence).  Before clustering, all variables were standardised using z-score normalisation (StandardScaler) to ensure equal weighting regardless of original scale. K-means clustering (k=5) was then applied to the three variables: BC mean, patch count, and mean patch capacity;  using the scikit-learn implementation in Python Console in QGIS. The number of clusters was set to five to produce interpretable ecological profiles while keeping sufficient differentiation between groups. 
+After clustering, the dominant LCZ class per cluster was checked to understand what kind of urban environment each cluster is typically located in. This was done as a separate step after clustering, since LCZ is a categorical variable and including it directly in the K-means algorithm would have distorted the results. 
+
 ### Study Area Selection
+Comparable study areas between Rotterdam and Guangzhou were identified by matching clusters across both cities based on similarities in their BC values, patch characteristics, and LCZ composition. Two pairs of comparable areas were selected based on the strength of the match across these three criteria. The spatial boundary of each study area was then defined by dissolving the corresponding cluster grid cells into a single polygon, which was used as the spatial unit for the subsequent deeper analysis. 
+
 ### Study Area Deep Dive
 #### NDVI
 #### Land use
@@ -100,15 +121,102 @@ these comparable areas; and (4) proposing targeted Nature-based Solutions for th
 #### Guangzhou
 ##### Graphab stuff and mspa
 ### Typologies
+
 #### Rotterdam
-##### Cluster profiles
-##### Spatial distribution
+
+##### Cluster Profiles
+
+K-means clustering of Rotterdam's grid cells produced five ecological 
+profiles. Table X presents the mean values per cluster for betweenness centrality, 
+patch count, and patch capacity.
+
+| Cluster | n    | BC mean | Patches | Capacity | Interpretation                              |
+|---------|------|---------|---------|----------|---------------------------------------------|
+| 0       | 1932 | 0.0078  | 0.77    | 0.036    | Transition zones: moderate connectivity, some patches |
+| 1       | 60   | 0.5767  | 1.17    | 0.264    | Key corridors: very high BC, quality patches |
+| 2       | 2730 | 0.0003  | 0.00    | 0.000    | Urbanised area: no connectivity, no patches  |
+| 3       | 512  | 0.0054  | 1.06    | 0.372    | Isolated quality patches: low BC, high capacity |
+| 4       | 1546 | 0.0056  | 1.59    | 0.018    | Fragmented green: many small low-quality patches |
+
+Cluster 2 is the largest group, representing the Urbanised area with no meaningful 
+green network. Cluster 1, while the smallest (n=60), represents the most 
+ecologically significant cells which are key corridor locations with both high betweenness 
+centrality and quality patches. Cluster 3 are the areas with high-quality 
+patches that are poorly connected to the broader network, dominated by LCZ D 
+(low plants) with some LCZ A (dense trees) (here will add more on low bc means). Cluster 4 shows fragmented green 
+distributed across LCZ 6 (open low-rise) and LCZ 8 (large low-rise) urban areas.
+
+##### Spatial Distribution
+
+![Rotterdam cluster distribution map](images/rt_clusters_all){width=100%}
+
+analysis of the map here
+
 #### Guangzhou
-##### Cluster profiles
-##### Spatial distribution
-### Comparable Study Areas (from cluster analysis)
+
+##### Cluster Profiles
+
+| Cluster | n    | BC mean | Patches | Capacity | Interpretation                              |
+|---------|------|---------|---------|----------|---------------------------------------------|
+| 0       | 459  | 0.3446  | 3.77    | 0.010    | Fragmented green in urban fabric: many small patches, high BC |
+| 1       | 1947 | 0.0012  | 0.39    | 0.005    | Low connectivity urban: sparse patches, minimal BC |
+| 2       | 317  | 0.1894  | 0.49    | 0.001    | Corridor cells: moderate BC through mostly non-green areas |
+| 3       | 475  | 0.0855  | 1.07    | 0.393    | Isolated quality patches: low BC but high patch capacity |
+| 4       | 1638 | 0.4292  | 0.82    | 0.016    | High BC urban: major corridors through dense urban fabric |
+
+Guangzhou's clustering reveals a different ecological structure than Rotterdam. 
+High BC values are more widespread, reflecting the larger and denser green network 
+of Guangzhou. Cluster 3, similar to Rotterdam's Cluster 3, identifies isolated 
+quality patches dominated by LCZ A (dense trees, n=419). Cluster 0 represnts fragmented green 
+within the urban fabric, dominated by LCZ 6 (open low-rise) and LCZ 8 
+(large low-rise), comparable to Rotterdam's Cluster 4.
+
+##### Spatial Distribution
+
+![Rotterdam cluster distribution map](images/gz_clusters_all){width=100%}
+
+analysis of the map here
+
+### Comparable Study Areas
+
+Two pairs of comparable areas were identified based on similarity in ecological 
+connectivity profiles and urban context.
+
+![Rotterdam chosen cluster distribution map](images/rt_clusters_3_4_highlighted){width=100%}
+
+![Rotterdam chosen cluster distribution map](images/chosen_clusters_rt){width=100%}
+
+
+![Guangzhou chosen cluster distribution map](images/gz_cluster_3_0){width=100%}
+
+![Guangzhou chosen cluster distribution map](highlighted_chosen_gz){width=100%}
+
 #### RT Cluster 3 vs GZ Cluster 3
+
+Both clusters are characterised by isolated quality green patches with low 
+betweenness centrality and high patch capacity (RT: 0.372; GZ: 0.393) and 
+similar patch counts (~1.06–1.07 per cell). This makes them the strongest 
+cross-city match in the analysis. However, the LCZ differ in these clusters: Rotterdam's Cluster 3 
+is dominated by LCZ D (low plants, grassland/polder landscape) while Guangzhou's 
+is dominated by LCZ A (dense trees, forest). This reflects the different vegetation 
+character of green spaces in each city. Despite this difference in vegetation 
+type, both clusters represent the same ecological condition: high-quality green 
+spaces that are underconnected to the broader green network. 
+This makes them particularly relevant for targeted connectivity improvement 
+through Nature-based Solutions.
+
 #### RT Cluster 4 vs GZ Cluster 0
+
+The second pair was chosen due to its partial match based mostly on LCZ composition. Both 
+clusters are dominated by LCZ 6 (open low-rise) and LCZ 8 (large low-rise), 
+indicating similar urban fabric contexts. Patch structure is also somewhat 
+comparable as both show fragmented green with low patch capacity. The main 
+difference is in BC values (RT: 0.006; GZ: 0.345), depicting the overall 
+higher connectivity in Guangzhou. This pair represents 
+fragmented green in somewhat comparable urban form contexts. Here NbS 
+interventions could focus on improving patch quality and increasing green cover.
+
+
 ### Zoom in on study areas (deeper analysis)
 #### NDVI
 #### Land use + barriers (roads, water, railway, etc.)

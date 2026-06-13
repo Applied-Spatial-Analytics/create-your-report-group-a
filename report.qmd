@@ -48,16 +48,63 @@ and start the report from the Introduction section below.
 :::
 
 ## Introduction
+- Delta cities context (why Rotterdam + Guangzhou)
+- Research gap
+- RQ + Objective
+
+## Case Study Area
+- Rotterdam overview
+- Guangzhou overview
+- Maps of both cities
+
+
 
 ## Methods
+### Data
+### Ecological Connectivity Analysis
+#### MSPA
+#### Graphab (BC + DPC)
+### Typology Construction
+#### Local Climate Zones
+#### Clustering (BC + patches + LCZ)
+### Study Area Selection
+### Study Area Deep Dive
+#### NDVI
+#### Land use
+#### Barriers (roads, water, railway
+### NBS
 
-### MCDA
-
-### Typology construction
 
 ## Results
+### Current Ecological Connectivity Status
+#### Rotterdam
+#####Graphab stuff and mspa
+#### Guangzhou
+##### Graphab stuff and mspa
+### Typologies
+#### Rotterdam
+##### Cluster profiles
+##### Spatial distribution
+#### Guangzhou
+##### Cluster profiles
+##### Spatial distribution
+### Comparable Study Areas (from cluster analysis)
+#### RT Cluster 3 vs GZ Cluster 3
+#### RT Cluster 4 vs GZ Cluster 0
+### Zoom in on study areas (deeper analysis)
+#### NDVI
+#### Land use + barriers (roads, water, railway, etc.)
 
 ## Discussion
+### Differences and similarities between cities
+### Implications for NbS
+
+## Nature-based Solutions
+### RT Cluster 3 + GZ Cluster 3
+### RT Cluster 4 + GZ Cluster 0
 
 ## Conclusion
+
+## Recommendations & Further Research
+- How NbS would improve connectivity (re-running ecological connectivty analysis with NBS intervations purposed) - or if we have time we can do it after NBS chapter  
 

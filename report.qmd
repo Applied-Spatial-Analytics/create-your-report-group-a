@@ -48,9 +48,27 @@ and start the report from the Introduction section below.
 :::
 
 ## Introduction
-- Delta cities context (why Rotterdam + Guangzhou)
-- Research gap
-- RQ + Objective
+
+Delta cities blah blah blah 
+
+
+Rotterdam and Guangzhou represent two contrasting delta city contexts. blah blah blah 
+
+ecological connectivty in delta cities - importance issue etc. - find a research gap 
+
+This study addresses this gap through the following research question:
+
+> *To what extent does green infrastructure connectivity vary across urban areas 
+> in delta cities Rotterdam and Guangzhou, and what does this imply for targeted 
+> Nature-based Solutions?*
+
+The main objective of this research is to develop an informed Nature-based Solutions 
+plan tailored to spatially comparable areas in both cities. 
+The objective is explored and pursued using following steps: (1) assessing the current status of ecological connectivity using betweenness centrality and patch connectivity 
+analysis; (2) identifying comparable areas across both cities based on a 
+multi-criteria clustering approach combining Local Climate Zones, connectivity 
+metrics, and patch characteristics; (3) conducting a deeper spatial analysis of 
+these comparable areas; and (4) proposing targeted Nature-based Solutions for them.
 
 ## Case Study Area
 - Rotterdam overview
@@ -78,7 +96,7 @@ and start the report from the Introduction section below.
 ## Results
 ### Current Ecological Connectivity Status
 #### Rotterdam
-#####Graphab stuff and mspa
+##### Graphab stuff and mspa
 #### Guangzhou
 ##### Graphab stuff and mspa
 ### Typologies

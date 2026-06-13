@@ -1,5 +1,5 @@
 ---
-title: "Title of your report"
+title: "Ecological Connectivity Analysis in Delta Cities - a case study in Rotterdam and Guangzhou"
 subtitle: "Project report of Group A"
 author:
   - name: "Faried Nurmohamed"

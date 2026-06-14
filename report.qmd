@@ -249,6 +249,16 @@ Here we see that the orange cluster showing good quality patches with weak conne
 ![Rotterdam zoom in 2](images/idea2){width=100%}
 
 
+
+![Rotterdam zoom 1 with barriers - RAW](images/with_barriers){width=100%}
+
+- here red are railways 
+-blue water
+-black roads 
+
+the orange cluster is mostly spearted by water but if we zoom in in...
+
+
 Here Guangzhou zoom in: 
 ....
 

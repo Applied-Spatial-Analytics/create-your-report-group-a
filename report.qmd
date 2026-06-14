@@ -49,10 +49,9 @@ and start the report from the Introduction section below.
 
 ## Introduction
 
-Delta cities blah blah blah 
+Delta cities - will add context on it later
 
-
-Rotterdam and Guangzhou represent two contrasting delta city contexts. blah blah blah 
+Rotterdam and Guangzhou represent two contrasting delta city contexts. - to be added 
 
 ecological connectivty in delta cities - importance issue etc. - find a research gap 
 
@@ -75,22 +74,46 @@ these comparable areas; and (4) proposing targeted Nature-based Solutions for th
 - Guangzhou overview
 - Maps of both cities
 
-
+- maps to be added and small text 
 
 ## Methods
 ### Data
 
 #### Envelope
 why we used it, how in rt and how in gz 
+- mention dimensions !!!
 
 #### Spatial Grid
 
 A regular spatial grid of 500 × 500 m cells was constructed for each city in QGIS software (Vector → Research Tools → Create Grid), covering the set envelope boundary of each city. The grid was created specifically for the typology 
 construction process, providing a consistent spatial unit for aggregating and comparing data layers (LCZ classes, betweenness centrality links, and green patches). It is not used in further analysis steps beyond typology construction and study area selection. why? - write more on that later 
+also why 500x500m 
 
 ### Ecological Connectivity Analysis
 #### MSPA
 #### Graphab (BC + DPC)
+
+Betweeness centrality here: ....
+
+The delta Probability of Connectivity Index (dPC) is a metric that measures 
+the individual contribution of a specific habitat patch to the overall 
+connectivity of the landscape. It represents the change in the PC index when 
+a particular patch is removed, thereby assessing the importance of that patch 
+in maintaining landscape connectivity. This metric is composed of three 
+components: dPCintra, a measure of intrapatch connectivity, dPCconnect, the 
+importance of a patch for connecting other patches together, and dPCflux, a 
+measure of how connected a patch is to the network. The sum of these fractions 
+equals the total delta Probability of Connectivity.
+
+In this study, the total dPC value (dpc_sum) was computed per patch in Graphab 
+and subsequently aggregated to the 500 × 500 m grid by calculating the mean 
+dPC value per cell. 
+
+(from metrovancouver
+Evaluation of Regional
+Ecosystem Connectivity
+2025 - will add sources later)
+
 ### Typology Construction
 
 To identify spatially comparable areas between Rotterdam and Guangzhou, a multi-criteria typology was constructed for each city based on three data layers: Local Climate Zones, ecological connectivity (betweenness centrality), and green patch characteristics. The typology boundaries were derived from the data itself through unsupervised clustering.
@@ -121,7 +144,7 @@ Comparable study areas between Rotterdam and Guangzhou were identified by matchi
 #### Guangzhou
 ##### Graphab stuff and mspa
 ### Typologies
-
+- will add python script from qgis here 
 #### Rotterdam
 
 ##### Cluster Profiles
@@ -218,6 +241,17 @@ interventions could focus on improving patch quality and increasing green cover.
 
 
 ### Zoom in on study areas (deeper analysis)
+The idea is to zoom in and look for smaller area with chosen clusters:
+![Rotterdam zoom in on cluster distribution map](images/idea1){width=100%}
+![Rotterdam zoom in on cluster distribution map](images/Zrzut ekranu 2026-06-14 155000){width=100%}
+Here we see that the orange cluster showing good quality patches with weak connectivty is surrounded mostly by framgmented low quality greens (cluster 2) and some 0 clusters (Transition zones — moderate connectivity, some patches) and there is some green (cluster 1), which indicate a small but significant presence of key corridors with very high BC and quality patches. This depict potential that the cluster 1 could be expanded (by leverging parts of orange cluster or connecting yellow areas (also improving their quality) around it. But then when looking at the whole ecological profile of rotterdam there are not any mor eorange clusters withing the area, which could motivate the second intervention (on yellow clusters with id 2) in other areas (maybe top right corner of the envelope). 
+
+![Rotterdam zoom in 2](images/idea2){width=100%}
+
+
+Here Guangzhou zoom in: 
+....
+
 #### NDVI
 #### Land use + barriers (roads, water, railway, etc.)
 

@@ -180,8 +180,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Delta cities blah blah blah</p>
-<p>Rotterdam and Guangzhou represent two contrasting delta city contexts. blah blah blah</p>
+<p>Delta cities - will add context on it later</p>
+<p>Rotterdam and Guangzhou represent two contrasting delta city contexts. - to be added</p>
 <p>ecological connectivty in delta cities - importance issue etc. - find a research gap</p>
 <p>This study addresses this gap through the following research question:</p>
 <blockquote class="blockquote">
@@ -192,9 +192,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="case-study-area" class="level2">
 <h2 class="anchored" data-anchor-id="case-study-area">Case Study Area</h2>
 <ul>
-<li>Rotterdam overview</li>
-<li>Guangzhou overview</li>
-<li>Maps of both cities</li>
+<li><p>Rotterdam overview</p></li>
+<li><p>Guangzhou overview</p></li>
+<li><p>Maps of both cities</p></li>
+<li><p>maps to be added and small text</p></li>
 </ul>
 </section>
 <section id="methods" class="level2">
@@ -203,11 +204,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="data">Data</h3>
 <section id="envelope" class="level4">
 <h4 class="anchored" data-anchor-id="envelope">Envelope</h4>
-<p>why we used it, how in rt and how in gz</p>
+<p>why we used it, how in rt and how in gz - mention dimensions !!!</p>
 </section>
 <section id="spatial-grid" class="level4">
 <h4 class="anchored" data-anchor-id="spatial-grid">Spatial Grid</h4>
-<p>A regular spatial grid of 500 × 500 m cells was constructed for each city in QGIS software (Vector → Research Tools → Create Grid), covering the set envelope boundary of each city. The grid was created specifically for the typology construction process, providing a consistent spatial unit for aggregating and comparing data layers (LCZ classes, betweenness centrality links, and green patches). It is not used in further analysis steps beyond typology construction and study area selection. why? - write more on that later</p>
+<p>A regular spatial grid of 500 × 500 m cells was constructed for each city in QGIS software (Vector → Research Tools → Create Grid), covering the set envelope boundary of each city. The grid was created specifically for the typology construction process, providing a consistent spatial unit for aggregating and comparing data layers (LCZ classes, betweenness centrality links, and green patches). It is not used in further analysis steps beyond typology construction and study area selection. why? - write more on that later also why 500x500m</p>
 </section>
 </section>
 <section id="ecological-connectivity-analysis" class="level3">
@@ -217,6 +218,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="graphab-bc-dpc" class="level4">
 <h4 class="anchored" data-anchor-id="graphab-bc-dpc">Graphab (BC + DPC)</h4>
+<p>Betweeness centrality here: ….</p>
+<p>The delta Probability of Connectivity Index (dPC) is a metric that measures the individual contribution of a specific habitat patch to the overall connectivity of the landscape. It represents the change in the PC index when a particular patch is removed, thereby assessing the importance of that patch in maintaining landscape connectivity. This metric is composed of three components: dPCintra, a measure of intrapatch connectivity, dPCconnect, the importance of a patch for connecting other patches together, and dPCflux, a measure of how connected a patch is to the network. The sum of these fractions equals the total delta Probability of Connectivity.</p>
+<p>In this study, the total dPC value (dpc_sum) was computed per patch in Graphab and subsequently aggregated to the 500 × 500 m grid by calculating the mean dPC value per cell.</p>
+<p>(from metrovancouver Evaluation of Regional Ecosystem Connectivity 2025 - will add sources later)</p>
 </section>
 </section>
 <section id="typology-construction" class="level3">
@@ -270,8 +275,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="typologies" class="level3">
 <h3 class="anchored" data-anchor-id="typologies">Typologies</h3>
-<section id="rotterdam-1" class="level4">
-<h4 class="anchored" data-anchor-id="rotterdam-1">Rotterdam</h4>
+<ul>
+<li>will add python script from qgis here #### Rotterdam</li>
+</ul>
 <section id="cluster-profiles" class="level5">
 <h5 class="anchored" data-anchor-id="cluster-profiles">Cluster Profiles</h5>
 <p>K-means clustering of Rotterdam’s grid cells produced five ecological profiles. Table X presents the mean values per cluster for betweenness centrality, patch count, and patch capacity.</p>
@@ -348,7 +354,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>analysis of the map here</p>
-</section>
 </section>
 <section id="guangzhou-1" class="level4">
 <h4 class="anchored" data-anchor-id="guangzhou-1">Guangzhou</h4>
@@ -468,6 +473,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="zoom-in-on-study-areas-deeper-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="zoom-in-on-study-areas-deeper-analysis">Zoom in on study areas (deeper analysis)</h3>
+<p>The idea is to zoom in and look for smaller area with chosen clusters: <img src="images/idea1.png" class="img-fluid" style="width:100.0%" alt="Rotterdam zoom in on cluster distribution map"> <img src="images/Zrzut%20ekranu%202026-06-14%20155000.png" class="img-fluid" style="width:100.0%" alt="Rotterdam zoom in on cluster distribution map"> Here we see that the orange cluster showing good quality patches with weak connectivty is surrounded mostly by framgmented low quality greens (cluster 2) and some 0 clusters (Transition zones — moderate connectivity, some patches) and there is some green (cluster 1), which indicate a small but significant presence of key corridors with very high BC and quality patches. This depict potential that the cluster 1 could be expanded (by leverging parts of orange cluster or connecting yellow areas (also improving their quality) around it. But then when looking at the whole ecological profile of rotterdam there are not any mor eorange clusters withing the area, which could motivate the second intervention (on yellow clusters with id 2) in other areas (maybe top right corner of the envelope).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/idea2.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Rotterdam zoom in 2</figcaption>
+</figure>
+</div>
+<p>Here Guangzhou zoom in: ….</p>
 <section id="ndvi-1" class="level4">
 <h4 class="anchored" data-anchor-id="ndvi-1">NDVI</h4>
 </section>

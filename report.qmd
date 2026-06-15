@@ -93,26 +93,31 @@ also why 500x500m
 #### MSPA
 #### Graphab (BC + DPC)
 
-Betweeness centrality here: ....
+To conduct the ecological connectivity analysis, the software of Grapnhab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor & Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data.
 
-The delta Probability of Connectivity Index (dPC) is a metric that measures 
-the individual contribution of a specific habitat patch to the overall 
-connectivity of the landscape. It represents the change in the PC index when 
-a particular patch is removed, thereby assessing the importance of that patch 
-in maintaining landscape connectivity. This metric is composed of three 
-components: dPCintra, a measure of intrapatch connectivity, dPCconnect, the 
-importance of a patch for connecting other patches together, and dPCflux, a 
-measure of how connected a patch is to the network. The sum of these fractions 
-equals the total delta Probability of Connectivity.
+By loading the .tiff file created by the MSPA analysis, Graphab can read the landcover classification and filter on those accordingly. By filtering on land use code “17” to select the core areas as habitat patches, Graphab can then create a linkset to visualise all the possible connections between each habitat patch and use them for later calculations.
 
-In this study, the total dPC value (dpc_sum) was computed per patch in Graphab 
-and subsequently aggregated to the 500 × 500 m grid by calculating the mean 
-dPC value per cell. 
+Now that everything is loaded into Graphab, we can then make use of the weighted metrics. To understand the importance of each patch and link, two different metrics are used. To run metrics calculations, you first need to create a graph. Here you select the linkset along with a distance threshold (it will only keep the links within this threshold). For the selected areas in Rotterdam and Guangzhou, multiple distances were tested to understand which number would give a meaningful result. With a short distance, it would result into giving too much importance to smaller links, but with a distance that is too large, it would not take the smaller links into consideration as much. We therefore landed on a value of 10 000m. 
 
-(from metrovancouver
-Evaluation of Regional
-Ecosystem Connectivity
-2025 - will add sources later)
+For the patches, delta Probability of Connectivity Index (dPC) is used. dPC measures how much overall connectivity (PC) drops when you remove a patch. It is a metric that measures the individual contribution of a specific habitat patch to the overall connectivity of the landscape. It represents the change in the PC index when a particular patch is removed, thereby assessing the importance of that patch in maintaining landscape connectivity. This metric is composed of three components: dPCintra, a measure of intrapatch connectivity, dPCconnect, the importance of a patch for connecting other patches together, and dPCflux, a measure of how connected a patch is to the network. The sum of these fractions equals the total delta Probability of Connectivity. This calculation was sadly only available for patches in Graphab, so for the links a different metric is used.
+
+The links were classified through Betweenness Centrality (BC). It counts how many patch-to-patch routes pass through each link. It's defined per element and works cleanly on edges, giving a differentiated value for every link: which "potential" connections act as the busiest throughways/bridges. It is a measure of how frequently a node appears on the shortest paths between pairs of other nodes in a network (SOURCE). Together, they form a complete picture revealing the critical habitats and the critical corridors between them. In our research, they are used as two complementary connectivity metrics, each appropriate to its element type.
+
+For both metrics, the parameters dispersal distance (d) and probability (p) are asked to compute the calculations. Both refer to the chance of an animal moving from one patch to another, based on the distance between the patches, and the dispersal characteristics of the selected animal species. During this research, the animal species will not be identified, so therefore we take a dispersal distance of 500 m. This is a common default for urban green infrastructure studies. It represents medium-mobility species and also roughly matches human walking distance to green space. It’s considered good for general urban ecology assessments. The probability starts at a default of 0.5, meaning “at 500 m, there is a 50% chance of successful dispersal”. This is again a standard assumption since we don’t specify species.
+
+After the calculations are computed, each patch and each link now contain dPC and BC values that can be categorised and visualised in QGIS. Here, the patches are visualised through a graduated symbology from green to yellow, where dark green marks a higher value. With five classes on equal intervals, the patches are ordered in importance. Dark green therefore means that once this patch would be removed, it would impact the overall connectivity the most. The links are filtered on the 500 most important once for each city (by selecting the 500 links with the highest BC value). They are then also visualised though a graduated symbology, this time on line thickness as well as colour. The thicker and darker the lines appear, the busiest the link appears to be in the network. Here however, all links would provide a big impact, since they are filtered on the 500 most important ones.
+
+In the Results section, the outcome of this analysis for Rotterdam and Guangzhou is presented, which will be used as one of the inputs for the clustering analysis in the next section.
+
+(Still add stuff about Conefor, limitations here already?)
+
+Graphab. (n.d.). Graphab. https://thema.umlp.fr/productions/software/graphab/en/home.html
+
+Minor, E. S., & Urban, D. L. (2008). A graph-theory framework for evaluating landscape connectivity and conservation planning. Conservation Biology, 22(2), 297–307. https://doi.org/10.1111/j.1523-1739.2007.00871.x
+
+The delta Probability of Connectivity Index (dPC) 
+(from metrovancouver Evaluation of Regional Ecosystem Connectivity 2025 - will add sources later)
+
 
 ### Typology Construction
 

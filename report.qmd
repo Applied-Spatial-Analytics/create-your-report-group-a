@@ -145,6 +145,9 @@ Comparable study areas between Rotterdam and Guangzhou were identified by matchi
 ## Results
 ### Current Ecological Connectivity Status
 #### Rotterdam
+
+Limitation: envelop (patches getting cut off)
+
 ##### Graphab stuff and mspa
 #### Guangzhou
 ##### Graphab stuff and mspa

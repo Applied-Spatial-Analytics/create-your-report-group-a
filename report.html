@@ -192,10 +192,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="case-study-area" class="level2">
 <h2 class="anchored" data-anchor-id="case-study-area">Case Study Area</h2>
 <ul>
-<li><p>Rotterdam overview</p></li>
-<li><p>Guangzhou overview</p></li>
-<li><p>Maps of both cities</p></li>
-<li><p>maps to be added and small text</p></li>
+<li>Rotterdam overview</li>
+<li>Guangzhou overview</li>
+<li>Maps of both cities</li>
+</ul>
+<div id="fig-introduction-pair" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-introduction-pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-introduction-pair" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-roffa" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-roffa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Rotterdam_introduction.png" class="img-fluid figure-img" data-ref-parent="fig-introduction-pair">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-roffa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Rotterdam
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-introduction-pair" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-guang" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-guang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Guangzhou_introduction.png" class="img-fluid figure-img" data-ref-parent="fig-introduction-pair">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-guang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Guangzhou
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-introduction-pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: General introduction of cities.
+</figcaption>
+</figure>
+</div>
+<ul>
+<li>small text</li>
 </ul>
 </section>
 <section id="methods" class="level2">
@@ -225,11 +262,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The links were classified through Betweenness Centrality (BC). It counts how many patch-to-patch routes pass through each link. It’s defined per element and works cleanly on edges, giving a differentiated value for every link: which “potential” connections act as the busiest throughways/bridges. It is a measure of how frequently a node appears on the shortest paths between pairs of other nodes in a network (SOURCE). Together, they form a complete picture revealing the critical habitats and the critical corridors between them. In our research, they are used as two complementary connectivity metrics, each appropriate to its element type.</p>
 <p>For both metrics, the parameters dispersal distance (d) and probability (p) are asked to compute the calculations. Both refer to the chance of an animal moving from one patch to another, based on the distance between the patches, and the dispersal characteristics of the selected animal species. During this research, the animal species will not be identified, so therefore we take a dispersal distance of 500 m. This is a common default for urban green infrastructure studies. It represents medium-mobility species and also roughly matches human walking distance to green space. It’s considered good for general urban ecology assessments. The probability starts at a default of 0.5, meaning “at 500 m, there is a 50% chance of successful dispersal”. This is again a standard assumption since we don’t specify species.</p>
 <p>After the calculations are computed, each patch and each link now contain dPC and BC values that can be categorised and visualised in QGIS. Here, the patches are visualised through a graduated symbology from green to yellow, where dark green marks a higher value. With five classes on equal intervals, the patches are ordered in importance. Dark green therefore means that once this patch would be removed, it would impact the overall connectivity the most. The links are filtered on the 500 most important once for each city (by selecting the 500 links with the highest BC value). They are then also visualised though a graduated symbology, this time on line thickness as well as colour. The thicker and darker the lines appear, the busiest the link appears to be in the network. Here however, all links would provide a big impact, since they are filtered on the 500 most important ones.</p>
-<p>In the Results section, the outcome of this analysis for Rotterdam and Guangzhou is presented, which will be used as one of the inputs for the clustering analysis in the next section.</p>
+<p>In the Results (<a href="#sec-results" class="quarto-xref">Section&nbsp;5</a>), the outcome of this analysis for Rotterdam and Guangzhou is presented, which will be used as one of the inputs for the clustering analysis in the next section.</p>
 <p>(Still add stuff about Conefor, limitations here already?)</p>
-<p>Graphab. (n.d.). Graphab. https://thema.umlp.fr/productions/software/graphab/en/home.html</p>
-<p>Minor, E. S., &amp; Urban, D. L. (2008). A graph-theory framework for evaluating landscape connectivity and conservation planning. Conservation Biology, 22(2), 297–307. https://doi.org/10.1111/j.1523-1739.2007.00871.x</p>
-<p>The delta Probability of Connectivity Index (dPC) (from metrovancouver Evaluation of Regional Ecosystem Connectivity 2025 - will add sources later)</p>
 </section>
 </section>
 <section id="typology-construction" class="level3">
@@ -267,8 +301,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="nbs">NBS</h3>
 </section>
 </section>
-<section id="results" class="level2">
-<h2 class="anchored" data-anchor-id="results">Results</h2>
+<section id="sec-results" class="level2">
+<h2 class="anchored" data-anchor-id="sec-results">Results</h2>
 <section id="current-ecological-connectivity-status" class="level3">
 <h3 class="anchored" data-anchor-id="current-ecological-connectivity-status">Current Ecological Connectivity Status</h3>
 <section id="rotterdam" class="level4">
@@ -279,32 +313,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="patches-and-link-importance" class="level4">
 <h4 class="anchored" data-anchor-id="patches-and-link-importance">Patches and Link Importance</h4>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Rotterdam_connectivity_envelope.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Figure X: Ecological Connecivity within Envelope.</figcaption>
+<p>To represent the ecological connectivity, the layers are split into the patches and links. For the patches, the most essential elements of the green structure are visualised in dark green and less important elements in lighter shades leading up to yellow. Higher importance in this case means that if this patch were to be removed, the connectivity of the entire network would suffer the most. Patches with higher importance can’t be supported by the surrounding green structure, meaning a greater loss in network connectivity. By focusing on an envelope around the boundary of Rotterdam, we get to include more context that would’ve been lost otherwise. This envelope shape sadly still cuts off the surrounding patches, so some patches appear smaller within this shape and in the overall connectivity therefore also score less. This is a limitation of the envelope approach, but it did help in reducing the computation time so we take this in consideration.</p>
+<p>The same visualisation is done for the links, where a darker and thicker brown represents the most important “potential” links in the network. It is interesting to see that most of the links don’t run into the boundary of Rotterdam. Since the patches around the city are much bigger and get more importance, the links span around the boundary rather than within. From this analysis, it then shifts the focus on a link outside of the city boundary, but then we would lose the urban area factor that is central in our research. That’s why we chose to run the metric again but this time only within the boundary of Rotterdam, to understand which parts of the patches then become crucial and where meaningful interventions could happen in the urban environment.</p>
+<div id="fig-connectivity-renvelope" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-connectivity-renvelope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Rotterdam_connectivity_envelope.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-connectivity-renvelope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Ecological connectivity within the Envelope.
+</figcaption>
 </figure>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Rotterdam_connectivity_rboundary.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Figure X: Ecological Connecivity with the boundary of Rotterdam.</figcaption>
+<div id="fig-connectivity-rboundary" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-connectivity-rboundary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Rotterdam_connectivity_rboundary.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-connectivity-rboundary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Ecological connectivity within the boundary of Rotterdam.
+</figcaption>
 </figure>
 </div>
-<p>Limitation: envelop (patches getting cut off)</p>
+<p>As can be seen in <a href="#fig-connectivity-rboundary" class="quarto-xref">Figure&nbsp;3</a>, we can now identify spaces within the boundary of Rotterdam that could be improved. These, together with some additional analysis on clustering, will then form the basis of choosing the zoom in locations.</p>
 </section>
 <section id="guangzhou" class="level4">
 <h4 class="anchored" data-anchor-id="guangzhou">Guangzhou</h4>
-<section id="graphab-stuff-and-mspa" class="level5">
-<h5 class="anchored" data-anchor-id="graphab-stuff-and-mspa">Graphab stuff and mspa</h5>
+<section id="morphological-spatial-pattern-analysis-mspa-2" class="level5">
+<h5 class="anchored" data-anchor-id="morphological-spatial-pattern-analysis-mspa-2">Morphological Spatial Pattern Analysis (MSPA)</h5>
 </section>
+</section>
+<section id="patches-and-link-importance-1" class="level4">
+<h4 class="anchored" data-anchor-id="patches-and-link-importance-1">Patches and Link Importance</h4>
 </section>
 </section>
 <section id="typologies" class="level3">
 <h3 class="anchored" data-anchor-id="typologies">Typologies</h3>
 <ul>
-<li>will add python script from qgis here #### Rotterdam</li>
+<li>will add python script from qgis here</li>
 </ul>
+<section id="rotterdam-1" class="level4">
+<h4 class="anchored" data-anchor-id="rotterdam-1">Rotterdam</h4>
 <section id="cluster-profiles" class="level5">
 <h5 class="anchored" data-anchor-id="cluster-profiles">Cluster Profiles</h5>
 <p>K-means clustering of Rotterdam’s grid cells produced five ecological profiles. Table X presents the mean values per cluster for betweenness centrality, patch count, and patch capacity.</p>
@@ -381,6 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>analysis of the map here</p>
+</section>
 </section>
 <section id="guangzhou-1" class="level4">
 <h4 class="anchored" data-anchor-id="guangzhou-1">Guangzhou</h4>
@@ -504,7 +554,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/Rotterdam_zoomin_intro.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Figure X: Zoom in locations in Rotterdam.</figcaption>
+<figcaption>Figure X: Zoom in locations of Rotterdam.</figcaption>
 </figure>
 </div>
 <p><img src="images/idea1.png" class="img-fluid" style="width:100.0%" alt="Rotterdam zoom in on cluster distribution map"> <img src="images/Zrzut%20ekranu%202026-06-14%20155000.png" class="img-fluid" style="width:100.0%" alt="Rotterdam zoom in on cluster distribution map"> Here we see that the orange cluster showing good quality patches with weak connectivty is surrounded mostly by framgmented low quality greens (cluster 2) and some 0 clusters (Transition zones — moderate connectivity, some patches) and there is some green (cluster 1), which indicate a small but significant presence of key corridors with very high BC and quality patches. This depict potential that the cluster 1 could be expanded (by leverging parts of orange cluster or connecting yellow areas (also improving their quality) around it. But then when looking at the whole ecological profile of rotterdam there are not any mor eorange clusters withing the area, which could motivate the second intervention (on yellow clusters with id 2) in other areas (maybe top right corner of the envelope).</p>
@@ -559,6 +609,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>How NbS would improve connectivity (re-running ecological connectivty analysis with NBS intervations purposed) - or if we have time we can do it after NBS chapter</li>
 </ul>
+</section>
+<section id="reference-list" class="level2">
+<h2 class="anchored" data-anchor-id="reference-list">Reference List</h2>
+<p>Graphab. (n.d.). Graphab. https://thema.umlp.fr/productions/software/graphab/en/home.html</p>
+<p>Minor, E. S., &amp; Urban, D. L. (2008). A graph-theory framework for evaluating landscape connectivity and conservation planning. Conservation Biology, 22(2), 297–307. https://doi.org/10.1111/j.1523-1739.2007.00871.x</p>
+<p>The delta Probability of Connectivity Index (dPC) (from metrovancouver Evaluation of Regional Ecosystem Connectivity 2025 - will add sources later)</p>
 </section>
 
 </main>

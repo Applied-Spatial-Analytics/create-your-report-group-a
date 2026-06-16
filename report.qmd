@@ -74,7 +74,15 @@ these comparable areas; and (4) proposing targeted Nature-based Solutions for th
 - Guangzhou overview
 - Maps of both cities
 
-- maps to be added and small text 
+::: {#fig-introduction-pair layout-ncol=2}
+![Rotterdam](images/Rotterdam_introduction){#fig-roffa}
+
+![Guangzhou](images/Guangzhou_introduction){#fig-guang}
+
+General introduction of cities.
+:::
+
+- small text 
 
 ## Methods
 ### Data
@@ -107,16 +115,9 @@ For both metrics, the parameters dispersal distance (d) and probability (p) are 
 
 After the calculations are computed, each patch and each link now contain dPC and BC values that can be categorised and visualised in QGIS. Here, the patches are visualised through a graduated symbology from green to yellow, where dark green marks a higher value. With five classes on equal intervals, the patches are ordered in importance. Dark green therefore means that once this patch would be removed, it would impact the overall connectivity the most. The links are filtered on the 500 most important once for each city (by selecting the 500 links with the highest BC value). They are then also visualised though a graduated symbology, this time on line thickness as well as colour. The thicker and darker the lines appear, the busiest the link appears to be in the network. Here however, all links would provide a big impact, since they are filtered on the 500 most important ones.
 
-In the Results section, the outcome of this analysis for Rotterdam and Guangzhou is presented, which will be used as one of the inputs for the clustering analysis in the next section.
+In the Results (@sec-results), the outcome of this analysis for Rotterdam and Guangzhou is presented, which will be used as one of the inputs for the clustering analysis in the next section.
 
 (Still add stuff about Conefor, limitations here already?)
-
-Graphab. (n.d.). Graphab. https://thema.umlp.fr/productions/software/graphab/en/home.html
-
-Minor, E. S., & Urban, D. L. (2008). A graph-theory framework for evaluating landscape connectivity and conservation planning. Conservation Biology, 22(2), 297–307. https://doi.org/10.1111/j.1523-1739.2007.00871.x
-
-The delta Probability of Connectivity Index (dPC) 
-(from metrovancouver Evaluation of Regional Ecosystem Connectivity 2025 - will add sources later)
 
 
 ### Typology Construction
@@ -143,7 +144,7 @@ Comparable study areas between Rotterdam and Guangzhou were identified by matchi
 ### NBS
 
 
-## Results
+## Results {#sec-results}
 ### Current Ecological Connectivity Status
 #### Rotterdam
 
@@ -151,19 +152,24 @@ Comparable study areas between Rotterdam and Guangzhou were identified by matchi
 
 #### Patches and Link Importance
 
-![Figure X: Ecological connecivity within Envelope.](
-images/Rotterdam_connectivity_envelope){width=100%}
+To represent the ecological connectivity, the layers are split into the patches and links. For the patches, the most essential elements of the green structure are visualised in dark green and less important elements in lighter shades leading up to yellow. Higher importance in this case means that if this patch were to be removed, the connectivity of the entire network would suffer the most. Patches with higher importance can’t be supported by the surrounding green structure, meaning a greater loss in network connectivity. By focusing on an envelope around the boundary of Rotterdam, we get to include more context that would’ve been lost otherwise. This envelope shape sadly still cuts off the surrounding patches, so some patches appear smaller within this shape and in the overall connectivity therefore also score less. This is a limitation of the envelope approach, but it did help in reducing the computation time so we take this in consideration.
 
-![Figure X: Ecological connecivity within the boundary of Rotterdam.](
-images/Rotterdam_connectivity_rboundary){width=100%}
+The same visualisation is done for the links, where a darker and thicker brown represents the most important “potential” links in the network. It is interesting to see that most of the links don’t run into the boundary of Rotterdam. Since the patches around the city are much bigger and get more importance, the links span around the boundary rather than within. From this analysis, it then shifts the focus on a link outside of the city boundary, but then we would lose the urban area factor that is central in our research. That’s why we chose to run the metric again but this time only within the boundary of Rotterdam, to understand which parts of the patches then become crucial and where meaningful interventions could happen in the urban environment.
 
-Limitation: envelop (patches getting cut off)
+![Ecological connectivity within the Envelope.](images/Rotterdam_connectivity_envelope.png){#fig-connectivity-renvelope width=100%}
 
+![Ecological connectivity within the boundary of Rotterdam.](images/Rotterdam_connectivity_rboundary.png){#fig-connectivity-rboundary width=100%}
+
+As can be seen in @fig-connectivity-rboundary, we can now identify spaces within the boundary of Rotterdam that could be improved. These, together with some additional analysis on clustering, will then form the basis of choosing the zoom in locations.
 
 #### Guangzhou
-##### Graphab stuff and mspa
+##### Morphological Spatial Pattern Analysis (MSPA)
+
+#### Patches and Link Importance
+
 ### Typologies
 - will add python script from qgis here 
+
 #### Rotterdam
 
 ##### Cluster Profiles
@@ -299,5 +305,14 @@ Here Guangzhou zoom in:
 ## Conclusion
 
 ## Recommendations & Further Research
-- How NbS would improve connectivity (re-running ecological connectivty analysis with NBS intervations purposed) - or if we have time we can do it after NBS chapter  
+- How NbS would improve connectivity (re-running ecological connectivty analysis with NBS intervations purposed) - or if we have time we can do it after NBS chapter 
+
+## Reference List
+
+Graphab. (n.d.). Graphab. https://thema.umlp.fr/productions/software/graphab/en/home.html
+
+Minor, E. S., & Urban, D. L. (2008). A graph-theory framework for evaluating landscape connectivity and conservation planning. Conservation Biology, 22(2), 297–307. https://doi.org/10.1111/j.1523-1739.2007.00871.x
+
+The delta Probability of Connectivity Index (dPC) 
+(from metrovancouver Evaluation of Regional Ecosystem Connectivity 2025 - will add sources later)
 

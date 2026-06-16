@@ -90,8 +90,8 @@ construction process, providing a consistent spatial unit for aggregating and co
 also why 500x500m 
 
 ### Ecological Connectivity Analysis
-#### MSPA
-#### Graphab (BC + DPC)
+#### Morphological Spatial Pattern Analysis (MSPA)
+#### Patches and Link Importance (through Graphab)
 
 To conduct the ecological connectivity analysis, the software of Grapnhab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor & Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data.
 
@@ -137,8 +137,9 @@ Comparable study areas between Rotterdam and Guangzhou were identified by matchi
 
 ### Study Area Deep Dive
 #### NDVI
-#### Land use
-#### Barriers (roads, water, railway
+#### NDBI
+#### Land Use
+#### Road Density
 ### NBS
 
 
@@ -146,9 +147,19 @@ Comparable study areas between Rotterdam and Guangzhou were identified by matchi
 ### Current Ecological Connectivity Status
 #### Rotterdam
 
+##### Morphological Spatial Pattern Analysis (MSPA)
+
+#### Patches and Link Importance
+
+![Figure X: Ecological connecivity within Envelope.](
+images/Rotterdam_connectivity_envelope){width=100%}
+
+![Figure X: Ecological connecivity within the boundary of Rotterdam.](
+images/Rotterdam_connectivity_rboundary){width=100%}
+
 Limitation: envelop (patches getting cut off)
 
-##### Graphab stuff and mspa
+
 #### Guangzhou
 ##### Graphab stuff and mspa
 ### Typologies
@@ -248,8 +259,12 @@ fragmented green in somewhat comparable urban form contexts. Here NbS
 interventions could focus on improving patch quality and increasing green cover.
 
 
-### Zoom in on study areas (deeper analysis)
+### Zoom Ins
 The idea is to zoom in and look for smaller area with chosen clusters:
+
+![Figure X: Zoom in locations of Rotterdam.](
+images/Rotterdam_zoomin_intro){width=100%}
+
 ![Rotterdam zoom in on cluster distribution map](images/idea1){width=100%}
 ![Rotterdam zoom in on cluster distribution map](images/Zrzut ekranu 2026-06-14 155000){width=100%}
 Here we see that the orange cluster showing good quality patches with weak connectivty is surrounded mostly by framgmented low quality greens (cluster 2) and some 0 clusters (Transition zones — moderate connectivity, some patches) and there is some green (cluster 1), which indicate a small but significant presence of key corridors with very high BC and quality patches. This depict potential that the cluster 1 could be expanded (by leverging parts of orange cluster or connecting yellow areas (also improving their quality) around it. But then when looking at the whole ecological profile of rotterdam there are not any mor eorange clusters withing the area, which could motivate the second intervention (on yellow clusters with id 2) in other areas (maybe top right corner of the envelope). 

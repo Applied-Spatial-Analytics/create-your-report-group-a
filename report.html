@@ -213,11 +213,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="ecological-connectivity-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="ecological-connectivity-analysis">Ecological Connectivity Analysis</h3>
-<section id="mspa" class="level4">
-<h4 class="anchored" data-anchor-id="mspa">MSPA</h4>
+<section id="morphological-spatial-pattern-analysis-mspa" class="level4">
+<h4 class="anchored" data-anchor-id="morphological-spatial-pattern-analysis-mspa">Morphological Spatial Pattern Analysis (MSPA)</h4>
 </section>
-<section id="graphab-bc-dpc" class="level4">
-<h4 class="anchored" data-anchor-id="graphab-bc-dpc">Graphab (BC + DPC)</h4>
+<section id="patches-and-link-importance-through-graphab" class="level4">
+<h4 class="anchored" data-anchor-id="patches-and-link-importance-through-graphab">Patches and Link Importance (through Graphab)</h4>
 <p>To conduct the ecological connectivity analysis, the software of Grapnhab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor &amp; Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data.</p>
 <p>By loading the .tiff file created by the MSPA analysis, Graphab can read the landcover classification and filter on those accordingly. By filtering on land use code “17” to select the core areas as habitat patches, Graphab can then create a linkset to visualise all the possible connections between each habitat patch and use them for later calculations.</p>
 <p>Now that everything is loaded into Graphab, we can then make use of the weighted metrics. To understand the importance of each patch and link, two different metrics are used. To run metrics calculations, you first need to create a graph. Here you select the linkset along with a distance threshold (it will only keep the links within this threshold). For the selected areas in Rotterdam and Guangzhou, multiple distances were tested to understand which number would give a meaningful result. With a short distance, it would result into giving too much importance to smaller links, but with a distance that is too large, it would not take the smaller links into consideration as much. We therefore landed on a value of 10 000m.</p>
@@ -253,11 +253,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="ndvi" class="level4">
 <h4 class="anchored" data-anchor-id="ndvi">NDVI</h4>
 </section>
-<section id="land-use" class="level4">
-<h4 class="anchored" data-anchor-id="land-use">Land use</h4>
+<section id="ndbi" class="level4">
+<h4 class="anchored" data-anchor-id="ndbi">NDBI</h4>
 </section>
-<section id="barriers-roads-water-railway" class="level4">
-<h4 class="anchored" data-anchor-id="barriers-roads-water-railway">Barriers (roads, water, railway</h4>
+<section id="land-use" class="level4">
+<h4 class="anchored" data-anchor-id="land-use">Land Use</h4>
+</section>
+<section id="road-density" class="level4">
+<h4 class="anchored" data-anchor-id="road-density">Road Density</h4>
 </section>
 </section>
 <section id="nbs" class="level3">
@@ -270,15 +273,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="current-ecological-connectivity-status">Current Ecological Connectivity Status</h3>
 <section id="rotterdam" class="level4">
 <h4 class="anchored" data-anchor-id="rotterdam">Rotterdam</h4>
-<p>Limitation: envelop (patches getting cut off)</p>
-<section id="graphab-stuff-and-mspa" class="level5">
-<h5 class="anchored" data-anchor-id="graphab-stuff-and-mspa">Graphab stuff and mspa</h5>
+<section id="morphological-spatial-pattern-analysis-mspa-1" class="level5">
+<h5 class="anchored" data-anchor-id="morphological-spatial-pattern-analysis-mspa-1">Morphological Spatial Pattern Analysis (MSPA)</h5>
 </section>
+</section>
+<section id="patches-and-link-importance" class="level4">
+<h4 class="anchored" data-anchor-id="patches-and-link-importance">Patches and Link Importance</h4>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Rotterdam_connectivity_envelope.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figure X: Ecological Connecivity within Envelope.</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Rotterdam_connectivity_rboundary.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figure X: Ecological Connecivity with the boundary of Rotterdam.</figcaption>
+</figure>
+</div>
+<p>Limitation: envelop (patches getting cut off)</p>
 </section>
 <section id="guangzhou" class="level4">
 <h4 class="anchored" data-anchor-id="guangzhou">Guangzhou</h4>
-<section id="graphab-stuff-and-mspa-1" class="level5">
-<h5 class="anchored" data-anchor-id="graphab-stuff-and-mspa-1">Graphab stuff and mspa</h5>
+<section id="graphab-stuff-and-mspa" class="level5">
+<h5 class="anchored" data-anchor-id="graphab-stuff-and-mspa">Graphab stuff and mspa</h5>
 </section>
 </section>
 </section>
@@ -480,9 +498,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The second pair was chosen due to its partial match based mostly on LCZ composition. Both clusters are dominated by LCZ 6 (open low-rise) and LCZ 8 (large low-rise), indicating similar urban fabric contexts. Patch structure is also somewhat comparable as both show fragmented green with low patch capacity. The main difference is in BC values (RT: 0.006; GZ: 0.345), depicting the overall higher connectivity in Guangzhou. This pair represents fragmented green in somewhat comparable urban form contexts. Here NbS interventions could focus on improving patch quality and increasing green cover.</p>
 </section>
 </section>
-<section id="zoom-in-on-study-areas-deeper-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="zoom-in-on-study-areas-deeper-analysis">Zoom in on study areas (deeper analysis)</h3>
-<p>The idea is to zoom in and look for smaller area with chosen clusters: <img src="images/idea1.png" class="img-fluid" style="width:100.0%" alt="Rotterdam zoom in on cluster distribution map"> <img src="images/Zrzut%20ekranu%202026-06-14%20155000.png" class="img-fluid" style="width:100.0%" alt="Rotterdam zoom in on cluster distribution map"> Here we see that the orange cluster showing good quality patches with weak connectivty is surrounded mostly by framgmented low quality greens (cluster 2) and some 0 clusters (Transition zones — moderate connectivity, some patches) and there is some green (cluster 1), which indicate a small but significant presence of key corridors with very high BC and quality patches. This depict potential that the cluster 1 could be expanded (by leverging parts of orange cluster or connecting yellow areas (also improving their quality) around it. But then when looking at the whole ecological profile of rotterdam there are not any mor eorange clusters withing the area, which could motivate the second intervention (on yellow clusters with id 2) in other areas (maybe top right corner of the envelope).</p>
+<section id="zoom-ins" class="level3">
+<h3 class="anchored" data-anchor-id="zoom-ins">Zoom Ins</h3>
+<p>The idea is to zoom in and look for smaller area with chosen clusters:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Rotterdam_zoomin_intro.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Figure X: Zoom in locations in Rotterdam.</figcaption>
+</figure>
+</div>
+<p><img src="images/idea1.png" class="img-fluid" style="width:100.0%" alt="Rotterdam zoom in on cluster distribution map"> <img src="images/Zrzut%20ekranu%202026-06-14%20155000.png" class="img-fluid" style="width:100.0%" alt="Rotterdam zoom in on cluster distribution map"> Here we see that the orange cluster showing good quality patches with weak connectivty is surrounded mostly by framgmented low quality greens (cluster 2) and some 0 clusters (Transition zones — moderate connectivity, some patches) and there is some green (cluster 1), which indicate a small but significant presence of key corridors with very high BC and quality patches. This depict potential that the cluster 1 could be expanded (by leverging parts of orange cluster or connecting yellow areas (also improving their quality) around it. But then when looking at the whole ecological profile of rotterdam there are not any mor eorange clusters withing the area, which could motivate the second intervention (on yellow clusters with id 2) in other areas (maybe top right corner of the envelope).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/idea2.png" class="img-fluid figure-img" style="width:100.0%"></p>

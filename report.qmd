@@ -158,9 +158,10 @@ Comparable study areas between Rotterdam and Guangzhou were identified by matchi
 
 #### Road Density
 parameters:
-search radius: Radius of the circular neighbourhood (in meters).
-pixel size:Pixel size of the output raster layer in layer units(in meters).
+search radius: Radius of the circular neighbourhood (in meters). - 10m
+pixel size:Pixel size of the output raster layer in layer units(in meters).-10m
 
+> 
 ### NBS
 
 

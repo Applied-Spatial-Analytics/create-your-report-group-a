@@ -239,13 +239,24 @@ Figure&nbsp;1: General introduction of cities.
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
 <section id="data" class="level3">
 <h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>LCZ maps for Rotterdam and Guangzhou were obtained from the LCZ Generator (https://lcz-generator.rub.de/global-lcz-map),</p>
 <section id="envelope" class="level4">
 <h4 class="anchored" data-anchor-id="envelope">Envelope</h4>
 <p>why we used it, how in rt and how in gz - mention dimensions !!!</p>
 </section>
-<section id="spatial-grid" class="level4">
-<h4 class="anchored" data-anchor-id="spatial-grid">Spatial Grid</h4>
-<p>A regular spatial grid of 500 × 500 m cells was constructed for each city in QGIS software (Vector → Research Tools → Create Grid), covering the set envelope boundary of each city. The grid was created specifically for the typology construction process, providing a consistent spatial unit for aggregating and comparing data layers (LCZ classes, betweenness centrality links, and green patches). It is not used in further analysis steps beyond typology construction and study area selection. why? - write more on that later also why 500x500m</p>
+<section id="sec-spatialgrid" class="level4">
+<h4 class="anchored" data-anchor-id="sec-spatialgrid">Spatial Grid</h4>
+<p>A regular spatial grid of 500 × 500 m cells was constructed for each city in QGIS software (Vector Research Tools → Create Grid), covering the set envelope boundary of each city. The grid was created specifically for the typology construction process, providing a consistent spatial unit for aggregating and comparing data layers.</p>
+<p>A cell size of 500 × 500 m was chosen to match the dispersal distance parameter (d = 500 m) used in the Graphab connectivity analysis (see <a href="#sec-patches" class="quarto-xref">Section&nbsp;4.2.2</a>). The same distance ensures that each cell somewhat corresponds to the spatial scale at which ecological connectivity is assessed, making the typology meaningful in relation to the crucial connectivity metrics.</p>
+</section>
+<section id="local-climate-zones" class="level4">
+<h4 class="anchored" data-anchor-id="local-climate-zones">Local Climate Zones</h4>
+<p>sources to add : https://www.wudapt.org/lcz/ https://lcz-generator.rub.de/global-lcz-map</p>
+<p>In order to make a comparable the description of urban morphology across both cities, the Local Climate Zone (LCZ) classification scheme developed by Stewart and Oke (2012) was used. The classification identfies 17 zones based urban on surface structure (e.g.&nbsp;building and tree height and density) and surface cover (pervious versus impervious).</p>
+<p>The LCZ typology is a universal urban classification it focuses specifically on urban and rural landscape types, distinguished through 10 built types (ranging from compact high-rise to heavy industry) and 7 land cover types (ranging from dense trees to water). Its main advantage lies in the diversity of urban classes, which are easily interpretable and globally consistent.</p>
+<ul>
+<li>two maps of lcz in both cities</li>
+</ul>
 </section>
 </section>
 <section id="ecological-connectivity-analysis" class="level3">
@@ -253,8 +264,8 @@ Figure&nbsp;1: General introduction of cities.
 <section id="morphological-spatial-pattern-analysis-mspa" class="level4">
 <h4 class="anchored" data-anchor-id="morphological-spatial-pattern-analysis-mspa">Morphological Spatial Pattern Analysis (MSPA)</h4>
 </section>
-<section id="patches-and-link-importance-through-graphab" class="level4">
-<h4 class="anchored" data-anchor-id="patches-and-link-importance-through-graphab">Patches and Link Importance (through Graphab)</h4>
+<section id="sec-patches" class="level4">
+<h4 class="anchored" data-anchor-id="sec-patches">Patches and Link Importance (through Graphab)</h4>
 <p>To conduct the ecological connectivity analysis, the software of Grapnhab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor &amp; Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data.</p>
 <p>By loading the .tiff file created by the MSPA analysis, Graphab can read the landcover classification and filter on those accordingly. By filtering on land use code “17” to select the core areas as habitat patches, Graphab can then create a linkset to visualise all the possible connections between each habitat patch and use them for later calculations.</p>
 <p>Now that everything is loaded into Graphab, we can then make use of the weighted metrics. To understand the importance of each patch and link, two different metrics are used. To run metrics calculations, you first need to create a graph. Here you select the linkset along with a distance threshold (it will only keep the links within this threshold). For the selected areas in Rotterdam and Guangzhou, multiple distances were tested to understand which number would give a meaningful result. With a short distance, it would result into giving too much importance to smaller links, but with a distance that is too large, it would not take the smaller links into consideration as much. We therefore landed on a value of 10 000m.</p>
@@ -268,29 +279,30 @@ Figure&nbsp;1: General introduction of cities.
 </section>
 <section id="typology-construction" class="level3">
 <h3 class="anchored" data-anchor-id="typology-construction">Typology Construction</h3>
-<p>To identify spatially comparable areas between Rotterdam and Guangzhou, a multi-criteria typology was constructed for each city based on three data layers: Local Climate Zones, ecological connectivity (betweenness centrality), and green patch characteristics. The typology boundaries were derived from the data itself through unsupervised clustering.</p>
-<section id="local-climate-zones" class="level4">
-<h4 class="anchored" data-anchor-id="local-climate-zones">Local Climate Zones</h4>
-<p>Quick info on what local climate zones are and where we got datasets for both cities. + two maps of lcz in both cities</p>
-</section>
-<section id="clustering-bc-patches-lcz" class="level4">
-<h4 class="anchored" data-anchor-id="clustering-bc-patches-lcz">Clustering (BC + patches + LCZ)</h4>
+<p>A typology is a classification of areas based on shared combinations of characteristics (source here). To identify spatially comparable areas between Rotterdam and Guangzhou, a typology was constructed for both cities using the same set of variables and spatial unit, allowing direct quantitative comparison between the two cities as well as analysis of the spatial distribution of typologies within each city.</p>
+<p>To construct this typology it two crucial aspects need to be defined: the variables used to characterise each area, and the spatial unit at which these variables were measured.</p>
+<p>The variables used were Local Climate Zones, ecological connectivity (betweenness centrality), and green patch characteristics, as these together capture both the urban context and the ecological functioning of an area.</p>
+<p>The spatial unit used was a fixed-size grid of 500 × 500 m cells (see <a href="#sec-spatialgrid" class="quarto-xref">Section&nbsp;4.1.2</a>). A fixed grid was because it allows variables of different origin and geometry (raster LCZ data, line-based connectivity links, and polygon-based green patches) to be aggregated and compared across both cities.</p>
+<p>Typology clusters were derived directly from the data through unsupervised K-means clustering, performed in QGIS using a Python script.</p>
+<section id="clustering" class="level4">
+<h4 class="anchored" data-anchor-id="clustering">Clustering</h4>
 <p>A regular spatial grid was used as the common analysis unit for both cities, with all three criteria summarised per grid cell. Betweenness centrality values from the top 500 links were spatially joined to the grid using an intersection, with the mean normalised BC value computed per cell. Green patch metrics (patch count and mean patch capacity based on the dpc_sum field from Graphab) were similarly joined to the grid. Grid cells with no links or patches passing through them were assigned a value of zero, since they simply have no green connectivity (this is not missing data but a meaningful absence). Before clustering, all variables were standardised using z-score normalisation (StandardScaler) to ensure equal weighting regardless of original scale. K-means clustering (k=5) was then applied to the three variables: BC mean, patch count, and mean patch capacity; using the scikit-learn implementation in Python Console in QGIS. The number of clusters was set to five to produce interpretable ecological profiles while keeping sufficient differentiation between groups. After clustering, the dominant LCZ class per cluster was checked to understand what kind of urban environment each cluster is typically located in. This was done as a separate step after clustering, since LCZ is a categorical variable and including it directly in the K-means algorithm would have distorted the results.</p>
 </section>
 </section>
-<section id="study-area-selection---to-be-changed" class="level3">
-<h3 class="anchored" data-anchor-id="study-area-selection---to-be-changed">Study Area Selection - to be changed!!!!</h3>
-<p>Comparable study areas between Rotterdam and Guangzhou were identified by matching clusters across both cities based on similarities in their BC values, patch characteristics, and LCZ composition. Two pairs of comparable areas were selected based on the strength of the match across these three criteria. The spatial boundary of each study area was then defined by dissolving the corresponding cluster grid cells into a single polygon, which was used as the spatial unit for the subsequent deeper analysis.</p>
+<section id="study-area-selection---more-info-here" class="level3">
+<h3 class="anchored" data-anchor-id="study-area-selection---more-info-here">Study Area Selection - more info here!!!</h3>
+<p>Comparable study areas between Rotterdam and Guangzhou were identified by matching clusters across both cities based on similarities in their BC values, patch characteristics, and LCZ composition.</p>
 </section>
 <section id="study-area-deep-dive" class="level3">
 <h3 class="anchored" data-anchor-id="study-area-deep-dive">Study Area Deep Dive</h3>
+<p>After selecting 2 study areas within each city a deeper analysis is performed to investigate barriers to ecological connectivity as well as potentials for improvement. - add here what will be investigated (4 metrics and how we combine them)</p>
 <section id="ndvi" class="level4">
 <h4 class="anchored" data-anchor-id="ndvi">NDVI</h4>
 <ul>
 <li>-1.0 to 0: Non-vegetated surfaces like clouds, snow, or open water.</li>
 <li>0 to 0.1: Bare soil, rock, roads, or urban infrastructure.</li>
-<li>0.2 to 0.5: Sparse or stressed vegetation, grasslands, or senescing crops.</li>
-<li>0.6 to 1.0: Dense, healthy vegetation such as mature forests or crops at peak growth.</li>
+<li>0.2 to 0.5: Sparse or stressed vegetation, grasslands, or crops.</li>
+<li>0.6 to 1.0: Dense, healthy vegetation such as mature forests or crops at peak growth. (source)</li>
 </ul>
 </section>
 <section id="ndbi" class="level4">
@@ -298,19 +310,20 @@ Figure&nbsp;1: General introduction of cities.
 <ul>
 <li>“&gt;” 0: Likely built-up or urban areas.</li>
 <li>≈ 0: Bare soil or mixed terrain.</li>
-<li>&lt; 0: Vegetation (which reflects highly in NIR) or water bodies.</li>
+<li>&lt; 0: Vegetation (which reflects highly in NIR) or water bodies. (source)</li>
 </ul>
 </section>
 <section id="land-use" class="level4">
 <h4 class="anchored" data-anchor-id="land-use">Land Use</h4>
-<p>1-5 scale 1 - low: trees/shrub 2 - low-moderate: grass/wetland 3 - moderate: cropland 4 - moderate-high:bare/water 5 - high: built-up</p>
+<p>1-5 scale 1 - low: trees/shrub 2 - low-moderate: grass/wetland 3 - moderate: cropland 4 - moderate-high:bare/water 5 - high: built-up (source)</p>
 </section>
 <section id="road-density" class="level4">
 <h4 class="anchored" data-anchor-id="road-density">Road Density</h4>
+<p>parameters: search radius: Radius of the circular neighbourhood (in meters). - 10m pixel size:Pixel size of the output raster layer in layer units(in meters).-10m (source)</p>
+<blockquote class="blockquote">
+<p>here note how we combine all together ### NBS</p>
+</blockquote>
 </section>
-</section>
-<section id="nbs" class="level3">
-<h3 class="anchored" data-anchor-id="nbs">NBS</h3>
 </section>
 </section>
 <section id="sec-results" class="level2">

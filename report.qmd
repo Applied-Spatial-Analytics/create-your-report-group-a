@@ -86,20 +86,35 @@ General introduction of cities.
 
 ## Methods
 ### Data
+LCZ maps for Rotterdam and Guangzhou were obtained from  the LCZ Generator 
+(https://lcz-generator.rub.de/global-lcz-map),
 
 #### Envelope
 why we used it, how in rt and how in gz 
 - mention dimensions !!!
 
-#### Spatial Grid
+#### Spatial Grid  {#sec-spatialgrid}
 
-A regular spatial grid of 500 × 500 m cells was constructed for each city in QGIS software (Vector → Research Tools → Create Grid), covering the set envelope boundary of each city. The grid was created specifically for the typology 
-construction process, providing a consistent spatial unit for aggregating and comparing data layers (LCZ classes, betweenness centrality links, and green patches). It is not used in further analysis steps beyond typology construction and study area selection. why? - write more on that later 
-also why 500x500m 
+A regular spatial grid of 500 × 500 m cells was constructed for each city in QGIS software (Vector Research Tools → Create Grid), covering the set envelope boundary of each city. The grid was created specifically for the typology 
+construction process, providing a consistent spatial unit for aggregating and comparing data layers. 
+
+A cell size of 500 × 500 m was chosen to match the dispersal distance parameter (d = 500 m) used in the Graphab connectivity analysis (see @sec-patches). The same distance ensures that each cell somewhat corresponds to the spatial scale at which ecological connectivity is assessed, making the typology meaningful in relation to the crucial connectivity metrics.
+
+#### Local Climate Zones
+sources to add :
+https://www.wudapt.org/lcz/
+https://lcz-generator.rub.de/global-lcz-map
+ 
+In order to make a comparable the description of urban morphology across both cities, the Local Climate Zone (LCZ) classification scheme developed by Stewart and Oke (2012) was used. The classification identfies 17 zones based urban on surface structure (e.g. building and tree height and density) and surface cover (pervious versus impervious). 
+
+The LCZ typology is a universal urban classification it focuses specifically on urban and rural landscape types, distinguished through 10 built types (ranging from compact high-rise to heavy industry) and 7 land cover types (ranging from dense trees to water). Its main advantage lies in the diversity of urban classes, which are easily interpretable and globally consistent. 
+
+
++ two maps of lcz in both cities 
 
 ### Ecological Connectivity Analysis
 #### Morphological Spatial Pattern Analysis (MSPA)
-#### Patches and Link Importance (through Graphab)
+#### Patches and Link Importance (through Graphab) {#sec-patches}
 
 To conduct the ecological connectivity analysis, the software of Grapnhab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor & Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data.
 
@@ -121,32 +136,45 @@ In the Results (@sec-results), the outcome of this analysis for Rotterdam and Gu
 
 
 ### Typology Construction
+A typology is a classification of areas based on shared combinations of 
+characteristics (source here). To identify spatially comparable areas between Rotterdam  and Guangzhou, a typology was constructed for both cities using the same set  of variables and spatial unit, allowing direct quantitative comparison between the two cities as well as analysis of the spatial distribution of typologies within each city.
 
-To identify spatially comparable areas between Rotterdam and Guangzhou, a multi-criteria typology was constructed for each city based on three data layers: Local Climate Zones, ecological connectivity (betweenness centrality), and green patch characteristics. The typology boundaries were derived from the data itself through unsupervised clustering.
+To construct this typology it two crucial aspects need to be defined: the variables 
+used to characterise each area, and the spatial unit at which these variables 
+were measured.
 
-#### Local Climate Zones
-Quick info on what local climate zones are and where we got datasets for both cities. 
-+ two maps of lcz in both cities 
+The variables used were Local Climate Zones, ecological connectivity 
+(betweenness centrality), and green patch characteristics, as these together 
+capture both the urban context and the ecological functioning of an area.
 
-#### Clustering (BC + patches + LCZ)
+The spatial unit used was a fixed-size grid of 500 × 500 m cells (see @sec-spatialgrid). A fixed grid was  because it allows variables of different origin and geometry (raster LCZ data, line-based connectivity links, and polygon-based green patches) to be aggregated and compared across both cities.
+
+Typology clusters were derived  directly from the data through unsupervised K-means clustering, performed in QGIS  using a Python script. 
+
+#### Clustering 
 A regular spatial grid was used as the common analysis unit for both cities, with all three criteria summarised per grid cell. Betweenness centrality values from the top 500 links were spatially joined to the grid using an intersection, with the mean normalised BC value computed per cell. Green patch metrics (patch count and mean patch capacity based on the dpc_sum field from Graphab) were similarly joined to the grid. 
 Grid cells with no links or patches passing through them were assigned a value of zero, since they simply have no green connectivity (this is not missing data but a meaningful absence).  Before clustering, all variables were standardised using z-score normalisation (StandardScaler) to ensure equal weighting regardless of original scale. K-means clustering (k=5) was then applied to the three variables: BC mean, patch count, and mean patch capacity;  using the scikit-learn implementation in Python Console in QGIS. The number of clusters was set to five to produce interpretable ecological profiles while keeping sufficient differentiation between groups. 
 After clustering, the dominant LCZ class per cluster was checked to understand what kind of urban environment each cluster is typically located in. This was done as a separate step after clustering, since LCZ is a categorical variable and including it directly in the K-means algorithm would have distorted the results. 
 
-### Study Area Selection - to be changed!!!!
-Comparable study areas between Rotterdam and Guangzhou were identified by matching clusters across both cities based on similarities in their BC values, patch characteristics, and LCZ composition. Two pairs of comparable areas were selected based on the strength of the match across these three criteria. The spatial boundary of each study area was then defined by dissolving the corresponding cluster grid cells into a single polygon, which was used as the spatial unit for the subsequent deeper analysis. 
+### Study Area Selection - more info here!!!
+Comparable study areas between Rotterdam and Guangzhou were identified by matching clusters across both cities based on similarities in their BC values, patch characteristics, and LCZ composition. 
 
 ### Study Area Deep Dive
+After selecting 2 study areas within each city a deeper analysis is performed to investigate barriers to ecological connectivity as well as potentials for improvement. 
+- add here what will be investigated (4 metrics and how we combine them)
+
 #### NDVI
 - -1.0 to 0: Non-vegetated surfaces like clouds, snow, or open water.
 - 0 to 0.1: Bare soil, rock, roads, or urban infrastructure.
-- 0.2 to 0.5: Sparse or stressed vegetation, grasslands, or senescing crops.
+- 0.2 to 0.5: Sparse or stressed vegetation, grasslands, or crops.
 - 0.6 to 1.0: Dense, healthy vegetation such as mature forests or crops at peak growth.
+(source)
 
 #### NDBI
 - ">" 0: Likely built-up or urban areas.
 - ≈ 0: Bare soil or mixed terrain.
 - < 0: Vegetation (which reflects highly in NIR) or water bodies.
+(source)
 
 #### Land Use
 1-5 scale 
@@ -155,13 +183,15 @@ Comparable study areas between Rotterdam and Guangzhou were identified by matchi
 3 - moderate: cropland
 4 - moderate-high:bare/water
 5 - high: built-up 
+(source)
 
 #### Road Density
 parameters:
 search radius: Radius of the circular neighbourhood (in meters). - 10m
 pixel size:Pixel size of the output raster layer in layer units(in meters).-10m
+(source)
 
-> 
+> here note how we combine all together 
 ### NBS
 
 

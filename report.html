@@ -278,20 +278,32 @@ Figure&nbsp;1: General introduction of cities.
 <p>A regular spatial grid was used as the common analysis unit for both cities, with all three criteria summarised per grid cell. Betweenness centrality values from the top 500 links were spatially joined to the grid using an intersection, with the mean normalised BC value computed per cell. Green patch metrics (patch count and mean patch capacity based on the dpc_sum field from Graphab) were similarly joined to the grid. Grid cells with no links or patches passing through them were assigned a value of zero, since they simply have no green connectivity (this is not missing data but a meaningful absence). Before clustering, all variables were standardised using z-score normalisation (StandardScaler) to ensure equal weighting regardless of original scale. K-means clustering (k=5) was then applied to the three variables: BC mean, patch count, and mean patch capacity; using the scikit-learn implementation in Python Console in QGIS. The number of clusters was set to five to produce interpretable ecological profiles while keeping sufficient differentiation between groups. After clustering, the dominant LCZ class per cluster was checked to understand what kind of urban environment each cluster is typically located in. This was done as a separate step after clustering, since LCZ is a categorical variable and including it directly in the K-means algorithm would have distorted the results.</p>
 </section>
 </section>
-<section id="study-area-selection" class="level3">
-<h3 class="anchored" data-anchor-id="study-area-selection">Study Area Selection</h3>
+<section id="study-area-selection---to-be-changed" class="level3">
+<h3 class="anchored" data-anchor-id="study-area-selection---to-be-changed">Study Area Selection - to be changed!!!!</h3>
 <p>Comparable study areas between Rotterdam and Guangzhou were identified by matching clusters across both cities based on similarities in their BC values, patch characteristics, and LCZ composition. Two pairs of comparable areas were selected based on the strength of the match across these three criteria. The spatial boundary of each study area was then defined by dissolving the corresponding cluster grid cells into a single polygon, which was used as the spatial unit for the subsequent deeper analysis.</p>
 </section>
 <section id="study-area-deep-dive" class="level3">
 <h3 class="anchored" data-anchor-id="study-area-deep-dive">Study Area Deep Dive</h3>
 <section id="ndvi" class="level4">
 <h4 class="anchored" data-anchor-id="ndvi">NDVI</h4>
+<ul>
+<li>-1.0 to 0: Non-vegetated surfaces like clouds, snow, or open water.</li>
+<li>0 to 0.1: Bare soil, rock, roads, or urban infrastructure.</li>
+<li>0.2 to 0.5: Sparse or stressed vegetation, grasslands, or senescing crops.</li>
+<li>0.6 to 1.0: Dense, healthy vegetation such as mature forests or crops at peak growth.</li>
+</ul>
 </section>
 <section id="ndbi" class="level4">
 <h4 class="anchored" data-anchor-id="ndbi">NDBI</h4>
+<ul>
+<li>“&gt;” 0: Likely built-up or urban areas.</li>
+<li>≈ 0: Bare soil or mixed terrain.</li>
+<li>&lt; 0: Vegetation (which reflects highly in NIR) or water bodies.</li>
+</ul>
 </section>
 <section id="land-use" class="level4">
 <h4 class="anchored" data-anchor-id="land-use">Land Use</h4>
+<p>1-5 scale 1 - low: trees/shrub 2 - low-moderate: grass/wetland 3 - moderate: cropland 4 - moderate-high:bare/water 5 - high: built-up</p>
 </section>
 <section id="road-density" class="level4">
 <h4 class="anchored" data-anchor-id="road-density">Road Density</h4>
@@ -354,8 +366,8 @@ Figure&nbsp;3: Ecological connectivity within the boundary of Rotterdam.
 </ul>
 <section id="rotterdam-1" class="level4">
 <h4 class="anchored" data-anchor-id="rotterdam-1">Rotterdam</h4>
-<section id="cluster-profiles" class="level5">
-<h5 class="anchored" data-anchor-id="cluster-profiles">Cluster Profiles</h5>
+<section id="cluster-profiles---will-edit-it-soon" class="level5">
+<h5 class="anchored" data-anchor-id="cluster-profiles---will-edit-it-soon">Cluster Profiles - will edit it soon</h5>
 <p>K-means clustering of Rotterdam’s grid cells produced five ecological profiles. Table X presents the mean values per cluster for betweenness centrality, patch count, and patch capacity.</p>
 <table class="caption-top table">
 <colgroup>
@@ -434,8 +446,8 @@ Figure&nbsp;3: Ecological connectivity within the boundary of Rotterdam.
 </section>
 <section id="guangzhou-1" class="level4">
 <h4 class="anchored" data-anchor-id="guangzhou-1">Guangzhou</h4>
-<section id="cluster-profiles-1" class="level5">
-<h5 class="anchored" data-anchor-id="cluster-profiles-1">Cluster Profiles</h5>
+<section id="cluster-profiles" class="level5">
+<h5 class="anchored" data-anchor-id="cluster-profiles">Cluster Profiles</h5>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 10%">
@@ -508,13 +520,13 @@ Figure&nbsp;3: Ecological connectivity within the boundary of Rotterdam.
 <figcaption>Rotterdam cluster distribution map</figcaption>
 </figure>
 </div>
-<p>analysis of the map here</p>
+<p>analysis of the map here - will change the maps for clusters</p>
 </section>
 </section>
 </section>
 <section id="comparable-study-areas" class="level3">
 <h3 class="anchored" data-anchor-id="comparable-study-areas">Comparable Study Areas</h3>
-<p>Two pairs of comparable areas were identified based on similarity in ecological connectivity profiles and urban context.</p>
+<p>Two pairs of comparable areas were identified based on similarity in ecological connectivity profiles and urban context. - also will change it since our approach is a bit diff now</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/rt_clusters_3_4_highlighted.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -539,47 +551,51 @@ Figure&nbsp;3: Ecological connectivity within the boundary of Rotterdam.
 <figcaption>Guangzhou chosen cluster distribution map</figcaption>
 </figure>
 </div>
-<section id="rt-cluster-3-vs-gz-cluster-3" class="level4">
-<h4 class="anchored" data-anchor-id="rt-cluster-3-vs-gz-cluster-3">RT Cluster 3 vs GZ Cluster 3</h4>
+<section id="rt-cluster-3-vs-gz-cluster-3---to-be-removed" class="level4">
+<h4 class="anchored" data-anchor-id="rt-cluster-3-vs-gz-cluster-3---to-be-removed">RT Cluster 3 vs GZ Cluster 3 - to be removed</h4>
 <p>Both clusters are characterised by isolated quality green patches with low betweenness centrality and high patch capacity (RT: 0.372; GZ: 0.393) and similar patch counts (~1.06–1.07 per cell). This makes them the strongest cross-city match in the analysis. However, the LCZ differ in these clusters: Rotterdam’s Cluster 3 is dominated by LCZ D (low plants, grassland/polder landscape) while Guangzhou’s is dominated by LCZ A (dense trees, forest). This reflects the different vegetation character of green spaces in each city. Despite this difference in vegetation type, both clusters represent the same ecological condition: high-quality green spaces that are underconnected to the broader green network. This makes them particularly relevant for targeted connectivity improvement through Nature-based Solutions.</p>
 </section>
-<section id="rt-cluster-4-vs-gz-cluster-0" class="level4">
-<h4 class="anchored" data-anchor-id="rt-cluster-4-vs-gz-cluster-0">RT Cluster 4 vs GZ Cluster 0</h4>
+<section id="rt-cluster-4-vs-gz-cluster-0---to-be-removed" class="level4">
+<h4 class="anchored" data-anchor-id="rt-cluster-4-vs-gz-cluster-0---to-be-removed">RT Cluster 4 vs GZ Cluster 0 - to be removed</h4>
 <p>The second pair was chosen due to its partial match based mostly on LCZ composition. Both clusters are dominated by LCZ 6 (open low-rise) and LCZ 8 (large low-rise), indicating similar urban fabric contexts. Patch structure is also somewhat comparable as both show fragmented green with low patch capacity. The main difference is in BC values (RT: 0.006; GZ: 0.345), depicting the overall higher connectivity in Guangzhou. This pair represents fragmented green in somewhat comparable urban form contexts. Here NbS interventions could focus on improving patch quality and increasing green cover.</p>
 </section>
 </section>
 <section id="zoom-ins" class="level3">
 <h3 class="anchored" data-anchor-id="zoom-ins">Zoom Ins</h3>
-<p>The idea is to zoom in and look for smaller area with chosen clusters:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Rotterdam_zoomin_intro.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Figure X: Zoom in locations of Rotterdam.</figcaption>
-</figure>
-</div>
-<p><img src="images/idea1.png" class="img-fluid" style="width:100.0%" alt="Rotterdam zoom in on cluster distribution map"> <img src="images/Zrzut%20ekranu%202026-06-14%20155000.png" class="img-fluid" style="width:100.0%" alt="Rotterdam zoom in on cluster distribution map"> Here we see that the orange cluster showing good quality patches with weak connectivty is surrounded mostly by framgmented low quality greens (cluster 2) and some 0 clusters (Transition zones — moderate connectivity, some patches) and there is some green (cluster 1), which indicate a small but significant presence of key corridors with very high BC and quality patches. This depict potential that the cluster 1 could be expanded (by leverging parts of orange cluster or connecting yellow areas (also improving their quality) around it. But then when looking at the whole ecological profile of rotterdam there are not any mor eorange clusters withing the area, which could motivate the second intervention (on yellow clusters with id 2) in other areas (maybe top right corner of the envelope).</p>
+<p>The idea is to zoom in and look for smaller area with chosen clusters: ####Rotterdam <img src="images/Rotterdam_zoomin_intro.png" class="img-fluid" style="width:100.0%" alt="Figure X: Zoom in locations of Rotterdam."></p>
+<p><img src="images/idea1.png" class="img-fluid" style="width:100.0%" alt="Rotterdam zoom in on cluster distribution map"> <img src="images/Zrzut%20ekranu%202026-06-14%20155000.png" class="img-fluid" style="width:100.0%" alt="Rotterdam zoom in on cluster distribution map"> also this has to be edited: Here we see that the orange cluster showing good quality patches with weak connectivty is surrounded mostly by framgmented low quality greens (cluster 2) and some 0 clusters (Transition zones — moderate connectivity, some patches) and there is some green (cluster 1), which indicate a small but significant presence of key corridors with very high BC and quality patches. This depict potential that the cluster 1 could be expanded (by leverging parts of orange cluster or connecting yellow areas (also improving their quality) around it. But then when looking at the whole ecological profile of rotterdam there are not any mor eorange clusters withing the area, which could motivate the second intervention (on yellow clusters with id 2) in other areas (maybe top right corner of the envelope).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="images/idea2.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption>Rotterdam zoom in 2</figcaption>
 </figure>
 </div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/with_barriers.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Rotterdam zoom 1 with barriers - RAW</figcaption>
-</figure>
-</div>
-<ul>
-<li>here red are railways -blue water -black roads</li>
-</ul>
-<p>the orange cluster is mostly spearted by water but if we zoom in in…</p>
+<p>study area 1 has 22647834,561 m2 and second has 36012716,54162598 m2.</p>
 <p>Here Guangzhou zoom in: ….</p>
-<section id="ndvi-1" class="level4">
-<h4 class="anchored" data-anchor-id="ndvi-1">NDVI</h4>
+<section id="ndvi-1" class="level5">
+<h5 class="anchored" data-anchor-id="ndvi-1">NDVI</h5>
 </section>
-<section id="land-use-barriers-roads-water-railway-etc." class="level4">
-<h4 class="anchored" data-anchor-id="land-use-barriers-roads-water-railway-etc.">Land use + barriers (roads, water, railway, etc.)</h4>
+<section id="ndbi-1" class="level5">
+<h5 class="anchored" data-anchor-id="ndbi-1">NDBI</h5>
+</section>
+<section id="land-use-1" class="level5">
+<h5 class="anchored" data-anchor-id="land-use-1">Land Use</h5>
+</section>
+<section id="road-density-1" class="level5">
+<h5 class="anchored" data-anchor-id="road-density-1">Road Density</h5>
+<p>####Guangzhou Here Guangzhou zoom in: ….</p>
+</section>
+<section id="ndvi-2" class="level5">
+<h5 class="anchored" data-anchor-id="ndvi-2">NDVI</h5>
+</section>
+<section id="ndbi-2" class="level5">
+<h5 class="anchored" data-anchor-id="ndbi-2">NDBI</h5>
+</section>
+<section id="land-use-2" class="level5">
+<h5 class="anchored" data-anchor-id="land-use-2">Land Use</h5>
+</section>
+<section id="road-density-2" class="level5">
+<h5 class="anchored" data-anchor-id="road-density-2">Road Density</h5>
 </section>
 </section>
 </section>

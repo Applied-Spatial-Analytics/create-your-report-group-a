@@ -138,9 +138,29 @@ Comparable study areas between Rotterdam and Guangzhou were identified by matchi
 
 ### Study Area Deep Dive
 #### NDVI
+- -1.0 to 0: Non-vegetated surfaces like clouds, snow, or open water.
+- 0 to 0.1: Bare soil, rock, roads, or urban infrastructure.
+- 0.2 to 0.5: Sparse or stressed vegetation, grasslands, or senescing crops.
+- 0.6 to 1.0: Dense, healthy vegetation such as mature forests or crops at peak growth.
+
 #### NDBI
+- ">" 0: Likely built-up or urban areas.
+- ≈ 0: Bare soil or mixed terrain.
+- < 0: Vegetation (which reflects highly in NIR) or water bodies.
+
 #### Land Use
+1-5 scale 
+1 - low: trees/shrub
+2 - low-moderate: grass/wetland
+3 - moderate: cropland
+4 - moderate-high:bare/water
+5 - high: built-up 
+
 #### Road Density
+parameters:
+search radius: Radius of the circular neighbourhood (in meters).
+pixel size:Pixel size of the output raster layer in layer units(in meters).
+
 ### NBS
 
 
@@ -267,7 +287,7 @@ interventions could focus on improving patch quality and increasing green cover.
 
 ### Zoom Ins
 The idea is to zoom in and look for smaller area with chosen clusters:
-
+####Rotterdam
 ![Figure X: Zoom in locations of Rotterdam.](
 images/Rotterdam_zoomin_intro){width=100%}
 
@@ -279,23 +299,29 @@ Here we see that the orange cluster showing good quality patches with weak conne
 ![Rotterdam zoom in 2](images/idea2){width=100%}
 
 
+study area 1 has 22647834,561 m2 and second has 36012716,54162598 m2.  
 
-![Rotterdam zoom 1 with barriers - RAW](images/with_barriers){width=100%}
 
-- here red are railways 
--blue water
--black roads 
 
-the orange cluster is mostly spearted by water but if we zoom in in...
 
 
 Here Guangzhou zoom in: 
 ....
 
-#### NDVI
-#### NDBI
-#### Land Use
-#### Road Density
+##### NDVI
+##### NDBI
+##### Land Use
+##### Road Density
+
+####Guangzhou
+Here Guangzhou zoom in: 
+....
+
+##### NDVI
+##### NDBI
+##### Land Use
+##### Road Density
+
 
 ## Discussion
 ### Differences and similarities between cities

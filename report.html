@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="report_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="report_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="report_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="report_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -242,7 +242,19 @@ Figure&nbsp;1: General introduction of cities.
 <p>LCZ maps for Rotterdam and Guangzhou were obtained from the LCZ Generator (https://lcz-generator.rub.de/global-lcz-map),</p>
 <section id="envelope" class="level4">
 <h4 class="anchored" data-anchor-id="envelope">Envelope</h4>
-<p>why we used it, how in rt and how in gz - mention dimensions !!!</p>
+<p>When collecting data, running analyses, and producing maps, it is important to look slightly beyond our area of interest. This is especially relevant when considering ecological connections, since important elements could lie outside our extent. To make sure we capture the surroundings of our area of interest, we therefore decided to create an envelope that extends beyond our bounding box.</p>
+<p>For both Rotterdam and Guangzhou, we created a minimum bounding geometry around the shape of the city or municipality. This function can be found in the Processing Toolbox in QGIS, under “Vector Geometry.” As shown in <a href="#fig-envelope-roffa" class="quarto-xref">Figure&nbsp;2</a>, this creates an envelope around the maximum extent of the shape. To capture some additional surrounding area, we then added a 5 km buffer around this bounding box (Vector &gt; Geoprocessing Tools &gt; Buffer). This buffered envelope defines the study area used throughout the project.</p>
+<div id="fig-envelope-roffa" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-envelope-roffa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/envelope_rotterdam.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-envelope-roffa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Envelope creation in Rotterdam.
+</figcaption>
+</figure>
+</div>
+<p>Add same thing voor Guanzhou:</p>
 </section>
 <section id="sec-spatialgrid" class="level4">
 <h4 class="anchored" data-anchor-id="sec-spatialgrid">Spatial Grid</h4>
@@ -254,7 +266,7 @@ Figure&nbsp;1: General introduction of cities.
 <p>sources to add : https://www.wudapt.org/lcz/ https://lcz-generator.rub.de/global-lcz-map</p>
 <p>In order to make a comparable the description of urban morphology across both cities, the Local Climate Zone (LCZ) classification scheme developed by Stewart and Oke (2012) was used. The classification identfies 17 zones based urban on surface structure (e.g.&nbsp;building and tree height and density) and surface cover (pervious versus impervious).</p>
 <p>The LCZ typology is a universal urban classification it focuses specifically on urban and rural landscape types, distinguished through 10 built types (ranging from compact high-rise to heavy industry) and 7 land cover types (ranging from dense trees to water). Its main advantage lies in the diversity of urban classes, which are easily interpretable and globally consistent.</p>
-<p><img src="images/lcz_rt-1.png" id="fig-lczrt" class="img-fluid" alt="Rotterdam Local Climate Zones"> <img src="images/lcz_gz-1.png" id="fig-lczgz" class="img-fluid" alt="Guangzhou Local Climate Zones"></p>
+<p>will try to make them better - maps: <img src="images/lcz_rt-1.png" id="fig-lczrt" class="img-fluid" alt="Rotterdam Local Climate Zones"> <img src="images/lcz_gz-1.png" id="fig-lczgz" class="img-fluid" alt="Guangzhou Local Climate Zones"></p>
 </section>
 </section>
 <section id="ecological-connectivity-analysis" class="level3">
@@ -271,7 +283,7 @@ Figure&nbsp;1: General introduction of cities.
 <p>The links were classified through Betweenness Centrality (BC). It counts how many patch-to-patch routes pass through each link. It’s defined per element and works cleanly on edges, giving a differentiated value for every link: which “potential” connections act as the busiest throughways/bridges. It is a measure of how frequently a node appears on the shortest paths between pairs of other nodes in a network (SOURCE). Together, they form a complete picture revealing the critical habitats and the critical corridors between them. In our research, they are used as two complementary connectivity metrics, each appropriate to its element type.</p>
 <p>For both metrics, the parameters dispersal distance (d) and probability (p) are asked to compute the calculations. Both refer to the chance of an animal moving from one patch to another, based on the distance between the patches, and the dispersal characteristics of the selected animal species. During this research, the animal species will not be identified, so therefore we take a dispersal distance of 500 m. This is a common default for urban green infrastructure studies. It represents medium-mobility species and also roughly matches human walking distance to green space. It’s considered good for general urban ecology assessments. The probability starts at a default of 0.5, meaning “at 500 m, there is a 50% chance of successful dispersal”. This is again a standard assumption since we don’t specify species.</p>
 <p>After the calculations are computed, each patch and each link now contain dPC and BC values that can be categorised and visualised in QGIS. Here, the patches are visualised through a graduated symbology from green to yellow, where dark green marks a higher value. With five classes on equal intervals, the patches are ordered in importance. Dark green therefore means that once this patch would be removed, it would impact the overall connectivity the most. The links are filtered on the 500 most important once for each city (by selecting the 500 links with the highest BC value). They are then also visualised though a graduated symbology, this time on line thickness as well as colour. The thicker and darker the lines appear, the busiest the link appears to be in the network. Here however, all links would provide a big impact, since they are filtered on the 500 most important ones.</p>
-<p>In the Results (<a href="#sec-results" class="quarto-xref">Section&nbsp;5</a>), the outcome of this analysis for Rotterdam and Guangzhou is presented, which will be used as one of the inputs for the clustering analysis in the next section.</p>
+<p>In the Results (<a href="#sec-results-ecoconnect" class="quarto-xref">Section&nbsp;5.1</a>), the outcome of this analysis for Rotterdam and Guangzhou is presented, which will be used as one of the inputs for the clustering analysis in the next section.</p>
 <p>(Still add stuff about Conefor, limitations here already?)</p>
 </section>
 </section>
@@ -326,16 +338,15 @@ Figure&nbsp;1: General introduction of cities.
 </section>
 <section id="sec-results" class="level2">
 <h2 class="anchored" data-anchor-id="sec-results">Results</h2>
-<section id="current-ecological-connectivity-status" class="level3">
-<h3 class="anchored" data-anchor-id="current-ecological-connectivity-status">Current Ecological Connectivity Status</h3>
+<section id="sec-results-ecoconnect" class="level3">
+<h3 class="anchored" data-anchor-id="sec-results-ecoconnect">Current Ecological Connectivity Status</h3>
 <section id="rotterdam" class="level4">
 <h4 class="anchored" data-anchor-id="rotterdam">Rotterdam</h4>
 <section id="morphological-spatial-pattern-analysis-mspa-1" class="level5">
 <h5 class="anchored" data-anchor-id="morphological-spatial-pattern-analysis-mspa-1">Morphological Spatial Pattern Analysis (MSPA)</h5>
 </section>
-</section>
-<section id="patches-and-link-importance" class="level4">
-<h4 class="anchored" data-anchor-id="patches-and-link-importance">Patches and Link Importance</h4>
+<section id="patches-and-link-importance" class="level5">
+<h5 class="anchored" data-anchor-id="patches-and-link-importance">Patches and Link Importance</h5>
 <p>To represent the ecological connectivity, the layers are split into the patches and links. For the patches, the most essential elements of the green structure are visualised in dark green and less important elements in lighter shades leading up to yellow. Higher importance in this case means that if this patch were to be removed, the connectivity of the entire network would suffer the most. Patches with higher importance can’t be supported by the surrounding green structure, meaning a greater loss in network connectivity. By focusing on an envelope around the boundary of Rotterdam, we get to include more context that would’ve been lost otherwise. This envelope shape sadly still cuts off the surrounding patches, so some patches appear smaller within this shape and in the overall connectivity therefore also score less. This is a limitation of the envelope approach, but it did help in reducing the computation time so we take this in consideration.</p>
 <p>The same visualisation is done for the links, where a darker and thicker brown represents the most important “potential” links in the network. It is interesting to see that most of the links don’t run into the boundary of Rotterdam. Since the patches around the city are much bigger and get more importance, the links span around the boundary rather than within. From this analysis, it then shifts the focus on a link outside of the city boundary, but then we would lose the urban area factor that is central in our research. That’s why we chose to run the metric again but this time only within the boundary of Rotterdam, to understand which parts of the patches then become crucial and where meaningful interventions could happen in the urban environment.</p>
 <div id="fig-connectivity-renvelope" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -344,7 +355,7 @@ Figure&nbsp;1: General introduction of cities.
 <img src="images/Rotterdam_connectivity_envelope.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-connectivity-renvelope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Ecological connectivity within the Envelope.
+Figure&nbsp;3: Ecological connectivity within the Envelope.
 </figcaption>
 </figure>
 </div>
@@ -354,20 +365,21 @@ Figure&nbsp;2: Ecological connectivity within the Envelope.
 <img src="images/Rotterdam_connectivity_rboundary.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-connectivity-rboundary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Ecological connectivity within the boundary of Rotterdam.
+Figure&nbsp;4: Ecological connectivity within the boundary of Rotterdam.
 </figcaption>
 </figure>
 </div>
-<p>As can be seen in <a href="#fig-connectivity-rboundary" class="quarto-xref">Figure&nbsp;3</a>, we can now identify spaces within the boundary of Rotterdam that could be improved. These, together with some additional analysis on clustering, will then form the basis of choosing the zoom in locations.</p>
+<p>As can be seen in <a href="#fig-connectivity-rboundary" class="quarto-xref">Figure&nbsp;4</a>, we can now identify spaces within the boundary of Rotterdam that could be improved. These, together with some additional analysis on clustering, will then form the basis of choosing the zoom in locations.</p>
+</section>
 </section>
 <section id="guangzhou" class="level4">
 <h4 class="anchored" data-anchor-id="guangzhou">Guangzhou</h4>
 <section id="morphological-spatial-pattern-analysis-mspa-2" class="level5">
 <h5 class="anchored" data-anchor-id="morphological-spatial-pattern-analysis-mspa-2">Morphological Spatial Pattern Analysis (MSPA)</h5>
 </section>
+<section id="patches-and-link-importance-1" class="level5">
+<h5 class="anchored" data-anchor-id="patches-and-link-importance-1">Patches and Link Importance</h5>
 </section>
-<section id="patches-and-link-importance-1" class="level4">
-<h4 class="anchored" data-anchor-id="patches-and-link-importance-1">Patches and Link Importance</h4>
 </section>
 </section>
 <section id="typologies" class="level3">
@@ -573,7 +585,19 @@ Figure&nbsp;3: Ecological connectivity within the boundary of Rotterdam.
 </section>
 <section id="zoom-ins" class="level3">
 <h3 class="anchored" data-anchor-id="zoom-ins">Zoom Ins</h3>
-<p>The idea is to zoom in and look for smaller area with chosen clusters: ####Rotterdam <img src="images/Rotterdam_zoomin_intro.png" class="img-fluid" style="width:100.0%" alt="Figure X: Zoom in locations of Rotterdam."></p>
+<p>The idea is to zoom in and look for smaller area with chosen clusters</p>
+<section id="rotterdam-2" class="level4">
+<h4 class="anchored" data-anchor-id="rotterdam-2">Rotterdam</h4>
+<div id="fig-zoomin-roffa" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zoomin-roffa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Rotterdam_zoomin_intro.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zoomin-roffa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Zoom in locations in Rotterdam
+</figcaption>
+</figure>
+</div>
 <p><img src="images/idea1.png" class="img-fluid" style="width:100.0%" alt="Rotterdam zoom in on cluster distribution map"> <img src="images/Zrzut%20ekranu%202026-06-14%20155000.png" class="img-fluid" style="width:100.0%" alt="Rotterdam zoom in on cluster distribution map"> also this has to be edited: Here we see that the orange cluster showing good quality patches with weak connectivty is surrounded mostly by framgmented low quality greens (cluster 2) and some 0 clusters (Transition zones — moderate connectivity, some patches) and there is some green (cluster 1), which indicate a small but significant presence of key corridors with very high BC and quality patches. This depict potential that the cluster 1 could be expanded (by leverging parts of orange cluster or connecting yellow areas (also improving their quality) around it. But then when looking at the whole ecological profile of rotterdam there are not any mor eorange clusters withing the area, which could motivate the second intervention (on yellow clusters with id 2) in other areas (maybe top right corner of the envelope).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -582,41 +606,69 @@ Figure&nbsp;3: Ecological connectivity within the boundary of Rotterdam.
 </figure>
 </div>
 <p>study area 1 has 22647834,561 m2 and second has 36012716,54162598 m2.</p>
-<p>Here Guangzhou zoom in: ….</p>
-<section id="ndvi-1" class="level5">
-<h5 class="anchored" data-anchor-id="ndvi-1">NDVI</h5>
+<section id="ecological-resistance" class="level5">
+<h5 class="anchored" data-anchor-id="ecological-resistance">Ecological Resistance</h5>
+<p>Explanation of why we chose these 4 layers, then in depth explanation of each layer:</p>
+<section id="ndvi-1" class="level6">
+<h6 class="anchored" data-anchor-id="ndvi-1">NDVI</h6>
 </section>
-<section id="ndbi-1" class="level5">
-<h5 class="anchored" data-anchor-id="ndbi-1">NDBI</h5>
+<section id="ndbi-1" class="level6">
+<h6 class="anchored" data-anchor-id="ndbi-1">NDBI</h6>
 </section>
-<section id="land-use-1" class="level5">
-<h5 class="anchored" data-anchor-id="land-use-1">Land Use</h5>
+<section id="land-use-1" class="level6">
+<h6 class="anchored" data-anchor-id="land-use-1">Land Use</h6>
 </section>
-<section id="road-density-1" class="level5">
-<h5 class="anchored" data-anchor-id="road-density-1">Road Density</h5>
-<p>####Guangzhou Here Guangzhou zoom in: ….</p>
+<section id="road-density-1" class="level6">
+<h6 class="anchored" data-anchor-id="road-density-1">Road Density</h6>
+<div id="fig-ecores-roffa1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ecores-roffa1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/eco_resistance_roffa1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ecores-roffa1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Ecological resistance analysis layers zoom in 1.
+</figcaption>
+</figure>
+</div>
+<div id="fig-ecores-roffa2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ecores-roffa2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/eco_resistance_roffa2.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ecores-roffa2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Ecological resistance analysis layers zoom in 2.
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="ndvi-2" class="level5">
-<h5 class="anchored" data-anchor-id="ndvi-2">NDVI</h5>
-</section>
-<section id="ndbi-2" class="level5">
-<h5 class="anchored" data-anchor-id="ndbi-2">NDBI</h5>
-</section>
-<section id="land-use-2" class="level5">
-<h5 class="anchored" data-anchor-id="land-use-2">Land Use</h5>
-</section>
-<section id="road-density-2" class="level5">
-<h5 class="anchored" data-anchor-id="road-density-2">Road Density</h5>
+<section id="conclusion-maps" class="level6">
+<h6 class="anchored" data-anchor-id="conclusion-maps">Conclusion Maps</h6>
+<p>ADD MAPS</p>
 </section>
 </section>
 </section>
-<section id="discussion" class="level2">
-<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
-<section id="differences-and-similarities-between-cities" class="level3">
-<h3 class="anchored" data-anchor-id="differences-and-similarities-between-cities">Differences and similarities between cities</h3>
+<section id="guangzhou-2" class="level4">
+<h4 class="anchored" data-anchor-id="guangzhou-2">Guangzhou</h4>
+<p>add all material</p>
+<section id="ecological-resistance-1" class="level5">
+<h5 class="anchored" data-anchor-id="ecological-resistance-1">Ecological Resistance</h5>
+<section id="ndvi-2" class="level6">
+<h6 class="anchored" data-anchor-id="ndvi-2">NDVI</h6>
 </section>
-<section id="implications-for-nbs" class="level3">
-<h3 class="anchored" data-anchor-id="implications-for-nbs">Implications for NbS</h3>
+<section id="ndbi-2" class="level6">
+<h6 class="anchored" data-anchor-id="ndbi-2">NDBI</h6>
+</section>
+<section id="land-use-2" class="level6">
+<h6 class="anchored" data-anchor-id="land-use-2">Land Use</h6>
+</section>
+<section id="road-density-2" class="level6">
+<h6 class="anchored" data-anchor-id="road-density-2">Road Density</h6>
+</section>
+<section id="conclusion-maps-1" class="level6">
+<h6 class="anchored" data-anchor-id="conclusion-maps-1">Conclusion Maps</h6>
+</section>
+</section>
+</section>
 </section>
 </section>
 <section id="nature-based-solutions" class="level2">
@@ -630,6 +682,15 @@ Figure&nbsp;3: Ecological connectivity within the boundary of Rotterdam.
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<section id="differences-and-similarities-between-cities" class="level3">
+<h3 class="anchored" data-anchor-id="differences-and-similarities-between-cities">Differences and similarities between cities</h3>
+</section>
+<section id="implications-for-nbs" class="level3">
+<h3 class="anchored" data-anchor-id="implications-for-nbs">Implications for NbS</h3>
+</section>
 </section>
 <section id="recommendations-further-research" class="level2">
 <h2 class="anchored" data-anchor-id="recommendations-further-research">Recommendations &amp; Further Research</h2>

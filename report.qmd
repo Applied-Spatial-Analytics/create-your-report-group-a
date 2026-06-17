@@ -90,8 +90,13 @@ LCZ maps for Rotterdam and Guangzhou were obtained from  the LCZ Generator
 (https://lcz-generator.rub.de/global-lcz-map),
 
 #### Envelope
-why we used it, how in rt and how in gz 
-- mention dimensions !!!
+When collecting data, running analyses, and producing maps, it is important to look slightly beyond our area of interest. This is especially relevant when considering ecological connections, since important elements could lie outside our extent. To make sure we capture the surroundings of our area of interest, we therefore decided to create an envelope that extends beyond our bounding box.
+
+For both Rotterdam and Guangzhou, we created a minimum bounding geometry around the shape of the city or municipality. This function can be found in the Processing Toolbox in QGIS, under "Vector Geometry." As shown in @fig-envelope-roffa, this creates an envelope around the maximum extent of the shape. To capture some additional surrounding area, we then added a 5 km buffer around this bounding box (Vector > Geoprocessing Tools > Buffer). This buffered envelope defines the study area used throughout the project.
+
+![Envelope creation in Rotterdam.](images/envelope_rotterdam.png){#fig-envelope-roffa width=100%}
+
+Add same thing voor Guanzhou:
 
 #### Spatial Grid  {#sec-spatialgrid}
 
@@ -132,7 +137,7 @@ For both metrics, the parameters dispersal distance (d) and probability (p) are 
 
 After the calculations are computed, each patch and each link now contain dPC and BC values that can be categorised and visualised in QGIS. Here, the patches are visualised through a graduated symbology from green to yellow, where dark green marks a higher value. With five classes on equal intervals, the patches are ordered in importance. Dark green therefore means that once this patch would be removed, it would impact the overall connectivity the most. The links are filtered on the 500 most important once for each city (by selecting the 500 links with the highest BC value). They are then also visualised though a graduated symbology, this time on line thickness as well as colour. The thicker and darker the lines appear, the busiest the link appears to be in the network. Here however, all links would provide a big impact, since they are filtered on the 500 most important ones.
 
-In the Results (@sec-results), the outcome of this analysis for Rotterdam and Guangzhou is presented, which will be used as one of the inputs for the clustering analysis in the next section.
+In the Results (@sec-results-ecoconnect), the outcome of this analysis for Rotterdam and Guangzhou is presented, which will be used as one of the inputs for the clustering analysis in the next section.
 
 (Still add stuff about Conefor, limitations here already?)
 
@@ -198,12 +203,12 @@ pixel size:Pixel size of the output raster layer in layer units(in meters).-10m
 
 
 ## Results {#sec-results}
-### Current Ecological Connectivity Status
+### Current Ecological Connectivity Status {#sec-results-ecoconnect}
 #### Rotterdam
 
 ##### Morphological Spatial Pattern Analysis (MSPA)
 
-#### Patches and Link Importance
+##### Patches and Link Importance
 
 To represent the ecological connectivity, the layers are split into the patches and links. For the patches, the most essential elements of the green structure are visualised in dark green and less important elements in lighter shades leading up to yellow. Higher importance in this case means that if this patch were to be removed, the connectivity of the entire network would suffer the most. Patches with higher importance can’t be supported by the surrounding green structure, meaning a greater loss in network connectivity. By focusing on an envelope around the boundary of Rotterdam, we get to include more context that would’ve been lost otherwise. This envelope shape sadly still cuts off the surrounding patches, so some patches appear smaller within this shape and in the overall connectivity therefore also score less. This is a limitation of the envelope approach, but it did help in reducing the computation time so we take this in consideration.
 
@@ -218,7 +223,7 @@ As can be seen in @fig-connectivity-rboundary, we can now identify spaces within
 #### Guangzhou
 ##### Morphological Spatial Pattern Analysis (MSPA)
 
-#### Patches and Link Importance
+##### Patches and Link Importance
 
 ### Typologies
 - will add python script from qgis here 
@@ -319,10 +324,12 @@ interventions could focus on improving patch quality and increasing green cover.
 
 
 ### Zoom Ins
-The idea is to zoom in and look for smaller area with chosen clusters:
-####Rotterdam
-![Figure X: Zoom in locations of Rotterdam.](
-images/Rotterdam_zoomin_intro){width=100%}
+The idea is to zoom in and look for smaller area with chosen clusters
+
+#### Rotterdam
+
+![Zoom in locations in Rotterdam](images/Rotterdam_zoomin_intro.png){#fig-zoomin-roffa width=100%}
+
 
 ![Rotterdam zoom in on cluster distribution map](images/idea1){width=100%}
 ![Rotterdam zoom in on cluster distribution map](images/Zrzut ekranu 2026-06-14 155000){width=100%}
@@ -334,37 +341,43 @@ Here we see that the orange cluster showing good quality patches with weak conne
 
 study area 1 has 22647834,561 m2 and second has 36012716,54162598 m2.  
 
+##### Ecological Resistance
+
+Explanation of why we chose these 4 layers, then in depth explanation of each layer:
+
+###### NDVI
+###### NDBI
+###### Land Use
+###### Road Density
+
+![Ecological resistance analysis layers zoom in 1.](images/eco_resistance_roffa1.png){#fig-ecores-roffa1 width=100%}
+
+![Ecological resistance analysis layers zoom in 2.](images/eco_resistance_roffa2.png){#fig-ecores-roffa2 width=100%}
+
+###### Conclusion Maps
+ADD MAPS
 
 
+#### Guangzhou
+add all material
 
+##### Ecological Resistance
+###### NDVI
+###### NDBI
+###### Land Use
+###### Road Density
+###### Conclusion Maps
 
-Here Guangzhou zoom in: 
-....
-
-##### NDVI
-##### NDBI
-##### Land Use
-##### Road Density
-
-####Guangzhou
-Here Guangzhou zoom in: 
-....
-
-##### NDVI
-##### NDBI
-##### Land Use
-##### Road Density
-
-
-## Discussion
-### Differences and similarities between cities
-### Implications for NbS
 
 ## Nature-based Solutions
 ### RT Cluster 3 + GZ Cluster 3
 ### RT Cluster 4 + GZ Cluster 0
 
 ## Conclusion
+
+## Discussion
+### Differences and similarities between cities
+### Implications for NbS
 
 ## Recommendations & Further Research
 - How NbS would improve connectivity (re-running ecological connectivty analysis with NBS intervations purposed) - or if we have time we can do it after NBS chapter 

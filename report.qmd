@@ -133,7 +133,7 @@ A regular spatial grid was used as the common analysis unit for both cities, wit
 Grid cells with no links or patches passing through them were assigned a value of zero, since they simply have no green connectivity (this is not missing data but a meaningful absence).  Before clustering, all variables were standardised using z-score normalisation (StandardScaler) to ensure equal weighting regardless of original scale. K-means clustering (k=5) was then applied to the three variables: BC mean, patch count, and mean patch capacity;  using the scikit-learn implementation in Python Console in QGIS. The number of clusters was set to five to produce interpretable ecological profiles while keeping sufficient differentiation between groups. 
 After clustering, the dominant LCZ class per cluster was checked to understand what kind of urban environment each cluster is typically located in. This was done as a separate step after clustering, since LCZ is a categorical variable and including it directly in the K-means algorithm would have distorted the results. 
 
-### Study Area Selection
+### Study Area Selection - to be changed!!!!
 Comparable study areas between Rotterdam and Guangzhou were identified by matching clusters across both cities based on similarities in their BC values, patch characteristics, and LCZ composition. Two pairs of comparable areas were selected based on the strength of the match across these three criteria. The spatial boundary of each study area was then defined by dissolving the corresponding cluster grid cells into a single polygon, which was used as the spatial unit for the subsequent deeper analysis. 
 
 ### Study Area Deep Dive
@@ -172,7 +172,7 @@ As can be seen in @fig-connectivity-rboundary, we can now identify spaces within
 
 #### Rotterdam
 
-##### Cluster Profiles
+##### Cluster Profiles - will edit it soon 
 
 K-means clustering of Rotterdam's grid cells produced five ecological 
 profiles. Table X presents the mean values per cluster for betweenness centrality, 
@@ -223,12 +223,12 @@ within the urban fabric, dominated by LCZ 6 (open low-rise) and LCZ 8
 
 ![Rotterdam cluster distribution map](images/gz_clusters_all){width=100%}
 
-analysis of the map here
+analysis of the map here - will change the maps for clusters 
 
 ### Comparable Study Areas
 
 Two pairs of comparable areas were identified based on similarity in ecological 
-connectivity profiles and urban context.
+connectivity profiles and urban context. - also will change it since our approach is a bit diff now 
 
 ![Rotterdam chosen cluster distribution map](images/rt_clusters_3_4_highlighted){width=100%}
 
@@ -239,7 +239,7 @@ connectivity profiles and urban context.
 
 ![Guangzhou chosen cluster distribution map](highlighted_chosen_gz){width=100%}
 
-#### RT Cluster 3 vs GZ Cluster 3
+#### RT Cluster 3 vs GZ Cluster 3 - to be removed 
 
 Both clusters are characterised by isolated quality green patches with low 
 betweenness centrality and high patch capacity (RT: 0.372; GZ: 0.393) and 
@@ -253,7 +253,7 @@ spaces that are underconnected to the broader green network.
 This makes them particularly relevant for targeted connectivity improvement 
 through Nature-based Solutions.
 
-#### RT Cluster 4 vs GZ Cluster 0
+#### RT Cluster 4 vs GZ Cluster 0 - to be removed 
 
 The second pair was chosen due to its partial match based mostly on LCZ composition. Both 
 clusters are dominated by LCZ 6 (open low-rise) and LCZ 8 (large low-rise), 
@@ -273,6 +273,7 @@ images/Rotterdam_zoomin_intro){width=100%}
 
 ![Rotterdam zoom in on cluster distribution map](images/idea1){width=100%}
 ![Rotterdam zoom in on cluster distribution map](images/Zrzut ekranu 2026-06-14 155000){width=100%}
+also this has to be edited: 
 Here we see that the orange cluster showing good quality patches with weak connectivty is surrounded mostly by framgmented low quality greens (cluster 2) and some 0 clusters (Transition zones — moderate connectivity, some patches) and there is some green (cluster 1), which indicate a small but significant presence of key corridors with very high BC and quality patches. This depict potential that the cluster 1 could be expanded (by leverging parts of orange cluster or connecting yellow areas (also improving their quality) around it. But then when looking at the whole ecological profile of rotterdam there are not any mor eorange clusters withing the area, which could motivate the second intervention (on yellow clusters with id 2) in other areas (maybe top right corner of the envelope). 
 
 ![Rotterdam zoom in 2](images/idea2){width=100%}

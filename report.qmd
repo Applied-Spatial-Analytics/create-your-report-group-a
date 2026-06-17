@@ -293,7 +293,9 @@ Here Guangzhou zoom in:
 ....
 
 #### NDVI
-#### Land use + barriers (roads, water, railway, etc.)
+#### NDBI
+#### Land Use
+#### Road Density
 
 ## Discussion
 ### Differences and similarities between cities

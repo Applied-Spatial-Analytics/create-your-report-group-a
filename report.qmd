@@ -412,6 +412,8 @@ add all material
 ## Recommendations & Further Research
 - How NbS would improve connectivity (re-running ecological connectivty analysis with NBS intervations purposed) - or if we have time we can do it after NBS chapter 
 
+## AI Statement
+
 ## Reference List
 
 European Commission, Joint Research Centre. (n.d.). MSPA. Forest. Retrieved June 18, 2026, from https://forest.jrc.ec.europa.eu/en/activities/lpa/mspa/

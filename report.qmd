@@ -86,8 +86,12 @@ General introduction of cities.
 
 ## Methods
 ### Data
+notes: 
+ESA WorldCover 10m v200 - https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCover_v200#bands
+The European Space Agency (ESA) WorldCover 10 m 2021 product provides a global land cover map for 2021 at 10 m resolution based on Sentinel-1 and Sentinel-2 data. The WorldCover product comes with 11 land cover classes and has been generated in the framework of the ESA WorldCover project, part of the 5th Earth Observation Envelope Programme (EOEP-5) of the European Space Agency. 
+
 LCZ maps for Rotterdam and Guangzhou were obtained from  the LCZ Generator 
-(https://lcz-generator.rub.de/global-lcz-map),
+(https://lcz-generator.rub.de/global-lcz-map)
 
 #### Envelope
 When collecting data, running analyses, and producing maps, it is important to look slightly beyond our area of interest. This is especially relevant when considering ecological connections, since important elements could lie outside our extent. To make sure we capture the surroundings of our area of interest, we therefore decided to create an envelope that extends beyond our bounding box.
@@ -115,12 +119,28 @@ In order to make a comparable the description of urban morphology across both ci
 The LCZ typology is a universal urban classification it focuses specifically on urban and rural landscape types, distinguished through 10 built types (ranging from compact high-rise to heavy industry) and 7 land cover types (ranging from dense trees to water). Its main advantage lies in the diversity of urban classes, which are easily interpretable and globally consistent. 
 
 
-will try to make them better - maps: 
+@fig-lczrt and @fig-lczgz below, depict the distribution of Local Climate Zones in the choosen Cities. 
+
 ![Rotterdam Local Climate Zones](images/lcz_rt-1){#fig-lczrt}
+
 ![Guangzhou Local Climate Zones](images/lcz_gz-1){#fig-lczgz}
 
 ### Ecological Connectivity Analysis
-#### Morphological Spatial Pattern Analysis (MSPA)
+
+#### Morphological Spatial Pattern Analysis 
+
+
+Morphological Spatial Pattern Analysis (MSPA) is a series of mathematical image processing steps that help in understanding the shape and connectivity of different parts within an image. It was developed at the EU Joint Research Centre to describe the geometry and connectivity of the certain pattern in a binary image (Soille & Vogt, 2009) (European Commission Joint Research Centre, n.d.). Every pixel is assigned to one of seven structural classes: Core, Islet, Perforation, Edge, Loop, Bridge, and Branch. Together they describe how connected, isolated, or marginal each part of the explored pattern is.
+
+In this application, Core represents the interior of large patches of green infrastructure; Islet depicts small, isolated fragments with no core area; Perforation marks the margin of an opening or gap within a larger patch; Edge is the outer boundary zone where a patch meets the surrounding urban areas; Bridge and Loop describe narrow, corridor  structures connecting two separate core areas or looping back into the same one; and Branch is narrow, dead-end attached to only one core area.
+
+Since MSPA requires a binary foreground/background input, the first step was to derive such a mask from the ESA WorldCover v200 land-cover product (10 m resolution), which classifies the land surface into eleven categories: tree cover, shrubland, grassland, cropland, built-up, bare/sparse vegetation, snow/ice, permanent water bodies, herbaceous wetland, mangroves, and moss/lichen. This reclassification was carried out in Google Earth Engine, where the WorldCover layer was reclassified so that ecologically relevant classes (tree cover, shrubland, grassland, cropland, herbaceous wetland, and mangroves) were assigned a value of 1 (foreground), while built-up land, bare/sparse vegetation, permanent water bodies and snow/ice were assigned a value of 0 (background, representing the non-ecological matrix). The resulting binary raster was exported as a GeoTIFF and imported into QGIS for the MSPA analysis itself.
+
+The MSPA analysis was performed in QGIS using the MSPA plugin from the European Commission's Forest Joint Research Centre. 
+
+Three parameters are used in MSPA segments. Foreground connectivity, which determines whether diagonally touching pixels count as connected, was set to 8-connectivity rather than 4-connectivity, since ecological movement (animals) is not restricted to the four directions. Edge width, which sets the thickness of the buffer zone separating core area from the surrounding matrix, was set to 5 pixels; at WorldCover's 10 m resolution this corresponds to a 50 m buffer. Transition, which determines whether bridge or loop pixels passing through an edge or perforation to a core area are shown separately, was switched on.
+
+
 #### Patches and Link Importance (through Graphab) {#sec-patches}
 
 To conduct the ecological connectivity analysis, the software of Grapnhab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor & Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data.
@@ -209,7 +229,18 @@ pixel size:Pixel size of the output raster layer in layer units(in meters).-10m
 ### Current Ecological Connectivity Status {#sec-results-ecoconnect}
 #### Rotterdam
 
-##### Morphological Spatial Pattern Analysis (MSPA)
+##### Morphological Spatial Pattern Analysis 
+
+After running the MSPA analysis (@sec-Methods-Ecological Connectivity Analysis-Morphological Spatial Pattern Analysis)on the Rotterdam envelope area and analysing the distribution of classes, the green network (Core, Islet, Perforation, Edge, Loop, Bridge, Branch) covers 45.77%  of it, while background (the non-green matrix: Background, Core-Opening, Border-Opening) 54.23%.  
+
+@fig-MSPArt shows large green cores, but this is partly because the foreground includes a broad set of land cover classes (Tree, Shrubland, Grassland, Cropland, Wetland, and Mangroves), so some of these cores may not be fully representative of high-quality ecological habitat. 
+
+This is a useful basis for the patch and link importance analysis that follows (@sec-Patches and Link Importance). The green patches should not be treated as equally meaningful nodes. MSPA analysis is dominated by small cores like the tail-like fragments (likely isolated street trees, small gardens and other small green elements. They are numerous but contribute negligibly to the total core area and are unlikely to be significant habitats on their own. However, these fragments could still matter as stepping stones for connectivity. This supports running the patch and link importance analysis specifically on the dominant core patches, since they are the backbone of the green network. Moreover, two smaller study areas within the city are also examined more closely, using metrics like NDVI, NDBI, road density, and land-cover resistance, to assess habitat quality and connectivity in more detail than the broader MSPA classification alone can provide. 
+
+
+![Morphological Spatial Pattern Analysis in Rotterdam](images/MSPA_rt-1){#fig-MSPArt}
+
+
 
 ##### Patches and Link Importance
 
@@ -224,7 +255,7 @@ The same visualisation is done for the links, where a darker and thicker brown r
 As can be seen in @fig-connectivity-rboundary, we can now identify spaces within the boundary of Rotterdam that could be improved. These, together with some additional analysis on clustering, will then form the basis of choosing the zoom in locations.
 
 #### Guangzhou
-##### Morphological Spatial Pattern Analysis (MSPA)
+##### Morphological Spatial Pattern Analysis 
 
 ##### Patches and Link Importance
 
@@ -241,19 +272,18 @@ patch count, and patch capacity.
 
 | Cluster | n    | BC mean | Patches | Capacity | Interpretation                              |
 |---------|------|---------|---------|----------|---------------------------------------------|
-| 0       | 1932 | 0.0078  | 0.77    | 0.036    | Transition zones: moderate connectivity, some patches |
-| 1       | 60   | 0.5767  | 1.17    | 0.264    | Key corridors: very high BC, quality patches |
-| 2       | 2730 | 0.0003  | 0.00    | 0.000    | Urbanised area: no connectivity, no patches  |
+| 0       | 1932 | 0.0078  | 0.77    | 0.036    | Moderate connectivity, some patches |
+| 1       | 60   | 0.5767  | 1.17    | 0.264    | Very high BC, quality patches |
+| 2       | 2730 | 0.0003  | 0.00    | 0.000    | No connectivity, no patches  |
 | 3       | 512  | 0.0054  | 1.06    | 0.372    | Isolated quality patches: low BC, high capacity |
 | 4       | 1546 | 0.0056  | 1.59    | 0.018    | Fragmented green: many small low-quality patches |
 
-Cluster 2 is the largest group, representing the Urbanised area with no meaningful 
-green network. Cluster 1, while the smallest (n=60), represents the most 
-ecologically significant cells which are key corridor locations with both high betweenness 
-centrality and quality patches. Cluster 3 are the areas with high-quality 
-patches that are poorly connected to the broader network, dominated by LCZ D 
-(low plants) with some LCZ A (dense trees) (here will add more on low bc means). Cluster 4 shows fragmented green 
-distributed across LCZ 6 (open low-rise) and LCZ 8 (large low-rise) urban areas.
+Cluster 2 is the largest group, representing the areas with no meaningful 
+green network. Cluster 1 is the smallest (n=60) and represents the most 
+ecologically significant cells which are key corridor locations with both high betweennesscentrality and quality patches. Cluster 3 are the areas with high-quality 
+patches that are poorly connected to the broader network, dominated by LCZ class D 
+(low plants) with some LCZ class A (dense trees). Cluster 4 shows fragmented green 
+distributed across LCZ class 6 (open low-rise) and LCZ class 8 (large low-rise) urban areas.
 
 ##### Spatial Distribution
 
@@ -267,38 +297,29 @@ analysis of the map here
 
 | Cluster | n    | BC mean | Patches | Capacity | Interpretation                              |
 |---------|------|---------|---------|----------|---------------------------------------------|
-| 0       | 459  | 0.3446  | 3.77    | 0.010    | Fragmented green in urban fabric: many small patches, high BC |
-| 1       | 1947 | 0.0012  | 0.39    | 0.005    | Low connectivity urban: sparse patches, minimal BC |
+| 0       | 459  | 0.3446  | 3.77    | 0.010    | Fragmented green: many small patches, high BC |
+| 1       | 1947 | 0.0012  | 0.39    | 0.005    | Sparse patches, minimal BC |
 | 2       | 317  | 0.1894  | 0.49    | 0.001    | Corridor cells: moderate BC through mostly non-green areas |
 | 3       | 475  | 0.0855  | 1.07    | 0.393    | Isolated quality patches: low BC but high patch capacity |
-| 4       | 1638 | 0.4292  | 0.82    | 0.016    | High BC urban: major corridors through dense urban fabric |
+| 4       | 1638 | 0.4292  | 0.82    | 0.016    | High BC major corridors  |
 
 Guangzhou's clustering reveals a different ecological structure than Rotterdam. 
 High BC values are more widespread, reflecting the larger and denser green network 
 of Guangzhou. Cluster 3, similar to Rotterdam's Cluster 3, identifies isolated 
-quality patches dominated by LCZ A (dense trees, n=419). Cluster 0 represnts fragmented green 
-within the urban fabric, dominated by LCZ 6 (open low-rise) and LCZ 8 
-(large low-rise), comparable to Rotterdam's Cluster 4.
+quality patches dominated by LCZ class A (dense trees). Cluster 0 represnts fragmented green within the urban fabric, dominated by LCZ class  6 (open low-rise) and LCZ class 8 (large low-rise), comparable to Rotterdam's Cluster 4.
 
 ##### Spatial Distribution
 
-![Rotterdam cluster distribution map](images/gz_clusters_all){width=100%}
+![Guangzhou cluster distribution map](images/gz_clusters_all){width=100%}
 
 analysis of the map here - will change the maps for clusters 
 
 ### Comparable Study Areas
 
 Two pairs of comparable areas were identified based on similarity in ecological 
-connectivity profiles and urban context. - also will change it since our approach is a bit diff now 
+connectivity profiles and urban context. add more here
 
-![Rotterdam chosen cluster distribution map](images/rt_clusters_3_4_highlighted){width=100%}
-
-![Rotterdam chosen cluster distribution map](images/chosen_clusters_rt){width=100%}
-
-
-![Guangzhou chosen cluster distribution map](images/gz_cluster_3_0){width=100%}
-
-![Guangzhou chosen cluster distribution map](highlighted_chosen_gz){width=100%}
+- not sure what to add here but definetively the two sections below are not relevant anymore since we changed our approach. 
 
 #### RT Cluster 3 vs GZ Cluster 3 - to be removed 
 
@@ -334,12 +355,11 @@ The idea is to zoom in and look for smaller area with chosen clusters
 ![Zoom in locations in Rotterdam](images/Rotterdam_zoomin_intro.png){#fig-zoomin-roffa width=100%}
 
 
-![Rotterdam zoom in on cluster distribution map](images/idea1){width=100%}
-![Rotterdam zoom in on cluster distribution map](images/Zrzut ekranu 2026-06-14 155000){width=100%}
+
 also this has to be edited: 
 Here we see that the orange cluster showing good quality patches with weak connectivty is surrounded mostly by framgmented low quality greens (cluster 2) and some 0 clusters (Transition zones — moderate connectivity, some patches) and there is some green (cluster 1), which indicate a small but significant presence of key corridors with very high BC and quality patches. This depict potential that the cluster 1 could be expanded (by leverging parts of orange cluster or connecting yellow areas (also improving their quality) around it. But then when looking at the whole ecological profile of rotterdam there are not any mor eorange clusters withing the area, which could motivate the second intervention (on yellow clusters with id 2) in other areas (maybe top right corner of the envelope). 
 
-![Rotterdam zoom in 2](images/idea2){width=100%}
+
 
 
 study area 1 has 22647834,561 m2 and second has 36012716,54162598 m2.  
@@ -373,8 +393,7 @@ add all material
 
 
 ## Nature-based Solutions
-### RT Cluster 3 + GZ Cluster 3
-### RT Cluster 4 + GZ Cluster 0
+
 
 ## Conclusion
 
@@ -387,10 +406,16 @@ add all material
 
 ## Reference List
 
+European Commission, Joint Research Centre. (n.d.). MSPA. Forest. Retrieved June 18, 2026, from https://forest.jrc.ec.europa.eu/en/activities/lpa/mspa/
+
 Graphab. (n.d.). Graphab. https://thema.umlp.fr/productions/software/graphab/en/home.html
 
 Minor, E. S., & Urban, D. L. (2008). A graph-theory framework for evaluating landscape connectivity and conservation planning. Conservation Biology, 22(2), 297–307. https://doi.org/10.1111/j.1523-1739.2007.00871.x
 
+Soille, P., & Vogt, P. (2009). Morphological segmentation of binary patterns. Pattern Recognition Letters, 30(4), 456–459. https://doi.org/10.1016/j.patrec.2008.10.015
+
 The delta Probability of Connectivity Index (dPC) 
 (from metrovancouver Evaluation of Regional Ecosystem Connectivity 2025 - will add sources later)
+
+
 

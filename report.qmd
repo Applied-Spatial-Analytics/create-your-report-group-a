@@ -127,7 +127,7 @@ The LCZ typology is a universal urban classification it focuses specifically on 
 
 ### Ecological Connectivity Analysis
 
-#### Morphological Spatial Pattern Analysis 
+#### Morphological Spatial Pattern Analysis {#sec-mspa}
 
 
 Morphological Spatial Pattern Analysis (MSPA) is a series of mathematical image processing steps that help in understanding the shape and connectivity of different parts within an image. It was developed at the EU Joint Research Centre to describe the geometry and connectivity of the certain pattern in a binary image (Soille & Vogt, 2009) (European Commission Joint Research Centre, n.d.). Every pixel is assigned to one of seven structural classes: Core, Islet, Perforation, Edge, Loop, Bridge, and Branch. Together they describe how connected, isolated, or marginal each part of the explored pattern is.
@@ -186,7 +186,7 @@ After clustering, the dominant LCZ class per cluster was checked to understand w
 ### Study Area Selection - more info here!!!
 Comparable study areas between Rotterdam and Guangzhou were identified by matching clusters across both cities based on similarities in their BC values, patch characteristics, and LCZ composition. 
 
-### Study Area Deep Dive
+### Ecological Resistance
 After selecting 2 study areas within each city a deeper analysis is performed to investigate barriers to ecological connectivity as well as potentials for improvement. 
 - add here what will be investigated (4 metrics and how we combine them)
 
@@ -205,6 +205,7 @@ After selecting 2 study areas within each city a deeper analysis is performed to
 - < 0: Vegetation (which reflects highly in NIR) or water bodies.
 (source)
 -0.5 to 0.5 values 
+
 #### Land Use
 1-5 scale 
 1 - low: trees/shrub
@@ -221,6 +222,9 @@ pixel size:Pixel size of the output raster layer in layer units(in meters).-10m
 (source)
 0 to 0,15
 
+#### Combining the layers
+!!! Mention the process of reclassifying (5 equal classes), then adding together through Raster Calculator.
+
 > here note how we combine all together 
 ### NBS
 
@@ -229,20 +233,19 @@ pixel size:Pixel size of the output raster layer in layer units(in meters).-10m
 ### Current Ecological Connectivity Status {#sec-results-ecoconnect}
 #### Rotterdam
 
-##### Morphological Spatial Pattern Analysis 
+##### Morphological Spatial Pattern Analysis (MSPA)
 
-After running the MSPA analysis (@sec-Methods-Ecological Connectivity Analysis-Morphological Spatial Pattern Analysis)on the Rotterdam envelope area and analysing the distribution of classes, the green network (Core, Islet, Perforation, Edge, Loop, Bridge, Branch) covers 45.77%  of it, while background (the non-green matrix: Background, Core-Opening, Border-Opening) 54.23%.  
+After running the MSPA analysis (@sec-mspa) on the Rotterdam envelope area and analysing the distribution of classes, the green network (Core, Islet, Perforation, Edge, Loop, Bridge, Branch) covers 45.77%  of it, while background (the non-green matrix: Background, Core-Opening, Border-Opening) 54.23%.  
 
 @fig-MSPArt shows large green cores, but this is partly because the foreground includes a broad set of land cover classes (Tree, Shrubland, Grassland, Cropland, Wetland, and Mangroves), so some of these cores may not be fully representative of high-quality ecological habitat. 
 
-This is a useful basis for the patch and link importance analysis that follows (@sec-Patches and Link Importance). The green patches should not be treated as equally meaningful nodes. MSPA analysis is dominated by small cores like the tail-like fragments (likely isolated street trees, small gardens and other small green elements. They are numerous but contribute negligibly to the total core area and are unlikely to be significant habitats on their own. However, these fragments could still matter as stepping stones for connectivity. This supports running the patch and link importance analysis specifically on the dominant core patches, since they are the backbone of the green network. Moreover, two smaller study areas within the city are also examined more closely, using metrics like NDVI, NDBI, road density, and land-cover resistance, to assess habitat quality and connectivity in more detail than the broader MSPA classification alone can provide. 
+This is a useful basis for the patch and link importance analysis that follows (@sec-result-ecoconnect-roffa). The green patches should not be treated as equally meaningful nodes. MSPA analysis is dominated by small cores like the tail-like fragments (likely isolated street trees, small gardens and other small green elements. They are numerous but contribute negligibly to the total core area and are unlikely to be significant habitats on their own. However, these fragments could still matter as stepping stones for connectivity. This supports running the patch and link importance analysis specifically on the dominant core patches, since they are the backbone of the green network. Moreover, two smaller study areas within the city are also examined more closely, using metrics like NDVI, NDBI, road density, and land-cover resistance, to assess habitat quality and connectivity in more detail than the broader MSPA classification alone can provide. 
 
 
 ![Morphological Spatial Pattern Analysis in Rotterdam](images/MSPA_rt-1){#fig-MSPArt}
 
 
-
-##### Patches and Link Importance
+##### Patches and Link Importance {#sec-result-ecoconnect-roffa}
 
 To represent the ecological connectivity, the layers are split into the patches and links. For the patches, the most essential elements of the green structure are visualised in dark green and less important elements in lighter shades leading up to yellow. Higher importance in this case means that if this patch were to be removed, the connectivity of the entire network would suffer the most. Patches with higher importance can’t be supported by the surrounding green structure, meaning a greater loss in network connectivity. By focusing on an envelope around the boundary of Rotterdam, we get to include more context that would’ve been lost otherwise. This envelope shape sadly still cuts off the surrounding patches, so some patches appear smaller within this shape and in the overall connectivity therefore also score less. This is a limitation of the envelope approach, but it did help in reducing the computation time so we take this in consideration.
 
@@ -255,7 +258,7 @@ The same visualisation is done for the links, where a darker and thicker brown r
 As can be seen in @fig-connectivity-rboundary, we can now identify spaces within the boundary of Rotterdam that could be improved. These, together with some additional analysis on clustering, will then form the basis of choosing the zoom in locations.
 
 #### Guangzhou
-##### Morphological Spatial Pattern Analysis 
+##### Morphological Spatial Pattern Analysis (MSPA)
 
 ##### Patches and Link Importance
 
@@ -366,7 +369,7 @@ study area 1 has 22647834,561 m2 and second has 36012716,54162598 m2.
 
 ##### Ecological Resistance
 
-Explanation of why we chose these 4 layers, then in depth explanation of each layer:
+Explanation of why we chose these 4 layers, then in depth explanation of each layer (maybe not necesarry cs already mentioned at the top?)
 
 ###### NDVI
 ###### NDBI
@@ -378,7 +381,12 @@ Explanation of why we chose these 4 layers, then in depth explanation of each la
 ![Ecological resistance analysis layers zoom in 2.](images/eco_resistance_roffa2.png){#fig-ecores-roffa2 width=100%}
 
 ###### Conclusion Maps
-ADD MAPS
+
+Maps combined, what can we see in output? having the links on top of it, some already exist? explain process and next step.
+
+![Ecological resistance zoom in 1 (layers combined).](images/total_eco_resistance_roffa1.png){#fig-ecores-tot-roffa1 width=100%}
+
+![Ecological resistance zoom in 2 (layers combined).](images/total_eco_resistance_roffa2.png){#fig-ecores-tot-roffa2 width=100%}
 
 
 #### Guangzhou

@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="report_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="report_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="report_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="report_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -292,8 +292,8 @@ Figure&nbsp;4: Guangzhou Local Climate Zones
 </section>
 <section id="ecological-connectivity-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="ecological-connectivity-analysis">Ecological Connectivity Analysis</h3>
-<section id="morphological-spatial-pattern-analysis" class="level4">
-<h4 class="anchored" data-anchor-id="morphological-spatial-pattern-analysis">Morphological Spatial Pattern Analysis</h4>
+<section id="sec-mspa" class="level4">
+<h4 class="anchored" data-anchor-id="sec-mspa">Morphological Spatial Pattern Analysis</h4>
 <p>Morphological Spatial Pattern Analysis (MSPA) is a series of mathematical image processing steps that help in understanding the shape and connectivity of different parts within an image. It was developed at the EU Joint Research Centre to describe the geometry and connectivity of the certain pattern in a binary image (Soille &amp; Vogt, 2009) (European Commission Joint Research Centre, n.d.). Every pixel is assigned to one of seven structural classes: Core, Islet, Perforation, Edge, Loop, Bridge, and Branch. Together they describe how connected, isolated, or marginal each part of the explored pattern is.</p>
 <p>In this application, Core represents the interior of large patches of green infrastructure; Islet depicts small, isolated fragments with no core area; Perforation marks the margin of an opening or gap within a larger patch; Edge is the outer boundary zone where a patch meets the surrounding urban areas; Bridge and Loop describe narrow, corridor structures connecting two separate core areas or looping back into the same one; and Branch is narrow, dead-end attached to only one core area.</p>
 <p>Since MSPA requires a binary foreground/background input, the first step was to derive such a mask from the ESA WorldCover v200 land-cover product (10 m resolution), which classifies the land surface into eleven categories: tree cover, shrubland, grassland, cropland, built-up, bare/sparse vegetation, snow/ice, permanent water bodies, herbaceous wetland, mangroves, and moss/lichen. This reclassification was carried out in Google Earth Engine, where the WorldCover layer was reclassified so that ecologically relevant classes (tree cover, shrubland, grassland, cropland, herbaceous wetland, and mangroves) were assigned a value of 1 (foreground), while built-up land, bare/sparse vegetation, permanent water bodies and snow/ice were assigned a value of 0 (background, representing the non-ecological matrix). The resulting binary raster was exported as a GeoTIFF and imported into QGIS for the MSPA analysis itself.</p>
@@ -329,8 +329,8 @@ Figure&nbsp;4: Guangzhou Local Climate Zones
 <h3 class="anchored" data-anchor-id="study-area-selection---more-info-here">Study Area Selection - more info here!!!</h3>
 <p>Comparable study areas between Rotterdam and Guangzhou were identified by matching clusters across both cities based on similarities in their BC values, patch characteristics, and LCZ composition.</p>
 </section>
-<section id="study-area-deep-dive" class="level3">
-<h3 class="anchored" data-anchor-id="study-area-deep-dive">Study Area Deep Dive</h3>
+<section id="ecological-resistance" class="level3">
+<h3 class="anchored" data-anchor-id="ecological-resistance">Ecological Resistance</h3>
 <p>After selecting 2 study areas within each city a deeper analysis is performed to investigate barriers to ecological connectivity as well as potentials for improvement. - add here what will be investigated (4 metrics and how we combine them)</p>
 <section id="ndvi" class="level4">
 <h4 class="anchored" data-anchor-id="ndvi">NDVI</h4>
@@ -347,12 +347,20 @@ Figure&nbsp;4: Guangzhou Local Climate Zones
 <ul>
 <li>“&gt;” 0: Likely built-up or urban areas.</li>
 <li>≈ 0: Bare soil or mixed terrain.</li>
-<li>&lt; 0: Vegetation (which reflects highly in NIR) or water bodies. (source) -0.5 to 0.5 values #### Land Use 1-5 scale 1 - low: trees/shrub 2 - low-moderate: grass/wetland 3 - moderate: cropland 4 - moderate-high:bare/water 5 - high: built-up (source)</li>
+<li>&lt; 0: Vegetation (which reflects highly in NIR) or water bodies. (source) -0.5 to 0.5 values</li>
 </ul>
+</section>
+<section id="land-use" class="level4">
+<h4 class="anchored" data-anchor-id="land-use">Land Use</h4>
+<p>1-5 scale 1 - low: trees/shrub 2 - low-moderate: grass/wetland 3 - moderate: cropland 4 - moderate-high:bare/water 5 - high: built-up (source)</p>
 </section>
 <section id="road-density" class="level4">
 <h4 class="anchored" data-anchor-id="road-density">Road Density</h4>
 <p>parameters: search radius: Radius of the circular neighbourhood (in meters). - 10m pixel size:Pixel size of the output raster layer in layer units(in meters).-10m (source) 0 to 0,15</p>
+</section>
+<section id="combining-the-layers" class="level4">
+<h4 class="anchored" data-anchor-id="combining-the-layers">Combining the layers</h4>
+<p>!!! Mention the process of reclassifying (5 equal classes), then adding together through Raster Calculator.</p>
 <blockquote class="blockquote">
 <p>here note how we combine all together ### NBS</p>
 </blockquote>
@@ -365,11 +373,11 @@ Figure&nbsp;4: Guangzhou Local Climate Zones
 <h3 class="anchored" data-anchor-id="sec-results-ecoconnect">Current Ecological Connectivity Status</h3>
 <section id="rotterdam" class="level4">
 <h4 class="anchored" data-anchor-id="rotterdam">Rotterdam</h4>
-<section id="morphological-spatial-pattern-analysis-1" class="level5">
-<h5 class="anchored" data-anchor-id="morphological-spatial-pattern-analysis-1">Morphological Spatial Pattern Analysis</h5>
-<p>After running the MSPA analysis (<strong>?@sec-Methods-Ecological</strong> Connectivity Analysis-Morphological Spatial Pattern Analysis)on the Rotterdam envelope area and analysing the distribution of classes, the green network (Core, Islet, Perforation, Edge, Loop, Bridge, Branch) covers 45.77% of it, while background (the non-green matrix: Background, Core-Opening, Border-Opening) 54.23%.</p>
+<section id="morphological-spatial-pattern-analysis-mspa" class="level5">
+<h5 class="anchored" data-anchor-id="morphological-spatial-pattern-analysis-mspa">Morphological Spatial Pattern Analysis (MSPA)</h5>
+<p>After running the MSPA analysis (<a href="#sec-mspa" class="quarto-xref">Section&nbsp;4.2.1</a>) on the Rotterdam envelope area and analysing the distribution of classes, the green network (Core, Islet, Perforation, Edge, Loop, Bridge, Branch) covers 45.77% of it, while background (the non-green matrix: Background, Core-Opening, Border-Opening) 54.23%.</p>
 <p><a href="#fig-MSPArt" class="quarto-xref">Figure&nbsp;5</a> shows large green cores, but this is partly because the foreground includes a broad set of land cover classes (Tree, Shrubland, Grassland, Cropland, Wetland, and Mangroves), so some of these cores may not be fully representative of high-quality ecological habitat.</p>
-<p>This is a useful basis for the patch and link importance analysis that follows (<strong>?@sec-Patches</strong> and Link Importance). The green patches should not be treated as equally meaningful nodes. MSPA analysis is dominated by small cores like the tail-like fragments (likely isolated street trees, small gardens and other small green elements. They are numerous but contribute negligibly to the total core area and are unlikely to be significant habitats on their own. However, these fragments could still matter as stepping stones for connectivity. This supports running the patch and link importance analysis specifically on the dominant core patches, since they are the backbone of the green network. Moreover, two smaller study areas within the city are also examined more closely, using metrics like NDVI, NDBI, road density, and land-cover resistance, to assess habitat quality and connectivity in more detail than the broader MSPA classification alone can provide.</p>
+<p>This is a useful basis for the patch and link importance analysis that follows (<a href="#sec-result-ecoconnect-roffa" class="quarto-xref">Section&nbsp;5.1.1.2</a>). The green patches should not be treated as equally meaningful nodes. MSPA analysis is dominated by small cores like the tail-like fragments (likely isolated street trees, small gardens and other small green elements. They are numerous but contribute negligibly to the total core area and are unlikely to be significant habitats on their own. However, these fragments could still matter as stepping stones for connectivity. This supports running the patch and link importance analysis specifically on the dominant core patches, since they are the backbone of the green network. Moreover, two smaller study areas within the city are also examined more closely, using metrics like NDVI, NDBI, road density, and land-cover resistance, to assess habitat quality and connectivity in more detail than the broader MSPA classification alone can provide.</p>
 <div id="fig-MSPArt" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-MSPArt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -381,8 +389,8 @@ Figure&nbsp;5: Morphological Spatial Pattern Analysis in Rotterdam
 </figure>
 </div>
 </section>
-<section id="patches-and-link-importance" class="level5">
-<h5 class="anchored" data-anchor-id="patches-and-link-importance">Patches and Link Importance</h5>
+<section id="sec-result-ecoconnect-roffa" class="level5">
+<h5 class="anchored" data-anchor-id="sec-result-ecoconnect-roffa">Patches and Link Importance</h5>
 <p>To represent the ecological connectivity, the layers are split into the patches and links. For the patches, the most essential elements of the green structure are visualised in dark green and less important elements in lighter shades leading up to yellow. Higher importance in this case means that if this patch were to be removed, the connectivity of the entire network would suffer the most. Patches with higher importance can’t be supported by the surrounding green structure, meaning a greater loss in network connectivity. By focusing on an envelope around the boundary of Rotterdam, we get to include more context that would’ve been lost otherwise. This envelope shape sadly still cuts off the surrounding patches, so some patches appear smaller within this shape and in the overall connectivity therefore also score less. This is a limitation of the envelope approach, but it did help in reducing the computation time so we take this in consideration.</p>
 <p>The same visualisation is done for the links, where a darker and thicker brown represents the most important “potential” links in the network. It is interesting to see that most of the links don’t run into the boundary of Rotterdam. Since the patches around the city are much bigger and get more importance, the links span around the boundary rather than within. From this analysis, it then shifts the focus on a link outside of the city boundary, but then we would lose the urban area factor that is central in our research. That’s why we chose to run the metric again but this time only within the boundary of Rotterdam, to understand which parts of the patches then become crucial and where meaningful interventions could happen in the urban environment.</p>
 <div id="fig-connectivity-renvelope" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -410,11 +418,11 @@ Figure&nbsp;7: Ecological connectivity within the boundary of Rotterdam.
 </section>
 <section id="guangzhou" class="level4">
 <h4 class="anchored" data-anchor-id="guangzhou">Guangzhou</h4>
-<section id="morphological-spatial-pattern-analysis-2" class="level5">
-<h5 class="anchored" data-anchor-id="morphological-spatial-pattern-analysis-2">Morphological Spatial Pattern Analysis</h5>
+<section id="morphological-spatial-pattern-analysis-mspa-1" class="level5">
+<h5 class="anchored" data-anchor-id="morphological-spatial-pattern-analysis-mspa-1">Morphological Spatial Pattern Analysis (MSPA)</h5>
 </section>
-<section id="patches-and-link-importance-1" class="level5">
-<h5 class="anchored" data-anchor-id="patches-and-link-importance-1">Patches and Link Importance</h5>
+<section id="patches-and-link-importance" class="level5">
+<h5 class="anchored" data-anchor-id="patches-and-link-importance">Patches and Link Importance</h5>
 </section>
 </section>
 </section>
@@ -615,17 +623,17 @@ Figure&nbsp;8: Zoom in locations in Rotterdam
 </div>
 <p>also this has to be edited: Here we see that the orange cluster showing good quality patches with weak connectivty is surrounded mostly by framgmented low quality greens (cluster 2) and some 0 clusters (Transition zones — moderate connectivity, some patches) and there is some green (cluster 1), which indicate a small but significant presence of key corridors with very high BC and quality patches. This depict potential that the cluster 1 could be expanded (by leverging parts of orange cluster or connecting yellow areas (also improving their quality) around it. But then when looking at the whole ecological profile of rotterdam there are not any mor eorange clusters withing the area, which could motivate the second intervention (on yellow clusters with id 2) in other areas (maybe top right corner of the envelope).</p>
 <p>study area 1 has 22647834,561 m2 and second has 36012716,54162598 m2.</p>
-<section id="ecological-resistance" class="level5">
-<h5 class="anchored" data-anchor-id="ecological-resistance">Ecological Resistance</h5>
-<p>Explanation of why we chose these 4 layers, then in depth explanation of each layer:</p>
+<section id="ecological-resistance-1" class="level5">
+<h5 class="anchored" data-anchor-id="ecological-resistance-1">Ecological Resistance</h5>
+<p>Explanation of why we chose these 4 layers, then in depth explanation of each layer (maybe not necesarry cs already mentioned at the top?)</p>
 <section id="ndvi-1" class="level6">
 <h6 class="anchored" data-anchor-id="ndvi-1">NDVI</h6>
 </section>
 <section id="ndbi-1" class="level6">
 <h6 class="anchored" data-anchor-id="ndbi-1">NDBI</h6>
 </section>
-<section id="land-use" class="level6">
-<h6 class="anchored" data-anchor-id="land-use">Land Use</h6>
+<section id="land-use-1" class="level6">
+<h6 class="anchored" data-anchor-id="land-use-1">Land Use</h6>
 </section>
 <section id="road-density-1" class="level6">
 <h6 class="anchored" data-anchor-id="road-density-1">Road Density</h6>
@@ -652,23 +660,43 @@ Figure&nbsp;10: Ecological resistance analysis layers zoom in 2.
 </section>
 <section id="conclusion-maps" class="level6">
 <h6 class="anchored" data-anchor-id="conclusion-maps">Conclusion Maps</h6>
-<p>ADD MAPS</p>
+<p>Maps combined, what can we see in output? having the links on top of it, some already exist? explain process and next step.</p>
+<div id="fig-ecores-tot-roffa1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ecores-tot-roffa1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/total_eco_resistance_roffa1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ecores-tot-roffa1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Ecological resistance zoom in 1 (layers combined).
+</figcaption>
+</figure>
+</div>
+<div id="fig-ecores-tot-roffa2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ecores-tot-roffa2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/total_eco_resistance_roffa2.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ecores-tot-roffa2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Ecological resistance zoom in 2 (layers combined).
+</figcaption>
+</figure>
+</div>
 </section>
 </section>
 </section>
 <section id="guangzhou-2" class="level4">
 <h4 class="anchored" data-anchor-id="guangzhou-2">Guangzhou</h4>
 <p>add all material</p>
-<section id="ecological-resistance-1" class="level5">
-<h5 class="anchored" data-anchor-id="ecological-resistance-1">Ecological Resistance</h5>
+<section id="ecological-resistance-2" class="level5">
+<h5 class="anchored" data-anchor-id="ecological-resistance-2">Ecological Resistance</h5>
 <section id="ndvi-2" class="level6">
 <h6 class="anchored" data-anchor-id="ndvi-2">NDVI</h6>
 </section>
 <section id="ndbi-2" class="level6">
 <h6 class="anchored" data-anchor-id="ndbi-2">NDBI</h6>
 </section>
-<section id="land-use-1" class="level6">
-<h6 class="anchored" data-anchor-id="land-use-1">Land Use</h6>
+<section id="land-use-2" class="level6">
+<h6 class="anchored" data-anchor-id="land-use-2">Land Use</h6>
 </section>
 <section id="road-density-2" class="level6">
 <h6 class="anchored" data-anchor-id="road-density-2">Road Density</h6>

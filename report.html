@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="report_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="report_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="report_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="report_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -314,22 +314,19 @@ Figure&nbsp;2: Envelope creation in Rotterdam.
 <li>0.2 to 0.5: Sparse or stressed vegetation, grasslands, or crops.</li>
 <li>0.6 to 1.0: Dense, healthy vegetation such as mature forests or crops at peak growth. (source)</li>
 </ul>
+<p>-0.2 to 0.8 values</p>
 </section>
 <section id="ndbi" class="level4">
 <h4 class="anchored" data-anchor-id="ndbi">NDBI</h4>
 <ul>
 <li>“&gt;” 0: Likely built-up or urban areas.</li>
 <li>≈ 0: Bare soil or mixed terrain.</li>
-<li>&lt; 0: Vegetation (which reflects highly in NIR) or water bodies. (source)</li>
+<li>&lt; 0: Vegetation (which reflects highly in NIR) or water bodies. (source) -0.5 to 0.5 values #### Land Use 1-5 scale 1 - low: trees/shrub 2 - low-moderate: grass/wetland 3 - moderate: cropland 4 - moderate-high:bare/water 5 - high: built-up (source)</li>
 </ul>
-</section>
-<section id="land-use" class="level4">
-<h4 class="anchored" data-anchor-id="land-use">Land Use</h4>
-<p>1-5 scale 1 - low: trees/shrub 2 - low-moderate: grass/wetland 3 - moderate: cropland 4 - moderate-high:bare/water 5 - high: built-up (source)</p>
 </section>
 <section id="road-density" class="level4">
 <h4 class="anchored" data-anchor-id="road-density">Road Density</h4>
-<p>parameters: search radius: Radius of the circular neighbourhood (in meters). - 10m pixel size:Pixel size of the output raster layer in layer units(in meters).-10m (source)</p>
+<p>parameters: search radius: Radius of the circular neighbourhood (in meters). - 10m pixel size:Pixel size of the output raster layer in layer units(in meters).-10m (source) 0 to 0,15</p>
 <blockquote class="blockquote">
 <p>here note how we combine all together ### NBS</p>
 </blockquote>
@@ -615,8 +612,8 @@ Figure&nbsp;5: Zoom in locations in Rotterdam
 <section id="ndbi-1" class="level6">
 <h6 class="anchored" data-anchor-id="ndbi-1">NDBI</h6>
 </section>
-<section id="land-use-1" class="level6">
-<h6 class="anchored" data-anchor-id="land-use-1">Land Use</h6>
+<section id="land-use" class="level6">
+<h6 class="anchored" data-anchor-id="land-use">Land Use</h6>
 </section>
 <section id="road-density-1" class="level6">
 <h6 class="anchored" data-anchor-id="road-density-1">Road Density</h6>
@@ -658,8 +655,8 @@ Figure&nbsp;7: Ecological resistance analysis layers zoom in 2.
 <section id="ndbi-2" class="level6">
 <h6 class="anchored" data-anchor-id="ndbi-2">NDBI</h6>
 </section>
-<section id="land-use-2" class="level6">
-<h6 class="anchored" data-anchor-id="land-use-2">Land Use</h6>
+<section id="land-use-1" class="level6">
+<h6 class="anchored" data-anchor-id="land-use-1">Land Use</h6>
 </section>
 <section id="road-density-2" class="level6">
 <h6 class="anchored" data-anchor-id="road-density-2">Road Density</h6>

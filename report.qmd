@@ -177,12 +177,14 @@ After selecting 2 study areas within each city a deeper analysis is performed to
 - 0.6 to 1.0: Dense, healthy vegetation such as mature forests or crops at peak growth.
 (source)
 
+-0.2 to 0.8 values
+
 #### NDBI
 - ">" 0: Likely built-up or urban areas.
 - ≈ 0: Bare soil or mixed terrain.
 - < 0: Vegetation (which reflects highly in NIR) or water bodies.
 (source)
-
+-0.5 to 0.5 values 
 #### Land Use
 1-5 scale 
 1 - low: trees/shrub
@@ -197,6 +199,7 @@ parameters:
 search radius: Radius of the circular neighbourhood (in meters). - 10m
 pixel size:Pixel size of the output raster layer in layer units(in meters).-10m
 (source)
+0 to 0,15
 
 > here note how we combine all together 
 ### NBS

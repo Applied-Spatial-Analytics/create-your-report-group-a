@@ -201,8 +201,8 @@ Typology clusters were derived  directly from the data through unsupervised K-me
 
 #### Clustering 
 A regular spatial grid was used as the common analysis unit for both cities, with all three criteria summarised per grid cell. Betweenness centrality values from the top 500 links were spatially joined to the grid using an intersection, with the mean normalised BC value computed per cell. Green patch metrics (patch count and mean patch capacity based on the dpc_sum field from Graphab) were similarly joined to the grid. 
-Grid cells with no links or patches passing through them were assigned a value of zero, since they simply have no green connectivity (this is not missing data but a meaningful absence).  Before clustering, all variables were standardised using z-score normalisation (StandardScaler) to ensure equal weighting regardless of original scale. K-means clustering (k=5) was then applied to the three variables: BC mean, patch count, and mean patch capacity;  using the scikit-learn implementation in Python Console in QGIS. The number of clusters was set to five to produce interpretable ecological profiles while keeping sufficient differentiation between groups. 
-After clustering, the dominant LCZ class per cluster was checked to understand what kind of urban environment each cluster is typically located in. This was done as a separate step after clustering, since LCZ is a categorical variable and including it directly in the K-means algorithm would have distorted the results. 
+Grid cells with no links or patches passing through them were assigned a value of zero, since they simply have no green connectivity (this is not missing data but a meaningful absence).  efore clustering, the variables were standardised using z-score normalisation to ensure equal weighting regardless of original scale. K-means clustering (k = 5) was then applied to these three standardised variables. Clustering was implemented as a reusable function in R, executed directly within the reproducible Quarto report 
+After clustering, the dominant LCZ class per cluster was checked to understand what kind of urban environment each cluster is typically located in. This was done as a separate step after clustering, since LCZ is a categorical variable and including it directly in the K-means algorithm would have distorted the results.  
 
 ### Study Area Selection - more info here!!!
 Comparable study areas between Rotterdam and Guangzhou were identified by matching clusters across both cities based on similarities in their BC values, patch characteristics, and LCZ composition. 
@@ -296,29 +296,25 @@ The function below implements the clustering pipeline described in the Methods s
 ```{r}
 #| label: clustering-function
 
-# Implements the clustering pipeline described in the Methods section.
-# Standardises BC, patch count, patch capacity, and LCZ, then runs K-means (k=5).
-
 cluster_grid <- function(gpkg_path, bc_col, patch_count_col, patch_cap_col, lcz_col,
                           k = 5, seed = 42) {
-  # Load the grid (with BC, patch, and LCZ attributes already joined in QGIS)
   grid <- st_read(gpkg_path, quiet = TRUE)
 
-  # Select the four clustering variables and treat NA as "no connectivity / no patches"
+  # Replace NA with 0 directly in the grid — NA here means "no links/patches
+  # passing through this cell," i.e. zero green connectivity, not missing data
+  grid <- grid |>
+    mutate(across(all_of(c(bc_col, patch_count_col, patch_cap_col)), ~ replace_na(.x, 0)))
+
   features <- grid |>
     st_drop_geometry() |>
-    select(all_of(c(bc_col, patch_count_col, patch_cap_col, lcz_col))) |>
-    mutate(across(everything(), ~ replace_na(.x, 0)))
+    select(all_of(c(bc_col, patch_count_col, patch_cap_col)))
 
-  # Standardise (z-score) so variables on different scales contribute equally
   X_scaled <- scale(features)
 
-  # K-means with a fixed seed for reproducible cluster assignment
   set.seed(seed)
   km <- kmeans(X_scaled, centers = k, nstart = 20)
   grid$cluster_id <- as.factor(km$cluster)
 
-  # Mean profile per cluster: used to interpret what each cluster represents
   profile <- grid |>
     st_drop_geometry() |>
     group_by(cluster_id) |>
@@ -330,7 +326,6 @@ cluster_grid <- function(gpkg_path, bc_col, patch_count_col, patch_cap_col, lcz_
       .groups  = "drop"
     )
 
-  # Dominant LCZ classes per cluster, checked separately since LCZ is categorical
   lcz_summary <- grid |>
     st_drop_geometry() |>
     group_by(cluster_id) |>
@@ -340,6 +335,19 @@ cluster_grid <- function(gpkg_path, bc_col, patch_count_col, patch_cap_col, lcz_
   list(grid = grid, profile = profile, lcz_summary = lcz_summary)
 }
 ```
+
+```{r}
+#| label: cluster-palette
+
+cluster_palette <- c(
+  "Urban matrix"             = "gray80",
+  "Key corridors"            = "darkgreen",
+  "Isolated quality patches" = "orange",
+  "Fragmented green"         = "yellow",
+  "Transition zones"         = "lightblue"
+)
+```
+
 
 #### Rotterdam
 
@@ -363,7 +371,21 @@ rt <- cluster_grid(
 )
 
 kable(rt$profile, caption = "Rotterdam cluster profiles")
+
+rt_roles <- c(
+  "1" = "Isolated quality patches",
+  "2" = "Key corridors",
+  "3" = "Fragmented green",
+  "4" = "Transition zones",
+  "5" = "Urban matrix"
+)
+
+rt$grid$cluster_role  <- rt_roles[as.character(rt$grid$cluster_id)]
+rt$grid$cluster_color <- cluster_palette[rt$grid$cluster_role]
 ```
+
+
+
 
 Cluster 2 is the largest group, representing the areas with no meaningful 
 green network. Cluster 1 is the smallest (n=60) and represents the most 
@@ -378,7 +400,9 @@ distributed across LCZ class 6 (open low-rise) and LCZ class 8 (large low-rise) 
 #| label: rt-map
 #| fig-cap: "Rotterdam — spatial distribution of clusters"
 
-plot(rt$grid["cluster_id"], main = NULL, border = NA)
+plot(st_geometry(rt$grid), col = rt$grid$cluster_color, border = NA, main = NULL)
+legend("topright", legend = names(cluster_palette), fill = cluster_palette,
+       cex = 0.7, bty = "n")
 ```
 
 analysis of the map here
@@ -399,6 +423,17 @@ gz <- cluster_grid(
 )
 
 kable(gz$profile, caption = "Guangzhou cluster profiles")
+
+gz_roles <- c(
+  "1" = "Key corridors",
+  "2" = "Urban matrix",
+  "3" = "Fragmented green",
+  "4" = "Isolated quality patches",
+  "5" = "Transition zones"
+)
+
+gz$grid$cluster_role  <- gz_roles[as.character(gz$grid$cluster_id)]
+gz$grid$cluster_color <- cluster_palette[gz$grid$cluster_role]
 ```
 
 Guangzhou's clustering reveals a different ecological structure than Rotterdam. 
@@ -412,7 +447,9 @@ quality patches dominated by LCZ class A (dense trees). Cluster 0 represnts frag
 #| label: gz-map
 #| fig-cap: "Guangzhou — spatial distribution of clusters"
 
-plot(gz$grid["cluster_id"], main = NULL, border = NA)
+plot(st_geometry(gz$grid), col = gz$grid$cluster_color, border = NA, main = NULL)
+legend("topright", legend = names(cluster_palette), fill = cluster_palette,
+       cex = 0.7, bty = "n")
 ```
 
 analysis of the map here - will change the maps for clusters 

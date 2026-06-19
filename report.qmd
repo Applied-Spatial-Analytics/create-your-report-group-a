@@ -70,9 +70,11 @@ metrics, and patch characteristics; (3) conducting a deeper spatial analysis of
 these comparable areas; and (4) proposing targeted Nature-based Solutions for them.
 
 ## Case Study Area
-- Rotterdam overview
-- Guangzhou overview
-- Maps of both cities
+
+This research focuses on two case studies: one in the Netherlands and one in China. The Dutch study area is the port city of Rotterdam; in China, Guangzhou was chosen. To get a better understanding of the current ecological state in both cities, we looked for datasets that map green spaces in each urban environment. For Rotterdam, we used the "Groenkaart," developed by the Rijksinstituut voor Volksgezondheid en Milieu (RIVM) (Atlas Leefomgeving, 2024). This map shows the locations of green vegetation across the Netherlands, including trees, shrubs, and plants, and distinguishes between different types of green areas, such as agricultural land, nature, and urban green space, to show how green cover is distributed across the country.
+
+Since Guangzhou is much larger in scale, we could not find a map with a comparable resolution and level of detail that would remain readable at the city scale, so we used an alternative instead. SinoLC-1, a 1-meter-resolution national-scale land-cover map of China, gave us a clear picture of where green areas are located at the city level. @fig-introduction-pair presents both maps. As shown in the map of Guangzhou on the right, the main distinction is between tree cover (dark green) and built environment (dark orange). A more detailed breakdown of the classifications and legend can be found in Li et al. (2023), but for the purposes of this stage, this level of detail was sufficient. Together, both maps give us a general understanding of each area before we zoom in for deeper analysis.
+
 
 ::: {#fig-introduction-pair layout-ncol=2}
 ![Rotterdam](images/Rotterdam_introduction){#fig-roffa}
@@ -82,7 +84,6 @@ these comparable areas; and (4) proposing targeted Nature-based Solutions for th
 General introduction of cities.
 :::
 
-- small text 
 
 ## Methods
 ### Data
@@ -223,7 +224,15 @@ pixel size:Pixel size of the output raster layer in layer units(in meters).-10m
 0 to 0,15
 
 #### Combining the layers
-!!! Mention the process of reclassifying (5 equal classes), then adding together through Raster Calculator.
+
+To combine all resistance layers and get a good representation of the overall ecological resistance, some extra preprocessing was needed. Each of the four input layers, NDVI, NDBI, land cover, and road density, was originally on a different value scale. NDVI ranged from -0.2 to 0.8, NDBI from -0.5 to 0.5, road density from 0 to 0.15 km/km², while the land cover resistance was already classified from 1 to 5. Averaging these raw values directly would produce meaningless results, since the scales are incompatible and the ecological direction of the values differs between layers (high NDVI indicates low resistance, while high NDBI indicates high resistance). 
+
+Each layer was therefore reclassified into a standardised 1-to-5 ecological resistance scale using equal-interval breakpoints derived from the value range of each layer, where 1 represents the lowest resistance to species movement and 5 the highest. In the QGIS Raster Calculator, this was implemented as a conditional sum, where each condition evaluates to 0 or 1, ensuring every pixel is assigned to exactly one class:
+
+(layer >= threshold₄) × 1 + (layer >= threshold₃ AND layer < threshold₄) × 2 + (layer >= threshold₂ AND layer < threshold₃) × 3 + (layer >= threshold₁ AND layer < threshold₂) × 4 + (layer < threshold₁) × 5
+
+The four thresholds were calculated as min + n × (range / 5) for n = 1 through 4, dividing each layer's value range into five equal intervals. For example, NDBI with a range of -0.5 to 0.5 produces thresholds at -0.3, -0.1, 0.1, and 0.3, assigning resistance classes 1 through 5 from lowest to highest built-up intensity. After reclassification and clipping to the study area boundary, the four layers were combined by averaging them in the QGIS Raster Calculator (adding them up and then dividing by four), producing a continuous ecological resistance surface ranging from 1 to 5. This was done for both zoom in areas in both cities, which was then overlaid with the initial “potential” links.
+
 
 > here note how we combine all together 
 ### NBS
@@ -416,6 +425,8 @@ add all material
 
 ## Reference List
 
+Atlas Leefomgeving. (2024). Groenkaart van Nederland. https://www.atlasleefomgeving.nl/groenkaart-van-nederland
+
 European Commission, Joint Research Centre. (n.d.). MSPA. Forest. Retrieved June 18, 2026, from https://forest.jrc.ec.europa.eu/en/activities/lpa/mspa/
 
 Graphab. (n.d.). Graphab. https://thema.umlp.fr/productions/software/graphab/en/home.html
@@ -423,6 +434,8 @@ Graphab. (n.d.). Graphab. https://thema.umlp.fr/productions/software/graphab/en/
 Minor, E. S., & Urban, D. L. (2008). A graph-theory framework for evaluating landscape connectivity and conservation planning. Conservation Biology, 22(2), 297–307. https://doi.org/10.1111/j.1523-1739.2007.00871.x
 
 Soille, P., & Vogt, P. (2009). Morphological segmentation of binary patterns. Pattern Recognition Letters, 30(4), 456–459. https://doi.org/10.1016/j.patrec.2008.10.015
+
+Zhuohong Li, Wei He, Mofan Cheng, Jingxin Hu, Xiao An, Yan Huang, Guangyi Yang, & Hongyan Zhang. (2023). SinoLC-1: the first 1-meter resolution national-scale land-cover map of China created with the deep learning framework and open-access data (User guide V2.4) [Data set]. In SinoLC-1: the first 1 m resolution national-scale land-cover map of China created with a deep learning framework and open-access data (User guide V2.4, Vol. 15, pp. 4749--4780). Zenodo. https://doi.org/10.5281/zenodo.8214871
 
 The delta Probability of Connectivity Index (dPC) 
 (from metrovancouver Evaluation of Regional Ecosystem Connectivity 2025 - will add sources later)

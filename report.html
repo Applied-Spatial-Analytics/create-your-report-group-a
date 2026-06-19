@@ -75,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="report_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="report_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="report_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="report_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -193,6 +193,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="case-study-area">Case Study Area</h2>
 <p>This research focuses on two case studies: one in the Netherlands and one in China. The Dutch study area is the port city of Rotterdam; in China, Guangzhou was chosen. To get a better understanding of the current ecological state in both cities, we looked for datasets that map green spaces in each urban environment. For Rotterdam, we used the “Groenkaart,” developed by the Rijksinstituut voor Volksgezondheid en Milieu (RIVM) (Atlas Leefomgeving, 2024). This map shows the locations of green vegetation across the Netherlands, including trees, shrubs, and plants, and distinguishes between different types of green areas, such as agricultural land, nature, and urban green space, to show how green cover is distributed across the country.</p>
 <p>Since Guangzhou is much larger in scale, we could not find a map with a comparable resolution and level of detail that would remain readable at the city scale, so we used an alternative instead. SinoLC-1, a 1-meter-resolution national-scale land-cover map of China, gave us a clear picture of where green areas are located at the city level. <a href="#fig-introduction-pair" class="quarto-xref">Figure&nbsp;1</a> presents both maps. As shown in the map of Guangzhou on the right, the main distinction is between tree cover (dark green) and built environment (dark orange). A more detailed breakdown of the classifications and legend can be found in Li et al.&nbsp;(2023), but for the purposes of this stage, this level of detail was sufficient. Together, both maps give us a general understanding of each area before we zoom in for deeper analysis.</p>
+<ul>
+<li>add infor about different sizes of the cities, population etc.</li>
+</ul>
 <div id="fig-introduction-pair" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-introduction-pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -358,9 +361,6 @@ Figure&nbsp;4: Guangzhou Local Climate Zones
 <p>Each layer was therefore reclassified into a standardised 1-to-5 ecological resistance scale using equal-interval breakpoints derived from the value range of each layer, where 1 represents the lowest resistance to species movement and 5 the highest. In the QGIS Raster Calculator, this was implemented as a conditional sum, where each condition evaluates to 0 or 1, ensuring every pixel is assigned to exactly one class:</p>
 <p>(layer &gt;= threshold₄) × 1 + (layer &gt;= threshold₃ AND layer &lt; threshold₄) × 2 + (layer &gt;= threshold₂ AND layer &lt; threshold₃) × 3 + (layer &gt;= threshold₁ AND layer &lt; threshold₂) × 4 + (layer &lt; threshold₁) × 5</p>
 <p>The four thresholds were calculated as min + n × (range / 5) for n = 1 through 4, dividing each layer’s value range into five equal intervals. For example, NDBI with a range of -0.5 to 0.5 produces thresholds at -0.3, -0.1, 0.1, and 0.3, assigning resistance classes 1 through 5 from lowest to highest built-up intensity. After reclassification and clipping to the study area boundary, the four layers were combined by averaging them in the QGIS Raster Calculator (adding them up and then dividing by four), producing a continuous ecological resistance surface ranging from 1 to 5. This was done for both zoom in areas in both cities, which was then overlaid with the initial “potential” links.</p>
-<blockquote class="blockquote">
-<p>here note how we combine all together ### NBS</p>
-</blockquote>
 </section>
 </section>
 </section>
@@ -425,164 +425,220 @@ Figure&nbsp;7: Ecological connectivity within the boundary of Rotterdam.
 </section>
 <section id="typologies" class="level3">
 <h3 class="anchored" data-anchor-id="typologies">Typologies</h3>
-<ul>
-<li>will add python script from qgis here</li>
-</ul>
+<p>The function below implements the clustering pipeline described in the Methods section. It standardises the betweenness centrality, patch count, patch capacity, and LCZ variables, then applies K-means clustering with five clusters. The same function is applied separately to Rotterdam and Guangzhou in the subsections below.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Implements the clustering pipeline described in the Methods section.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardises BC, patch count, patch capacity, and LCZ, then runs K-means (k=5).</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>cluster_grid <span class="ot">&lt;-</span> <span class="cf">function</span>(gpkg_path, bc_col, patch_count_col, patch_cap_col, lcz_col,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                          <span class="at">k =</span> <span class="dv">5</span>, <span class="at">seed =</span> <span class="dv">42</span>) {</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Load the grid (with BC, patch, and LCZ attributes already joined in QGIS)</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  grid <span class="ot">&lt;-</span> <span class="fu">st_read</span>(gpkg_path, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Select the four clustering variables and treat NA as "no connectivity / no patches"</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  features <span class="ot">&lt;-</span> grid <span class="sc">|&gt;</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(bc_col, patch_count_col, patch_cap_col, lcz_col))) <span class="sc">|&gt;</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">replace_na</span>(.x, <span class="dv">0</span>)))</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Standardise (z-score) so variables on different scales contribute equally</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  X_scaled <span class="ot">&lt;-</span> <span class="fu">scale</span>(features)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># K-means with a fixed seed for reproducible cluster assignment</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(seed)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  km <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(X_scaled, <span class="at">centers =</span> k, <span class="at">nstart =</span> <span class="dv">20</span>)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  grid<span class="sc">$</span>cluster_id <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(km<span class="sc">$</span>cluster)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Mean profile per cluster: used to interpret what each cluster represents</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  profile <span class="ot">&lt;-</span> grid <span class="sc">|&gt;</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(cluster_id) <span class="sc">|&gt;</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">n        =</span> <span class="fu">n</span>(),</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">bc_mean  =</span> <span class="fu">round</span>(<span class="fu">mean</span>(.data[[bc_col]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">4</span>),</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>      <span class="at">patches  =</span> <span class="fu">round</span>(<span class="fu">mean</span>(.data[[patch_count_col]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">2</span>),</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">capacity =</span> <span class="fu">round</span>(<span class="fu">mean</span>(.data[[patch_cap_col]], <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">4</span>),</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a>      <span class="at">.groups  =</span> <span class="st">"drop"</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Dominant LCZ classes per cluster, checked separately since LCZ is categorical</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>  lcz_summary <span class="ot">&lt;-</span> grid <span class="sc">|&gt;</span></span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(cluster_id) <span class="sc">|&gt;</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(.data[[lcz_col]], <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice_max</span>(n, <span class="at">n =</span> <span class="dv">3</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">grid =</span> grid, <span class="at">profile =</span> profile, <span class="at">lcz_summary =</span> lcz_summary)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <section id="rotterdam-1" class="level4">
 <h4 class="anchored" data-anchor-id="rotterdam-1">Rotterdam</h4>
-<section id="cluster-profiles---will-edit-it-soon" class="level5">
-<h5 class="anchored" data-anchor-id="cluster-profiles---will-edit-it-soon">Cluster Profiles - will edit it soon</h5>
+<section id="cluster-profiles" class="level5">
+<h5 class="anchored" data-anchor-id="cluster-profiles">Cluster Profiles</h5>
+</section>
+<section id="cluster-profiles-1" class="level5">
+<h5 class="anchored" data-anchor-id="cluster-profiles-1">Cluster Profiles</h5>
 <p>K-means clustering of Rotterdam’s grid cells produced five ecological profiles. Table X presents the mean values per cluster for betweenness centrality, patch count, and patch capacity.</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 6%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 11%">
-<col style="width: 51%">
-</colgroup>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>rt <span class="ot">&lt;-</span> <span class="fu">cluster_grid</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/rt_grid_clustering.gpkg"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">bc_col          =</span> <span class="st">"new_normal"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">patch_count_col =</span> <span class="st">"dpc_total_"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">patch_cap_col   =</span> <span class="st">"dpc_tota_2"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">lcz_col         =</span> <span class="st">"majortity_lcz_grid__majority"</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(rt<span class="sc">$</span>profile, <span class="at">caption =</span> <span class="st">"Rotterdam cluster profiles"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Rotterdam cluster profiles</caption>
 <thead>
 <tr class="header">
-<th>Cluster</th>
-<th>n</th>
-<th>BC mean</th>
-<th>Patches</th>
-<th>Capacity</th>
-<th>Interpretation</th>
+<th style="text-align: left;">cluster_id</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">bc_mean</th>
+<th style="text-align: right;">patches</th>
+<th style="text-align: right;">capacity</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>0</td>
-<td>1932</td>
-<td>0.0078</td>
-<td>0.77</td>
-<td>0.036</td>
-<td>Moderate connectivity, some patches</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">2674</td>
+<td style="text-align: right;">0.0205</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.0011</td>
 </tr>
 <tr class="even">
-<td>1</td>
-<td>60</td>
-<td>0.5767</td>
-<td>1.17</td>
-<td>0.264</td>
-<td>Very high BC, quality patches</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: right;">0.6243</td>
+<td style="text-align: right;">1.14</td>
+<td style="text-align: right;">0.2519</td>
 </tr>
 <tr class="odd">
-<td>2</td>
-<td>2730</td>
-<td>0.0003</td>
-<td>0.00</td>
-<td>0.000</td>
-<td>No connectivity, no patches</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">2767</td>
+<td style="text-align: right;">0.0227</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.0354</td>
 </tr>
 <tr class="even">
-<td>3</td>
-<td>512</td>
-<td>0.0054</td>
-<td>1.06</td>
-<td>0.372</td>
-<td>Isolated quality patches: low BC, high capacity</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">497</td>
+<td style="text-align: right;">0.0093</td>
+<td style="text-align: right;">1.04</td>
+<td style="text-align: right;">0.3742</td>
 </tr>
 <tr class="odd">
-<td>4</td>
-<td>1546</td>
-<td>0.0056</td>
-<td>1.59</td>
-<td>0.018</td>
-<td>Fragmented green: many small low-quality patches</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">759</td>
+<td style="text-align: right;">0.0145</td>
+<td style="text-align: right;">2.21</td>
+<td style="text-align: right;">0.0248</td>
 </tr>
 </tbody>
 </table>
-<p>Cluster 2 is the largest group, representing the areas with no meaningful green network. Cluster 1 is the smallest (n=60) and represents the most ecologically significant cells which are key corridor locations with both high betweennesscentrality and quality patches. Cluster 3 are the areas with high-quality patches that are poorly connected to the broader network, dominated by LCZ class D (low plants) with some LCZ class A (dense trees). Cluster 4 shows fragmented green distributed across LCZ class 6 (open low-rise) and LCZ class 8 (large low-rise) urban areas.</p>
+</div>
+</div>
+<p>Cluster 2 is the largest group, representing the areas with no meaningful green network. Cluster 1 is the smallest (n=60) and represents the most ecologically significant cells which are key corridor locations with both high betweennesscentrality and quality patches. Cluster 3 are the areas with high-quality patches that are poorly connected to the broader network, dominated by LCZ class D (low plants) with some LCZ class A (dense trees). Cluster 4 shows fragmented green distributed across LCZ class 6 (open low-rise) and LCZ class 8 (large low-rise) urban areas. - edit this</p>
 </section>
 <section id="spatial-distribution" class="level5">
 <h5 class="anchored" data-anchor-id="spatial-distribution">Spatial Distribution</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(rt<span class="sc">$</span>grid[<span class="st">"cluster_id"</span>], <span class="at">main =</span> <span class="cn">NULL</span>, <span class="at">border =</span> <span class="cn">NA</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/rt_clusters_all.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Rotterdam cluster distribution map</figcaption>
+<p><img src="report_files/figure-html/rt-map-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Rotterdam — spatial distribution of clusters</figcaption>
 </figure>
+</div>
+</div>
 </div>
 <p>analysis of the map here</p>
 </section>
 </section>
 <section id="guangzhou-1" class="level4">
 <h4 class="anchored" data-anchor-id="guangzhou-1">Guangzhou</h4>
-<section id="cluster-profiles" class="level5">
-<h5 class="anchored" data-anchor-id="cluster-profiles">Cluster Profiles</h5>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 10%">
-<col style="width: 6%">
-<col style="width: 10%">
-<col style="width: 10%">
-<col style="width: 11%">
-<col style="width: 51%">
-</colgroup>
+<section id="cluster-profiles-2" class="level5">
+<h5 class="anchored" data-anchor-id="cluster-profiles-2">Cluster Profiles</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gz <span class="ot">&lt;-</span> <span class="fu">cluster_grid</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/gz_grid_clustering.gpkg"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">bc_col          =</span> <span class="st">"bc_d500_p0.5_beta1_graph10000_mean"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">patch_count_col =</span> <span class="st">"dpc_sum_count"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">patch_cap_col   =</span> <span class="st">"dpc_sum_mean"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">lcz_col         =</span> <span class="st">"lcz_majority_grids_lcz__majority"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(gz<span class="sc">$</span>profile, <span class="at">caption =</span> <span class="st">"Guangzhou cluster profiles"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Guangzhou cluster profiles</caption>
 <thead>
 <tr class="header">
-<th>Cluster</th>
-<th>n</th>
-<th>BC mean</th>
-<th>Patches</th>
-<th>Capacity</th>
-<th>Interpretation</th>
+<th style="text-align: left;">cluster_id</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">bc_mean</th>
+<th style="text-align: right;">patches</th>
+<th style="text-align: right;">capacity</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>0</td>
-<td>459</td>
-<td>0.3446</td>
-<td>3.77</td>
-<td>0.010</td>
-<td>Fragmented green: many small patches, high BC</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">458</td>
+<td style="text-align: right;">0.3911</td>
+<td style="text-align: right;">3.77</td>
+<td style="text-align: right;">0.0097</td>
 </tr>
 <tr class="even">
-<td>1</td>
-<td>1947</td>
-<td>0.0012</td>
-<td>0.39</td>
-<td>0.005</td>
-<td>Sparse patches, minimal BC</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1638</td>
+<td style="text-align: right;">0.4292</td>
+<td style="text-align: right;">1.33</td>
+<td style="text-align: right;">0.0264</td>
 </tr>
 <tr class="odd">
-<td>2</td>
-<td>317</td>
-<td>0.1894</td>
-<td>0.49</td>
-<td>0.001</td>
-<td>Corridor cells: moderate BC through mostly non-green areas</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: right;">507</td>
+<td style="text-align: right;">0.3897</td>
+<td style="text-align: right;">1.25</td>
+<td style="text-align: right;">0.0364</td>
 </tr>
 <tr class="even">
-<td>3</td>
-<td>475</td>
-<td>0.0855</td>
-<td>1.07</td>
-<td>0.393</td>
-<td>Isolated quality patches: low BC but high patch capacity</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: right;">447</td>
+<td style="text-align: right;">0.3804</td>
+<td style="text-align: right;">1.07</td>
+<td style="text-align: right;">0.4057</td>
 </tr>
 <tr class="odd">
-<td>4</td>
-<td>1638</td>
-<td>0.4292</td>
-<td>0.82</td>
-<td>0.016</td>
-<td>High BC major corridors</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: right;">1786</td>
+<td style="text-align: right;">0.0246</td>
+<td style="text-align: right;">1.35</td>
+<td style="text-align: right;">0.0099</td>
 </tr>
 </tbody>
 </table>
-<p>Guangzhou’s clustering reveals a different ecological structure than Rotterdam. High BC values are more widespread, reflecting the larger and denser green network of Guangzhou. Cluster 3, similar to Rotterdam’s Cluster 3, identifies isolated quality patches dominated by LCZ class A (dense trees). Cluster 0 represnts fragmented green within the urban fabric, dominated by LCZ class 6 (open low-rise) and LCZ class 8 (large low-rise), comparable to Rotterdam’s Cluster 4.</p>
+</div>
+</div>
+<p>Guangzhou’s clustering reveals a different ecological structure than Rotterdam. High BC values are more widespread, reflecting the larger and denser green network of Guangzhou. Cluster 3, similar to Rotterdam’s Cluster 3, identifies isolated quality patches dominated by LCZ class A (dense trees). Cluster 0 represnts fragmented green within the urban fabric, dominated by LCZ class 6 (open low-rise) and LCZ class 8 (large low-rise), comparable to Rotterdam’s Cluster 4. - edit this</p>
 </section>
 <section id="spatial-distribution-1" class="level5">
 <h5 class="anchored" data-anchor-id="spatial-distribution-1">Spatial Distribution</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gz<span class="sc">$</span>grid[<span class="st">"cluster_id"</span>], <span class="at">main =</span> <span class="cn">NULL</span>, <span class="at">border =</span> <span class="cn">NA</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/gz_clusters_all.png" class="img-fluid figure-img" style="width:100.0%"></p>
-<figcaption>Guangzhou cluster distribution map</figcaption>
+<p><img src="report_files/figure-html/gz-map-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption>Guangzhou — spatial distribution of clusters</figcaption>
 </figure>
+</div>
+</div>
 </div>
 <p>analysis of the map here - will change the maps for clusters</p>
 </section>
@@ -622,7 +678,6 @@ Figure&nbsp;8: Zoom in locations in Rotterdam
 <p>study area 1 has 22647834,561 m2 and second has 36012716,54162598 m2.</p>
 <section id="ecological-resistance-1" class="level5">
 <h5 class="anchored" data-anchor-id="ecological-resistance-1">Ecological Resistance</h5>
-<p>Explanation of why we chose these 4 layers, then in depth explanation of each layer (maybe not necesarry cs already mentioned at the top?)</p>
 <section id="ndvi-1" class="level6">
 <h6 class="anchored" data-anchor-id="ndvi-1">NDVI</h6>
 </section>

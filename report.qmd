@@ -13,6 +13,25 @@ author:
 format: html
 ---
 
+```{r}
+#| label: setup
+#| include: false
+
+# Installs any missing packages automatically, then loads them.
+# This runs once per render — no manual action needed.
+
+required_packages <- c("sf", "dplyr", "tidyr", "knitr")
+missing_packages <- required_packages[!required_packages %in% installed.packages()[, "Package"]]
+if (length(missing_packages) > 0) {
+  install.packages(missing_packages)
+}
+
+library(sf)
+library(dplyr)
+library(tidyr)
+library(knitr)
+```
+
 ::: callout
 ## This is a computational notebook
 
@@ -75,6 +94,7 @@ This research focuses on two case studies: one in the Netherlands and one in Chi
 
 Since Guangzhou is much larger in scale, we could not find a map with a comparable resolution and level of detail that would remain readable at the city scale, so we used an alternative instead. SinoLC-1, a 1-meter-resolution national-scale land-cover map of China, gave us a clear picture of where green areas are located at the city level. @fig-introduction-pair presents both maps. As shown in the map of Guangzhou on the right, the main distinction is between tree cover (dark green) and built environment (dark orange). A more detailed breakdown of the classifications and legend can be found in Li et al. (2023), but for the purposes of this stage, this level of detail was sufficient. Together, both maps give us a general understanding of each area before we zoom in for deeper analysis.
 
+- add infor about different sizes of the cities, population etc. 
 
 ::: {#fig-introduction-pair layout-ncol=2}
 ![Rotterdam](images/Rotterdam_introduction){#fig-roffa}
@@ -234,9 +254,6 @@ Each layer was therefore reclassified into a standardised 1-to-5 ecological resi
 The four thresholds were calculated as min + n × (range / 5) for n = 1 through 4, dividing each layer's value range into five equal intervals. For example, NDBI with a range of -0.5 to 0.5 produces thresholds at -0.3, -0.1, 0.1, and 0.3, assigning resistance classes 1 through 5 from lowest to highest built-up intensity. After reclassification and clipping to the study area boundary, the four layers were combined by averaging them in the QGIS Raster Calculator (adding them up and then dividing by four), producing a continuous ecological resistance surface ranging from 1 to 5. This was done for both zoom in areas in both cities, which was then overlaid with the initial “potential” links.
 
 
-> here note how we combine all together 
-### NBS
-
 
 ## Results {#sec-results}
 ### Current Ecological Connectivity Status {#sec-results-ecoconnect}
@@ -272,34 +289,97 @@ As can be seen in @fig-connectivity-rboundary, we can now identify spaces within
 ##### Patches and Link Importance
 
 ### Typologies
-- will add python script from qgis here 
+
+The function below implements the clustering pipeline described in the Methods section. It standardises the betweenness centrality, patch count, patch capacity, and LCZ variables, then applies K-means clustering with five clusters. The same function is applied separately to Rotterdam and Guangzhou in the subsections below.
+
+
+```{r}
+#| label: clustering-function
+
+# Implements the clustering pipeline described in the Methods section.
+# Standardises BC, patch count, patch capacity, and LCZ, then runs K-means (k=5).
+
+cluster_grid <- function(gpkg_path, bc_col, patch_count_col, patch_cap_col, lcz_col,
+                          k = 5, seed = 42) {
+  # Load the grid (with BC, patch, and LCZ attributes already joined in QGIS)
+  grid <- st_read(gpkg_path, quiet = TRUE)
+
+  # Select the four clustering variables and treat NA as "no connectivity / no patches"
+  features <- grid |>
+    st_drop_geometry() |>
+    select(all_of(c(bc_col, patch_count_col, patch_cap_col, lcz_col))) |>
+    mutate(across(everything(), ~ replace_na(.x, 0)))
+
+  # Standardise (z-score) so variables on different scales contribute equally
+  X_scaled <- scale(features)
+
+  # K-means with a fixed seed for reproducible cluster assignment
+  set.seed(seed)
+  km <- kmeans(X_scaled, centers = k, nstart = 20)
+  grid$cluster_id <- as.factor(km$cluster)
+
+  # Mean profile per cluster: used to interpret what each cluster represents
+  profile <- grid |>
+    st_drop_geometry() |>
+    group_by(cluster_id) |>
+    summarise(
+      n        = n(),
+      bc_mean  = round(mean(.data[[bc_col]], na.rm = TRUE), 4),
+      patches  = round(mean(.data[[patch_count_col]], na.rm = TRUE), 2),
+      capacity = round(mean(.data[[patch_cap_col]], na.rm = TRUE), 4),
+      .groups  = "drop"
+    )
+
+  # Dominant LCZ classes per cluster, checked separately since LCZ is categorical
+  lcz_summary <- grid |>
+    st_drop_geometry() |>
+    group_by(cluster_id) |>
+    count(.data[[lcz_col]], sort = TRUE) |>
+    slice_max(n, n = 3, with_ties = FALSE)
+
+  list(grid = grid, profile = profile, lcz_summary = lcz_summary)
+}
+```
 
 #### Rotterdam
 
-##### Cluster Profiles - will edit it soon 
+##### Cluster Profiles 
+
+##### Cluster Profiles
 
 K-means clustering of Rotterdam's grid cells produced five ecological 
 profiles. Table X presents the mean values per cluster for betweenness centrality, 
 patch count, and patch capacity.
 
-| Cluster | n    | BC mean | Patches | Capacity | Interpretation                              |
-|---------|------|---------|---------|----------|---------------------------------------------|
-| 0       | 1932 | 0.0078  | 0.77    | 0.036    | Moderate connectivity, some patches |
-| 1       | 60   | 0.5767  | 1.17    | 0.264    | Very high BC, quality patches |
-| 2       | 2730 | 0.0003  | 0.00    | 0.000    | No connectivity, no patches  |
-| 3       | 512  | 0.0054  | 1.06    | 0.372    | Isolated quality patches: low BC, high capacity |
-| 4       | 1546 | 0.0056  | 1.59    | 0.018    | Fragmented green: many small low-quality patches |
+```{r}
+#| label: rt-clustering
+
+rt <- cluster_grid(
+  "data/rt_grid_clustering.gpkg",
+  bc_col          = "new_normal",
+  patch_count_col = "dpc_total_",
+  patch_cap_col   = "dpc_tota_2",
+  lcz_col         = "majortity_lcz_grid__majority"
+)
+
+kable(rt$profile, caption = "Rotterdam cluster profiles")
+```
 
 Cluster 2 is the largest group, representing the areas with no meaningful 
 green network. Cluster 1 is the smallest (n=60) and represents the most 
 ecologically significant cells which are key corridor locations with both high betweennesscentrality and quality patches. Cluster 3 are the areas with high-quality 
 patches that are poorly connected to the broader network, dominated by LCZ class D 
 (low plants) with some LCZ class A (dense trees). Cluster 4 shows fragmented green 
-distributed across LCZ class 6 (open low-rise) and LCZ class 8 (large low-rise) urban areas.
+distributed across LCZ class 6 (open low-rise) and LCZ class 8 (large low-rise) urban areas. - edit this
 
 ##### Spatial Distribution
 
-![Rotterdam cluster distribution map](images/rt_clusters_all){width=100%}
+```{r}
+#| label: rt-map
+#| fig-cap: "Rotterdam — spatial distribution of clusters"
+
+plot(rt$grid["cluster_id"], main = NULL, border = NA)
+```
 
 analysis of the map here
 
@@ -307,22 +387,33 @@ analysis of the map here
 
 ##### Cluster Profiles
 
-| Cluster | n    | BC mean | Patches | Capacity | Interpretation                              |
-|---------|------|---------|---------|----------|---------------------------------------------|
-| 0       | 459  | 0.3446  | 3.77    | 0.010    | Fragmented green: many small patches, high BC |
-| 1       | 1947 | 0.0012  | 0.39    | 0.005    | Sparse patches, minimal BC |
-| 2       | 317  | 0.1894  | 0.49    | 0.001    | Corridor cells: moderate BC through mostly non-green areas |
-| 3       | 475  | 0.0855  | 1.07    | 0.393    | Isolated quality patches: low BC but high patch capacity |
-| 4       | 1638 | 0.4292  | 0.82    | 0.016    | High BC major corridors  |
+```{r}
+#| label: gz-clustering
+
+gz <- cluster_grid(
+  "data/gz_grid_clustering.gpkg",
+  bc_col          = "bc_d500_p0.5_beta1_graph10000_mean",
+  patch_count_col = "dpc_sum_count",
+  patch_cap_col   = "dpc_sum_mean",
+  lcz_col         = "lcz_majority_grids_lcz__majority"
+)
+
+kable(gz$profile, caption = "Guangzhou cluster profiles")
+```
 
 Guangzhou's clustering reveals a different ecological structure than Rotterdam. 
 High BC values are more widespread, reflecting the larger and denser green network 
 of Guangzhou. Cluster 3, similar to Rotterdam's Cluster 3, identifies isolated 
-quality patches dominated by LCZ class A (dense trees). Cluster 0 represnts fragmented green within the urban fabric, dominated by LCZ class  6 (open low-rise) and LCZ class 8 (large low-rise), comparable to Rotterdam's Cluster 4.
+quality patches dominated by LCZ class A (dense trees). Cluster 0 represnts fragmented green within the urban fabric, dominated by LCZ class  6 (open low-rise) and LCZ class 8 (large low-rise), comparable to Rotterdam's Cluster 4. - edit this
 
 ##### Spatial Distribution
 
-![Guangzhou cluster distribution map](images/gz_clusters_all){width=100%}
+```{r}
+#| label: gz-map
+#| fig-cap: "Guangzhou — spatial distribution of clusters"
+
+plot(gz$grid["cluster_id"], main = NULL, border = NA)
+```
 
 analysis of the map here - will change the maps for clusters 
 
@@ -377,8 +468,6 @@ Here we see that the orange cluster showing good quality patches with weak conne
 study area 1 has 22647834,561 m2 and second has 36012716,54162598 m2.  
 
 ##### Ecological Resistance
-
-Explanation of why we chose these 4 layers, then in depth explanation of each layer (maybe not necesarry cs already mentioned at the top?)
 
 ###### NDVI
 ###### NDBI

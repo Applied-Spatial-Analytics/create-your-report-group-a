@@ -148,6 +148,7 @@ The LCZ typology is a universal urban classification it focuses specifically on 
 
 ### Ecological Connectivity Analysis
 
+
 #### Morphological Spatial Pattern Analysis {#sec-mspa}
 
 
@@ -182,30 +183,168 @@ In the Results (@sec-results-ecoconnect), the outcome of this analysis for Rotte
 
 (Still add stuff about Conefor, limitations here already?)
 
+#### Typology Construction
+After Patches and Link Importance analysis and MSPA, it is possible to develop typologies based on their outcomes for broader understanding of ecological connectity and urban/green matrix in both cities. Typology is a classification of areas based on shared combinations of characteristics (source here). To identify spatial character of ecology and its connectivity in Rotterdam and Guangzhou, a typology was constructed for both cities using the same set of variables and spatial unit, allowing direct quantitative comparison between the two cities. 
 
-### Typology Construction
-A typology is a classification of areas based on shared combinations of 
-characteristics (source here). To identify spatially comparable areas between Rotterdam  and Guangzhou, a typology was constructed for both cities using the same set  of variables and spatial unit, allowing direct quantitative comparison between the two cities as well as analysis of the spatial distribution of typologies within each city.
+To construct this typology, two crucial aspects need to be defined: the variables used to characterise each area, and the spatial unit at which these variables were measured. The variables used were Local Climate Zones, ecological connectivity (betweenness centrality), and green patch characteristics, as these together capture both the urban characteristics and the ecological functioning of an area.
+The spatial unit used was a fixed-size grid of 500 × 500 m cells (see @sec-spatialgrid). A fixed grid was used because it allows different variables to be aggregated and compared. 
 
-To construct this typology it two crucial aspects need to be defined: the variables 
-used to characterise each area, and the spatial unit at which these variables 
-were measured.
+This typology serves as a broad ecological overview of both cities that summarises, at a coarse spatial resolution, where green connectivity is strong, where it is weak or absent, and what kind of green structure dominates each area. It is not intended to pinpoint specific intervention sites, but  to provide the wider ecological context which enables more detailed analyses performed further. Combined with the MSPA and patch/link importance results (@sec-results-ecoconnect), this typology was used to guide the selection of the smaller zoom-in study areas examined in more detail later in this report.
 
-The variables used were Local Climate Zones, ecological connectivity 
-(betweenness centrality), and green patch characteristics, as these together 
-capture both the urban context and the ecological functioning of an area.
 
-The spatial unit used was a fixed-size grid of 500 × 500 m cells (see @sec-spatialgrid). A fixed grid was  because it allows variables of different origin and geometry (raster LCZ data, line-based connectivity links, and polygon-based green patches) to be aggregated and compared across both cities.
+##### Clustering 
 
-Typology clusters were derived  directly from the data through unsupervised K-means clustering, performed in QGIS  using a Python script. 
+All three criteria for typologies were summarised per grid cell. Betweenness centrality values were spatially joined to the grid using an intersection, with the mean normalised BC value computed per cell. Green patch metrics (patch count and mean patch capacity, derived from the dPC field) were similarly joined to the grid. Grid cells with no links or patches passing through them were assigned a value of zero, since they simply have no green connectivity (this is not missing data but a meaningful absence).
 
-#### Clustering 
-A regular spatial grid was used as the common analysis unit for both cities, with all three criteria summarised per grid cell. Betweenness centrality values from the top 500 links were spatially joined to the grid using an intersection, with the mean normalised BC value computed per cell. Green patch metrics (patch count and mean patch capacity based on the dpc_sum field from Graphab) were similarly joined to the grid. 
-Grid cells with no links or patches passing through them were assigned a value of zero, since they simply have no green connectivity (this is not missing data but a meaningful absence).  efore clustering, the variables were standardised using z-score normalisation to ensure equal weighting regardless of original scale. K-means clustering (k = 5) was then applied to these three standardised variables. Clustering was implemented as a reusable function in R, executed directly within the reproducible Quarto report 
-After clustering, the dominant LCZ class per cluster was checked to understand what kind of urban environment each cluster is typically located in. This was done as a separate step after clustering, since LCZ is a categorical variable and including it directly in the K-means algorithm would have distorted the results.  
+Before clustering, the three numeric variables (BC mean, patch count, and mean patch capacity) were standardised using z-score normalisation to ensure equal weighting regardless of original scale. K-means clustering (k = 5) was then applied to these three standardised variables. Clustering was implemented as a reusable function in R, executed directly within the reproducible Quarto report, so that cluster assignments regenerate automatically whenever the report is rendered.
+Because K-means assigns cluster numbers arbitrarily, each resulting cluster was subsequently classified according to its own ecological profile into: Disconnected urban fabric (lowest combined patch presence and capacity, i.e. no meaningful green network), Key corridors (highest betweenness centrality), Isolated quality patches (highest patch capacity), Fragmented green (highest average patch count), and Transition zones (the remaining profile). This classification step ensures that cluster identities, labels, and map colours remain consistent both within and across cities, and across repeated renders of the report, regardless of the raw numbering K-means happens to produce on a given run.
 
-### Study Area Selection - more info here!!!
-Comparable study areas between Rotterdam and Guangzhou were identified by matching clusters across both cities based on similarities in their BC values, patch characteristics, and LCZ composition. 
+After clustering, the dominant LCZ classes per cluster were checked separately to understand what kind of urban environment each cluster is typically located in. For each cluster, the three most common LCZ classes were identified, since a single dominant class rarely captures the full urban context of a 500 × 500 m cell. LCZ was deliberately excluded from the clustering input itself, since it is a categorical variable and including its numeric codes directly would have distorted the Euclidean distances used by K-means.
+
+The function below implements the clustering pipeline describedabove. It standardises the betweenness centrality, patch count, patch capacity, and LCZ variables, then applies K-means clustering with five clusters. The same function is applied separately to Rotterdam and Guangzhou in the results section.
+
+
+```{r}
+#| label: clustering-function
+
+cluster_grid <- function(gpkg_path, bc_col, patch_count_col, patch_cap_col, lcz_col,
+                          role_to_id, role_to_color, k = 5, seed = 42) {
+  grid <- st_read(gpkg_path, quiet = TRUE)
+
+  # NA means "no links/patches passing through this cell" — treat as 0
+  grid <- grid |>
+    mutate(across(all_of(c(bc_col, patch_count_col, patch_cap_col)), ~ replace_na(.x, 0)))
+
+  features <- grid |>
+    st_drop_geometry() |>
+    select(all_of(c(bc_col, patch_count_col, patch_cap_col)))
+
+  X_scaled <- scale(features)
+
+  set.seed(seed)
+  km <- kmeans(X_scaled, centers = k, nstart = 20)
+  raw_cluster <- km$cluster
+
+  # --- Classify each raw kmeans cluster by its profile, not its arbitrary label ---
+  raw_profile <- data.frame(
+    raw_id   = 1:k,
+    bc_mean  = as.numeric(tapply(grid[[bc_col]], raw_cluster, mean)),
+    patches  = as.numeric(tapply(grid[[patch_count_col]], raw_cluster, mean)),
+    capacity = as.numeric(tapply(grid[[patch_cap_col]], raw_cluster, mean))
+  )
+
+  remaining <- raw_profile
+  role_assignment <- character(k)
+  names(role_assignment) <- as.character(raw_profile$raw_id)
+
+  # 1. Urban matrix: lowest combined patches + capacity (no green presence)
+  urban_id <- remaining$raw_id[which.min(remaining$patches + remaining$capacity)]
+  role_assignment[as.character(urban_id)] <- "Urban matrix"
+  remaining <- remaining |> filter(raw_id != urban_id)
+
+  # 2. Key corridors: highest BC among what's left
+  corridor_id <- remaining$raw_id[which.max(remaining$bc_mean)]
+  role_assignment[as.character(corridor_id)] <- "Key corridors"
+  remaining <- remaining |> filter(raw_id != corridor_id)
+
+  # 3. Isolated quality patches: highest capacity among what's left
+  isolated_id <- remaining$raw_id[which.max(remaining$capacity)]
+  role_assignment[as.character(isolated_id)] <- "Isolated quality patches"
+  remaining <- remaining |> filter(raw_id != isolated_id)
+
+  # 4. Fragmented green: highest patch count among what's left
+  fragmented_id <- remaining$raw_id[which.max(remaining$patches)]
+  role_assignment[as.character(fragmented_id)] <- "Fragmented green"
+  remaining <- remaining |> filter(raw_id != fragmented_id)
+
+  # 5. Whatever's left
+  role_assignment[as.character(remaining$raw_id)] <- "Transition zones"
+
+  # --- Remap to your fixed, city-specific ID and color scheme ---
+  grid$cluster_role  <- role_assignment[as.character(raw_cluster)]
+  grid$cluster_id    <- role_to_id[grid$cluster_role]
+  grid$cluster_color <- role_to_color[grid$cluster_role]
+
+  profile <- grid |>
+    st_drop_geometry() |>
+    group_by(cluster_id, cluster_role) |>
+    summarise(
+      n        = n(),
+      bc_mean  = round(mean(.data[[bc_col]]), 4),
+      patches  = round(mean(.data[[patch_count_col]]), 2),
+      capacity = round(mean(.data[[patch_cap_col]]), 4),
+      .groups  = "drop"
+    ) |>
+    arrange(cluster_id)
+
+  lcz_summary <- grid |>
+    st_drop_geometry() |>
+    group_by(cluster_id) |>
+    count(.data[[lcz_col]], sort = TRUE) |>
+    slice_max(n, n = 3, with_ties = FALSE)
+
+  list(grid = grid, profile = profile, lcz_summary = lcz_summary)
+}
+```
+
+```{r}
+#| label: cluster-id-scheme
+
+# Same five colors used by both cities
+role_to_color <- c(
+  "Transition zones"        = "lightblue",
+  "Key corridors"            = "darkgreen",
+  "Urban matrix"             = "gray70",
+  "Isolated quality patches" = "orange",
+  "Fragmented green"         = "yellow"
+)
+
+# Rotterdam: matches your original QGIS numbering exactly
+rt_role_to_id <- c(
+  "Transition zones"        = 0,
+  "Key corridors"            = 1,
+  "Urban matrix"             = 2,
+  "Isolated quality patches" = 3,
+  "Fragmented green"         = 4
+)
+
+# Guangzhou: matches your original QGIS numbering exactly (different order!)
+gz_role_to_id <- c(
+  "Fragmented green"         = 0,
+  "Urban matrix"             = 1,
+  "Transition zones"         = 2,
+  "Isolated quality patches" = 3,
+  "Key corridors"             = 4
+)
+```
+
+```{r}
+#| label: lcz-labels
+
+lcz_labels <- c(
+  "1"  = "LCZ 1 – Compact high-rise",
+  "2"  = "LCZ 2 – Compact mid-rise",
+  "3"  = "LCZ 3 – Compact low-rise",
+  "4"  = "LCZ 4 – Open high-rise",
+  "5"  = "LCZ 5 – Open mid-rise",
+  "6"  = "LCZ 6 – Open low-rise",
+  "7"  = "LCZ 7 – Lightweight low-rise",
+  "8"  = "LCZ 8 – Large low-rise",
+  "9"  = "LCZ 9 – Sparsely built",
+  "10" = "LCZ 10 – Heavy industry",
+  "11" = "LCZ A – Dense trees",
+  "12" = "LCZ B – Scattered trees",
+  "13" = "LCZ C – Bush, scrub",
+  "14" = "LCZ D – Low plants",
+  "15" = "LCZ E – Bare rock or paved",
+  "16" = "LCZ F – Bare soil or sand",
+  "17" = "LCZ G – Water"
+)
+```
+
+
+### Study Area Selection
+Comparable study areas between Rotterdam and Guangzhou were identified by matching clusters across both cities based on similarities in their BC values, patch characteristics, and LCZ composition. Two pairs of zoom in areas were chosen for  each city. 
 
 ### Ecological Resistance
 After selecting 2 study areas within each city a deeper analysis is performed to investigate barriers to ecological connectivity as well as potentials for improvement. 
@@ -283,76 +422,6 @@ The same visualisation is done for the links, where a darker and thicker brown r
 
 As can be seen in @fig-connectivity-rboundary, we can now identify spaces within the boundary of Rotterdam that could be improved. These, together with some additional analysis on clustering, will then form the basis of choosing the zoom in locations.
 
-#### Guangzhou
-##### Morphological Spatial Pattern Analysis (MSPA)
-
-##### Patches and Link Importance
-
-### Typologies
-
-The function below implements the clustering pipeline described in the Methods section. It standardises the betweenness centrality, patch count, patch capacity, and LCZ variables, then applies K-means clustering with five clusters. The same function is applied separately to Rotterdam and Guangzhou in the subsections below.
-
-
-```{r}
-#| label: clustering-function
-
-cluster_grid <- function(gpkg_path, bc_col, patch_count_col, patch_cap_col, lcz_col,
-                          k = 5, seed = 42) {
-  grid <- st_read(gpkg_path, quiet = TRUE)
-
-  # Replace NA with 0 directly in the grid — NA here means "no links/patches
-  # passing through this cell," i.e. zero green connectivity, not missing data
-  grid <- grid |>
-    mutate(across(all_of(c(bc_col, patch_count_col, patch_cap_col)), ~ replace_na(.x, 0)))
-
-  features <- grid |>
-    st_drop_geometry() |>
-    select(all_of(c(bc_col, patch_count_col, patch_cap_col)))
-
-  X_scaled <- scale(features)
-
-  set.seed(seed)
-  km <- kmeans(X_scaled, centers = k, nstart = 20)
-  grid$cluster_id <- as.factor(km$cluster)
-
-  profile <- grid |>
-    st_drop_geometry() |>
-    group_by(cluster_id) |>
-    summarise(
-      n        = n(),
-      bc_mean  = round(mean(.data[[bc_col]], na.rm = TRUE), 4),
-      patches  = round(mean(.data[[patch_count_col]], na.rm = TRUE), 2),
-      capacity = round(mean(.data[[patch_cap_col]], na.rm = TRUE), 4),
-      .groups  = "drop"
-    )
-
-  lcz_summary <- grid |>
-    st_drop_geometry() |>
-    group_by(cluster_id) |>
-    count(.data[[lcz_col]], sort = TRUE) |>
-    slice_max(n, n = 3, with_ties = FALSE)
-
-  list(grid = grid, profile = profile, lcz_summary = lcz_summary)
-}
-```
-
-```{r}
-#| label: cluster-palette
-
-cluster_palette <- c(
-  "Urban matrix"             = "gray80",
-  "Key corridors"            = "darkgreen",
-  "Isolated quality patches" = "orange",
-  "Fragmented green"         = "yellow",
-  "Transition zones"         = "lightblue"
-)
-```
-
-
-#### Rotterdam
-
-##### Cluster Profiles 
-
 ##### Cluster Profiles
 
 K-means clustering of Rotterdam's grid cells produced five ecological 
@@ -367,49 +436,64 @@ rt <- cluster_grid(
   bc_col          = "new_normal",
   patch_count_col = "dpc_total_",
   patch_cap_col   = "dpc_tota_2",
-  lcz_col         = "majortity_lcz_grid__majority"
+  lcz_col         = "majortity_lcz_grid__majority",
+  role_to_id      = rt_role_to_id,
+  role_to_color   = role_to_color
 )
 
 kable(rt$profile, caption = "Rotterdam cluster profiles")
 
-rt_roles <- c(
-  "1" = "Isolated quality patches",
-  "2" = "Key corridors",
-  "3" = "Fragmented green",
-  "4" = "Transition zones",
-  "5" = "Urban matrix"
-)
-
-rt$grid$cluster_role  <- rt_roles[as.character(rt$grid$cluster_id)]
-rt$grid$cluster_color <- cluster_palette[rt$grid$cluster_role]
 ```
 
+Cluster 2 (Urban matrix) is the largest group in Rotterdam (n = 3,175, around 47% of all grid cells), representing areas with no meaningful green network (neither patches nor betweenness centrality are present in these cells). Cluster 1 (Key corridors) is the smallest (n = 83) but the most ecologically significant.  These are key corridor locations, combining the highest betweenness centrality of any cluster (BC mean = 0.6243) with moderate-to-high patch capacity. Cluster 3 (Isolated quality patches, n = 497) captures high-quality green patches that are poorly connected to the wider network  (the lowest BC but the highest patch capacity). Cluster 4 (Fragmented green, n = 759) represents fragmented green space: cells here contain multiple small, low-capacity patches (2.21 per cell on average) with minimal connectivity. Cluster 0 (Transition zones, n = 2,266) is a lower-density version of fragmented green (typically a single small, low-quality patch per cell with weak connectivity) situated  between the urban matrix and the more clearly green-dominated clusters (look at map…). 
 
 
+```{r}
+#| label: rt-lcz
 
-Cluster 2 is the largest group, representing the areas with no meaningful 
-green network. Cluster 1 is the smallest (n=60) and represents the most 
-ecologically significant cells which are key corridor locations with both high betweennesscentrality and quality patches. Cluster 3 are the areas with high-quality 
-patches that are poorly connected to the broader network, dominated by LCZ class D 
-(low plants) with some LCZ class A (dense trees). Cluster 4 shows fragmented green 
-distributed across LCZ class 6 (open low-rise) and LCZ class 8 (large low-rise) urban areas. - edit this
+rt$lcz_summary |>
+  mutate(lcz_label = lcz_labels[as.character(majortity_lcz_grid__majority)]) |>
+  arrange(cluster_id, desc(n)) |>
+  group_by(cluster_id) |>
+  mutate(rank  = paste0("Rank ", row_number()),
+         entry = paste0(lcz_label, " (n=", n, ")")) |>
+  ungroup() |>
+  select(cluster_id, rank, entry) |>
+  pivot_wider(names_from = rank, values_from = entry) |>
+  arrange(cluster_id) |>
+  kable(caption = "Top LCZ classes per Rotterdam cluster")
+```
 
-##### Spatial Distribution
+The dominant LCZ classes per cluster depict a clear contrast between Rotterdam's green network and its urban matrix. LCZ D (Low plants) is the most common class in every cluster except the Urban matrix (including the Key corridors cluster (75 of 83 cells), the Transition zones cluster (1,104 cells), the Isolated quality patches cluster (347 cells), and the Fragmented green cluster (299 cells)). This indicates that nearly all of Rotterdam's green connectivity network runs through open, low-vegetation land such as grassland and polder. The Urban matrix cluster stands apart entirely: its top classes are LCZ 8 (Large low-rise, 476 cells) and LCZ 6 (Open low-rise, 367 cells); which are pure built environments.
+A few secondary classes point to where Rotterdam's denser tree cover sits. The Isolated quality patches cluster is the only one with a meaningful presence of LCZ A (Dense trees, 37 cells), suggesting its highest-capacity green patches include some  wooded areas alongside open vegetation. The Fragmented green cluster shows the strongest secondary presence of LCZ B (Scattered trees, 107 cells), consistent with a patchwork of small green elements that includes some tree cover rather than open land alone.
+
+
+###### Spatial Distribution
 
 ```{r}
 #| label: rt-map
 #| fig-cap: "Rotterdam — spatial distribution of clusters"
+#| fig-width: 9
 
+par(mar = c(1, 1, 1, 9))  # extra right-hand margin reserved for the legend
 plot(st_geometry(rt$grid), col = rt$grid$cluster_color, border = NA, main = NULL)
-legend("topright", legend = names(cluster_palette), fill = cluster_palette,
-       cex = 0.7, bty = "n")
+legend(x = par("usr")[2], y = par("usr")[4],
+       legend = names(role_to_color), fill = role_to_color,
+       cex = 0.8, bty = "n", xpd = NA)
 ```
 
-analysis of the map here
+The spatial distribution map depicts that the isolated quality patches cluster forms one large, contiguous zone in the southwest of Rotterdam (with the open, low-vegetation polder landscape identified in the LCZ analysis). The Key corridors cluster runSdirectly along its southern edge, its only substantial concentration anywhere in the study area. The remainder of the map is dominated by a mix of Urban matrix cells interspersed with Transition zones and Fragmented green, with no further concentrations of either Isolated quality patches or Key corridors elsewhere in Rotterdam. 
+
 
 #### Guangzhou
+##### Morphological Spatial Pattern Analysis (MSPA)
+
+##### Patches and Link Importance
 
 ##### Cluster Profiles
+K-means clustering of Guangzhou's grid cells produced five ecological 
+profiles. Table X presents the mean values per cluster for betweenness centrality, 
+patch count, and patch capacity.
 
 ```{r}
 #| label: gz-clustering
@@ -419,72 +503,69 @@ gz <- cluster_grid(
   bc_col          = "bc_d500_p0.5_beta1_graph10000_mean",
   patch_count_col = "dpc_sum_count",
   patch_cap_col   = "dpc_sum_mean",
-  lcz_col         = "lcz_majority_grids_lcz__majority"
+  lcz_col         = "lcz_majority_grids_lcz__majority",
+  role_to_id      = gz_role_to_id,
+  role_to_color   = role_to_color
 )
 
 kable(gz$profile, caption = "Guangzhou cluster profiles")
-
-gz_roles <- c(
-  "1" = "Key corridors",
-  "2" = "Urban matrix",
-  "3" = "Fragmented green",
-  "4" = "Isolated quality patches",
-  "5" = "Transition zones"
-)
-
-gz$grid$cluster_role  <- gz_roles[as.character(gz$grid$cluster_id)]
-gz$grid$cluster_color <- cluster_palette[gz$grid$cluster_role]
 ```
 
-Guangzhou's clustering reveals a different ecological structure than Rotterdam. 
-High BC values are more widespread, reflecting the larger and denser green network 
-of Guangzhou. Cluster 3, similar to Rotterdam's Cluster 3, identifies isolated 
-quality patches dominated by LCZ class A (dense trees). Cluster 0 represnts fragmented green within the urban fabric, dominated by LCZ class  6 (open low-rise) and LCZ class 8 (large low-rise), comparable to Rotterdam's Cluster 4. - edit this
+Guangzhou's clustering reveals a different ecological pattern from Rotterdam. Cluster 1 (urban matrix, n = 1,502) has no patches and no connectivity, which is comparable in role to Rotterdam's largest cluster (also urban matrix). However, it is proportionally much smaller (about 31% of cells here, versus 47% in Rotterdam) which reflects Guangzhou's denser green network. Cluster 4 (Key corridors, n = 1,455) and Cluster 0 (Fragmented green, n = 760) both show high betweenness centrality (BC mean around 0.41–0.43), indicating that high-connectivity corridors are far more widespread in Guangzhou than in Rotterdam. Cluster 0 combines high BC with the highest average patch count of any cluster (3.00 per cell), suggesting fragmented but well-connected green space. Cluster 3 (Isolated quality patches, n = 406) is the clearest cross-city match: like Rotterdam's equivalent, it shows the highest patch capacity of any Guangzhou cluster (0.4227) alongside comparatively low BC (0.0588). Cluster 2 (Transition zones, n = 713) shows a low-quality green presence with weak connectivity.
 
-##### Spatial Distribution
+
+
+```{r}
+#| label: gz-lcz
+
+#| label: gz-lcz
+
+gz$lcz_summary |>
+  mutate(lcz_label = lcz_labels[as.character(lcz_majority_grids_lcz__majority)]) |>
+  arrange(cluster_id, desc(n)) |>
+  group_by(cluster_id) |>
+  mutate(rank  = paste0("Rank ", row_number()),
+         entry = paste0(lcz_label, " (n=", n, ")")) |>
+  ungroup() |>
+  select(cluster_id, rank, entry) |>
+  pivot_wider(names_from = rank, values_from = entry) |>
+  arrange(cluster_id) |>
+  kable(caption = "Top LCZ classes per Guangzhou cluster")
+```
+
+In Guangzhou, the Isolated quality patches cluster is dominated by LCZ A (Dense trees, 351 of 406 cells — 86%), proving it to be a forest rather than open vegetation. The Transition zones cluster is also led by LCZ A (Dense trees, 186 cells), though more evenly mixed with LCZ 6 (Open low-rise, 175 cells) and LCZ 8 (Large low-rise, 175 cells), suggesting a blend of wooded and low-rise built contexts.
+The Key corridors cluster is dominated by LCZ 8 (Large low-rise, 541 cells) and LCZ 4 (Open high-rise, 239 cells), with LCZ A (Dense trees, 205 cells). This is a notable contrast with Rotterdam, where the equivalent Key corridors cluster ran almost entirely through LCZ D (open, low-vegetation land); in Guangzhou, the busiest ecological corridors instead cut through dense, large low-rise and high-rise urban fabric, implying these links function more as built-environment green threads than open-landscape pathways. The Fragmented green cluster follows the same built-dominated pattern, led by LCZ 6 (Open low-rise, 346 cells) and LCZ 8 (Large low-rise, 218 cells), with no tree-cover class appearing in its top three at all.
+
+
+###### Spatial Distribution
 
 ```{r}
 #| label: gz-map
 #| fig-cap: "Guangzhou — spatial distribution of clusters"
+#| fig-width: 9
 
+par(mar = c(1, 1, 1, 9))
 plot(st_geometry(gz$grid), col = gz$grid$cluster_color, border = NA, main = NULL)
-legend("topright", legend = names(cluster_palette), fill = cluster_palette,
-       cex = 0.7, bty = "n")
+legend(x = par("usr")[2], y = par("usr")[4],
+       legend = names(role_to_color), fill = role_to_color,
+       cex = 0.8, bty = "n", xpd = NA)
 ```
 
-analysis of the map here - will change the maps for clusters 
+The spatial distribution map shows the Isolated quality patches cluster forms a single, large block in the north of the study area, consistent with the dense, forested LCZ A landscape identified in the LCZ analysis. Unlike Rotterdam, where the key corridors cluster formed one narrow line along the edge of the isolated patches, Guangzhou's Key corridors cluster forms an extensive, web-like network spanning most of the lower two-thirds of the study area, intertwined with fragmented green cells. This reflects Guangzhou's much larger high-connectivity network, running primarily through the built urban fabric. The urban matrix cluster and transition zones cells fill the remaining gaps, more concentrated toward the southwestern part of the envelope.
 
 ### Comparable Study Areas
 
 Two pairs of comparable areas were identified based on similarity in ecological 
-connectivity profiles and urban context. add more here
+connectivity profiles and urban context. 
 
-- not sure what to add here but definetively the two sections below are not relevant anymore since we changed our approach. 
-
-#### RT Cluster 3 vs GZ Cluster 3 - to be removed 
-
-Both clusters are characterised by isolated quality green patches with low 
-betweenness centrality and high patch capacity (RT: 0.372; GZ: 0.393) and 
-similar patch counts (~1.06–1.07 per cell). This makes them the strongest 
-cross-city match in the analysis. However, the LCZ differ in these clusters: Rotterdam's Cluster 3 
-is dominated by LCZ D (low plants, grassland/polder landscape) while Guangzhou's 
-is dominated by LCZ A (dense trees, forest). This reflects the different vegetation 
-character of green spaces in each city. Despite this difference in vegetation 
-type, both clusters represent the same ecological condition: high-quality green 
-spaces that are underconnected to the broader green network. 
-This makes them particularly relevant for targeted connectivity improvement 
-through Nature-based Solutions.
-
-#### RT Cluster 4 vs GZ Cluster 0 - to be removed 
-
-The second pair was chosen due to its partial match based mostly on LCZ composition. Both 
-clusters are dominated by LCZ 6 (open low-rise) and LCZ 8 (large low-rise), 
-indicating similar urban fabric contexts. Patch structure is also somewhat 
-comparable as both show fragmented green with low patch capacity. The main 
-difference is in BC values (RT: 0.006; GZ: 0.345), depicting the overall 
-higher connectivity in Guangzhou. This pair represents 
-fragmented green in somewhat comparable urban form contexts. Here NbS 
-interventions could focus on improving patch quality and increasing green cover.
+Rather than matching individual clusters one-to-one between cities, comparable 
+study areas were identified by examining the spatial distribution of cluster 
+types within each city's own grid. In both cities, the isolated quality 
+patches cluster (high-capacity green space with weak connectivity) was used 
+as the starting point, since it represents the clearest opportunity for targeted connectivity intervention: ecologically valuable green space that is 
+currently disconnected from the wider network. The immediate surroundings of 
+these patches were examined to understand what type of green (or absence of 
+it) borders them. 
 
 
 ### Zoom Ins

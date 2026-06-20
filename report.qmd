@@ -122,6 +122,7 @@ For both Rotterdam and Guangzhou, we created a minimum bounding geometry around 
 ![Envelope creation in Rotterdam.](images/envelope_rotterdam.png){#fig-envelope-roffa width=100%}
 
 Add same thing voor Guanzhou:
+![Envelope creation in Guanzhou](images/GZintroductory.png){#fig-envelope-intro width=100%}
 
 #### Spatial Grid  {#sec-spatialgrid}
 
@@ -489,6 +490,9 @@ The spatial distribution map depicts that the isolated quality patches cluster f
 ##### Morphological Spatial Pattern Analysis (MSPA)
 
 ##### Patches and Link Importance
+![Ecological connectivity within the Envelope.](images/FirstGZmap.png){#fig-connectivity-first width=100%}
+![Ecological connectivity within the boundary of Guangzhou](images/Second_GZmap.png){#fig-connectivity-second width=100%}
+
 
 ##### Cluster Profiles
 K-means clustering of Guangzhou's grid cells produced five ecological 
@@ -606,7 +610,7 @@ Maps combined, what can we see in output? having the links on top of it, some al
 
 
 #### Guangzhou
-add all material
+![Zoom in locations in Guangzhou](images/Third_GZmap.png){#fig-zoomin-gz width=100%}
 
 ##### Ecological Resistance
 ###### NDVI

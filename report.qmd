@@ -395,11 +395,10 @@ The four thresholds were calculated as min + n × (range / 5) for n = 1 through 
 
 
 
-## Results {#sec-results}
+## Results Rotterdam {#sec-results-roffa}
 ### Current Ecological Connectivity Status {#sec-results-ecoconnect}
-#### Rotterdam
 
-##### Morphological Spatial Pattern Analysis (MSPA)
+#### Morphological Spatial Pattern Analysis (MSPA)
 
 After running the MSPA analysis (@sec-mspa) on the Rotterdam envelope area and analysing the distribution of classes, the green network (Core, Islet, Perforation, Edge, Loop, Bridge, Branch) covers 45.77%  of it, while background (the non-green matrix: Background, Core-Opening, Border-Opening) 54.23%.  
 
@@ -411,7 +410,7 @@ This is a useful basis for the patch and link importance analysis that follows (
 ![Morphological Spatial Pattern Analysis in Rotterdam](images/MSPA_rt-1){#fig-MSPArt}
 
 
-##### Patches and Link Importance {#sec-result-ecoconnect-roffa}
+#### Patches and Link Importance {#sec-result-ecoconnect-roffa}
 
 To represent the ecological connectivity, the layers are split into the patches and links. For the patches, the most essential elements of the green structure are visualised in dark green and less important elements in lighter shades leading up to yellow. Higher importance in this case means that if this patch were to be removed, the connectivity of the entire network would suffer the most. Patches with higher importance can’t be supported by the surrounding green structure, meaning a greater loss in network connectivity. By focusing on an envelope around the boundary of Rotterdam, we get to include more context that would’ve been lost otherwise. This envelope shape sadly still cuts off the surrounding patches, so some patches appear smaller within this shape and in the overall connectivity therefore also score less. This is a limitation of the envelope approach, but it did help in reducing the computation time so we take this in consideration.
 
@@ -423,7 +422,7 @@ The same visualisation is done for the links, where a darker and thicker brown r
 
 As can be seen in @fig-connectivity-rboundary, we can now identify spaces within the boundary of Rotterdam that could be improved. These, together with some additional analysis on clustering, will then form the basis of choosing the zoom in locations.
 
-##### Cluster Profiles
+#### Cluster Profiles
 
 K-means clustering of Rotterdam's grid cells produced five ecological 
 profiles. Table X presents the mean values per cluster for betweenness centrality, 
@@ -469,7 +468,7 @@ The dominant LCZ classes per cluster depict a clear contrast between Rotterdam's
 A few secondary classes point to where Rotterdam's denser tree cover sits. The Isolated quality patches cluster is the only one with a meaningful presence of LCZ A (Dense trees, 37 cells), suggesting its highest-capacity green patches include some  wooded areas alongside open vegetation. The Fragmented green cluster shows the strongest secondary presence of LCZ B (Scattered trees, 107 cells), consistent with a patchwork of small green elements that includes some tree cover rather than open land alone.
 
 
-###### Spatial Distribution
+##### Spatial Distribution
 
 ```{r}
 #| label: rt-map
@@ -485,16 +484,17 @@ legend(x = par("usr")[2], y = par("usr")[4],
 
 The spatial distribution map depicts that the isolated quality patches cluster forms one large, contiguous zone in the southwest of Rotterdam (with the open, low-vegetation polder landscape identified in the LCZ analysis). The Key corridors cluster runSdirectly along its southern edge, its only substantial concentration anywhere in the study area. The remainder of the map is dominated by a mix of Urban matrix cells interspersed with Transition zones and Fragmented green, with no further concentrations of either Isolated quality patches or Key corridors elsewhere in Rotterdam. 
 
+## Results Guangzhou {#sec-results-gz}
+### Current Ecological Connectivity Status {#sec-results-ecoconnect2}
 
-#### Guangzhou
-##### Morphological Spatial Pattern Analysis (MSPA)
+#### Morphological Spatial Pattern Analysis (MSPA)
 
-##### Patches and Link Importance
+#### Patches and Link Importance
 ![Ecological connectivity within the Envelope.](images/FirstGZmap.png){#fig-connectivity-first width=100%}
 ![Ecological connectivity within the boundary of Guangzhou](images/Second_GZmap.png){#fig-connectivity-second width=100%}
 
 
-##### Cluster Profiles
+#### Cluster Profiles
 K-means clustering of Guangzhou's grid cells produced five ecological 
 profiles. Table X presents the mean values per cluster for betweenness centrality, 
 patch count, and patch capacity.
@@ -541,7 +541,7 @@ In Guangzhou, the Isolated quality patches cluster is dominated by LCZ A (Dense 
 The Key corridors cluster is dominated by LCZ 8 (Large low-rise, 541 cells) and LCZ 4 (Open high-rise, 239 cells), with LCZ A (Dense trees, 205 cells). This is a notable contrast with Rotterdam, where the equivalent Key corridors cluster ran almost entirely through LCZ D (open, low-vegetation land); in Guangzhou, the busiest ecological corridors instead cut through dense, large low-rise and high-rise urban fabric, implying these links function more as built-environment green threads than open-landscape pathways. The Fragmented green cluster follows the same built-dominated pattern, led by LCZ 6 (Open low-rise, 346 cells) and LCZ 8 (Large low-rise, 218 cells), with no tree-cover class appearing in its top three at all.
 
 
-###### Spatial Distribution
+##### Spatial Distribution
 
 ```{r}
 #| label: gz-map
@@ -556,6 +556,8 @@ legend(x = par("usr")[2], y = par("usr")[4],
 ```
 
 The spatial distribution map shows the Isolated quality patches cluster forms a single, large block in the north of the study area, consistent with the dense, forested LCZ A landscape identified in the LCZ analysis. Unlike Rotterdam, where the key corridors cluster formed one narrow line along the edge of the isolated patches, Guangzhou's Key corridors cluster forms an extensive, web-like network spanning most of the lower two-thirds of the study area, intertwined with fragmented green cells. This reflects Guangzhou's much larger high-connectivity network, running primarily through the built urban fabric. The urban matrix cluster and transition zones cells fill the remaining gaps, more concentrated toward the southwestern part of the envelope.
+
+## Comparing Results {#sec-results-comp}
 
 ### Comparable Study Areas
 
@@ -572,10 +574,8 @@ these patches were examined to understand what type of green (or absence of
 it) borders them. 
 
 
-### Zoom Ins
+### Zoom Ins Rotterdam
 The idea is to zoom in and look for smaller area with chosen clusters
-
-#### Rotterdam
 
 ![Zoom in locations in Rotterdam](images/Rotterdam_zoomin_intro.png){#fig-zoomin-roffa width=100%}
 
@@ -589,18 +589,18 @@ Here we see that the orange cluster showing good quality patches with weak conne
 
 study area 1 has 22647834,561 m2 and second has 36012716,54162598 m2.  
 
-##### Ecological Resistance
+#### Ecological Resistance
 
-###### NDVI
-###### NDBI
-###### Land Use
-###### Road Density
+##### NDVI
+##### NDBI
+##### Land Use
+##### Road Density
 
 ![Ecological resistance analysis layers zoom in 1.](images/eco_resistance_roffa1.png){#fig-ecores-roffa1 width=100%}
 
 ![Ecological resistance analysis layers zoom in 2.](images/eco_resistance_roffa2.png){#fig-ecores-roffa2 width=100%}
 
-###### Conclusion Maps
+##### Conclusion Maps
 
 Maps combined, what can we see in output? having the links on top of it, some already exist? explain process and next step.
 
@@ -609,15 +609,15 @@ Maps combined, what can we see in output? having the links on top of it, some al
 ![Ecological resistance zoom in 2 (layers combined).](images/total_eco_resistance_roffa2.png){#fig-ecores-tot-roffa2 width=100%}
 
 
-#### Guangzhou
+### Zoom Ins Guangzhou
 ![Zoom in locations in Guangzhou](images/Third_GZmap.png){#fig-zoomin-gz width=100%}
 
-##### Ecological Resistance
-###### NDVI
-###### NDBI
-###### Land Use
-###### Road Density
-###### Conclusion Maps
+#### Ecological Resistance
+##### NDVI
+##### NDBI
+##### Land Use
+##### Road Density
+##### Conclusion Maps
 
 
 ## Nature-based Solutions

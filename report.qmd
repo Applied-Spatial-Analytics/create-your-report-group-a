@@ -630,6 +630,26 @@ Zoom-in 2 sits at the edge of the city, where residential neighbourhoods become 
 
 ### Zoom Ins Guangzhou
 ![Zoom in locations in Guangzhou](images/Third_GZmap.png){#fig-zoomin-gz width=100%}
+Figure 16 presents the two zoom-in locations selected for Guangzhou. 
+The selection was guided primarily by link importance: areas concentrating 
+the highest-importance links (very high and high, visible as the darkest, 
+thickest lines on the map) were prioritised, as these represent the most 
+critical missing connections in the network. To ensure comparability with 
+the Rotterdam zoom-in areas in terms of spatial scale and analytical 
+accuracy, the size of each tile was kept consistent with those selected 
+for Rotterdam, with district boundaries taken into account when defining 
+the extents.
+
+The two zoom-in areas reflect contrasting urban contexts within Guangzhou. 
+Zoom-in 1 is located in the northern part of the study area, in the 
+Tianhe District, where the landscape transitions toward hillier, more 
+vegetated terrain. This area contains a concentration of very high and 
+high importance links connecting green patches across a mixed urban-natural 
+gradient. Zoom-in 2 is situated further south, in the Haizhu District, 
+where the urban character is denser and more built-up. Here, the critical 
+links run through a more fragmented urban fabric, presenting a different 
+set of barriers and opportunities for Nature-based Solutions compared to 
+zoom-in 1. 
 
 #### Ecological Resistance
 ##### NDVI

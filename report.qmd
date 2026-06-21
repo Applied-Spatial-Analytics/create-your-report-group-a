@@ -487,9 +487,13 @@ The spatial distribution map depicts that the isolated quality patches cluster f
 ### Current Ecological Connectivity Status {#sec-results-ecoconnect2}
 
 #### Morphological Spatial Pattern Analysis (MSPA)
+
 After running the Morphological Spatial Pattern Analysis on Guangzhou's envelope area (Section 4.2.1) and analysing the distribution of classes, the overall result is similar to Rotterdam, though slightly less green-dominated. The backround covers the majority of the evenelope's area accounting for 58.19% as opposed to the overall green network (Core, Islet, Perforation, Edge, Loop, Bridge, Branch) covering 41.81% (approximately 4% lower than Rotterdam).@fig-MSPAgz highlights a large and continuous green network in the North part of the envelope with majority of the cores located there. As with Rotterdam, these areas include a number of different types of vegetation, however trees (value 10) are the most dominant ones.  
 
 ![Morphological Spatial Pattern Analysis in Guangzhou](images/GZ_mspa.png){#fig-MSPAgz}
+
+
+
 
 #### Patches and Link Importance
 ![Ecological connectivity within the Envelope.](images/FirstGZmap.png){#fig-connectivity-first width=100%}
@@ -594,12 +598,18 @@ study area 1 has 22647834,561 m2 and second has 36012716,54162598 m2.
 #### Ecological Resistance
 
 ##### NDVI
+
 The min-max you had : -0.2 to 0.8 values
 ##### NDBI
 The min-max you had : -0.5 to 0.5 values 
 ##### Land Use
 ##### Road Density
 The min-max you had : 0 to 0,15
+
+##### NDBI
+##### Land Use
+##### Road Density
+
 
 ![Ecological resistance analysis layers zoom in 1.](images/eco_resistance_roffa1.png){#fig-ecores-roffa1 width=100%}
 
@@ -622,6 +632,10 @@ Maps combined, what can we see in output? having the links on top of it, some al
 ##### NDBI
 ##### Land Use
 ##### Road Density
+
+
+##### Conclusion Maps
+
 
 ![Ecological resistance analysis layers zoom in 1.](images/zoom1_metrics.png){#fig-zoom1-metrics width=100%}
 ![Ecological resistance analysis layers zoom in 2.](images/zoom2_metrics.png){#fig-zoom2-metrics width=100%}

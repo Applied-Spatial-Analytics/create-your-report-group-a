@@ -669,6 +669,24 @@ zoom-in 1.
 ![Ecological resistance zoom in 2 (layers combined).](images/zoom2_resistance_final.png){#fig-resistance-second width=100%}
 
 ## Nature-based Solutions
+To identify where Nature-based Solutions can most effectively improve ecological connectivity, the maps combining ecological resistance and link importance (Figures 14, 15, 18, 19) were used as the primary analytical basis. For each zoom-in area, the links with the highest betweenness centrality were overlaid with the combined ecological resistance surface. Where these high-importance links cross zones of very high resistance — shown in red on the maps — these intersections were identified as the critical barrier locations requiring intervention. For each of these locations, the underlying land use was then determined, as the nature of the barrier directly defines which NbS are feasible. This process was applied consistently across all four zoom-in areas, ensuring that the proposed NbS are spatially grounded rather than generically applied, and that they reflect the specific urban context of each location — ranging from industrial port infrastructure and residential neighbourhoods in Rotterdam to mixed urban-natural terrain and dense riverine fabric in Guangzhou.
+
+### Rotterdam: Zoom-in 1
+Overlaying the highest-importance links with the combined ecological resistance surface in zoom-in area 1 (Figure 14) shows that the most critical link crosses zones of very high resistance concentrated around the Nieuwe Waterweg and the surrounding port terminal surfaces. Examining the underlying land use reveals two distinct barrier types: the open shipping channel of the Nieuwe Waterweg itself, and the impervious built-up surfaces of the industrial port infrastructure on either side.
+For the industrial port surfaces, where high resistance is driven by impervious cover and near-absent vegetation, hybrid and adaptive edge solutions are proposed. This involves introducing native vegetation along quay edges and installing ecological habitat modules on existing hard port infrastructure bordering the link corridor. Marzio et al. (2025) identify this approach — retrofitting waterfront edges with hybrid green-grey solutions — as one of the three core NbS strategies for urban waterfronts, noting that such solutions allow natural processes to operate within built environments, providing a flexible approach in space-constrained areas without interfering with primary port functions.
+For the secondary harbour basins and quieter dock edges along the link corridor, constructed floating wetlands (FTWs) are proposed as aquatic stepping stones. Rome et al. (2023) demonstrate that FTWs planted with native species provide valuable wetland habitat and produce localised improvements in ecological quality even at small scales. Critically, Rome et al. (2023) also note that very few studies have explored FTWs in active urban waterways that continue to support industrial transportation, directly confirming that placement within the main Nieuwe Waterweg shipping channel is not feasible. FTWs are therefore proposed exclusively for quieter secondary basins, at intervals not exceeding 500 m — consistent with the dispersal distance used throughout this study.
+The main Nieuwe Waterweg channel itself constitutes a residual hard barrier that cannot be addressed through NbS. Active large-vessel navigation makes any in-channel intervention physically hazardous and infeasible, and this limitation should be acknowledged in broader connectivity planning for Rotterdam
+
+### Rotterdam: Zoom-in 2
+
+### Guanzhou: Zoom-in 1
+
+### Guanzhou: Zoom-in 2
+
+
+
+
+
 
 
 ## Conclusion
@@ -706,6 +724,10 @@ Minor, E. S., & Urban, D. L. (2008). A graph-theory framework for evaluating lan
 Soille, P., & Vogt, P. (2009). Morphological segmentation of binary patterns. Pattern Recognition Letters, 30(4), 456–459. https://doi.org/10.1016/j.patrec.2008.10.015
 
 Zhuohong Li, Wei He, Mofan Cheng, Jingxin Hu, Xiao An, Yan Huang, Guangyi Yang, & Hongyan Zhang. (2023). SinoLC-1: the first 1-meter resolution national-scale land-cover map of China created with the deep learning framework and open-access data (User guide V2.4) [Data set]. In SinoLC-1: the first 1 m resolution national-scale land-cover map of China created with a deep learning framework and open-access data (User guide V2.4, Vol. 15, pp. 4749--4780). Zenodo. https://doi.org/10.5281/zenodo.8214871
+
+Marzio, S., Tosi, J., Poggi, F., & Amado, M. (2025). Nature-based solutions for urban waterfront regeneration: a systematic review of frameworks, strategies and applications. City and Environment Interactions, 29, 100281. https://doi.org/10.1016/j.cacint.2025.100281
+
+Rome, M., Happel, A., Dahlenburg, C., Nicodemus, P., Schott, E., Mueller, S., Lovell, K., & Beighley, R. E. (2023). Application of floating wetlands for the improvement of degraded urban waters: Findings from three multi-year pilot-scale installations. Science of the Total Environment, 877, 162669. https://doi.org/10.1016/j.scitotenv.2023.162669
 
 
 

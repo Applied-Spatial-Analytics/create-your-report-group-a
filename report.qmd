@@ -839,6 +839,22 @@ the highest-importance links connecting the existing park patches.
 
 ###Concluding NbS table 
 
+| City | Zoom-in | Barrier (Land Use) | Proposed NbS | Advantages | Disadvantages | Source |
+|------|---------|-------------------|--------------|------------|---------------|--------|
+| Rotterdam | 1 — Port area | Impervious port surfaces | Hybrid green-grey edge retrofitting | Compatible with active port operations; allows natural processes within built infrastructure; flexible in space-constrained areas | Limited landscape-scale ecological impact; dependent on port authority cooperation | Marzio et al. (2025) |
+| Rotterdam | 1 — Port area | Secondary harbour basins | Constructed floating wetlands (FTWs) | Creates aquatic stepping stones; improves local water quality; scalable in quiet basins | Not suitable for active shipping lanes; maintenance required; limited terrestrial connectivity | Rome et al. (2023) |
+| Rotterdam | 1 — Port area | Nieuwe Waterweg shipping channel | No NbS feasible — residual hard barrier | N/A | Active large-vessel navigation makes any in-channel intervention physically hazardous and legally infeasible | Rome et al. (2023) |
+| Rotterdam | 2 — Residential | Roads and railway lines | Green verges and roadside vegetation | No major infrastructure changes needed; cost-effective; immediate resistance reduction | Limited effectiveness for wide or fast roads; dependent on mowing regime policy changes | Cork et al. (2024) |
+| Rotterdam | 2 — Residential | Major road/rail crossings | Green bridges and crossing structures | Ecologically effective; benefits wide range of species; largest gain in nature value | High construction costs; cost-effectiveness modest compared to other measures; long implementation timeline | Vos et al. (2020) |
+| Rotterdam | 2 — Residential | Residential matrix | Pocket parks and street tree networks | Function as green stepping stones complementing larger parks; cost-effective; improve urban liveability | Small individual ecological impact; require many interventions for meaningful connectivity gain; policy support needed for short-term interventions | Geng et al. (2022); Rosso et al. (2022) |
+| Guangzhou | 1 — Tianhe | Roads within urban fabric | Vegetated wildlife underpasses | Allows species movement beneath roads; connects directly to existing forest edges; benefits range of taxonomic groups | Construction disruption; effectiveness depends on species-specific behaviour; requires monitoring | Cork et al. (2024) |
+| Guangzhou | 1 — Tianhe | Urban fabric between forest patches | Green roofs, green walls, pocket parks | Stepping stones through built matrix; multiple co-benefits (cooling, stormwater, biodiversity); scalable | Less effective on high-rise buildings; dependent on private building owner cooperation; high installation costs | Madre et al. (2018); Joshi & Teller (2021) |
+| Guangzhou | 2 — Haizhu | River channel and banks | Riparian vegetation restoration | Improves water quality and flood attenuation; low cost; creates continuous habitat corridor | Slow establishment; regeneration constrained by propagule availability and invasive species competition; may conflict with existing flood control infrastructure | Machado & Kim (2024); Salinas-García et al. (2025) |
+| Guangzhou | 2 — Haizhu | Roads (red lines) | Vegetated road verges and crossing enhancements | Targeted at specific high-resistance points; cost-effective; immediate resistance reduction | Limited by road width and traffic intensity; requires maintenance and policy support | Cork et al. (2024) |
+| Guangzhou | 2 — Haizhu | Urban fabric between parks | Green roofs and green walls | Particularly effective given low-rise character of Haizhu; multiple co-benefits | Dependent on private owner uptake; installation costs; limited ground-level connectivity | Madre et al. (2018); Joshi & Teller (2021) |
+
+: Overview of proposed Nature-based Solutions per zoom-in area, including advantages, disadvantages and supporting literature. {#tbl-nbs-overview}
+
 Maybe add here land use -> NbS --> how it fits the land use/its benefits --> source to have all of them for RT and GZ in one place. 
 
 And after it mention that of course it would be most effective to find places such as brownfields - but we did not, or abandoned/unused areas but again, time limitation and scope limitation and the fact that we do not have enough data for GZ to do that. 

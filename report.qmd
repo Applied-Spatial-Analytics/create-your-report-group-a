@@ -32,49 +32,18 @@ library(tidyr)
 library(knitr)
 ```
 
-::: callout
-## This is a computational notebook
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this 
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
-
-You can delete this entire callout between and including the lines
-```
-::: callout
-```
-and
-
-```
-:::
-```
-and start the report from the Introduction section below.
-:::
 
 ## Introduction
 
-Delta cities - will add context on it later
+Urban ecology is a critical issue in rapidly urbanizing regions (Braaker et al., 2017). Cities are not only built environments for people but also habitats and movement corridors for many plant and animal species. As urban development intensifies, planners must consider how this change affects biodiversity, habitat quality, and ecological connectivity (IUCN Urban Alliance, 2021).  Ecological connectivity describes how easily species can move across a landscape, taking into account how features like habitat patches either support or hinder their movement (Kirk et al., 2023).  
 
-Rotterdam and Guangzhou represent two contrasting delta city contexts. - to be added 
+This issue is especially important in delta cities, where dense urban growth often happens in ecologically sensitive landscapes (Wu et al., 2021). Delta cities face issues such as flooding risk, land subsidence, habitat fragmentation, and declining ecosystem services, which can be amplified by climate change and  further urban development (Wu et al., 2021). In the Pearl River Delta, where the city of Guangzhou is situated, rapid urban sprawl and high-intensity human activity have been linked to habitat-quality decline over time, showing how urbanization can gradually harm nature in delta regions (Wu et al., 2021). Rotterdam is another clear example of a delta city where urban form and ecology are tightly connected. As a city in the Rhine-Meuse estuary, Rotterdam faces similar environmental and planning challenges (Dolman & Verlinde, 2024).
 
-ecological connectivty in delta cities - importance issue etc. - find a research gap 
+Nature-based solutions can aid in addressing ecological connectivity in urban and delta landscapes. Measures such as green corridors, parks, tidal edges, and restored waterways can improve their state (Mollashahi et al., 2020). 
 
-This study addresses this gap through the following research question:
+While previous studies have shown that urban sprawl can reduce habitat quality and that nature-based solutions can support resilience (Wu et al., 2021), less attention has been paid to how these approaches interact in delta cities in comparative  urban studies. More research is needed to assess how and where nature-based interventions help in restoring ecological systems in different urban settings.
+ This study addresses this gap through the following research question:
 
 > *To what extent does green infrastructure connectivity vary across urban areas 
 > in delta cities Rotterdam and Guangzhou, and what does this imply for targeted 
@@ -87,6 +56,9 @@ analysis; (2) identifying comparable areas across both cities based on a
 multi-criteria clustering approach combining Local Climate Zones, connectivity 
 metrics, and patch characteristics; (3) conducting a deeper spatial analysis of 
 these comparable areas; and (4) proposing targeted Nature-based Solutions for them.
+
+This report is structured as follows. Section 2 introduces the two case study cities, Rotterdam and Guangzhou, and describes the datasets used. Section 3 outlines the methods, while sections 4 and 5 present the results for Rotterdam and Guangzhou respectively. Section 6 compares the findings across both cities and identifies comparable study areas. Section 7 proposes targeted Nature-based Solutions for each zoom-in location based on the identified barriers. The report concludes with a discussion of limitations, conclusions and recommendations for further research. 
+
 
 ## Case Study Area
 
@@ -132,10 +104,6 @@ construction process, providing a consistent spatial unit for aggregating and co
 A cell size of 500 × 500 m was chosen to match the dispersal distance parameter (d = 500 m) used in the Graphab connectivity analysis (see @sec-patches). The same distance ensures that each cell somewhat corresponds to the spatial scale at which ecological connectivity is assessed, making the typology meaningful in relation to the crucial connectivity metrics.
 
 #### Local Climate Zones
-sources to add :
-https://www.wudapt.org/lcz/
-https://lcz-generator.rub.de/global-lcz-map
- 
 In order to make a comparable the description of urban morphology across both cities, the Local Climate Zone (LCZ) classification scheme developed by Stewart and Oke (2012) was used. The classification identfies 17 zones based urban on surface structure (e.g. building and tree height and density) and surface cover (pervious versus impervious). 
 
 The LCZ typology is a universal urban classification it focuses specifically on urban and rural landscape types, distinguished through 10 built types (ranging from compact high-rise to heavy industry) and 7 land cover types (ranging from dense trees to water). Its main advantage lies in the diversity of urban classes, which are easily interpretable and globally consistent. 
@@ -885,10 +853,14 @@ Limitation of Conefor vs Graphahb, long computation time, time lost, results not
 Atlas Leefomgeving. (2024). Groenkaart van Nederland. 
 https://www.atlasleefomgeving.nl/groenkaart-van-nederland
 
+Braaker, S., Kormann, U., Bontadina, F., & Obrist, M. K. (2017). Prediction of genetic connectivity in urban ecosystems by combining detailed movement data, genetic data and multi-path modelling. Landscape and Urban Planning, 160, 107–114. https://doi.org/10.1016/j.landurbplan.2016.12.011
+
 Cork, N. A., Fisher, R. S., Strong, N., Ferranti, E. J. S., & Quinn, A. D. (2024). 
 A systematic review of factors influencing habitat connectivity and biodiversity 
 along road and rail routes in temperate zones. Frontiers in Environmental 
 Science, 12, 1369072. https://doi.org/10.3389/fenvs.2024.1369072
+
+Dolman, N., & Verlinde, J. (2024). Achieving a Water-Resilient Rotterdam: Past, Present and Future Perspectives. Blue Papers, 3(1). https://doi.org/10.58981/bluepapers.2024.1.13
 
 Estrada, E., & Bodin, Ö. (2008). Using network centrality measures to manage 
 landscape connectivity. Ecological Applications, 18(7), 1810–1825. 
@@ -904,9 +876,13 @@ June 18, 2026, from https://forest.jrc.ec.europa.eu/en/activities/lpa/mspa/
 Graphab. (n.d.). Graphab. 
 https://thema.umlp.fr/productions/software/graphab/en/home.html
 
+IUCN Urban Alliance. (2021, April 25). Cities and nature: The issues. https://iucnurbanalliance.org/cities-and-biodiversity-the-issues/
+
 Joshi, M. Y., & Teller, J. (2021). Urban integration of green roofs: Current 
 challenges and perspectives. Sustainability, 13(22), 12378. 
 https://doi.org/10.3390/su132212378
+
+Kirk, H., Soanes, K., Amati, M., Bekessy, S., Harrison, L., Parris, K., Ramalho, C., van de Ree, R., & Threlfall, C. (2023). Ecological connectivity as a planning tool for the conservation of wildlife in cities. MethodsX, 10, 101989. https://doi.org/10.1016/j.mex.2022.101989
 
 Machado, J. T., & Kim, G. (2024). Ecological landscape assessment of restored 
 urban stream to guide adaptive management. Heliyon, 10(13), e33880. 
@@ -928,6 +904,8 @@ Minor, E. S., & Urban, D. L. (2008). A graph-theory framework for evaluating
 landscape connectivity and conservation planning. Conservation Biology, 22(2), 
 297–307. https://doi.org/10.1111/j.1523-1739.2007.00871.x
 
+Mollashahi, H., Szymura, M., & Szymura, T. H. (2020). Connectivity assessment and prioritization of urban grasslands as a helpful tool for effective management of urban ecosystem services. PLOS ONE, 15(12), e0244452. https://doi.org/10.1371/journal.pone.0244452
+
 Rome, M., Happel, A., Dahlenburg, C., Nicodemus, P., Schott, E., Mueller, S., 
 Lovell, K., & Beighley, R. E. (2023). Application of floating wetlands for the 
 improvement of degraded urban waters: Findings from three multi-year 
@@ -937,6 +915,12 @@ https://doi.org/10.1016/j.scitotenv.2023.162669
 Soille, P., & Vogt, P. (2009). Morphological segmentation of binary patterns. 
 Pattern Recognition Letters, 30(4), 456–459. 
 https://doi.org/10.1016/j.patrec.2008.10.015
+
+Stewart, I. D., & Oke, T. R. (2012). Local climate zones for urban temperature studies. Bulletin of the American Meteorological Society, 93(12), 1879–1900. https://doi.org/10.1175/BAMS-D-11-00019.1
+
+World Urban Database and Access Portal Tools (WUDAPT). (n.d.). Local climate zones. https://www.wudapt.org/lcz/
+
+Wu, J., Li, X., Luo, Y., & Zhang, D. (2021). Spatiotemporal effects of urban sprawl on habitat quality in the Pearl River Delta from 1990 to 2018. *Scientific Reports*, *11*, Article 13981. https://doi.org/10.1038/s41598-021-92916-3
 
 Zhuohong Li, Wei He, Mofan Cheng, Jingxin Hu, Xiao An, Yan Huang, Guangyi 
 Yang, & Hongyan Zhang. (2023). SinoLC-1: the first 1-meter resolution 

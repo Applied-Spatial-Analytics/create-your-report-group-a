@@ -663,6 +663,11 @@ zoom-in 1.
 ![Ecological resistance analysis layers zoom in 2.](images/zoom2_metrics.png){#fig-zoom2-metrics width=100%}
 
 ##### Conclusion Maps
+After combining all layers, the barriers facing each "potential" link become clear. As shown in the bottom map of each figure, some "potential" links already follow an existing green corridor or element; from this stage onward, we therefore focus only on the missing links.
+
+In zoom-in 1 (Tianhe District), the overall ecological resistance is predominantly very low to low, reflecting the large and continuous patches of subtropical forest visible in dark green across much of the area. The dominant barriers where the highest-importance links cross are broader zones of moderate to high resistance representing urban fabric — buildings, paved surfaces, and limited vegetation interrupting the otherwise continuous forest matrix. Within these urban zones, red lines indicate that roads add an additional layer of very high resistance. The barrier to connectivity is therefore a combination of urban built fabric and the roads embedded within it. When developing NbS in the next step, this mixed urban-natural character must be taken into account.
+
+Zoom-in 2 (Haizhu District) presents a more fragmented picture, where existing parks with very low resistance are separated by three distinct barrier types clearly visible on the map: a large river channel running diagonally through the area, roads appearing as red lines of very high resistance cutting across the link trajectories, and broader zones of moderate to high resistance representing the dense urban fabric between the parks. The barriers here are correspondingly more varied, and NbS will need to address all three simultaneously.
 
 ![Ecological resistance zoom in 1 (layers combined).](images/zoom1_resistance.png){#fig-resistance-first width=100%}
 

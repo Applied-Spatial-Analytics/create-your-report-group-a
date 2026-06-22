@@ -678,6 +678,10 @@ For the secondary harbour basins and quieter dock edges along the link corridor,
 The main Nieuwe Waterweg channel itself constitutes a residual hard barrier that cannot be addressed through NbS. Active large-vessel navigation makes any in-channel intervention physically hazardous and infeasible, and this limitation should be acknowledged in broader connectivity planning for Rotterdam
 
 ### Rotterdam: Zoom-in 2
+Overlaying the highest-importance links with the combined ecological resistance surface in zoom-in area 2 (Figure 15) shows that the most critical links cross zones of very high resistance concentrated along a network of roads, highways and railway lines running through the residential urban fabric. The underlying land use along these high-resistance barriers is therefore dominated by linear transport infrastructure roads and rail embedded within a densely built residential context. Unlike zoom-in 1, the wider matrix here shows moderate to low resistance, suggesting that the surrounding residential area already contains meaningful green elements; the primary connectivity problem is the fragmentation caused by these transport corridors cutting across the link trajectories.
+For the road and railway barriers, two complementary NbS are proposed. First, green verges and roadside vegetation enhancement along the transport corridors that the critical links cross. Cork et al. (2024) demonstrate in a systematic review that road and railway verges in temperate zones have significant potential for habitat connectivity, particularly for generalist species, and that verge habitat quality and continuity are key determinants of their effectiveness as ecological corridors. Enhancing existing verges along the roads and rail lines intersecting the highest-importance links through native planting, reduced mowing regimes, and structural diversification can meaningfully reduce resistance along these corridors without requiring major infrastructure changes.
+Second, for locations where the highest-importance links cross major roads or rail lines and verge enhancement alone is insufficient, green bridges or crossing structures are proposed as a more targeted intervention. Cork et al. (2024) also note that successful dispersal across railways requires specific crossing provisions, and that such structures are increasingly being integrated into transport infrastructure planning as credible NbS alternatives.
+For the residential matrix between the transport barriers, where resistance is already moderate to low, pocket parks and street tree networks are proposed to strengthen connectivity between existing green patches. These small-scale interventions function as stepping stones, reducing the effective ecological distance between the larger green areas visible in the northwest of the zoom-in area and the patches further east.
 
 ### Guangzhou: Zoom-in 1
 
@@ -707,28 +711,54 @@ Limitation of Conefor vs Graphahb, long computation time, time lost, results not
 
 ## Reference List
 
-Atlas Leefomgeving. (2024). Groenkaart van Nederland. https://www.atlasleefomgeving.nl/groenkaart-van-nederland
+Atlas Leefomgeving. (2024). Groenkaart van Nederland. 
+https://www.atlasleefomgeving.nl/groenkaart-van-nederland
 
-Estrada, E., & Bodin, Ö. (2008). Using network centrality measures to manage landscape connectivity. Ecological Applications, 18(7), 1810–1825. https://doi.org/10.1890/07-1419.1
+Cork, N. A., Fisher, R. S., Strong, N., Ferranti, E. J. S., & Quinn, A. D. (2024). 
+A systematic review of factors influencing habitat connectivity and biodiversity 
+along road and rail routes in temperate zones. Frontiers in Environmental 
+Science, 12, 1369072. https://doi.org/10.3389/fenvs.2024.1369072
 
-Estreguil, C., Caudullo, G., & de Rigo, D. (2014). Connectivity of Natura 2000 forest sites in Europe. F1000Posters, 5, 485. https://doi.org/10.6084/m9.figshare.1063300
+Estrada, E., & Bodin, Ö. (2008). Using network centrality measures to manage 
+landscape connectivity. Ecological Applications, 18(7), 1810–1825. 
+https://doi.org/10.1890/07-1419.1
 
-European Commission, Joint Research Centre. (n.d.). MSPA. Forest. Retrieved June 18, 2026, from https://forest.jrc.ec.europa.eu/en/activities/lpa/mspa/
+Estreguil, C., Caudullo, G., & de Rigo, D. (2014). Connectivity of Natura 2000 
+forest sites in Europe. F1000Posters, 5, 485. 
+https://doi.org/10.6084/m9.figshare.1063300
 
-Graphab. (n.d.). Graphab. https://thema.umlp.fr/productions/software/graphab/en/home.html
+European Commission, Joint Research Centre. (n.d.). MSPA. Forest. Retrieved 
+June 18, 2026, from https://forest.jrc.ec.europa.eu/en/activities/lpa/mspa/
 
-Metro Vancouver. (2025). Evaluation of regional ecosystem connectivity. https://metrovancouver.org/services/regional-planning/Documents/evaluation-of-regional-ecosystem-connectivity.pdf
+Graphab. (n.d.). Graphab. 
+https://thema.umlp.fr/productions/software/graphab/en/home.html
 
-Minor, E. S., & Urban, D. L. (2008). A graph-theory framework for evaluating landscape connectivity and conservation planning. Conservation Biology, 22(2), 297–307. https://doi.org/10.1111/j.1523-1739.2007.00871.x
+Marzio, S., Tosi, J., Poggi, F., & Amado, M. (2025). Nature-based solutions 
+for urban waterfront regeneration: a systematic review of frameworks, strategies 
+and applications. City and Environment Interactions, 29, 100281. 
+https://doi.org/10.1016/j.cacint.2025.100281
 
-Soille, P., & Vogt, P. (2009). Morphological segmentation of binary patterns. Pattern Recognition Letters, 30(4), 456–459. https://doi.org/10.1016/j.patrec.2008.10.015
+Metro Vancouver. (2025). Evaluation of regional ecosystem connectivity. 
+https://metrovancouver.org/services/regional-planning/Documents/evaluation-of-regional-ecosystem-connectivity.pdf
 
-Zhuohong Li, Wei He, Mofan Cheng, Jingxin Hu, Xiao An, Yan Huang, Guangyi Yang, & Hongyan Zhang. (2023). SinoLC-1: the first 1-meter resolution national-scale land-cover map of China created with the deep learning framework and open-access data (User guide V2.4) [Data set]. In SinoLC-1: the first 1 m resolution national-scale land-cover map of China created with a deep learning framework and open-access data (User guide V2.4, Vol. 15, pp. 4749--4780). Zenodo. https://doi.org/10.5281/zenodo.8214871
+Minor, E. S., & Urban, D. L. (2008). A graph-theory framework for evaluating 
+landscape connectivity and conservation planning. Conservation Biology, 22(2), 
+297–307. https://doi.org/10.1111/j.1523-1739.2007.00871.x
 
-Marzio, S., Tosi, J., Poggi, F., & Amado, M. (2025). Nature-based solutions for urban waterfront regeneration: a systematic review of frameworks, strategies and applications. City and Environment Interactions, 29, 100281. https://doi.org/10.1016/j.cacint.2025.100281
+Rome, M., Happel, A., Dahlenburg, C., Nicodemus, P., Schott, E., Mueller, S., 
+Lovell, K., & Beighley, R. E. (2023). Application of floating wetlands for the 
+improvement of degraded urban waters: Findings from three multi-year 
+pilot-scale installations. Science of the Total Environment, 877, 162669. 
+https://doi.org/10.1016/j.scitotenv.2023.162669
 
-Rome, M., Happel, A., Dahlenburg, C., Nicodemus, P., Schott, E., Mueller, S., Lovell, K., & Beighley, R. E. (2023). Application of floating wetlands for the improvement of degraded urban waters: Findings from three multi-year pilot-scale installations. Science of the Total Environment, 877, 162669. https://doi.org/10.1016/j.scitotenv.2023.162669
+Soille, P., & Vogt, P. (2009). Morphological segmentation of binary patterns. 
+Pattern Recognition Letters, 30(4), 456–459. 
+https://doi.org/10.1016/j.patrec.2008.10.015
 
-
+Zhuohong Li, Wei He, Mofan Cheng, Jingxin Hu, Xiao An, Yan Huang, Guangyi 
+Yang, & Hongyan Zhang. (2023). SinoLC-1: the first 1-meter resolution 
+national-scale land-cover map of China created with the deep learning framework 
+and open-access data (User guide V2.4) [Data set]. Zenodo. 
+https://doi.org/10.5281/zenodo.8214871
 
 

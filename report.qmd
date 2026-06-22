@@ -658,9 +658,9 @@ zoom-in 1.
 ##### Road Density
 
 
-![Ecological resistance analysis layers zoom in 1.](images/zoom1_metrics.png){#fig-zoom1-metrics width=100%}
+![Ecological resistance analysis layers zoom in 1.](images/nr2@4x.png){#fig-zoom1-metrics width=100%}
 
-![Ecological resistance analysis layers zoom in 2.](images/zoom2_metrics.png){#fig-zoom2-metrics width=100%}
+![Ecological resistance analysis layers zoom in 2.](images/nr1@4x.png){#fig-zoom2-metrics width=100%}
 
 ##### Conclusion Maps
 After combining all layers, the barriers facing each "potential" link become clear. As shown in the bottom map of each figure, some "potential" links already follow an existing green corridor or element; from this stage onward, we therefore focus only on the missing links.
@@ -669,9 +669,9 @@ In zoom-in 1 (Tianhe District), the overall ecological resistance is predominant
 
 Zoom-in 2 (Haizhu District) presents a more fragmented picture, where existing parks with very low resistance are separated by three distinct barrier types clearly visible on the map: a large river channel running diagonally through the area, roads appearing as red lines of very high resistance cutting across the link trajectories, and broader zones of moderate to high resistance representing the dense urban fabric between the parks. The barriers here are correspondingly more varied, and NbS will need to address all three simultaneously.
 
-![Ecological resistance zoom in 1 (layers combined).](images/zoom1_resistance.png){#fig-resistance-first width=100%}
+![Ecological resistance zoom in 1 (layers combined).](images/nr4@4x.png){#fig-resistance-first width=100%}
 
-![Ecological resistance zoom in 2 (layers combined).](images/zoom2_resistance_final.png){#fig-resistance-second width=100%}
+![Ecological resistance zoom in 2 (layers combined).](images/nr3@4x.png){#fig-resistance-second width=100%}
 
 ## Nature-based Solutions
 
@@ -837,7 +837,11 @@ Together these three interventions directly target all identified resistance
 barriers, the river, the roads, and the urban matrix, along the trajectories of 
 the highest-importance links connecting the existing park patches.
 
+###Concluding NbS table 
 
+Maybe add here land use -> NbS --> how it fits the land use/its benefits --> source to have all of them for RT and GZ in one place. 
+
+And after it mention that of course it would be most effective to find places such as brownfields - but we did not, or abandoned/unused areas but again, time limitation and scope limitation and the fact that we do not have enough data for GZ to do that. 
 
 
 

@@ -338,7 +338,7 @@ Figure&nbsp;4: Guangzhou Local Climate Zones
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>  km <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(X_scaled, <span class="at">centers =</span> k, <span class="at">nstart =</span> <span class="dv">20</span>)</span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  raw_cluster <span class="ot">&lt;-</span> km<span class="sc">$</span>cluster</span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Classify each raw kmeans cluster by its profile, not its arbitrary label ---</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Classify each raw kmeans cluster by its profile</span></span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  raw_profile <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">raw_id   =</span> <span class="dv">1</span><span class="sc">:</span>k,</span>
 <span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">bc_mean  =</span> <span class="fu">as.numeric</span>(<span class="fu">tapply</span>(grid[[bc_col]], raw_cluster, mean)),</span>
@@ -373,7 +373,7 @@ Figure&nbsp;4: Guangzhou Local Climate Zones
 <span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 5. Whatever's left</span></span>
 <span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>  role_assignment[<span class="fu">as.character</span>(remaining<span class="sc">$</span>raw_id)] <span class="ot">&lt;-</span> <span class="st">"Transition zones"</span></span>
 <span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>  <span class="co"># --- Remap to your fixed, city-specific ID and color scheme ---</span></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remap to fixed, city-specific ID and color scheme ---</span></span>
 <span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>  grid<span class="sc">$</span>cluster_role  <span class="ot">&lt;-</span> role_assignment[<span class="fu">as.character</span>(raw_cluster)]</span>
 <span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a>  grid<span class="sc">$</span>cluster_id    <span class="ot">&lt;-</span> role_to_id[grid<span class="sc">$</span>cluster_role]</span>
 <span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>  grid<span class="sc">$</span>cluster_color <span class="ot">&lt;-</span> role_to_color[grid<span class="sc">$</span>cluster_role]</span>
@@ -409,7 +409,7 @@ Figure&nbsp;4: Guangzhou Local Climate Zones
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Fragmented green"</span>         <span class="ot">=</span> <span class="st">"yellow"</span></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotterdam: matches your original QGIS numbering exactly</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotterdam</span></span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>rt_role_to_id <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Transition zones"</span>        <span class="ot">=</span> <span class="dv">0</span>,</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Key corridors"</span>            <span class="ot">=</span> <span class="dv">1</span>,</span>
@@ -418,7 +418,7 @@ Figure&nbsp;4: Guangzhou Local Climate Zones
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Fragmented green"</span>         <span class="ot">=</span> <span class="dv">4</span></span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Guangzhou: matches your original QGIS numbering exactly (different order!)</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Guangzhou (different order!)</span></span>
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>gz_role_to_id <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Fragmented green"</span>         <span class="ot">=</span> <span class="dv">0</span>,</span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Urban matrix"</span>             <span class="ot">=</span> <span class="dv">1</span>,</span>
@@ -507,7 +507,7 @@ Figure&nbsp;4: Guangzhou Local Climate Zones
 <div id="fig-MSPArt" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-MSPArt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/RT_mspa.png" class="img-fluid figure-img">
+<img src="images/RT_mspafinal@4x.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MSPArt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;5: Morphological Spatial Pattern Analysis in Rotterdam
@@ -720,7 +720,7 @@ Figure&nbsp;7: Ecological connectivity within the boundary of Rotterdam.
 <div id="fig-MSPAgz" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-MSPAgz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/GZ_mspa.png" class="img-fluid figure-img">
+<img src="images/GZ_mspafinal@4x.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MSPAgz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;8: Morphological Spatial Pattern Analysis in Guangzhou
@@ -733,7 +733,7 @@ Figure&nbsp;8: Morphological Spatial Pattern Analysis in Guangzhou
 <div id="fig-connectivity-first" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-connectivity-first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/FirstGZmap.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="images/lol1@4x.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-connectivity-first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;9: Ecological connectivity within the Envelope.
@@ -743,7 +743,7 @@ Figure&nbsp;9: Ecological connectivity within the Envelope.
 <div id="fig-connectivity-second" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-connectivity-second-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/Second_GZmap.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="images/lol2@4x.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-connectivity-second-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;10: Ecological connectivity within the boundary of Guangzhou
@@ -1009,7 +1009,7 @@ Figure&nbsp;15: Ecological resistance zoom in 2 (layers combined).
 </section>
 <section id="zoom-ins-guangzhou" class="level3">
 <h3 class="anchored" data-anchor-id="zoom-ins-guangzhou">Zoom Ins Guangzhou</h3>
-<p><img src="images/Third_GZmap.png" id="fig-zoomin-gz" class="img-fluid" style="width:100.0%" alt="Zoom in locations in Guangzhou"> Figure 16 presents the two zoom-in locations selected for Guangzhou. The selection was guided primarily by link importance: areas concentrating the highest-importance links (very high and high, visible as the darkest, thickest lines on the map) were prioritised, as these represent the most critical missing connections in the network. To ensure comparability with the Rotterdam zoom-in areas in terms of spatial scale and analytical accuracy, the size of each tile was kept consistent with those selected for Rotterdam, with district boundaries taken into account when defining the extents.</p>
+<p><img src="images/lol3@4x.png" id="fig-zoomin-gz" class="img-fluid" style="width:100.0%" alt="Zoom in locations in Guangzhou"> Figure 16 presents the two zoom-in locations selected for Guangzhou. The selection was guided primarily by link importance: areas concentrating the highest-importance links (very high and high, visible as the darkest, thickest lines on the map) were prioritised, as these represent the most critical missing connections in the network. To ensure comparability with the Rotterdam zoom-in areas in terms of spatial scale and analytical accuracy, the size of each tile was kept consistent with those selected for Rotterdam, with district boundaries taken into account when defining the extents.</p>
 <p>The two zoom-in areas reflect contrasting urban contexts within Guangzhou. Zoom-in 1 is located in the northern part of the study area, in the Tianhe District, where the landscape transitions toward hillier, more vegetated terrain. This area contains a concentration of very high and high importance links connecting green patches across a mixed urban-natural gradient. Zoom-in 2 is situated further south, in the Haizhu District, where the urban character is denser and more built-up. Here, the critical links run through a more fragmented urban fabric, presenting a different set of barriers and opportunities for Nature-based Solutions compared to zoom-in 1.</p>
 <section id="ecological-resistance-2" class="level4">
 <h4 class="anchored" data-anchor-id="ecological-resistance-2">Ecological Resistance</h4>

@@ -224,7 +224,7 @@ cluster_grid <- function(gpkg_path, bc_col, patch_count_col, patch_cap_col, lcz_
   km <- kmeans(X_scaled, centers = k, nstart = 20)
   raw_cluster <- km$cluster
 
-  # --- Classify each raw kmeans cluster by its profile, not its arbitrary label ---
+  # Classify each raw kmeans cluster by its profile
   raw_profile <- data.frame(
     raw_id   = 1:k,
     bc_mean  = as.numeric(tapply(grid[[bc_col]], raw_cluster, mean)),
@@ -259,7 +259,7 @@ cluster_grid <- function(gpkg_path, bc_col, patch_count_col, patch_cap_col, lcz_
   # 5. Whatever's left
   role_assignment[as.character(remaining$raw_id)] <- "Transition zones"
 
-  # --- Remap to your fixed, city-specific ID and color scheme ---
+  # Remap to fixed, city-specific ID and color scheme ---
   grid$cluster_role  <- role_assignment[as.character(raw_cluster)]
   grid$cluster_id    <- role_to_id[grid$cluster_role]
   grid$cluster_color <- role_to_color[grid$cluster_role]
@@ -298,7 +298,7 @@ role_to_color <- c(
   "Fragmented green"         = "yellow"
 )
 
-# Rotterdam: matches your original QGIS numbering exactly
+# Rotterdam
 rt_role_to_id <- c(
   "Transition zones"        = 0,
   "Key corridors"            = 1,
@@ -307,7 +307,7 @@ rt_role_to_id <- c(
   "Fragmented green"         = 4
 )
 
-# Guangzhou: matches your original QGIS numbering exactly (different order!)
+# Guangzhou (different order!)
 gz_role_to_id <- c(
   "Fragmented green"         = 0,
   "Urban matrix"             = 1,
@@ -854,11 +854,13 @@ And after it mention that of course it would be most effective to find places su
 Limitation of Conefor vs Graphahb, long computation time, time lost, results not as expected...
 
 ### Differences and similarities between cities
+
 ### Implications for NbS
 
 
 ## Recommendations & Further Research
-- How NbS would improve connectivity (re-running ecological connectivty analysis with NBS intervations purposed) - or if we have time we can do it after NBS chapter 
+
+## Reproducibility Statement
 
 ## AI Statement
 

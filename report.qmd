@@ -405,7 +405,7 @@ After running the MSPA analysis (@sec-mspa) on the Rotterdam envelope area and a
 This is a useful basis for the patch and link importance analysis that follows (@sec-result-ecoconnect-roffa). The green patches should not be treated as equally meaningful nodes. MSPA analysis is dominated by small cores like the tail-like fragments (likely isolated street trees, small gardens and other small green elements. They are numerous but contribute negligibly to the total core area and are unlikely to be significant habitats on their own. However, these fragments could still matter as stepping stones for connectivity. This supports running the patch and link importance analysis specifically on the dominant core patches, since they are the backbone of the green network. Moreover, two smaller study areas within the city are also examined more closely, using metrics like NDVI, NDBI, road density, and land-cover resistance, to assess habitat quality and connectivity in more detail than the broader MSPA classification alone can provide. 
 
 
-![Morphological Spatial Pattern Analysis in Rotterdam](images/RT_mspa.png){#fig-MSPArt}
+![Morphological Spatial Pattern Analysis in Rotterdam](images/RT_mspafinal@4x.png){#fig-MSPArt}
 
 
 #### Patches and Link Importance {#sec-result-ecoconnect-roffa}
@@ -489,14 +489,14 @@ The spatial distribution map depicts that the isolated quality patches cluster f
 
 After running the Morphological Spatial Pattern Analysis on Guangzhou's envelope area (Section 4.2.1) and analysing the distribution of classes, the overall result is similar to Rotterdam, though slightly less green-dominated. The backround covers the majority of the evenelope's area accounting for 58.19% as opposed to the overall green network (Core, Islet, Perforation, Edge, Loop, Bridge, Branch) covering 41.81% (approximately 4% lower than Rotterdam).@fig-MSPAgz highlights a large and continuous green network in the North part of the envelope with majority of the cores located there. As with Rotterdam, these areas include a number of different types of vegetation, however trees (value 10) are the most dominant ones.  
 
-![Morphological Spatial Pattern Analysis in Guangzhou](images/GZ_mspa.png){#fig-MSPAgz}
+![Morphological Spatial Pattern Analysis in Guangzhou](images/GZ_mspafinal@4x.png){#fig-MSPAgz}
 
 
 #### Patches and Link Importance {#sec-result-ecoconnect-gz}
 
-![Ecological connectivity within the Envelope.](images/FirstGZmap.png){#fig-connectivity-first width=100%}
+![Ecological connectivity within the Envelope.](images/lol1@4x.png){#fig-connectivity-first width=100%}
 
-![Ecological connectivity within the boundary of Guangzhou](images/Second_GZmap.png){#fig-connectivity-second width=100%}
+![Ecological connectivity within the boundary of Guangzhou](images/lol2@4x.png){#fig-connectivity-second width=100%}
 
 
 #### Cluster Profiles
@@ -629,7 +629,7 @@ Zoom-in 2 sits at the edge of the city, where residential neighbourhoods become 
 
 
 ### Zoom Ins Guangzhou
-![Zoom in locations in Guangzhou](images/Third_GZmap.png){#fig-zoomin-gz width=100%}
+![Zoom in locations in Guangzhou](images/lol3@4x.png){#fig-zoomin-gz width=100%}
 Figure 16 presents the two zoom-in locations selected for Guangzhou. 
 The selection was guided primarily by link importance: areas concentrating 
 the highest-importance links (very high and high, visible as the darkest, 

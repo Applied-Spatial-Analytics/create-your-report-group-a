@@ -917,7 +917,7 @@ When creating typologies for both cities using 500 x 500 m grid cells simplifies
 Furthermore, patch-link connectivity represents connectivity in an abstract way through straight line links, so the actual ecological corridors may have a somewhat different shape. Nevertheless, summarising betweenness centrality and patch-based metrics still provides an approximation of connectivity conditions within each grid cell. Therefore this typology should be seen as a general overview rather than a detailed map of ecological variation.
  
 
-### Differences and similarities between cities
+### Differences and Similarities Between Cities
 
 ### Implications for NbS
 

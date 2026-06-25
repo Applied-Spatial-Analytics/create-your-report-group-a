@@ -66,7 +66,7 @@ This research focuses on two case studies: one in the Netherlands and one in Chi
 
 Since Guangzhou is much larger in scale, we could not find a map with a comparable resolution and level of detail that would remain readable at the city scale, so we used an alternative instead. SinoLC-1, a 1-meter-resolution national-scale land-cover map of China, gave us a clear picture of where green areas are located at the city level. @fig-introduction-pair presents both maps. As shown in the map of Guangzhou on the right, the main distinction is between tree cover (dark green) and built environment (dark orange). A more detailed breakdown of the classifications and legend can be found in Li et al. (2023), but for the purposes of this stage, this level of detail was sufficient. Together, both maps give us a general understanding of each area before we zoom in for deeper analysis.
 
-- add infor about different sizes of the cities, population etc. 
+
 
 ::: {#fig-introduction-pair layout-ncol=2}
 ![Rotterdam](images/Rotterdam_introduction){#fig-roffa}
@@ -914,8 +914,6 @@ Conefor's computation time proved to be a significant practical obstacle. Runnin
 We therefore looked for an alternative that could support a similar analytical workflow while delivering more understandable results within a reasonable time frame. Graphab offered an accessible graphical interface, handled large landscapes efficiently, and was substantially faster than Conefor. Its results also aligned better with our expectations. Nevertheless, beginning with Conefor was not without value: working through its metrics deepened our understanding of connectivity analysis as a whole and helped us make a more informed decision about where and how to zoom in on for our further analysis.
 
 ### Clustering Implications
-
-### Clustering limitations
 
 When creating typologies for both cities using 500 x 500 m grid cells simplifies the city too much, so small but ecologically important features can be missed or merged into the same cell. Moreover, too ensure efficient computation the typology reduces most of the varaibles to one cluster label. In reality, a single grid cell can contain mixed land uses, land covers, and connectivity conditions. 
 Furthermore, patch-link connectivity represents connectivity in an abstract way through straight line links, so the actual ecological corridors may have a somewhat different shape. Nevertheless, summarising betweenness centrality and patch-based metrics still provides an approximation of connectivity conditions within each grid cell. Therefore this typology should be seen as a general overview rather than a detailed map of ecological variation.

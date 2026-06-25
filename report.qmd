@@ -86,7 +86,7 @@ construction, and zoom-in area selection, to a final ecological resistance
 analysis and the proposal of targeted Nature-based Solutions. Each step is 
 described in detail in the sections below.
 
-![Methodological workflow of the study.](images/methods){#fig-methodology width=100%}
+![Methodological workflow of the study.](images/methods.png){#fig-methodology width=100%}
 
 ### Data
 
@@ -921,6 +921,48 @@ Furthermore, patch-link connectivity represents connectivity in an abstract way 
 ### Differences and Similarities Between Cities
 
 ### Implications for NbS
+The Nature-based Solutions proposed in this study are directly grounded in the 
+spatial analysis, but several methodological choices made earlier in the research 
+have implications for how these proposals should be interpreted.
+
+The ecological resistance analysis was performed only at the zoom-in scale, 
+using four layers: NDVI, NDBI, land use, and road density. While these layers 
+capture the main categories of ecological resistance in urban environments 
+(Wade et al., 2015), they do not account for all relevant barriers. Factors such 
+as noise pollution, artificial light at night, and fine-scale vegetation structure 
+were not included, meaning that the resistance surface represents an approximation 
+rather than a complete picture of species movement constraints. The proposed NbS 
+should therefore be seen as a starting point for intervention rather than a 
+definitive plan.
+
+The NbS proposals were developed without specifying a target species, following 
+the same generalised approach used in the connectivity analysis. This makes the 
+proposals broadly applicable but limits their ecological specificity. In practice, 
+different species respond differently to the same intervention a wildlife 
+underpass that works well for amphibians may be ineffective for birds. Future 
+implementation would therefore benefit from species-specific assessments to 
+confirm which interventions are most appropriate for the local fauna of each 
+zoom-in area.
+
+The comparison between Rotterdam and Guangzhou reveals that the same NbS types 
+appear in both cities: green roofs, road verge enhancements, and crossing 
+structures but the urban contexts in which they are applied differ 
+substantially. In Rotterdam, NbS must work within a densely built, low-rise 
+residential and industrial fabric with limited available space. In Guangzhou, 
+particularly in the Tianhe District, the largely intact forest matrix means 
+that even small, targeted interventions at road crossings could have a 
+disproportionately large effect on overall connectivity. This suggests that 
+the cost-effectiveness of NbS varies significantly between cities, and that 
+the same investment in green infrastructure may yield greater ecological 
+returns in Guangzhou than in Rotterdam under current conditions.
+
+Finally, it is worth noting that the most effective NbS locations in practice 
+would often be brownfields, abandoned land, or underused spaces, where 
+interventions face fewer competing demands. Due to data limitations and time 
+constraints, such sites were not systematically identified in this study, 
+particularly for Guangzhou. Future research that integrates land availability 
+data into the NbS selection process would likely produce more targeted and 
+implementable proposals.
 
 
 ## Recommendations & Further Research

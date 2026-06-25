@@ -573,67 +573,8 @@ also this has to be edited:
 Here we see that the orange cluster showing good quality patches with weak connectivty is surrounded mostly by framgmented low quality greens (cluster 2) and some 0 clusters (Transition zones — moderate connectivity, some patches) and there is some green (cluster 1), which indicate a small but significant presence of key corridors with very high BC and quality patches. This depict potential that the cluster 1 could be expanded (by leverging parts of orange cluster or connecting yellow areas (also improving their quality) around it. But then when looking at the whole ecological profile of rotterdam there are not any mor eorange clusters withing the area, which could motivate the second intervention (on yellow clusters with id 2) in other areas (maybe top right corner of the envelope). 
 
 
-
-
 study area 1 has 22647834,561 m2 and second has 36012716,54162598 m2.  
 
-#### Ecological Resistance
-
-##### NDVI
-
-The min-max you had : -0.2 to 0.8 values
-##### NDBI
-The min-max you had : -0.5 to 0.5 values 
-##### Land Use
-##### Road Density
-The min-max you had : 0 to 0,15
-
-##### NDBI
-##### Land Use
-##### Road Density
-
-
-![Ecological resistance analysis layers zoom in 1.](images/eco_resistance_roffa1.png){#fig-ecores-roffa1 width=100%}
-
-![Ecological resistance analysis layers zoom in 2.](images/eco_resistance_roffa2.png){#fig-ecores-roffa2 width=100%}
-
-##### Conclusion Maps
-
-After combining all layers, the barriers facing each "potential" link become clear. As shown in the bottom map of each figure, some "potential" links already follow an existing green corridor or element; from this stage onward, we therefore focus only on the missing links.
-
-In zoom-in 1, the dominant barrier is the Nieuwe Waterweg, a key shipping channel serving the Port of Rotterdam. The thinner barriers in this area are also waterways, reflecting its role as part of the Europoort of Rotterdam. When developing NBS in the next step, this industrial character and port functionality must be taken into account.
-
-Zoom-in 2 sits at the edge of the city, where residential neighbourhoods become the focus. The barriers here are correspondingly different: highways, roads, and railway tracks are the obstacles that need to be overcome.
-
-![Ecological resistance zoom in 1 (layers combined).](images/total_eco_resistance_roffa1.png){#fig-ecores-tot-roffa1 width=100%}
-
-![Ecological resistance zoom in 2 (layers combined).](images/total_eco_resistance_roffa2.png){#fig-ecores-tot-roffa2 width=100%}
-
-
-### Zoom Ins Guangzhou
-![Zoom in locations in Guangzhou](images/lol3@4x.png){#fig-zoomin-gz width=100%}
-Figure 16 presents the two zoom-in locations selected for Guangzhou. 
-The selection was guided primarily by link importance: areas concentrating 
-the highest-importance links (very high and high, visible as the darkest, 
-thickest lines on the map) were prioritised, as these represent the most 
-critical missing connections in the network. To ensure comparability with 
-the Rotterdam zoom-in areas in terms of spatial scale and analytical 
-accuracy, the size of each tile was kept consistent with those selected 
-for Rotterdam, with district boundaries taken into account when defining 
-the extents.
-
-The two zoom-in areas reflect contrasting urban contexts within Guangzhou. 
-Zoom-in 1 is located in the northern part of the study area, in the 
-Tianhe District, where the landscape transitions toward hillier, more 
-vegetated terrain. This area contains a concentration of very high and 
-high importance links connecting green patches across a mixed urban-natural 
-gradient. Zoom-in 2 is situated further south, in the Haizhu District, 
-where the urban character is denser and more built-up. Here, the critical 
-links run through a more fragmented urban fabric, presenting a different 
-set of barriers and opportunities for Nature-based Solutions compared to 
-zoom-in 1. 
-
-#### Ecological Resistance
 #### Ecological Resistance
 
 ##### NDVI
@@ -675,7 +616,47 @@ resistance on top of the built-up surfaces. The relatively low maximum road
 density compared to the Rotterdam zoom-ins is consistent with the more 
 dispersed, lower-intensity urban development pattern of the Tianhe District.
 
----
+
+![Ecological resistance analysis layers zoom in 1.](images/eco_resistance_roffa1.png){#fig-ecores-roffa1 width=100%}
+
+![Ecological resistance analysis layers zoom in 2.](images/eco_resistance_roffa2.png){#fig-ecores-roffa2 width=100%}
+
+##### Conclusion Maps
+
+After combining all layers, the barriers facing each "potential" link become clear. As shown in the bottom map of each figure, some "potential" links already follow an existing green corridor or element; from this stage onward, we therefore focus only on the missing links.
+
+In zoom-in 1, the dominant barrier is the Nieuwe Waterweg, a key shipping channel serving the Port of Rotterdam. The thinner barriers in this area are also waterways, reflecting its role as part of the Europoort of Rotterdam. When developing NBS in the next step, this industrial character and port functionality must be taken into account.
+
+Zoom-in 2 sits at the edge of the city, where residential neighbourhoods become the focus. The barriers here are correspondingly different: highways, roads, and railway tracks are the obstacles that need to be overcome.
+
+![Ecological resistance zoom in 1 (layers combined).](images/total_eco_resistance_roffa1.png){#fig-ecores-tot-roffa1 width=100%}
+
+![Ecological resistance zoom in 2 (layers combined).](images/total_eco_resistance_roffa2.png){#fig-ecores-tot-roffa2 width=100%}
+
+
+### Zoom Ins Guangzhou
+![Zoom in locations in Guangzhou](images/lol3@4x.png){#fig-zoomin-gz width=100%}
+
+@fig-zoomin-gz presents the two zoom-in locations selected for Guangzhou. 
+The selection was guided primarily by link importance: areas concentrating 
+the highest-importance links (very high and high, visible as the darkest, 
+thickest lines on the map) were prioritised, as these represent the most 
+critical missing connections in the network. To ensure comparability with 
+the Rotterdam zoom-in areas in terms of spatial scale and analytical 
+accuracy, the size of each tile was kept consistent with those selected 
+for Rotterdam, with district boundaries taken into account when defining 
+the extents.
+
+The two zoom-in areas reflect contrasting urban contexts within Guangzhou. 
+Zoom-in 1 is located in the northern part of the study area, in the 
+Tianhe District, where the landscape transitions toward hillier, more 
+vegetated terrain. This area contains a concentration of very high and 
+high importance links connecting green patches across a mixed urban-natural 
+gradient. Zoom-in 2 is situated further south, in the Haizhu District, 
+where the urban character is denser and more built-up. Here, the critical 
+links run through a more fragmented urban fabric, presenting a different 
+set of barriers and opportunities for Nature-based Solutions compared to 
+zoom-in 1. 
 
 #### Ecological Resistance
 
@@ -924,9 +905,23 @@ And after it mention that of course it would be most effective to find places su
 ## Conclusion
 
 ## Discussion
-### Conefor vs. Graphab
+This chapter reflects on the limitations of the methods used in this research, as well as key methodological choices made throughout the process. It addresses the consequences of the envelope size, the choice of Graphab as the connectivity analysis tool, the differences and similarities observed between Rotterdam and Guangzhou, and finally the implications of these findings for Nature-based Solutions.
 
-Limitation of Conefor vs Graphahb, long computation time, time lost, results not as expected...
+### Envelope Implications
+When defining the study area, several considerations arose regarding the spatial boundaries of the analysis, each carrying methodological implications.
+
+Initially, the connectivity analysis was run only within the administrative boundary of Rotterdam, which meant that surrounding green patches were excluded. This produced results that may not accurately reflect real-world ecological connectivity, since relevant habitat can extend well beyond city limits. To address this, we computed a minimum bounding box around the city shape and added a 5 km buffer to incorporate the surrounding landscape. However, this approach still introduces limitations. The envelope edge inevitably cuts through patches, making some appear smaller than they actually are. Since tools like Graphab base their calculations on patch size and inter-patch distances, patches clipped by the envelope edge directly affect the resulting connectivity metrics.
+
+To keep computation times feasible within the given time frame, we chose not to extend the envelope further, even though a larger study area would likely produce more ecologically meaningful results. Ideally, the spatial boundary should have no influence on patch size or link characteristics, but the larger the area, the greater the computational load. Extending the envelope was therefore not practical under the current constraints. This is nonetheless an important limitation to acknowledge, given its direct effect on the connectivity outcomes.
+
+### Conefor vs. Graphab
+During the ecological connectivity analysis, we explored and tested several software applications before settling on a final approach. Initially, we used Conefor, a software package designed to quantify the importance of habitat areas and links for maintaining or improving connectivity, and to evaluate the impacts of habitat and landscape changes on connectivity (Saura & Torné, 2009). In principle, Conefor serves the same purpose as Graphab, but the two applications differ in their available methods and workflows.
+
+Conefor's computation time proved to be a significant practical obstacle. Running the analysis on the Rotterdam envelope took an entire day, while the Guangzhou envelope took almost a full week, far from practical given the limited time frame of this project. Beyond the computation time, the results themselves raised questions. In Rotterdam, the highest-importance links connected smaller, less significant patches to one another rather than linking the most ecologically important patches. This was unexpected, since larger patches generally have a greater ecological impact, and we would therefore anticipate their connections to carry greater ecological weight as well. Unfortunately, the long run times meant we were unable to verify these results or investigate the underlying cause further.
+
+We therefore looked for an alternative that could support a similar analytical workflow while delivering more understandable results within a reasonable time frame. Graphab offered an accessible graphical interface, handled large landscapes efficiently, and was substantially faster than Conefor. Its results also aligned better with our expectations. Nevertheless, beginning with Conefor was not without value: working through its metrics deepened our understanding of connectivity analysis as a whole and helped us make a more informed decision about where and how to zoom in on for our further analysis.
+
+### Clustering Implications
 
 ### Differences and similarities between cities
 
@@ -1002,6 +997,8 @@ Lovell, K., & Beighley, R. E. (2023). Application of floating wetlands for the
 improvement of degraded urban waters: Findings from three multi-year 
 pilot-scale installations. Science of the Total Environment, 877, 162669. 
 https://doi.org/10.1016/j.scitotenv.2023.162669
+
+Saura, S., & Torné, J. (2009). Conefor Sensinode 2.2: A software package for quantifying the importance of habitat patches for landscape connectivity. Environmental Modelling & Software, 24(1), 135–139. https://doi.org/10.1016/j.envsoft.2008.05.005
 
 Soille, P., & Vogt, P. (2009). Morphological segmentation of binary patterns. 
 Pattern Recognition Letters, 30(4), 456–459. 

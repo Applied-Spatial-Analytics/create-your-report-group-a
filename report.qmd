@@ -78,13 +78,19 @@ General introduction of cities.
 
 
 ## Methods
-### Data
-notes: 
-ESA WorldCover 10m v200 - https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCover_v200#bands
-The European Space Agency (ESA) WorldCover 10 m 2021 product provides a global land cover map for 2021 at 10 m resolution based on Sentinel-1 and Sentinel-2 data. The WorldCover product comes with 11 land cover classes and has been generated in the framework of the ESA WorldCover project, part of the 5th Earth Observation Envelope Programme (EOEP-5) of the European Space Agency. 
 
-LCZ maps for Rotterdam and Guangzhou were obtained from  the LCZ Generator 
-(https://lcz-generator.rub.de/global-lcz-map)
+### Data
+
+To perform this analysis several geospatial datasets on Rotterdam and Guangzhou were used. 
+
+- ESA WorldCover 10 m v200: A global 2021 land-cover map at 10 m resolution, based on Sentinel-1 and Sentinel-2 imagery, with 11 land-cover classes. It was used for classifying surface cover, identifying green and non-green areas and NDBI and NDVI indices calculation. 
+- Local Climate Zone (LCZ) maps: LCZ maps for Rotterdam and Guangzhou were obtained from the LCZ Generator. 
+- Rotterdam municipal boundary: The official municipal boundary from PDOK was used to define the spatial extent of Rotterdam.
+- Guangzhou administrative boundaries: OpenStreetMap boundary data 
+- Street network data: OpenStreetMap street data for both cities were used to represent the urban road network structure.
+- Groenkaart: The Groenkaart, developed by the RIVM and presented in Atlas Leefomgeving, provided additional information on green areas in Rotterdam. 
+- SinoLC-1: 1-meter-resolution national land-cover map of China was used to obtain a clearer picture of green areas in Guangzhou.
+
 
 #### Envelope
 When collecting data, running analyses, and producing maps, it is important to look slightly beyond our area of interest. This is especially relevant when considering ecological connections, since important elements could lie outside our extent. To make sure we capture the surroundings of our area of interest, we therefore decided to create an envelope that extends beyond our bounding box.
@@ -93,7 +99,7 @@ For both Rotterdam and Guangzhou, we created a minimum bounding geometry around 
 
 ![Envelope creation in Rotterdam.](images/envelope_rotterdam.png){#fig-envelope-roffa width=100%}
 
-Add same thing voor Guanzhou:
+
 ![Envelope creation in Guanzhou](images/GZintroductory.png){#fig-envelope-intro width=100%}
 
 #### Spatial Grid  {#sec-spatialgrid}
@@ -151,12 +157,14 @@ After the calculations are computed, each patch and each link now contained dPC 
 In the Results (@sec-result-ecoconnect-roffa and @sec-result-ecoconnect-gz), the outcome of this analysis for Rotterdam and Guangzhou is presented, which will be used as one of the inputs for the clustering analysis in the next section.
 
 #### Typology Construction
-After Patches and Link Importance analysis and MSPA, it is possible to develop typologies based on their outcomes for broader understanding of ecological connectity and urban/green matrix in both cities. Typology is a classification of areas based on shared combinations of characteristics (source here). To identify spatial character of ecology and its connectivity in Rotterdam and Guangzhou, a typology was constructed for both cities using the same set of variables and spatial unit, allowing direct quantitative comparison between the two cities. 
+After Patches and Link Importance analysis and MSPA, it is possible to develop typologies based on their outcomes for broader understanding of ecological connectity and urban/green matrix in both cities. Typology is a classification of areas based on shared combinations of characteristics (Wikipedia, 2026). To identify spatial character of ecology and its connectivity in Rotterdam and Guangzhou, a typology was constructed for both cities using the same set of variables and spatial unit, allowing direct quantitative comparison between the two cities. 
+
+While the typology is relatively general and simplified, partly because grid cells were used as the spatial unit, it was developed before examining the smaller selected study areas in greater detail to provide an overview of the preceding analysis and identify the overall pattern. Combined with the MSPA and patch/link importance results (@sec-results-ecoconnect), this typology was used to guide the selection of the smaller zoom-in study areas examined in more detail later in this report.
 
 To construct this typology, two crucial aspects need to be defined: the variables used to characterise each area, and the spatial unit at which these variables were measured. The variables used were Local Climate Zones, ecological connectivity (betweenness centrality), and green patch characteristics, as these together capture both the urban characteristics and the ecological functioning of an area.
 The spatial unit used was a fixed-size grid of 500 × 500 m cells (see @sec-spatialgrid). A fixed grid was used because it allows different variables to be aggregated and compared. 
 
-This typology serves as a broad ecological overview of both cities that summarises, at a coarse spatial resolution, where green connectivity is strong, where it is weak or absent, and what kind of green structure dominates each area. It is not intended to pinpoint specific intervention sites, but  to provide the wider ecological context which enables more detailed analyses performed further. Combined with the MSPA and patch/link importance results (@sec-results-ecoconnect), this typology was used to guide the selection of the smaller zoom-in study areas examined in more detail later in this report.
+This typology serves as a broad ecological overview of both cities that summarises, at a coarse spatial resolution, where green connectivity is strong, where it is weak or absent, and what kind of green structure dominates each area. It is not intended to pinpoint specific intervention sites, but  to provide the wider ecological context which enables more detailed analyses performed further. 
 
 
 ##### Clustering 
@@ -553,14 +561,6 @@ it) borders them.
 
 ![Zoom in locations in Rotterdam](images/Rotterdam_zoomin_intro.png){#fig-zoomin-roffa width=100%}
 
-
-
-also this has to be edited: 
-Here we see that the orange cluster showing good quality patches with weak connectivty is surrounded mostly by framgmented low quality greens (cluster 2) and some 0 clusters (Transition zones — moderate connectivity, some patches) and there is some green (cluster 1), which indicate a small but significant presence of key corridors with very high BC and quality patches. This depict potential that the cluster 1 could be expanded (by leverging parts of orange cluster or connecting yellow areas (also improving their quality) around it. But then when looking at the whole ecological profile of rotterdam there are not any mor eorange clusters withing the area, which could motivate the second intervention (on yellow clusters with id 2) in other areas (maybe top right corner of the envelope). 
-
-
-
-
 study area 1 has 22647834,561 m2 and second has 36012716,54162598 m2.  
 
 #### Ecological Resistance
@@ -837,6 +837,12 @@ And after it mention that of course it would be most effective to find places su
 
 Limitation of Conefor vs Graphahb, long computation time, time lost, results not as expected...
 
+### Clustering limitations
+
+When creating typologies for both cities using 500 x 500 m grid cells simplifies the city too much, so small but ecologically important features can be missed or merged into the same cell. Moreover, too ensure efficient computation the typology reduces most of the varaibles to one cluster label. In reality, a single grid cell can contain mixed land uses, land covers, and connectivity conditions. 
+Furthermore, patch-link connectivity represents connectivity in an abstract way through straight line links, so the actual ecological corridors may have a somewhat different shape. Nevertheless, summarising betweenness centrality and patch-based metrics still provides an approximation of connectivity conditions within each grid cell. Therefore this typology should be seen as a general overview rather than a detailed map of ecological variation.
+ 
+
 ### Differences and similarities between cities
 
 ### Implications for NbS
@@ -917,6 +923,8 @@ Pattern Recognition Letters, 30(4), 456–459.
 https://doi.org/10.1016/j.patrec.2008.10.015
 
 Stewart, I. D., & Oke, T. R. (2012). Local climate zones for urban temperature studies. Bulletin of the American Meteorological Society, 93(12), 1879–1900. https://doi.org/10.1175/BAMS-D-11-00019.1
+
+Typology. (2026, June 20). In Wikipedia. https://en.wikipedia.org/wiki/Typology
 
 World Urban Database and Access Portal Tools (WUDAPT). (n.d.). Local climate zones. https://www.wudapt.org/lcz/
 

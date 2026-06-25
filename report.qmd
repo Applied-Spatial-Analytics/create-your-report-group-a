@@ -102,7 +102,8 @@ For both Rotterdam and Guangzhou, we created a minimum bounding geometry around 
 
 ![Envelope creation in Rotterdam.](images/envelope_rotterdam.png){#fig-envelope-roffa width=100%}
 
-Add same thing voor Guanzhou:
+The same principle is done vor Guangzhou, but this time the buffer exceeds the 5 km on some sides to match a similar size to Rotterdam.
+
 ![Envelope creation in Guanzhou](images/GZintroductory.png){#fig-envelope-intro width=100%}
 
 #### Spatial Grid  {#sec-spatialgrid}
@@ -145,9 +146,9 @@ Three parameters are used in MSPA segments. Foreground connectivity, which deter
 
 #### Patches and Link Importance (through Graphab) {#sec-patches}
 
-To conduct the ecological connectivity analysis, the software of Grapnhab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor & Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data. A visual simplification can be seen in 
+To conduct the ecological connectivity analysis, the software of Grapnhab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor & Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data. The links show the Euclidian distance between two patches. A visual simplification can be seen in @fig-graph_con.
 
-![Graph visualisation.](images/graph network simple v2.png){#fig-mspa_steps width=100%}
+![Graph visualisation.](images/graph network simple v2.png){#fig-graph_con width=100%}
 
 
 By loading the .tiff file created by the MSPA analysis, Graphab can read the landcover classification and filter on those accordingly. We filtered on land use code “17” to select the core areas as habitat patches, Graphab then created a linkset to visualise all the possible connections between each habitat patch (to later use for the calculations).
@@ -325,42 +326,28 @@ lcz_labels <- c(
 
 
 ### Study Area Selection
+
 Comparable study areas between Rotterdam and Guangzhou were identified by matching clusters across both cities based on similarities in their BC values, patch characteristics, and LCZ composition. Two pairs of zoom in areas were chosen for  each city. 
 
 ### Ecological Resistance
-After selecting 2 study areas within each city a deeper analysis is performed to investigate barriers to ecological connectivity as well as potentials for improvement. Especially for understanding how to implement "potential" links, it's important to take the context into account. The graph theory showcases a simplified version of reality, but all the barriers such as roads, train tracks, rivers, and many others, are not yet taken into account.
 
-- add here what will be investigated (4 metrics and how we combine them)
+After selecting 2 study areas within each city, a deeper analysis is performed to investigate barriers to ecological connectivity as well as potentials for improvement. Especially for understanding how to implement "potential" links, it's important to take the context into account. The graph theory showcases a simplified version of reality, but to understand the barriers each area contains, we need to understand what resistance it faces.
+
+An ecological resistance surface quantifies how difficult it is for species to move through different parts of a landscape. Areas with dense vegetation and natural land cover pose low resistance, while built-up surfaces, roads, and other human-modified land uses impede species dispersal and increase resistance (Zeller et al., 2012). The concept draws from electrical circuit theory, where species flow through the landscape like current through a circuit, concentrating along low-resistance paths and avoiding high-resistance areas (McRae et al., 2008). The specific factors used to construct a resistance surface vary between studies depending on the researched species, spatial context, and research field. Since out study focuses on general urban landscape connectivity rather than a single target species, no species-specific data layers are used. Instead, following Wade et al. (2015), four data layers were selected that together cover three major categories of ecological resistance: natural conditions (vegetation density, measured through NDVI), landscape types (land use/land cover from ESA WorldCover), and human disturbance (built-up intensity through NDBI, and road density). These layers capture the key natural and human-caused factors influencing species movement in an urban context and provide a sufficient overview of the ecological resistance within the study areas.
+
+There are however, many other layers than can be taken into account when looking at ecological resistance, but these four layers provide enough information to indicate the areas with high resistance and help guide the next step of looking into Nature-based Solutions to improve the ecological connectivity.
 
 #### NDVI
-- -1.0 to 0: Non-vegetated surfaces like clouds, snow, or open water.
-- 0 to 0.1: Bare soil, rock, roads, or urban infrastructure.
-- 0.2 to 0.5: Sparse or stressed vegetation, grasslands, or crops.
-- 0.6 to 1.0: Dense, healthy vegetation such as mature forests or crops at peak growth.
-(source)
-
+Vegetation density plays a crucial role in facilitating species movement by providing habitat, food resources, and shelter. This variable is represented using the Normalized Difference Vegetation Index (NDVI), which captures the presence and condition of vegetation. Areas with dense and healthy vegetation are associated with low ecological resistance, while areas with sparse or no vegetation correspond to higher resistance. The NDVI layer is reclassified into five ordinal resistance classes ranging from low to high resistance, following common resistance surface approaches (Wade et al., 2015).
 
 #### NDBI
-- ">" 0: Likely built-up or urban areas.
-- ≈ 0: Bare soil or mixed terrain.
-- < 0: Vegetation (which reflects highly in NIR) or water bodies.
-(source)
+Built-up areas and high building density form a significant barrier to species movement. Impervious surfaces provide limited habitat and reduce overall landscape permeability. To represent this, the Normalized Difference Built-up Index (NDBI) is used, derived from remote sensing data. This index reflects the relative presence of built-up versus non-built surfaces. Areas dominated by built-up structures correspond to higher ecological resistance, while non-built areas correspond to lower resistance. The NDBI values are grouped into five resistance classes to reflect this gradient.
  
-
 #### Land Use
-1-5 scale 
-1 - low: trees/shrub
-2 - low-moderate: grass/wetland
-3 - moderate: cropland
-4 - moderate-high:bare/water
-5 - high: built-up 
-(source)
+Th land use data is derived from ESA WorldCover 10m (ESA, 2021). This dataset provides a global land cover classification at 10 m spatial resolution based on Sentinel-1 and Sentinel-2 imagery. Different land cover types impose varying levels of resistance to species movement. Natural areas such as forests and shrublands are associated with low resistance, while highly modified environments such as built-up areas correspond to high resistance. Intermediate land use types, including grasslands, wetlands, and agricultural land, are assigned moderate resistance levels. The land use layer is classified into five categories reflecting increasing ecological resistance.
 
 #### Road Density
-parameters:
-search radius: Radius of the circular neighbourhood (in meters). - 10m
-pixel size:Pixel size of the output raster layer in layer units(in meters).-10m
-(source)
+Road networks are a major driver of landscape fragmentation and can significantly impede species movement. In addition to acting as physical barriers, roads introduce disturbance through noise, traffic, and increased human activity. Road density is used as a proxy for these effects and is calculated based on road network data within a defined spatial resolution. Areas with higher road density correspond to higher ecological resistance. The resulting values are classified into five classes ranging from low to very high resistance.
 
 
 #### Combining the layers
@@ -948,6 +935,8 @@ Science, 12, 1369072. https://doi.org/10.3389/fenvs.2024.1369072
 
 Dolman, N., & Verlinde, J. (2024). Achieving a Water-Resilient Rotterdam: Past, Present and Future Perspectives. Blue Papers, 3(1). https://doi.org/10.58981/bluepapers.2024.1.13
 
+European Space Agency (ESA). (2021). ESA WorldCover 10 m 2021 v200. https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCover_v200
+
 Estrada, E., & Bodin, Ö. (2008). Using network centrality measures to manage 
 landscape connectivity. Ecological Applications, 18(7), 1810–1825. 
 https://doi.org/10.1890/07-1419.1
@@ -983,6 +972,8 @@ for urban waterfront regeneration: a systematic review of frameworks, strategies
 and applications. City and Environment Interactions, 29, 100281. 
 https://doi.org/10.1016/j.cacint.2025.100281
 
+McRae, B.H., Dickson, B.G., Keitt, T.H. & Shah, V.B. (2008). Using circuit theory to model connectivity in ecology, evolution, and conservation. Ecology, 89(10), 2712–2724. — The foundational paper on circuit theory applied to landscape connectivity.
+
 Metro Vancouver. (2025). Evaluation of regional ecosystem connectivity. 
 https://metrovancouver.org/services/regional-planning/Documents/evaluation-of-regional-ecosystem-connectivity.pdf
 
@@ -1006,9 +997,13 @@ https://doi.org/10.1016/j.patrec.2008.10.015
 
 Stewart, I. D., & Oke, T. R. (2012). Local climate zones for urban temperature studies. Bulletin of the American Meteorological Society, 93(12), 1879–1900. https://doi.org/10.1175/BAMS-D-11-00019.1
 
+Wade, A.A., McKelvey, K.S. & Schwartz, M.K. (2015). Resistance-surface-based wildlife conservation connectivity modeling. USDA Forest Service General Technical Report RMRS-GTR-333. — Practical guidance on building resistance surfaces from landscape variables.
+
 World Urban Database and Access Portal Tools (WUDAPT). (n.d.). Local climate zones. https://www.wudapt.org/lcz/
 
 Wu, J., Li, X., Luo, Y., & Zhang, D. (2021). Spatiotemporal effects of urban sprawl on habitat quality in the Pearl River Delta from 1990 to 2018. *Scientific Reports*, *11*, Article 13981. https://doi.org/10.1038/s41598-021-92916-3
+
+Zeller, K.A., McGarigal, K. & Whiteley, A.R. (2012). Estimating landscape resistance to movement: a review. Landscape Ecology, 27(6), 777–797. — The main review paper on resistance surfaces, covering 96 studies.
 
 Zhuohong Li, Wei He, Mofan Cheng, Jingxin Hu, Xiao An, Yan Huang, Guangyi 
 Yang, & Hongyan Zhang. (2023). SinoLC-1: the first 1-meter resolution 

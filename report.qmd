@@ -936,7 +936,8 @@ Finally, the Nature-based Solutions chapter could be developed further. Due to t
 ## AI Statement
 
 
-In some cases, AI was used as a teacher to understand the complex applications and quickly grasp the results they produced. It helped us fix mistakes and spot inconsistencies in our results.
+In some cases, AI was used as a teacher to understand the complex applications and quickly grasp the results they produced. It helped us fix mistakes and spot inconsistencies in our results. Additionally, AI was used to perform spelling checks on parts of text to assist with analysis steps in QGIS.
+
 
 ## Reference List
 

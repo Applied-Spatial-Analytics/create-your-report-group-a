@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,7 +72,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="report_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="report_files/libs/quarto-html/anchor.min.js"></script>
 <link href="report_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="report_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="report_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="report_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="report_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -213,9 +213,6 @@ Figure&nbsp;2: Methodological workflow of the study.
 </div>
 <section id="data" class="level3">
 <h3 class="anchored" data-anchor-id="data">Data</h3>
-</section>
-<section id="data-1" class="level3">
-<h3 class="anchored" data-anchor-id="data-1">Data</h3>
 <p>notes: ESA WorldCover 10m v200 - https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCover_v200#bands The European Space Agency (ESA) WorldCover 10 m 2021 product provides a global land cover map for 2021 at 10 m resolution based on Sentinel-1 and Sentinel-2 data. The WorldCover product comes with 11 land cover classes and has been generated in the framework of the ESA WorldCover project, part of the 5th Earth Observation Envelope Programme (EOEP-5) of the European Space Agency.</p>
 <p>LCZ maps for Rotterdam and Guangzhou were obtained from the LCZ Generator (https://lcz-generator.rub.de/global-lcz-map)</p>
 <section id="envelope" class="level4">
@@ -237,7 +234,7 @@ Figure&nbsp;3: Envelope creation in Rotterdam.
 <section id="sec-spatialgrid" class="level4">
 <h4 class="anchored" data-anchor-id="sec-spatialgrid">Spatial Grid</h4>
 <p>A regular spatial grid of 500 × 500 m cells was constructed for each city in QGIS software (Vector Research Tools → Create Grid), covering the set envelope boundary of each city. The grid was created specifically for the typology construction process, providing a consistent spatial unit for aggregating and comparing data layers.</p>
-<p>A cell size of 500 × 500 m was chosen to match the dispersal distance parameter (d = 500 m) used in the Graphab connectivity analysis (see <a href="#sec-patches" class="quarto-xref">Section&nbsp;3.3.2</a>). The same distance ensures that each cell somewhat corresponds to the spatial scale at which ecological connectivity is assessed, making the typology meaningful in relation to the crucial connectivity metrics.</p>
+<p>A cell size of 500 × 500 m was chosen to match the dispersal distance parameter (d = 500 m) used in the Graphab connectivity analysis (see <a href="#sec-patches" class="quarto-xref">Section&nbsp;3.2.2</a>). The same distance ensures that each cell somewhat corresponds to the spatial scale at which ecological connectivity is assessed, making the typology meaningful in relation to the crucial connectivity metrics.</p>
 </section>
 <section id="local-climate-zones" class="level4">
 <h4 class="anchored" data-anchor-id="local-climate-zones">Local Climate Zones</h4>
@@ -274,11 +271,31 @@ Figure&nbsp;5: Guangzhou Local Climate Zones
 <p>In this application, Core represents the interior of large patches of green infrastructure; Islet depicts small, isolated fragments with no core area; Perforation marks the margin of an opening or gap within a larger patch; Edge is the outer boundary zone where a patch meets the surrounding urban areas; Bridge and Loop describe narrow, corridor structures connecting two separate core areas or looping back into the same one; and Branch is narrow, dead-end attached to only one core area.</p>
 <p>Since MSPA requires a binary foreground/background input, the first step was to derive such a mask from the ESA WorldCover v200 land-cover product (10 m resolution), which classifies the land surface into eleven categories: tree cover, shrubland, grassland, cropland, built-up, bare/sparse vegetation, snow/ice, permanent water bodies, herbaceous wetland, mangroves, and moss/lichen. This reclassification was carried out in Google Earth Engine, where the WorldCover layer was reclassified so that ecologically relevant classes (tree cover, shrubland, grassland, cropland, herbaceous wetland, and mangroves) were assigned a value of 1 (foreground), while built-up land, bare/sparse vegetation, permanent water bodies and snow/ice were assigned a value of 0 (background, representing the non-ecological matrix). The resulting binary raster was exported as a GeoTIFF and imported into QGIS for the MSPA analysis itself.</p>
 <p>The MSPA analysis was performed in QGIS using the MSPA plugin from the European Commission’s Forest Joint Research Centre.</p>
-<p>Three parameters are used in MSPA segments. Foreground connectivity, which determines whether diagonally touching pixels count as connected, was set to 8-connectivity rather than 4-connectivity, since ecological movement (animals) is not restricted to the four directions. Edge width, which sets the thickness of the buffer zone separating core area from the surrounding matrix, was set to 5 pixels; at WorldCover’s 10 m resolution this corresponds to a 50 m buffer. Transition, which determines whether bridge or loop pixels passing through an edge or perforation to a core area are shown separately, was switched on.</p>
+<p>Three parameters are used in MSPA segments. Foreground connectivity, which determines whether diagonally touching pixels count as connected, was set to 8-connectivity rather than 4-connectivity, since ecological movement (animals) is not restricted to the four directions. Edge width, which sets the thickness of the buffer zone separating core area from the surrounding matrix, was set to 5 pixels; at WorldCover’s 10 m resolution this corresponds to a 50 m buffer. Transition, which determines whether bridge or loop pixels passing through an edge or perforation to a core area are shown separately, was switched on. An overview of all the steps taken can be seen in <a href="#fig-mspa_steps" class="quarto-xref">Figure&nbsp;7</a>.</p>
+<div id="fig-mspa_steps" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mspa_steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/mspa_infographic.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mspa_steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Overview MSPA steps.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="sec-patches" class="level4">
 <h4 class="anchored" data-anchor-id="sec-patches">Patches and Link Importance (through Graphab)</h4>
-<p>To conduct the ecological connectivity analysis, the software of Grapnhab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor &amp; Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data.</p>
+<p>To conduct the ecological connectivity analysis, the software of Grapnhab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor &amp; Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data. A visual simplification can be seen in</p>
+<div id="fig-mspa_steps" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mspa_steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/graph%20network%20simple%20v2.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mspa_steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Graph visualisation.
+</figcaption>
+</figure>
+</div>
 <p>By loading the .tiff file created by the MSPA analysis, Graphab can read the landcover classification and filter on those accordingly. We filtered on land use code “17” to select the core areas as habitat patches, Graphab then created a linkset to visualise all the possible connections between each habitat patch (to later use for the calculations).</p>
 <p>After loading everything into Graphab, we then continued by making use of the weighted metrics. To understand the importance of each patch and link, two different metrics are used. Before you can run metrics calculations, you first need to create a graph. While creating the graph, we selected the linkset along with a distance threshold (by doing this, it only kept the links within this threshold). For the selected areas in Rotterdam and Guangzhou, multiple distances were tested to understand which number would give a meaningful result. With a short distance, it would result into giving too much importance to smaller links, but with a distance that is too large, it would not take the smaller links into consideration as much. We therefore landed on a value of 10 000m.</p>
 <p>For the patches, delta Probability of Connectivity Index (dPC) was used. dPC measures how much overall connectivity (PC) drops when you remove a patch (Metro Vancouver, 2025). It is a metric that measures the individual contribution of a specific habitat patch to the overall connectivity of the landscape. It represents the change in the PC index when a particular patch is removed, thereby assessing the importance of that patch in maintaining landscape connectivity. This metric is composed of three components: dPCintra, a measure of intrapatch connectivity, dPCconnect, the importance of a patch for connecting other patches together, and dPCflux, a measure of how connected a patch is to the network. The sum of these fractions equals the total delta Probability of Connectivity. This calculation was sadly only available for patches in Graphab, so for the links a different metric was used.</p>
@@ -290,7 +307,7 @@ Figure&nbsp;5: Guangzhou Local Climate Zones
 <section id="typology-construction" class="level4">
 <h4 class="anchored" data-anchor-id="typology-construction">Typology Construction</h4>
 <p>After Patches and Link Importance analysis and MSPA, it is possible to develop typologies based on their outcomes for broader understanding of ecological connectity and urban/green matrix in both cities. Typology is a classification of areas based on shared combinations of characteristics (source here). To identify spatial character of ecology and its connectivity in Rotterdam and Guangzhou, a typology was constructed for both cities using the same set of variables and spatial unit, allowing direct quantitative comparison between the two cities.</p>
-<p>To construct this typology, two crucial aspects need to be defined: the variables used to characterise each area, and the spatial unit at which these variables were measured. The variables used were Local Climate Zones, ecological connectivity (betweenness centrality), and green patch characteristics, as these together capture both the urban characteristics and the ecological functioning of an area. The spatial unit used was a fixed-size grid of 500 × 500 m cells (see <a href="#sec-spatialgrid" class="quarto-xref">Section&nbsp;3.2.2</a>). A fixed grid was used because it allows different variables to be aggregated and compared.</p>
+<p>To construct this typology, two crucial aspects need to be defined: the variables used to characterise each area, and the spatial unit at which these variables were measured. The variables used were Local Climate Zones, ecological connectivity (betweenness centrality), and green patch characteristics, as these together capture both the urban characteristics and the ecological functioning of an area. The spatial unit used was a fixed-size grid of 500 × 500 m cells (see <a href="#sec-spatialgrid" class="quarto-xref">Section&nbsp;3.1.2</a>). A fixed grid was used because it allows different variables to be aggregated and compared.</p>
 <p>This typology serves as a broad ecological overview of both cities that summarises, at a coarse spatial resolution, where green connectivity is strong, where it is weak or absent, and what kind of green structure dominates each area. It is not intended to pinpoint specific intervention sites, but to provide the wider ecological context which enables more detailed analyses performed further. Combined with the MSPA and patch/link importance results (<a href="#sec-results-ecoconnect" class="quarto-xref">Section&nbsp;4.1</a>), this typology was used to guide the selection of the smaller zoom-in study areas examined in more detail later in this report.</p>
 <section id="clustering" class="level5">
 <h5 class="anchored" data-anchor-id="clustering">Clustering</h5>
@@ -480,8 +497,8 @@ Figure&nbsp;5: Guangzhou Local Climate Zones
 <h3 class="anchored" data-anchor-id="sec-results-ecoconnect">Current Ecological Connectivity Status</h3>
 <section id="morphological-spatial-pattern-analysis-mspa" class="level4">
 <h4 class="anchored" data-anchor-id="morphological-spatial-pattern-analysis-mspa">Morphological Spatial Pattern Analysis (MSPA)</h4>
-<p>After running the MSPA analysis (<a href="#sec-mspa" class="quarto-xref">Section&nbsp;3.3.1</a>) on the Rotterdam envelope area and analysing the distribution of classes, the green network (Core, Islet, Perforation, Edge, Loop, Bridge, Branch) covers 45.77% of it, while background (the non-green matrix: Background, Core-Opening, Border-Opening) 54.23%.</p>
-<p><a href="#fig-MSPArt" class="quarto-xref">Figure&nbsp;6</a> shows large green cores, but this is partly because the foreground includes a broad set of land cover classes (Tree, Shrubland, Grassland, Cropland, Wetland, and Mangroves), so some of these cores may not be fully representative of high-quality ecological habitat.</p>
+<p>After running the MSPA analysis (<a href="#sec-mspa" class="quarto-xref">Section&nbsp;3.2.1</a>) on the Rotterdam envelope area and analysing the distribution of classes, the green network (Core, Islet, Perforation, Edge, Loop, Bridge, Branch) covers 45.77% of it, while background (the non-green matrix: Background, Core-Opening, Border-Opening) 54.23%.</p>
+<p><a href="#fig-MSPArt" class="quarto-xref">Figure&nbsp;8</a> shows large green cores, but this is partly because the foreground includes a broad set of land cover classes (Tree, Shrubland, Grassland, Cropland, Wetland, and Mangroves), so some of these cores may not be fully representative of high-quality ecological habitat.</p>
 <p>This is a useful basis for the patch and link importance analysis that follows (<a href="#sec-result-ecoconnect-roffa" class="quarto-xref">Section&nbsp;4.1.2</a>). The green patches should not be treated as equally meaningful nodes. MSPA analysis is dominated by small cores like the tail-like fragments (likely isolated street trees, small gardens and other small green elements. They are numerous but contribute negligibly to the total core area and are unlikely to be significant habitats on their own. However, these fragments could still matter as stepping stones for connectivity. This supports running the patch and link importance analysis specifically on the dominant core patches, since they are the backbone of the green network. Moreover, two smaller study areas within the city are also examined more closely, using metrics like NDVI, NDBI, road density, and land-cover resistance, to assess habitat quality and connectivity in more detail than the broader MSPA classification alone can provide.</p>
 <div id="fig-MSPArt" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -489,7 +506,7 @@ Figure&nbsp;5: Guangzhou Local Climate Zones
 <img src="images/RT_mspafinal@4x.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MSPArt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Morphological Spatial Pattern Analysis in Rotterdam
+Figure&nbsp;8: Morphological Spatial Pattern Analysis in Rotterdam
 </figcaption>
 </figure>
 </div>
@@ -504,7 +521,7 @@ Figure&nbsp;6: Morphological Spatial Pattern Analysis in Rotterdam
 <img src="images/Rotterdam_connectivity_envelope.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-connectivity-renvelope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Ecological connectivity within the Envelope.
+Figure&nbsp;9: Ecological connectivity within the Envelope.
 </figcaption>
 </figure>
 </div>
@@ -514,11 +531,11 @@ Figure&nbsp;7: Ecological connectivity within the Envelope.
 <img src="images/Rotterdam_connectivity_rboundary.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-connectivity-rboundary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Ecological connectivity within the boundary of Rotterdam.
+Figure&nbsp;10: Ecological connectivity within the boundary of Rotterdam.
 </figcaption>
 </figure>
 </div>
-<p>As can be seen in <a href="#fig-connectivity-rboundary" class="quarto-xref">Figure&nbsp;8</a>, we can now identify spaces within the boundary of Rotterdam that could be improved. These, together with some additional analysis on clustering, will then form the basis of choosing the zoom in locations.</p>
+<p>As can be seen in <a href="#fig-connectivity-rboundary" class="quarto-xref">Figure&nbsp;10</a>, we can now identify spaces within the boundary of Rotterdam that could be improved. These, together with some additional analysis on clustering, will then form the basis of choosing the zoom in locations.</p>
 </section>
 <section id="cluster-profiles" class="level4">
 <h4 class="anchored" data-anchor-id="cluster-profiles">Cluster Profiles</h4>
@@ -702,7 +719,7 @@ Figure&nbsp;8: Ecological connectivity within the boundary of Rotterdam.
 <img src="images/GZ_mspafinal@4x.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MSPAgz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: Morphological Spatial Pattern Analysis in Guangzhou
+Figure&nbsp;11: Morphological Spatial Pattern Analysis in Guangzhou
 </figcaption>
 </figure>
 </div>
@@ -715,7 +732,7 @@ Figure&nbsp;9: Morphological Spatial Pattern Analysis in Guangzhou
 <img src="images/lol1@4x.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-connectivity-first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: Ecological connectivity within the Envelope.
+Figure&nbsp;12: Ecological connectivity within the Envelope.
 </figcaption>
 </figure>
 </div>
@@ -725,7 +742,7 @@ Figure&nbsp;10: Ecological connectivity within the Envelope.
 <img src="images/lol2@4x.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-connectivity-second-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11: Ecological connectivity within the boundary of Guangzhou
+Figure&nbsp;13: Ecological connectivity within the boundary of Guangzhou
 </figcaption>
 </figure>
 </div>
@@ -910,14 +927,14 @@ Figure&nbsp;11: Ecological connectivity within the boundary of Guangzhou
 </section>
 <section id="zoom-ins-rotterdam" class="level3">
 <h3 class="anchored" data-anchor-id="zoom-ins-rotterdam">Zoom Ins Rotterdam</h3>
-<p><a href="#fig-zoomin-roffa" class="quarto-xref">Figure&nbsp;12</a> presents the two zoom-in locations selected for Rotterdam, chosen for their comparability. The context of the two tiles, however, is very different: zoom-in 1 focuses on a heavily industrialised area at the Port of Rotterdam, while zoom-in 2 examines a neighbourhood situated at the boundary of the municipality. The additional analysis conducted on these smaller tiles is presented in the next section.</p>
+<p><a href="#fig-zoomin-roffa" class="quarto-xref">Figure&nbsp;14</a> presents the two zoom-in locations selected for Rotterdam, chosen for their comparability. The context of the two tiles, however, is very different: zoom-in 1 focuses on a heavily industrialised area at the Port of Rotterdam, while zoom-in 2 examines a neighbourhood situated at the boundary of the municipality. The additional analysis conducted on these smaller tiles is presented in the next section.</p>
 <div id="fig-zoomin-roffa" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-zoomin-roffa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/Rotterdam_zoomin_intro.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zoomin-roffa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;12: Zoom in locations in Rotterdam
+Figure&nbsp;14: Zoom in locations in Rotterdam
 </figcaption>
 </figure>
 </div>
@@ -943,7 +960,7 @@ Figure&nbsp;12: Zoom in locations in Rotterdam
 <img src="images/eco_resistance_roffa1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ecores-roffa1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13: Ecological resistance analysis layers zoom in 1.
+Figure&nbsp;15: Ecological resistance analysis layers zoom in 1.
 </figcaption>
 </figure>
 </div>
@@ -953,7 +970,7 @@ Figure&nbsp;13: Ecological resistance analysis layers zoom in 1.
 <img src="images/eco_resistance_roffa2.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ecores-roffa2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;14: Ecological resistance analysis layers zoom in 2.
+Figure&nbsp;16: Ecological resistance analysis layers zoom in 2.
 </figcaption>
 </figure>
 </div>
@@ -969,7 +986,7 @@ Figure&nbsp;14: Ecological resistance analysis layers zoom in 2.
 <img src="images/total_eco_resistance_roffa1.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ecores-tot-roffa1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;15: Ecological resistance zoom in 1 (layers combined).
+Figure&nbsp;17: Ecological resistance zoom in 1 (layers combined).
 </figcaption>
 </figure>
 </div>
@@ -979,7 +996,7 @@ Figure&nbsp;15: Ecological resistance zoom in 1 (layers combined).
 <img src="images/total_eco_resistance_roffa2.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ecores-tot-roffa2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;16: Ecological resistance zoom in 2 (layers combined).
+Figure&nbsp;18: Ecological resistance zoom in 2 (layers combined).
 </figcaption>
 </figure>
 </div>
@@ -1036,7 +1053,7 @@ Figure&nbsp;16: Ecological resistance zoom in 2 (layers combined).
 <img src="images/nr2@4x.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zoom1-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17: Ecological resistance analysis layers zoom in 1.
+Figure&nbsp;19: Ecological resistance analysis layers zoom in 1.
 </figcaption>
 </figure>
 </div>
@@ -1046,7 +1063,7 @@ Figure&nbsp;17: Ecological resistance analysis layers zoom in 1.
 <img src="images/nr1@4x.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zoom2-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18: Ecological resistance analysis layers zoom in 2.
+Figure&nbsp;20: Ecological resistance analysis layers zoom in 2.
 </figcaption>
 </figure>
 </div>
@@ -1062,7 +1079,7 @@ Figure&nbsp;18: Ecological resistance analysis layers zoom in 2.
 <img src="images/nr4@4x.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resistance-first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;19: Ecological resistance zoom in 1 (layers combined).
+Figure&nbsp;21: Ecological resistance zoom in 1 (layers combined).
 </figcaption>
 </figure>
 </div>
@@ -1072,7 +1089,7 @@ Figure&nbsp;19: Ecological resistance zoom in 1 (layers combined).
 <img src="images/nr3@4x.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resistance-second-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20: Ecological resistance zoom in 2 (layers combined).
+Figure&nbsp;22: Ecological resistance zoom in 2 (layers combined).
 </figcaption>
 </figure>
 </div>
@@ -1100,14 +1117,14 @@ Figure&nbsp;20: Ecological resistance zoom in 2 (layers combined).
 <h3 class="anchored" data-anchor-id="guangzhou-zoom-in-1">Guangzhou: Zoom-in 1</h3>
 <p>Overlaying the highest-importance links with the combined ecological resistance surface in zoom-in area 1 (Figure 18) shows that the overall resistance in the Tianhe District is predominantly very low to low, reflecting large and continuous patches of subtropical forest. However, the highest-importance links cross several broader zones of moderate to high resistance: wider patches of urban fabric with buildings, paved surfaces and limited vegetation that interrupt the otherwise continuous forest matrix. Within these urban zones, red lines indicate that roads add an additional layer of very high resistance. The barrier to connectivity is therefore a combination of urban built fabric and the roads embedded within it.</p>
 <p>Two complementary NbS are proposed. First, for the roads within the urban fabric, vegetated wildlife underpasses are proposed at the specific locations where the highest-importance links cross them. As demonstrated for Rotterdam zoom-in 2, Cork et al.&nbsp;(2024) confirm that native vegetation at and around crossing structures significantly increases their use by wildlife, and that verge continuity guides species movement toward crossing points. Given the subtropical forest context, underpasses should connect directly to existing forest edge vegetation on both sides.</p>
-<p>Second, for the broader urban fabric zones between the forest patches, green roofs, green walls and pocket parks are proposed as stepping stone NbS to increase the permeability of the urban matrix along the link corridors (<a href="#fig-greenroofs" class="quarto-xref">Figure&nbsp;21</a>). Madre et al.&nbsp;(2018) show that green roofs and green walls can function as stepping stones in fragmented urban areas, enhancing species dispersal through the urban matrix. This is further supported by Joshi &amp; Teller (2021), whose systematic review explicitly identifies green roofs as a medium for connecting urban green areas, providing potential for habitat connectivity and maintenance of the ecological network. Importantly, Joshi &amp; Teller (2021) note that building height is a determining factor for biodiversity effectiveness, and call for future research to include taller buildings in ecological network analyses, a relevant consideration given the high-rise character of parts of the Tianhe urban fabric. Green roofs should therefore be prioritised on lower-rise buildings along the link trajectory, where their connectivity potential is greatest.</p>
+<p>Second, for the broader urban fabric zones between the forest patches, green roofs, green walls and pocket parks are proposed as stepping stone NbS to increase the permeability of the urban matrix along the link corridors (<a href="#fig-greenroofs" class="quarto-xref">Figure&nbsp;23</a>). Madre et al.&nbsp;(2018) show that green roofs and green walls can function as stepping stones in fragmented urban areas, enhancing species dispersal through the urban matrix. This is further supported by Joshi &amp; Teller (2021), whose systematic review explicitly identifies green roofs as a medium for connecting urban green areas, providing potential for habitat connectivity and maintenance of the ecological network. Importantly, Joshi &amp; Teller (2021) note that building height is a determining factor for biodiversity effectiveness, and call for future research to include taller buildings in ecological network analyses, a relevant consideration given the high-rise character of parts of the Tianhe urban fabric. Green roofs should therefore be prioritised on lower-rise buildings along the link trajectory, where their connectivity potential is greatest.</p>
 <div id="fig-greenroofs" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-greenroofs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/greenroofs.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-greenroofs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;21: Schematic representing the diverse processes involved in conventional roofs and green roofs (Joshi &amp; Teller, 2021).
+Figure&nbsp;23: Schematic representing the diverse processes involved in conventional roofs and green roofs (Joshi &amp; Teller, 2021).
 </figcaption>
 </figure>
 </div>

@@ -88,7 +88,6 @@ described in detail in the sections below.
 ![Methodological workflow of the study.](images/methods_flowchart.png){#fig-methodology width=100%}
 
 ### Data
-### Data
 notes: 
 ESA WorldCover 10m v200 - https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCover_v200#bands
 The European Space Agency (ESA) WorldCover 10 m 2021 product provides a global land cover map for 2021 at 10 m resolution based on Sentinel-1 and Sentinel-2 data. The WorldCover product comes with 11 land cover classes and has been generated in the framework of the ESA WorldCover project, part of the 5th Earth Observation Envelope Programme (EOEP-5) of the European Space Agency. 
@@ -139,12 +138,17 @@ Since MSPA requires a binary foreground/background input, the first step was to 
 
 The MSPA analysis was performed in QGIS using the MSPA plugin from the European Commission's Forest Joint Research Centre. 
 
-Three parameters are used in MSPA segments. Foreground connectivity, which determines whether diagonally touching pixels count as connected, was set to 8-connectivity rather than 4-connectivity, since ecological movement (animals) is not restricted to the four directions. Edge width, which sets the thickness of the buffer zone separating core area from the surrounding matrix, was set to 5 pixels; at WorldCover's 10 m resolution this corresponds to a 50 m buffer. Transition, which determines whether bridge or loop pixels passing through an edge or perforation to a core area are shown separately, was switched on.
+Three parameters are used in MSPA segments. Foreground connectivity, which determines whether diagonally touching pixels count as connected, was set to 8-connectivity rather than 4-connectivity, since ecological movement (animals) is not restricted to the four directions. Edge width, which sets the thickness of the buffer zone separating core area from the surrounding matrix, was set to 5 pixels; at WorldCover's 10 m resolution this corresponds to a 50 m buffer. Transition, which determines whether bridge or loop pixels passing through an edge or perforation to a core area are shown separately, was switched on. An overview of all the steps taken can be seen in @fig-mspa_steps. 
+
+![Overview MSPA steps.](images/mspa_infographic.png){#fig-mspa_steps width=100%}
 
 
 #### Patches and Link Importance (through Graphab) {#sec-patches}
 
-To conduct the ecological connectivity analysis, the software of Grapnhab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor & Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data.
+To conduct the ecological connectivity analysis, the software of Grapnhab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor & Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data. A visual simplification can be seen in 
+
+![Graph visualisation.](images/graph network simple v2.png){#fig-mspa_steps width=100%}
+
 
 By loading the .tiff file created by the MSPA analysis, Graphab can read the landcover classification and filter on those accordingly. We filtered on land use code “17” to select the core areas as habitat patches, Graphab then created a linkset to visualise all the possible connections between each habitat patch (to later use for the calculations).
 

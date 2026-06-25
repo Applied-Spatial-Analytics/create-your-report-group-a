@@ -1,5 +1,5 @@
 ---
-title: "Ecological Connectivity Analysis in Delta Cities - a case study in Rotterdam and Guangzhou"
+title: "Ecological Connectivity Analysis in Delta Cities -  <br> A Case Study in Rotterdam and Guangzhou"
 subtitle: "Project report of Group A"
 author:
   - name: "Faried Nurmohamed"
@@ -109,7 +109,7 @@ For both Rotterdam and Guangzhou, we created a minimum bounding geometry around 
 ![Envelope creation in Rotterdam.](images/envelope_rotterdam.png){#fig-envelope-roffa width=100%}
 
 
-The same principle is done vor Guangzhou, but this time the buffer exceeds the 5 km on some sides to match a similar size to Rotterdam.
+The same principle is done for Guangzhou, but this time the buffer exceeds the 5 km on some sides to match a similar size to Rotterdam.
 
 
 ![Envelope creation in Guanzhou](images/GZintroductory.png){#fig-envelope-intro width=100%}
@@ -122,12 +122,12 @@ construction process, providing a consistent spatial unit for aggregating and co
 A cell size of 500 × 500 m was chosen to match the dispersal distance parameter (d = 500 m) used in the Graphab connectivity analysis (see @sec-patches). The same distance ensures that each cell somewhat corresponds to the spatial scale at which ecological connectivity is assessed, making the typology meaningful in relation to the crucial connectivity metrics.
 
 #### Local Climate Zones
-In order to make a comparable the description of urban morphology across both cities, the Local Climate Zone (LCZ) classification scheme developed by Stewart and Oke (2012) was used. The classification identfies 17 zones based urban on surface structure (e.g. building and tree height and density) and surface cover (pervious versus impervious). 
+In order to make a comparable the description of urban morphology across both cities, the Local Climate Zone (LCZ) classification scheme developed by Stewart and Oke (2012) was used. The classification identifies 17 zones based urban on surface structure (e.g. building and tree height and density) and surface cover (previous versus impervious). 
 
 The LCZ typology is a universal urban classification it focuses specifically on urban and rural landscape types, distinguished through 10 built types (ranging from compact high-rise to heavy industry) and 7 land cover types (ranging from dense trees to water). Its main advantage lies in the diversity of urban classes, which are easily interpretable and globally consistent. 
 
 
-@fig-lczrt and @fig-lczgz below, depict the distribution of Local Climate Zones in the choosen Cities. 
+@fig-lczrt and @fig-lczgz below, depict the distribution of Local Climate Zones in the chosen cities. 
 
 ![Rotterdam Local Climate Zones](images/lcz_rt-1){#fig-lczrt}
 
@@ -154,7 +154,7 @@ Three parameters are used in MSPA segments. Foreground connectivity, which deter
 
 #### Patches and Link Importance (through Graphab) {#sec-patches}
 
-To conduct the ecological connectivity analysis, the software of Grapnhab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor & Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data. The links show the Euclidian distance between two patches. A visual simplification can be seen in @fig-graph_con.
+To conduct the ecological connectivity analysis, the software of Graphab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor & Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data. The links show the Euclidian distance between two patches. A visual simplification can be seen in @fig-graph_con.
 
 ![Graph visualisation.](images/graph network simple v2.png){#fig-graph_con width=100%}
 
@@ -869,7 +869,7 @@ Together these three interventions directly target all identified resistance
 barriers, the river, the roads, and the urban matrix, along the trajectories of 
 the highest-importance links connecting the existing park patches.
 
-###Concluding NbS table 
+### Concluding NbS table 
 
 | City | Zoom-in | Barrier (Land Use) | Proposed NbS | Advantages | Disadvantages | Source |
 |------|---------|-------------------|--------------|------------|---------------|--------|
@@ -925,6 +925,13 @@ Furthermore, patch-link connectivity represents connectivity in an abstract way 
 
 
 ## Recommendations & Further Research
+For future research, our methodology could be strengthened by addressing the limitations identified in this study. First, the envelope boundary strategy was introduced to reduce computation time, but applying the analysis to a larger area without this restriction could produce a more realistic representation of connectivity and lead to more meaningful results. Second, the same analytical pipeline could be applied to multiple species rather than a single generalised case. Because species differ in dispersal distance and probability of movement, a multi-species approach would likely provide clearer insight into which methodological choices matter most.
+
+Another improvement would be to assess ecological resistance earlier in the process, rather than only at the zoom-in scale. Integrating resistance analysis at an earlier stage could reveal important barriers sooner and potentially influence the selection of zoom-in areas. In addition, including more layers to building up the overall ecological resistance could provide a more comprehensive understanding of movement constraints.
+
+A major recommendation is to strengthen comparability between the two cities, since they differ in scale and data context. A more detailed preliminary analysis of both areas would improve contextual understanding and support better decision-making throughout the research process. For Rotterdam and Dutch case studies more broadly, detailed neighbourhood typologies are available and could add valuable insight at larger zoom-in scales. However, comparable detail could not be produced for China within the available time frame. Establishing a stronger methodological bridge between both contexts would therefore be highly beneficial and may resolve several of the comparability issues encountered in this study.
+
+Finally, the Nature-based Solutions chapter could be developed further. Due to time constraints, this part relied heavily on literature to justify design choices, but future research could make it more visual and operational. Classifying solutions into typologies would improve reproducibility and make them easier to transfer to other areas. Representing these solutions as building blocks that can be applied in other contexts would be a strong final step to connect the analysis to implementation.
 
 ## Reproducibility Statement
 

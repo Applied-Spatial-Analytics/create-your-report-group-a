@@ -86,7 +86,7 @@ construction, and zoom-in area selection, to a final ecological resistance
 analysis and the proposal of targeted Nature-based Solutions. Each step is 
 described in detail in the sections below.
 
-![Methodological workflow of the study.](images/methods_flowchart.png){#fig-methodology width=100%}
+![Methodological workflow of the study.](images/methods){#fig-methodology width=100%}
 
 ### Data
 
@@ -824,8 +824,9 @@ consideration given the high-rise character of parts of the Tianhe urban fabric.
 Green roofs should therefore be prioritised on lower-rise buildings along the 
 link trajectory, where their connectivity potential is greatest.
 
-![Schematic representing the diverse processes involved in conventional roofs 
-and green roofs (Joshi & Teller, 2021).](images/greenroofs.png){#fig-greenroofs width=100%}
+
+![Schematic representing the diverse processes involved in conventional roofs and green roofs (josh & Teller).](images/greenroofs.png){#fig-greenroofs width=100%}
+
 
 Together these two interventions address both barrier types: the roads through 
 targeted crossing structures, and the urban matrix through a network of 

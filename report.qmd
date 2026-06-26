@@ -922,9 +922,6 @@ the highest-importance links connecting the existing park patches.
 
 
 
-
-## Conclusion
-
 ## Discussion
 This chapter reflects on the limitations of the methods used in this research, as well as key methodological choices made throughout the process. It addresses the consequences of the envelope size, the choice of Graphab as the connectivity analysis tool, the differences and similarities observed between Rotterdam and Guangzhou, clustering implications, and finally the implications of these findings for Nature-based Solutions.
 
@@ -949,6 +946,17 @@ Furthermore, patch-link connectivity represents connectivity in an abstract way 
  
 
 ### Differences and Similarities Between Cities
+
+#### Similarities
+
+In both study areas, the urban matrix clusters appear to be the most dominant land use type by cell count, covering 47% of Rotterdam's area and 31% of Guangzhou's. Furthermore, the most ecologically valuable patches (isolated quality patches) exhibit low BC (Betweenness-Centrality) in both areas,  pointing to a shared fundamental pattern of poor connectivity of the wider network. Additionally, despite different urban fabrics, transport infrastructure seems to be a universal barrier type. An additional high-activity shipping river barrier appears in both cities at least once (Nieuwe Waterweg in Rotterdam, Zhujiang in Haizhu District), a hard barrier that NbS alone cannot fully overcome. Lastly, the proposed NbS such as green roofs, road verge enhancements and crossing structures overlap significantly suggesting that the toolkit for urban ecological connectivity is relatively transferable even across diverging delta city contexts. 
+
+#### Differences
+
+Although Rotterdаm and Guаngzhou share a delta urban context аnd a common challenge of ecological fragmentation, their green networks differ in scale, composition, landscape context, and spatial distribution. The overall green network in Guаngzhou seems to be substantially more extensive and spatially distributed than the one in Rotterdam. Key corridor cells of Guаngzhou account for approximately 30% of the grid as compared to а mere 1% in Rotterdam highlighting a fundamentally greater difference in ecological connectivity across the study area. Additionally, while isolated quality patches occupy a comparable share of the grid in both study areas, approximately 7% in Rotterdam and 8.4% in Guangzhou, their ecological classification differs significantly. Rotterdam’s isolated quality patches consist predominantly of low plants (open polder grasslands), while Guаngzhou’s are almost entirely composed of dense trees (subtropical forest). 
+The landscape context through which the green network extends through diverges as well. While Rotterdam’s corridors run through open, low-vegetation polder land, Guangzhou’s extend through dense urban fabric.
+As for the spаtial distribution of the key corridors, Rotterdam has a single continuous corridor аlong the southwestern edge of the study area directly inside the biggest cluster of the isolated quality patch, whereas in Guаngzhou’s corridors form аn extensive web-like network spanning from the northern biggest isolated quality pаtch to the lower two-thirds of the study аrea. 
+
 
 ### Implications for NbS
 The Nature-based Solutions proposed in this study are directly grounded in the 
@@ -993,6 +1001,10 @@ constraints, such sites were not systematically identified in this study,
 particularly for Guangzhou. Future research that integrates land availability 
 data into the NbS selection process would likely produce more targeted and 
 implementable proposals.
+
+## Conclusion
+
+
 
 
 ## Recommendations & Further Research

@@ -7,9 +7,12 @@ Spatial Analytics 2026 course. The report analyses ecological connectivity
 in the delta cities Rotterdam and Guangzhou, and proposes targeted 
 Nature-based Solutions based on the findings.
 
+https://applied-spatial-analytics.github.io/create-your-report-group-a/
+
 ---
 
 ## Repository Structure
+
 create-your-report-group-a/
 
 ├── .github/              # GitHub Classroom configuration and feedback
@@ -20,17 +23,19 @@ create-your-report-group-a/
 
 │   └── rt_grid_clustering.gpkg   # Rotterdam grid with clustering variables
 
-├── images/               # All figures and maps used in the report
+├── docs/                 # Rendered site published via GitHub Pages
 
-├── report_files/         # Supporting files generated when rendering
+├── images/               # Source figures and maps used in the report
 
 ├── .gitignore            # Files excluded from version control
 
+├── .nojekyll             # Disables Jekyll processing on GitHub Pages
+
 ├── README.md             # This file
 
-├── asa2025-report.Rproj  # RStudio project file
+├── _quarto.yml           # Quarto project configuration
 
-├── report.html           # Rendered HTML output of the report
+├── asa2025-report.Rproj  # RStudio project file
 
 └── report.qmd            # Main Quarto report file (source)
 
@@ -45,6 +50,8 @@ from this file.
 
 **report.html** — The rendered HTML output. Open this in a browser to
 view the full report without needing to render it yourself.
+
+**docs/** — The rendered site published via GitHub Pages.
 
 **data/** — Contains the GeoPackage files for Rotterdam and Guangzhou,
 which store the spatial grid with betweenness centrality, patch count,
@@ -89,13 +96,4 @@ Open it in a browser to view the full report.
 **stage → commit → push**
 
 ---
-
-## Feedback
-In the **Pull requests** section of your repository, you will find a
-**Feedback** pull request. We will use this pull request to provide
-feedback on your report throughout the quarter. You can also use this
-pull request to ask questions about the feedback.
-
-## Asking for help
-If you have questions about the assignment, please ask them in
-[Discussions](https://github.com/sdgis-edu-tud/asa2025/discussions).
+com/sdgis-edu-tud/asa2025/discussions).

@@ -1,0 +1,1775 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Faried Nurmohamed">
+<meta name="author" content="Karlijn Huissen">
+<meta name="author" content="Austėja Tarvydaitė">
+<meta name="author" content="Marta Zolnowska">
+
+<title>Ecological Connectivity Analysis in Delta Cities -   A Case Study in Rotterdam and Guangzhou</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="report_files/libs/clipboard/clipboard.min.js"></script>
+<script src="report_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="report_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="report_files/libs/quarto-html/popper.min.js"></script>
+<script src="report_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="report_files/libs/quarto-html/anchor.min.js"></script>
+<link href="report_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="report_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="report_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="report_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Ecological Connectivity Analysis in Delta Cities - <br> A Case Study in Rotterdam and Guangzhou</h1>
+<p class="subtitle lead">Project report of Group A</p>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Faried Nurmohamed </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            MSc Geomatics
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Karlijn Huissen </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            MSc Geomatics
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Austėja Tarvydaitė </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            MSc Geomatics
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Marta Zolnowska </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            MSc Geomatics
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Urban ecology is a critical issue in rapidly urbanizing regions (Braaker et al., 2017). Cities are not only built environments for people but also habitats and movement corridors for many plant and animal species. As urban development intensifies, planners must consider how this change affects biodiversity, habitat quality, and ecological connectivity (IUCN Urban Alliance, 2021). Ecological connectivity describes how easily species can move across a landscape, taking into account how features like habitat patches either support or hinder their movement (Kirk et al., 2023).</p>
+<p>This issue is especially important in delta cities, where dense urban growth often happens in ecologically sensitive landscapes (Wu et al., 2021). Delta cities face issues such as flooding risk, land subsidence, habitat fragmentation, and declining ecosystem services, which can be amplified by climate change and further urban development (Wu et al., 2021). In the Pearl River Delta, where the city of Guangzhou is situated, rapid urban sprawl and high-intensity human activity have been linked to habitat-quality decline over time, showing how urbanization can gradually harm nature in delta regions (Wu et al., 2021). Rotterdam is another clear example of a delta city where urban form and ecology are tightly connected. As a city in the Rhine-Meuse estuary, Rotterdam faces similar environmental and planning challenges (Dolman &amp; Verlinde, 2024).</p>
+<p>Nature-based solutions can aid in addressing ecological connectivity in urban and delta landscapes. Measures such as green corridors, parks, tidal edges, and restored waterways can improve their state (Mollashahi et al., 2020).</p>
+<p>While previous studies have shown that urban sprawl can reduce habitat quality and that nature-based solutions can support resilience (Wu et al., 2021), less attention has been paid to how these approaches interact in delta cities in comparative urban studies. More research is needed to assess how and where nature-based interventions help in restoring ecological systems in different urban settings. This study addresses this gap through the following research question:</p>
+<blockquote class="blockquote">
+<p><em>To what extent does green infrastructure connectivity vary across urban areas in delta cities Rotterdam and Guangzhou, and what does this imply for targeted Nature-based Solutions?</em></p>
+</blockquote>
+<p>The main objective of this research is to develop an informed Nature-based Solutions plan tailored to spatially comparable areas in both cities, with the aim of strengthening ecological connectivity across fragmented urban green networks. The objective is explored and pursued using following steps: (1) assessing the current status of ecological connectivity using betweenness centrality and patch connectivity analysis; (2) identifying comparable areas across both cities based on a multi-criteria clustering approach combining Local Climate Zones, connectivity metrics, and patch characteristics; (3) conducting a deeper spatial analysis of these comparable areas; and (4) proposing targeted Nature-based Solutions for them.</p>
+<p>This report is structured as follows. Section 2 introduces the two case study cities, Rotterdam and Guangzhou, and describes the datasets used. Section 3 outlines the methods, while sections 4 and 5 present the results for Rotterdam and Guangzhou respectively. Section 6 compares the findings across both cities and identifies comparable study areas. Section 7 proposes targeted Nature-based Solutions for each zoom-in location based on the identified barriers. The report concludes with a discussion of limitations, conclusions and recommendations for further research.</p>
+</section>
+<section id="case-study-area" class="level2">
+<h2 class="anchored" data-anchor-id="case-study-area">Case Study Area</h2>
+<p>This research focuses on two case studies: one in the Netherlands and one in China. The Dutch study area is the port city of Rotterdam; in China, Guangzhou was chosen.</p>
+<p>Rotterdam is one of the biggest cities in the Netherlands with an urban population around 900 thousand and around 670 thousand people residing within the city borders(Centraal Bureau voor de Statistiek, n.d.). The municipality of Rotterdam’s area spans over 325.79 kilometers squared and its population density is 3,043 residents per kilometer square (World Population Review, 2026).</p>
+<p>As a significant juxtaposition, Guangzhou’s population reaches above 18 million people (World Population Review, 2026). It is the third largest city in China and a capital of China’s Guangdong province. Located on the Pearl River is a major international hub (World Population Review, 2026). The area is 7,434.4 square kilometers and the density of Guangzhou is around 2,000 people per square kilometer (World Population Review, 2026).</p>
+<p>In spite of these major differences, both Rotterdam and Guangzhou represent delta port cities. Therefore, this comparative analysis can provide rich insights on variations of ecological connectivity in this urban setting.</p>
+<p>To get a better understanding of the current ecological state in both cities, we looked for datasets that map green spaces in each urban environment. For Rotterdam, we used the “Groenkaart,” developed by the Rijksinstituut voor Volksgezondheid en Milieu (RIVM) (Atlas Leefomgeving, 2024). This map shows the locations of green vegetation across the Netherlands, including trees, shrubs, and plants, and distinguishes between different types of green areas, such as agricultural land, nature, and urban green space, to show how green cover is distributed across the country.</p>
+<p>Since Guangzhou is much larger in scale, we could not find a map with a comparable resolution and level of detail that would remain readable at the city scale, so we used an alternative instead. SinoLC-1, a 1-meter-resolution national-scale land-cover map of China, gave us a clear picture of where green areas are located at the city level. <a href="#fig-introduction-pair" class="quarto-xref">Figure&nbsp;1</a> presents both maps. As shown in the map of Guangzhou on the right, the main distinction is between tree cover (dark green) and built environment (dark orange). A more detailed breakdown of the classifications and legend can be found in Li et al.&nbsp;(2023), but for the purposes of this stage, this level of detail was sufficient. Together, both maps give us a general understanding of each area before we zoom in for deeper analysis.</p>
+<div id="fig-introduction-pair" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-introduction-pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-introduction-pair" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-roffa" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-roffa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Rotterdam_introduction.png" class="img-fluid figure-img" data-ref-parent="fig-introduction-pair">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-roffa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Rotterdam
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-introduction-pair" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-guang" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-guang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Guangzhou_introduction.png" class="img-fluid figure-img" data-ref-parent="fig-introduction-pair">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-guang-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Guangzhou
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-introduction-pair-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: General introduction of cities.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<p><a href="#fig-methodology" class="quarto-xref">Figure&nbsp;2</a> provides an overview of the methodological workflow followed in this study. The analysis consists of eight steps, moving from data collection and study area delineation through ecological connectivity analysis, typology construction, and zoom-in area selection, to a final ecological resistance analysis and the proposal of targeted Nature-based Solutions. Each step is described in detail in the sections below.</p>
+<div id="fig-methodology" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-methodology-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/methods.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-methodology-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Methodological workflow of the study.
+</figcaption>
+</figure>
+</div>
+<section id="data" class="level3">
+<h3 class="anchored" data-anchor-id="data">Data</h3>
+<p>To perform this analysis several geospatial datasets on Rotterdam and Guangzhou were used.</p>
+<ul>
+<li>ESA WorldCover 10 m v200: A global 2021 land-cover map at 10 m resolution, based on Sentinel-1 and Sentinel-2 imagery, with 11 land-cover classes. It was used for classifying surface cover, identifying green and non-green areas and NDBI and NDVI indices calculation.</li>
+<li>Local Climate Zone (LCZ) maps: LCZ maps for Rotterdam and Guangzhou were obtained from the LCZ Generator.</li>
+<li>Rotterdam municipal boundary: The official municipal boundary from PDOK was used to define the spatial extent of Rotterdam.</li>
+<li>Guangzhou administrative boundaries and landuse: OpenStreetMap<br>
+</li>
+<li>Street network data: OpenStreetMap street data for both cities were used to represent the urban road network structure.</li>
+<li>Groenkaart: The Groenkaart, developed by the RIVM and presented in Atlas Leefomgeving, provided additional information on green areas in Rotterdam.</li>
+<li>SinoLC-1: 1-meter-resolution national land-cover map of China was used to obtain a clearer picture of green areas in Guangzhou.</li>
+</ul>
+<section id="envelope" class="level4">
+<h4 class="anchored" data-anchor-id="envelope">Envelope</h4>
+<p>When collecting data, running analyses, and producing maps, it is important to look slightly beyond our area of interest. This is especially relevant when considering ecological connections, since important elements could lie outside our extent. To make sure we capture the surroundings of our area of interest, we therefore decided to create an envelope that extends beyond our bounding box.</p>
+<p>For both Rotterdam and Guangzhou, we created a minimum bounding geometry around the shape of the city or municipality. This function can be found in the Processing Toolbox in QGIS, under “Vector Geometry.” As shown in <a href="#fig-envelope-roffa" class="quarto-xref">Figure&nbsp;3</a>, this creates an envelope around the maximum extent of the shape. To capture some additional surrounding area, we then added a 5 km buffer around this bounding box (Vector &gt; Geoprocessing Tools &gt; Buffer). This buffered envelope defines the study area used throughout the project.</p>
+<div id="fig-envelope-roffa" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-envelope-roffa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/envelope_rotterdam.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-envelope-roffa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Envelope creation in Rotterdam.
+</figcaption>
+</figure>
+</div>
+<p>The same principle is done for Guangzhou, but this time the buffer exceeds the 5 km on some sides to match a similar size to Rotterdam.</p>
+<div id="fig-envelope-intro" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-envelope-intro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GZintroductory.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-envelope-intro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Envelope creation in Guanzhou
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-spatialgrid" class="level4">
+<h4 class="anchored" data-anchor-id="sec-spatialgrid">Spatial Grid</h4>
+<p>A regular spatial grid of 500 × 500 m cells was constructed for each city in QGIS software (Vector Research Tools → Create Grid), covering the set envelope boundary of each city. The grid was created specifically for the typology construction process, providing a consistent spatial unit for aggregating and comparing data layers.</p>
+<p>A cell size of 500 × 500 m was chosen to match the dispersal distance parameter (d = 500 m) used in the Graphab connectivity analysis (see <a href="#sec-patches" class="quarto-xref">Section&nbsp;3.2.2</a>). The same distance ensures that each cell somewhat corresponds to the spatial scale at which ecological connectivity is assessed, making the typology meaningful in relation to the crucial connectivity metrics.</p>
+</section>
+<section id="local-climate-zones" class="level4">
+<h4 class="anchored" data-anchor-id="local-climate-zones">Local Climate Zones</h4>
+<p>To enable a comparable description of urban morphology across both cities, the Local Climate Zone (LCZ) classification scheme developed by Stewart and Oke (2012) was used. The classification identifies 17 zones based on surface structure (e.g.&nbsp;building and tree height and density) and surface cover (pervious versus impervious).</p>
+<p>The LCZ typology is a universal urban classification it focuses specifically on urban and rural landscape types, distinguished through 10 built types (ranging from compact high-rise to heavy industry) and 7 land cover types (ranging from dense trees to water). Its main advantage lies in the diversity of urban classes, which are easily interpretable and globally consistent.</p>
+<p><a href="#fig-lczrt" class="quarto-xref">Figure&nbsp;5</a> and <a href="#fig-lczgz" class="quarto-xref">Figure&nbsp;6</a> below, depict the distribution of Local Climate Zones in the chosen cities.</p>
+<div id="fig-lczrt" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lczrt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lcz_rt-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lczrt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: Rotterdam Local Climate Zones
+</figcaption>
+</figure>
+</div>
+<div id="fig-lczgz" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lczgz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lcz_gz-1.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lczgz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Guangzhou Local Climate Zones
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="ecological-connectivity-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="ecological-connectivity-analysis">Ecological Connectivity Analysis</h3>
+<section id="sec-mspa" class="level4">
+<h4 class="anchored" data-anchor-id="sec-mspa">Morphological Spatial Pattern Analysis</h4>
+<p>Morphological Spatial Pattern Analysis (MSPA) is a series of mathematical image processing steps that help in understanding the shape and connectivity of different parts within an image. It was developed at the EU Joint Research Centre to describe the geometry and connectivity of the certain pattern in a binary image (Soille &amp; Vogt, 2009) (European Commission Joint Research Centre, n.d.). Every pixel is assigned to one of seven structural classes: Core, Islet, Perforation, Edge, Loop, Bridge, and Branch. Together they describe how connected, isolated, or marginal each part of the explored pattern is.</p>
+<p>In this application, Core represents the interior of large patches of green infrastructure; Islet depicts small, isolated fragments with no core area; Perforation marks the margin of an opening or gap within a larger patch; Edge is the outer boundary zone where a patch meets the surrounding urban areas; Bridge and Loop describe narrow, corridor structures connecting two separate core areas or looping back into the same one; and Branch is narrow, dead-end attached to only one core area.</p>
+<p>Since MSPA requires a binary foreground/background input, the first step was to derive such a mask from the ESA WorldCover v200 land-cover product (10 m resolution), which classifies the land surface into eleven categories: tree cover, shrubland, grassland, cropland, built-up, bare/sparse vegetation, snow/ice, permanent water bodies, herbaceous wetland, mangroves, and moss/lichen. This reclassification was carried out in Google Earth Engine, where the WorldCover layer was reclassified so that ecologically relevant classes (tree cover, shrubland, grassland, cropland, herbaceous wetland, and mangroves) were assigned a value of 1 (foreground), while built-up land, bare/sparse vegetation, permanent water bodies and snow/ice were assigned a value of 0 (background, representing the non-ecological matrix). The resulting binary raster was exported as a GeoTIFF and imported into QGIS for the MSPA analysis itself.</p>
+<p>The MSPA analysis was performed in QGIS using the MSPA plugin from the European Commission’s Forest Joint Research Centre.</p>
+<p>Three parameters are used in MSPA segments. Foreground connectivity, which determines whether diagonally touching pixels count as connected, was set to 8-connectivity rather than 4-connectivity, since ecological movement (animals) is not restricted to the four directions. Edge width, which sets the thickness of the buffer zone separating core area from the surrounding matrix, was set to 5 pixels; at WorldCover’s 10 m resolution this corresponds to a 50 m buffer. Transition, which determines whether bridge or loop pixels passing through an edge or perforation to a core area are shown separately, was switched on. An overview of all the steps taken can be seen in <a href="#fig-mspa_steps" class="quarto-xref">Figure&nbsp;7</a>.</p>
+<div id="fig-mspa_steps" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-mspa_steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/mspa_infographic.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mspa_steps-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Overview MSPA steps.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-patches" class="level4">
+<h4 class="anchored" data-anchor-id="sec-patches">Patches and Link Importance (through Graphab)</h4>
+<p>To conduct the ecological connectivity analysis, the software of Graphab is used. Graphab is a software program devoted to the modelling of habitat networks using graph-theoretical approaches (Graphab, n.d.). Graph theory provides a simple solution for unifying and evaluating multiple aspects of habitat connectivity, because it can be applied at patch and landscape levels, and it quantifies either structural or functional connectivity (Minor &amp; Urban, 2008). A graph network is represented by a set of nodes and edges, where the nodes are the individual elements within a network (the patches), and edges represent the connectivity between the nodes (links). Graphab combines the construction and visualization of graphs, with subsequent connectivity analyses and links with external geographical or biological data. The links show the Euclidian distance between two patches. A visual simplification can be seen in <a href="#fig-graph_con" class="quarto-xref">Figure&nbsp;8</a>.</p>
+<div id="fig-graph_con" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-graph_con-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/graph%20network%20simple%20v2.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-graph_con-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Graph visualisation.
+</figcaption>
+</figure>
+</div>
+<p>By loading the .tiff file created by the MSPA analysis, Graphab can read the landcover classification and filter on those accordingly. We filtered on land use code “17” to select the core areas as habitat patches, Graphab then created a linkset to visualise all the possible connections between each habitat patch (to later use for the calculations).</p>
+<p>After loading everything into Graphab, we then continued by making use of the weighted metrics. To understand the importance of each patch and link, two different metrics are used. Before you can run metrics calculations, you first need to create a graph. While creating the graph, we selected the linkset along with a distance threshold (by doing this, it only kept the links within this threshold). For the selected areas in Rotterdam and Guangzhou, multiple distances were tested to understand which number would give a meaningful result. With a short distance, it would result into giving too much importance to smaller links, but with a distance that is too large, it would not take the smaller links into consideration as much. We therefore landed on a value of 10 000m.</p>
+<p>For the patches, delta Probability of Connectivity Index (dPC) was used. dPC measures how much overall connectivity (PC) drops when you remove a patch (Metro Vancouver, 2025). It is a metric that measures the individual contribution of a specific habitat patch to the overall connectivity of the landscape. It represents the change in the PC index when a particular patch is removed, thereby assessing the importance of that patch in maintaining landscape connectivity. This metric is composed of three components: dPCintra, a measure of intrapatch connectivity, dPCconnect, the importance of a patch for connecting other patches together, and dPCflux, a measure of how connected a patch is to the network. The sum of these fractions equals the total delta Probability of Connectivity. This calculation was sadly only available for patches in Graphab, so for the links a different metric was used.</p>
+<p>The links were classified through Betweenness Centrality (BC). It counts how many patch-to-patch routes pass through each link (Estrada &amp; Bodin, 2008). It’s defined per element and works cleanly on edges, giving a differentiated value for every link: which “potential” connections act as the busiest throughways/bridges. It is a measure of how frequently a node appears on the shortest paths between pairs of other nodes in a network. Together, they formed a complete picture revealing the critical habitats and the critical corridors between them. In our research, they are used as two complementary connectivity metrics, each appropriate to its element type.</p>
+<p>For both metrics, the parameters dispersal distance (d) and probability (p) are needed to compute the calculations. Both refer to the chance of an animal moving from one patch to another, based on the distance between the patches, and the dispersal characteristics of the selected animal species (Estreguil et al., 2014). During this research, a specific animal species is not be identified, so therefore we took a dispersal distance of 500 m. This is a common default for urban green infrastructure studies. It represents medium-mobility species and also roughly matches human walking distance to green space. It’s considered good for general urban ecology assessments. The probability starts at a default of 0.5, meaning “at 500 m, there is a 50% chance of successful dispersal”. This is again a standard assumption since we don’t specify species.</p>
+<p>After the calculations are computed, each patch and each link now contained dPC and BC values that can be categorised and visualised in QGIS. Here, the patches are visualised through a graduated symbology from green to yellow, where dark green marks a higher value. With five classes on equal intervals, the patches are ordered in importance. Dark green therefore means that once this patch would be removed, it would impact the overall connectivity the most. The links are filtered on the 500 most important ones for each city (by selecting the 500 links with the highest BC value). They are then also visualised though a graduated symbology, this time on line thickness as well as colour. The thicker and darker the lines appear, the busiest the link appears to be in the network. Here however, all links would provide a big impact, since they are filtered on the 500 most important ones.</p>
+<p>In the Results (<a href="#sec-result-ecoconnect-roffa" class="quarto-xref">Section&nbsp;4.1.2</a> and <a href="#sec-result-ecoconnect-gz" class="quarto-xref">Section&nbsp;5.1.2</a>), the outcome of this analysis for Rotterdam and Guangzhou is presented, which will be used as one of the inputs for the clustering analysis in the next section.</p>
+</section>
+<section id="typology-construction" class="level4">
+<h4 class="anchored" data-anchor-id="typology-construction">Typology Construction</h4>
+<p>After Patches and Link Importance analysis and MSPA, it is possible to develop typologies based on their outcomes for broader understanding of ecological connectity and urban/green matrix in both cities. Typology is a classification of areas based on shared combinations of characteristics (Wikipedia, 2026). In this study, the typology groups grid cells into five distinct ecological profiles urban matrix, key corridors, isolated quality patches, fragmented green, and transition zones each representing a different combination of connectivity strength and green patch quality. By classifying the entire city into these profiles, it becomes possible to identify at a glance where the green network is functioning well, where it is fragmented, and where the most critical gaps are located. This provides a structured and reproducible basis for selecting zoom-in areas that are ecologically meaningful and spatially comparable across both cities. To identify the spatial character of ecology and its connectivity in Rotterdam and Guangzhou, a typology was therefore constructed for both cities using the same set of variables and spatial unit, allowing direct quantitative comparison between the two cities.</p>
+<p>While the typology is relatively general and simplified, partly because grid cells were used as the spatial unit, it was developed before examining the smaller selected study areas in greater detail to provide an overview of the preceding analysis and identify the overall pattern. Combined with the MSPA and patch/link importance results (<a href="#sec-results-ecoconnect" class="quarto-xref">Section&nbsp;4.1</a>), this typology was used to guide the selection of the smaller zoom-in study areas examined in more detail later in this report.</p>
+<p>To construct this typology, two crucial aspects need to be defined: the variables used to characterise each area, and the spatial unit at which these variables were measured. The variables used were Local Climate Zones, ecological connectivity (betweenness centrality), and green patch characteristics, as these together capture both the urban characteristics and the ecological functioning of an area. The spatial unit used was a fixed-size grid of 500 × 500 m cells (see <a href="#sec-spatialgrid" class="quarto-xref">Section&nbsp;3.1.2</a>). A fixed grid was used because it allows different variables to be aggregated and compared.</p>
+<p>This typology serves as a broad ecological overview of both cities that summarises, at a coarse spatial resolution, where green connectivity is strong, where it is weak or absent, and what kind of green structure dominates each area. It is not intended to pinpoint specific intervention sites, but to provide the wider ecological context which enables more detailed analyses performed further.</p>
+<section id="clustering" class="level5">
+<h5 class="anchored" data-anchor-id="clustering">Clustering</h5>
+<p>All three criteria for typologies were summarised per grid cell. Betweenness centrality values were spatially joined to the grid using an intersection, with the mean normalised BC value computed per cell. Green patch metrics (patch count and mean patch capacity, derived from the dPC field) were similarly joined to the grid. Grid cells with no links or patches passing through them were assigned a value of zero, since they simply have no green connectivity (this is not missing data but a meaningful absence).</p>
+<p>Before clustering, the three numeric variables (BC mean, patch count, and mean patch capacity) were standardised using z-score normalisation to ensure equal weighting regardless of original scale. K-means clustering (k = 5) was then applied to these three standardised variables. Clustering was implemented as a reusable function in R, executed directly within the reproducible Quarto report, so that cluster assignments regenerate automatically whenever the report is rendered. Because K-means assigns cluster numbers arbitrarily, each resulting cluster was subsequently classified according to its own ecological profile into: Disconnected urban fabric (lowest combined patch presence and capacity, i.e.&nbsp;no meaningful green network), Key corridors (highest betweenness centrality), Isolated quality patches (highest patch capacity), Fragmented green (highest average patch count), and Transition zones (the remaining profile). This classification step ensures that cluster identities, labels, and map colours remain consistent both within and across cities, and across repeated renders of the report, regardless of the raw numbering K-means happens to produce on a given run.</p>
+<p>After clustering, the dominant LCZ classes per cluster were checked separately to understand what kind of urban environment each cluster is typically located in. For each cluster, the three most common LCZ classes were identified, since a single dominant class rarely captures the full urban context of a 500 × 500 m cell. LCZ was deliberately excluded from the clustering input itself, since it is a categorical variable and including its numeric codes directly would have distorted the Euclidean distances used by K-means.</p>
+<p>The function below implements the clustering pipeline describedabove. It standardises the betweenness centrality, patch count, patch capacity, and LCZ variables, then applies K-means clustering with five clusters. The same function is applied separately to Rotterdam and Guangzhou in the results section.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cluster_grid <span class="ot">&lt;-</span> <span class="cf">function</span>(gpkg_path, bc_col, patch_count_col, patch_cap_col, lcz_col,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                          role_to_id, role_to_color, <span class="at">k =</span> <span class="dv">5</span>, <span class="at">seed =</span> <span class="dv">42</span>) {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  grid <span class="ot">&lt;-</span> <span class="fu">st_read</span>(gpkg_path, <span class="at">quiet =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># NA means "no links/patches passing through this cell" — treat as 0</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  grid <span class="ot">&lt;-</span> grid <span class="sc">|&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(bc_col, patch_count_col, patch_cap_col)), <span class="sc">~</span> <span class="fu">replace_na</span>(.x, <span class="dv">0</span>)))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  features <span class="ot">&lt;-</span> grid <span class="sc">|&gt;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(bc_col, patch_count_col, patch_cap_col)))</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  X_scaled <span class="ot">&lt;-</span> <span class="fu">scale</span>(features)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(seed)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  km <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(X_scaled, <span class="at">centers =</span> k, <span class="at">nstart =</span> <span class="dv">20</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  raw_cluster <span class="ot">&lt;-</span> km<span class="sc">$</span>cluster</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Classify each raw kmeans cluster by its profile</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  raw_profile <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">raw_id   =</span> <span class="dv">1</span><span class="sc">:</span>k,</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">bc_mean  =</span> <span class="fu">as.numeric</span>(<span class="fu">tapply</span>(grid[[bc_col]], raw_cluster, mean)),</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">patches  =</span> <span class="fu">as.numeric</span>(<span class="fu">tapply</span>(grid[[patch_count_col]], raw_cluster, mean)),</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">capacity =</span> <span class="fu">as.numeric</span>(<span class="fu">tapply</span>(grid[[patch_cap_col]], raw_cluster, mean))</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  remaining <span class="ot">&lt;-</span> raw_profile</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  role_assignment <span class="ot">&lt;-</span> <span class="fu">character</span>(k)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(role_assignment) <span class="ot">&lt;-</span> <span class="fu">as.character</span>(raw_profile<span class="sc">$</span>raw_id)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 1. Urban matrix: lowest combined patches + capacity (no green presence)</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  urban_id <span class="ot">&lt;-</span> remaining<span class="sc">$</span>raw_id[<span class="fu">which.min</span>(remaining<span class="sc">$</span>patches <span class="sc">+</span> remaining<span class="sc">$</span>capacity)]</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  role_assignment[<span class="fu">as.character</span>(urban_id)] <span class="ot">&lt;-</span> <span class="st">"Urban matrix"</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>  remaining <span class="ot">&lt;-</span> remaining <span class="sc">|&gt;</span> <span class="fu">filter</span>(raw_id <span class="sc">!=</span> urban_id)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 2. Key corridors: highest BC among what's left</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  corridor_id <span class="ot">&lt;-</span> remaining<span class="sc">$</span>raw_id[<span class="fu">which.max</span>(remaining<span class="sc">$</span>bc_mean)]</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  role_assignment[<span class="fu">as.character</span>(corridor_id)] <span class="ot">&lt;-</span> <span class="st">"Key corridors"</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  remaining <span class="ot">&lt;-</span> remaining <span class="sc">|&gt;</span> <span class="fu">filter</span>(raw_id <span class="sc">!=</span> corridor_id)</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 3. Isolated quality patches: highest capacity among what's left</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  isolated_id <span class="ot">&lt;-</span> remaining<span class="sc">$</span>raw_id[<span class="fu">which.max</span>(remaining<span class="sc">$</span>capacity)]</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>  role_assignment[<span class="fu">as.character</span>(isolated_id)] <span class="ot">&lt;-</span> <span class="st">"Isolated quality patches"</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  remaining <span class="ot">&lt;-</span> remaining <span class="sc">|&gt;</span> <span class="fu">filter</span>(raw_id <span class="sc">!=</span> isolated_id)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 4. Fragmented green: highest patch count among what's left</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>  fragmented_id <span class="ot">&lt;-</span> remaining<span class="sc">$</span>raw_id[<span class="fu">which.max</span>(remaining<span class="sc">$</span>patches)]</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>  role_assignment[<span class="fu">as.character</span>(fragmented_id)] <span class="ot">&lt;-</span> <span class="st">"Fragmented green"</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  remaining <span class="ot">&lt;-</span> remaining <span class="sc">|&gt;</span> <span class="fu">filter</span>(raw_id <span class="sc">!=</span> fragmented_id)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 5. Whatever's left</span></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  role_assignment[<span class="fu">as.character</span>(remaining<span class="sc">$</span>raw_id)] <span class="ot">&lt;-</span> <span class="st">"Transition zones"</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Remap to fixed, city-specific ID and color scheme ---</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>  grid<span class="sc">$</span>cluster_role  <span class="ot">&lt;-</span> role_assignment[<span class="fu">as.character</span>(raw_cluster)]</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>  grid<span class="sc">$</span>cluster_id    <span class="ot">&lt;-</span> role_to_id[grid<span class="sc">$</span>cluster_role]</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  grid<span class="sc">$</span>cluster_color <span class="ot">&lt;-</span> role_to_color[grid<span class="sc">$</span>cluster_role]</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  profile <span class="ot">&lt;-</span> grid <span class="sc">|&gt;</span></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(cluster_id, cluster_role) <span class="sc">|&gt;</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>      <span class="at">n        =</span> <span class="fu">n</span>(),</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>      <span class="at">bc_mean  =</span> <span class="fu">round</span>(<span class="fu">mean</span>(.data[[bc_col]]), <span class="dv">4</span>),</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>      <span class="at">patches  =</span> <span class="fu">round</span>(<span class="fu">mean</span>(.data[[patch_count_col]]), <span class="dv">2</span>),</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>      <span class="at">capacity =</span> <span class="fu">round</span>(<span class="fu">mean</span>(.data[[patch_cap_col]]), <span class="dv">4</span>),</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>      <span class="at">.groups  =</span> <span class="st">"drop"</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(cluster_id)</span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>  lcz_summary <span class="ot">&lt;-</span> grid <span class="sc">|&gt;</span></span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>    <span class="fu">group_by</span>(cluster_id) <span class="sc">|&gt;</span></span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(.data[[lcz_col]], <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>    <span class="fu">slice_max</span>(n, <span class="at">n =</span> <span class="dv">3</span>, <span class="at">with_ties =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="at">grid =</span> grid, <span class="at">profile =</span> profile, <span class="at">lcz_summary =</span> lcz_summary)</span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same five colors used by both cities</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>role_to_color <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Transition zones"</span>        <span class="ot">=</span> <span class="st">"lightblue"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Key corridors"</span>            <span class="ot">=</span> <span class="st">"darkgreen"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Urban matrix"</span>             <span class="ot">=</span> <span class="st">"gray70"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Isolated quality patches"</span> <span class="ot">=</span> <span class="st">"orange"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Fragmented green"</span>         <span class="ot">=</span> <span class="st">"yellow"</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Rotterdam</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>rt_role_to_id <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Transition zones"</span>        <span class="ot">=</span> <span class="dv">0</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Key corridors"</span>            <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Urban matrix"</span>             <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Isolated quality patches"</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Fragmented green"</span>         <span class="ot">=</span> <span class="dv">4</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Guangzhou (different order!)</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>gz_role_to_id <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Fragmented green"</span>         <span class="ot">=</span> <span class="dv">0</span>,</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Urban matrix"</span>             <span class="ot">=</span> <span class="dv">1</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Transition zones"</span>         <span class="ot">=</span> <span class="dv">2</span>,</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Isolated quality patches"</span> <span class="ot">=</span> <span class="dv">3</span>,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">"Key corridors"</span>             <span class="ot">=</span> <span class="dv">4</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>lcz_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"1"</span>  <span class="ot">=</span> <span class="st">"LCZ 1 – Compact high-rise"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"2"</span>  <span class="ot">=</span> <span class="st">"LCZ 2 – Compact mid-rise"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"3"</span>  <span class="ot">=</span> <span class="st">"LCZ 3 – Compact low-rise"</span>,</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"4"</span>  <span class="ot">=</span> <span class="st">"LCZ 4 – Open high-rise"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"5"</span>  <span class="ot">=</span> <span class="st">"LCZ 5 – Open mid-rise"</span>,</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"6"</span>  <span class="ot">=</span> <span class="st">"LCZ 6 – Open low-rise"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"7"</span>  <span class="ot">=</span> <span class="st">"LCZ 7 – Lightweight low-rise"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"8"</span>  <span class="ot">=</span> <span class="st">"LCZ 8 – Large low-rise"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"9"</span>  <span class="ot">=</span> <span class="st">"LCZ 9 – Sparsely built"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"10"</span> <span class="ot">=</span> <span class="st">"LCZ 10 – Heavy industry"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">"11"</span> <span class="ot">=</span> <span class="st">"LCZ A – Dense trees"</span>,</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"12"</span> <span class="ot">=</span> <span class="st">"LCZ B – Scattered trees"</span>,</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"13"</span> <span class="ot">=</span> <span class="st">"LCZ C – Bush, scrub"</span>,</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">"14"</span> <span class="ot">=</span> <span class="st">"LCZ D – Low plants"</span>,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">"15"</span> <span class="ot">=</span> <span class="st">"LCZ E – Bare rock or paved"</span>,</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"16"</span> <span class="ot">=</span> <span class="st">"LCZ F – Bare soil or sand"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"17"</span> <span class="ot">=</span> <span class="st">"LCZ G – Water"</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+</section>
+<section id="study-area-selection" class="level3">
+<h3 class="anchored" data-anchor-id="study-area-selection">Study Area Selection</h3>
+<p>Comparable study areas between Rotterdam and Guangzhou were identified by matching clusters across both cities based on similarities in their BC values, patch characteristics, and LCZ composition. Two pairs of zoom in areas were chosen for each city.</p>
+</section>
+<section id="ecological-resistance" class="level3">
+<h3 class="anchored" data-anchor-id="ecological-resistance">Ecological Resistance</h3>
+<p>After selecting 2 study areas within each city, a deeper analysis is performed to investigate barriers to ecological connectivity as well as potentials for improvement. Especially for understanding how to implement “potential” links, it’s important to take the context into account. The graph theory showcases a simplified version of reality, but to understand the barriers each area contains, we need to understand what resistance it faces.</p>
+<p>An ecological resistance surface quantifies how difficult it is for species to move through different parts of a landscape. Areas with dense vegetation and natural land cover pose low resistance, while built-up surfaces, roads, and other human-modified land uses impede species dispersal and increase resistance (Zeller et al., 2012). The concept draws from electrical circuit theory, where species flow through the landscape like current through a circuit, concentrating along low-resistance paths and avoiding high-resistance areas (McRae et al., 2008). The specific factors used to construct a resistance surface vary between studies depending on the researched species, spatial context, and research field. Since out study focuses on general urban landscape connectivity rather than a single target species, no species-specific data layers are used. Instead, following Wade et al.&nbsp;(2015), four data layers were selected that together cover three major categories of ecological resistance: natural conditions (vegetation density, measured through NDVI), landscape types (land use/land cover from ESA WorldCover), and human disturbance (built-up intensity through NDBI, and road density). These layers capture the key natural and human-caused factors influencing species movement in an urban context and provide a sufficient overview of the ecological resistance within the study areas.</p>
+<p>There are however, many other layers than can be taken into account when looking at ecological resistance, but these four layers provide enough information to indicate the areas with high resistance and help guide the next step of looking into Nature-based Solutions to improve the ecological connectivity.</p>
+<section id="ndvi" class="level4">
+<h4 class="anchored" data-anchor-id="ndvi">NDVI</h4>
+<p>Vegetation density plays a crucial role in facilitating species movement by providing habitat, food resources, and shelter. This variable is represented using the Normalized Difference Vegetation Index (NDVI), which captures the presence and condition of vegetation. Areas with dense and healthy vegetation are associated with low ecological resistance, while areas with sparse or no vegetation correspond to higher resistance. The NDVI layer is reclassified into five ordinal resistance classes ranging from low to high resistance, following common resistance surface approaches (Wade et al., 2015).</p>
+</section>
+<section id="ndbi" class="level4">
+<h4 class="anchored" data-anchor-id="ndbi">NDBI</h4>
+<p>Built-up areas and high building density form a significant barrier to species movement. Impervious surfaces provide limited habitat and reduce overall landscape permeability. To represent this, the Normalized Difference Built-up Index (NDBI) is used, derived from remote sensing data. This index reflects the relative presence of built-up versus non-built surfaces. Areas dominated by built-up structures correspond to higher ecological resistance, while non-built areas correspond to lower resistance. The NDBI values are grouped into five resistance classes to reflect this gradient.</p>
+</section>
+<section id="land-use" class="level4">
+<h4 class="anchored" data-anchor-id="land-use">Land Use</h4>
+<p>Th land use data is derived from ESA WorldCover 10m (ESA, 2021). This dataset provides a global land cover classification at 10 m spatial resolution based on Sentinel-1 and Sentinel-2 imagery. Different land cover types impose varying levels of resistance to species movement. Natural areas such as forests and shrublands are associated with low resistance, while highly modified environments such as built-up areas correspond to high resistance. Intermediate land use types, including grasslands, wetlands, and agricultural land, are assigned moderate resistance levels. The land use layer is classified into five categories reflecting increasing ecological resistance.</p>
+</section>
+<section id="road-density" class="level4">
+<h4 class="anchored" data-anchor-id="road-density">Road Density</h4>
+<p>Road networks are a major driver of landscape fragmentation and can significantly impede species movement. In addition to acting as physical barriers, roads introduce disturbance through noise, traffic, and increased human activity. Road density is used as a proxy for these effects and is calculated based on road network data within a defined spatial resolution. Areas with higher road density correspond to higher ecological resistance. The resulting values are classified into five classes ranging from low to very high resistance.</p>
+</section>
+<section id="combining-the-layers" class="level4">
+<h4 class="anchored" data-anchor-id="combining-the-layers">Combining the layers</h4>
+<p>To combine all resistance layers and get a good representation of the overall ecological resistance, some extra preprocessing was needed. Each of the four input layers, NDVI, NDBI, land cover, and road density, was originally on a different value scale. For the case of Rotterdam, NDVI ranged from -0.2 to 0.8, NDBI from -0.5 to 0.5, road density from 0 to 0.15 km/km², while the land cover resistance was already classified from 1 to 5. Averaging these raw values directly would produce meaningless results, since the scales are incompatible and the ecological direction of the values differs between layers (high NDVI indicates low resistance, while high NDBI indicates high resistance).</p>
+<p>Each layer was therefore reclassified into a standardised 1-to-5 ecological resistance scale using equal-interval breakpoints derived from the value range of each layer, where 1 represents the lowest resistance to species movement and 5 the highest. In the QGIS Raster Calculator, this was implemented as a conditional sum, where each condition evaluates to 0 or 1, ensuring every pixel is assigned to exactly one class:</p>
+<p>(layer &gt;= threshold₄) × 1 + (layer &gt;= threshold₃ AND layer &lt; threshold₄) × 2 + (layer &gt;= threshold₂ AND layer &lt; threshold₃) × 3 + (layer &gt;= threshold₁ AND layer &lt; threshold₂) × 4 + (layer &lt; threshold₁) × 5</p>
+<p>The four thresholds were calculated as min + n × (range / 5) for n = 1 through 4, dividing each layer’s value range into five equal intervals. For example, NDBI with a range of -0.5 to 0.5 produces thresholds at -0.3, -0.1, 0.1, and 0.3, assigning resistance classes 1 through 5 from lowest to highest built-up intensity. After reclassification and clipping to the study area boundary, the four layers were combined by averaging them in the QGIS Raster Calculator (adding them up and then dividing by four), producing a continuous ecological resistance surface ranging from 1 to 5. This was done for both zoom in areas in both cities, which was then overlaid with the initial “potential” links.</p>
+</section>
+</section>
+</section>
+<section id="sec-results-roffa" class="level2">
+<h2 class="anchored" data-anchor-id="sec-results-roffa">Results Rotterdam</h2>
+<section id="sec-results-ecoconnect" class="level3">
+<h3 class="anchored" data-anchor-id="sec-results-ecoconnect">Current Ecological Connectivity Status</h3>
+<section id="morphological-spatial-pattern-analysis-mspa" class="level4">
+<h4 class="anchored" data-anchor-id="morphological-spatial-pattern-analysis-mspa">Morphological Spatial Pattern Analysis (MSPA)</h4>
+<p>After running the MSPA analysis (<a href="#sec-mspa" class="quarto-xref">Section&nbsp;3.2.1</a>) on the Rotterdam envelope area and analysing the distribution of classes, the green network (Core, Islet, Perforation, Edge, Loop, Bridge, Branch) covers 45.77% of it, while background (the non-green matrix: Background, Core-Opening, Border-Opening) 54.23%.</p>
+<p><a href="#fig-MSPArt" class="quarto-xref">Figure&nbsp;9</a> shows large green cores, but this is partly because the foreground includes a broad set of land cover classes (Tree, Shrubland, Grassland, Cropland, Wetland, and Mangroves), so some of these cores may not be fully representative of high-quality ecological habitat.</p>
+<p>This is a useful basis for the patch and link importance analysis that follows (<a href="#sec-result-ecoconnect-roffa" class="quarto-xref">Section&nbsp;4.1.2</a>). The green patches should not be treated as equally meaningful nodes. MSPA analysis is dominated by small cores like the tail-like fragments (likely isolated street trees, small gardens and other small green elements. They are numerous but contribute negligibly to the total core area and are unlikely to be significant habitats on their own. However, these fragments could still matter as stepping stones for connectivity. This supports running the patch and link importance analysis specifically on the dominant core patches, since they are the backbone of the green network. Moreover, two smaller study areas within the city are also examined more closely, using metrics like NDVI, NDBI, road density, and land-cover resistance, to assess habitat quality and connectivity in more detail than the broader MSPA classification alone can provide.</p>
+<div id="fig-MSPArt" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-MSPArt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/RT_mspafinal@4x.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MSPArt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Morphological Spatial Pattern Analysis in Rotterdam
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-result-ecoconnect-roffa" class="level4">
+<h4 class="anchored" data-anchor-id="sec-result-ecoconnect-roffa">Patches and Link Importance</h4>
+<p>To represent the ecological connectivity, the layers are split into the patches and links. For the patches, the most essential elements of the green structure are visualised in dark green and less important elements in lighter shades leading up to yellow. Higher importance in this case means that if this patch were to be removed, the connectivity of the entire network would suffer the most. Patches with higher importance can’t be supported by the surrounding green structure, meaning a greater loss in network connectivity. By focusing on an envelope around the boundary of Rotterdam, we get to include more context that would’ve been lost otherwise. This envelope shape sadly still cuts off the surrounding patches, so some patches appear smaller within this shape and in the overall connectivity therefore also score less. This is a limitation of the envelope approach, but it did help in reducing the computation time so we take this in consideration.</p>
+<p>The same visualisation is done for the links, where a darker and thicker brown represents the most important “potential” links in the network. It is interesting to see that most of the links don’t run into the boundary of Rotterdam. Since the patches around the city are much bigger and get more importance, the links span around the boundary rather than within. From this analysis, it then shifts the focus on a link outside of the city boundary, but then we would lose the urban area factor that is central in our research. That’s why we chose to run the metric again but this time only within the boundary of Rotterdam, to understand which parts of the patches then become crucial and where meaningful interventions could happen in the urban environment.</p>
+<div id="fig-connectivity-renvelope" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-connectivity-renvelope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Rotterdam_connectivity_envelope.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-connectivity-renvelope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10: Ecological connectivity within the Envelope.
+</figcaption>
+</figure>
+</div>
+<div id="fig-connectivity-rboundary" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-connectivity-rboundary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Rotterdam_connectivity_rboundary.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-connectivity-rboundary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;11: Ecological connectivity within the boundary of Rotterdam.
+</figcaption>
+</figure>
+</div>
+<p>As can be seen in <a href="#fig-connectivity-rboundary" class="quarto-xref">Figure&nbsp;11</a>, we can now identify spaces within the boundary of Rotterdam that could be improved. These, together with some additional analysis on clustering, will then form the basis of choosing the zoom in locations.</p>
+</section>
+<section id="cluster-profiles" class="level4">
+<h4 class="anchored" data-anchor-id="cluster-profiles">Cluster Profiles</h4>
+<p>K-means clustering of Rotterdam’s grid cells produced five ecological profiles. Table X presents the mean values per cluster for betweenness centrality, patch count, and patch capacity.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>rt <span class="ot">&lt;-</span> <span class="fu">cluster_grid</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/rt_grid_clustering.gpkg"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">bc_col          =</span> <span class="st">"new_normal"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">patch_count_col =</span> <span class="st">"dpc_total_"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">patch_cap_col   =</span> <span class="st">"dpc_tota_2"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">lcz_col         =</span> <span class="st">"majortity_lcz_grid__majority"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">role_to_id      =</span> rt_role_to_id,</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">role_to_color   =</span> role_to_color</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(rt<span class="sc">$</span>profile, <span class="at">caption =</span> <span class="st">"Rotterdam cluster profiles"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Rotterdam cluster profiles</caption>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 37%">
+<col style="width: 7%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">cluster_id</th>
+<th style="text-align: left;">cluster_role</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">bc_mean</th>
+<th style="text-align: right;">patches</th>
+<th style="text-align: right;">capacity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Transition zones</td>
+<td style="text-align: right;">2266</td>
+<td style="text-align: right;">0.0092</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">0.0348</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Key corridors</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: right;">0.6243</td>
+<td style="text-align: right;">1.14</td>
+<td style="text-align: right;">0.2519</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Urban matrix</td>
+<td style="text-align: right;">3175</td>
+<td style="text-align: right;">0.0005</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Isolated quality patches</td>
+<td style="text-align: right;">497</td>
+<td style="text-align: right;">0.0029</td>
+<td style="text-align: right;">1.04</td>
+<td style="text-align: right;">0.3742</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Fragmented green</td>
+<td style="text-align: right;">759</td>
+<td style="text-align: right;">0.0087</td>
+<td style="text-align: right;">2.21</td>
+<td style="text-align: right;">0.0248</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Cluster 2 (Urban matrix) is the largest group in Rotterdam (n = 3,175, around 47% of all grid cells), representing areas with no meaningful green network (neither patches nor betweenness centrality are present in these cells). Cluster 1 (Key corridors) is the smallest (n = 83) but the most ecologically significant. These are key corridor locations, combining the highest betweenness centrality of any cluster (BC mean = 0.6243) with moderate-to-high patch capacity. Cluster 3 (Isolated quality patches, n = 497) captures high-quality green patches that are poorly connected to the wider network (the lowest BC but the highest patch capacity). Cluster 4 (Fragmented green, n = 759) represents fragmented green space: cells here contain multiple small, low-capacity patches (2.21 per cell on average) with minimal connectivity. Cluster 0 (Transition zones, n = 2,266) is a lower-density version of fragmented green (typically a single small, low-quality patch per cell with weak connectivity) situated between the urban matrix and the more clearly green-dominated clusters (look at map…).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rt<span class="sc">$</span>lcz_summary <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lcz_label =</span> lcz_labels[<span class="fu">as.character</span>(majortity_lcz_grid__majority)]) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(cluster_id, <span class="fu">desc</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cluster_id) <span class="sc">|&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank  =</span> <span class="fu">paste0</span>(<span class="st">"Rank "</span>, <span class="fu">row_number</span>()),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">entry =</span> <span class="fu">paste0</span>(lcz_label, <span class="st">" (n="</span>, n, <span class="st">")"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cluster_id, rank, entry) <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> rank, <span class="at">values_from =</span> entry) <span class="sc">|&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(cluster_id) <span class="sc">|&gt;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Top LCZ classes per Rotterdam cluster"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Top LCZ classes per Rotterdam cluster</caption>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 27%">
+<col style="width: 30%">
+<col style="width: 31%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">cluster_id</th>
+<th style="text-align: left;">Rank 1</th>
+<th style="text-align: left;">Rank 2</th>
+<th style="text-align: left;">Rank 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">LCZ D – Low plants (n=1104)</td>
+<td style="text-align: left;">LCZ 6 – Open low-rise (n=372)</td>
+<td style="text-align: left;">LCZ 8 – Large low-rise (n=301)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">LCZ D – Low plants (n=75)</td>
+<td style="text-align: left;">LCZ 6 – Open low-rise (n=3)</td>
+<td style="text-align: left;">LCZ 8 – Large low-rise (n=3)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">NA (n=1468)</td>
+<td style="text-align: left;">LCZ 8 – Large low-rise (n=476)</td>
+<td style="text-align: left;">LCZ 6 – Open low-rise (n=367)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">LCZ D – Low plants (n=347)</td>
+<td style="text-align: left;">LCZ A – Dense trees (n=37)</td>
+<td style="text-align: left;">LCZ 6 – Open low-rise (n=32)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">LCZ D – Low plants (n=299)</td>
+<td style="text-align: left;">LCZ 6 – Open low-rise (n=195)</td>
+<td style="text-align: left;">LCZ B – Scattered trees (n=107)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The dominant LCZ classes per cluster depict a clear contrast between Rotterdam’s green network and its urban matrix. LCZ D (Low plants) is the most common class in every cluster except the Urban matrix (including the Key corridors cluster (75 of 83 cells), the Transition zones cluster (1,104 cells), the Isolated quality patches cluster (347 cells), and the Fragmented green cluster (299 cells)). This indicates that nearly all of Rotterdam’s green connectivity network runs through open, low-vegetation land such as grassland and polder. The Urban matrix cluster stands apart entirely: its top classes are LCZ 8 (Large low-rise, 476 cells) and LCZ 6 (Open low-rise, 367 cells); which are pure built environments. A few secondary classes point to where Rotterdam’s denser tree cover sits. The Isolated quality patches cluster is the only one with a meaningful presence of LCZ A (Dense trees, 37 cells), suggesting its highest-capacity green patches include some wooded areas alongside open vegetation. The Fragmented green cluster shows the strongest secondary presence of LCZ B (Scattered trees, 107 cells), consistent with a patchwork of small green elements that includes some tree cover rather than open land alone.</p>
+<section id="spatial-distribution" class="level5">
+<h5 class="anchored" data-anchor-id="spatial-distribution">Spatial Distribution</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">9</span>))  <span class="co"># extra right-hand margin reserved for the legend</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(rt<span class="sc">$</span>grid), <span class="at">col =</span> rt<span class="sc">$</span>grid<span class="sc">$</span>cluster_color, <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">main =</span> <span class="cn">NULL</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="fu">par</span>(<span class="st">"usr"</span>)[<span class="dv">2</span>], <span class="at">y =</span> <span class="fu">par</span>(<span class="st">"usr"</span>)[<span class="dv">4</span>],</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">names</span>(role_to_color), <span class="at">fill =</span> role_to_color,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">xpd =</span> <span class="cn">NA</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="report_files/figure-html/rt-map-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Rotterdam — spatial distribution of clusters</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The spatial distribution map depicts that the isolated quality patches cluster forms one large, contiguous zone in the southwest of Rotterdam (with the open, low-vegetation polder landscape identified in the LCZ analysis). The Key corridors cluster runSdirectly along its southern edge, its only substantial concentration anywhere in the study area. The remainder of the map is dominated by a mix of Urban matrix cells interspersed with Transition zones and Fragmented green, with no further concentrations of either Isolated quality patches or Key corridors elsewhere in Rotterdam.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="sec-results-gz" class="level2">
+<h2 class="anchored" data-anchor-id="sec-results-gz">Results Guangzhou</h2>
+<section id="sec-results-ecoconnect2" class="level3">
+<h3 class="anchored" data-anchor-id="sec-results-ecoconnect2">Current Ecological Connectivity Status</h3>
+<section id="morphological-spatial-pattern-analysis-mspa-1" class="level4">
+<h4 class="anchored" data-anchor-id="morphological-spatial-pattern-analysis-mspa-1">Morphological Spatial Pattern Analysis (MSPA)</h4>
+<p>After running the Morphological Spatial Pattern Analysis on Guangzhou’s envelope area (Section 4.2.1) and analysing the distribution of classes, the overall result is similar to Rotterdam, though slightly less green-dominated. The backround covers the majority of the evenelope’s area accounting for 58.19% as opposed to the overall green network (Core, Islet, Perforation, Edge, Loop, Bridge, Branch) covering 41.81% (approximately 4% lower than Rotterdam).@fig-MSPAgz highlights a large and continuous green network in the North part of the envelope with majority of the cores located there. As with Rotterdam, these areas include a number of different types of vegetation, however trees (value 10) are the most dominant ones.</p>
+<div id="fig-MSPAgz" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-MSPAgz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/GZ_mspafinal@4x.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-MSPAgz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;12: Morphological Spatial Pattern Analysis in Guangzhou
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-result-ecoconnect-gz" class="level4">
+<h4 class="anchored" data-anchor-id="sec-result-ecoconnect-gz">Patches and Link Importance</h4>
+<div id="fig-connectivity-first" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-connectivity-first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lol1@4x.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-connectivity-first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13: Ecological connectivity within the Envelope.
+</figcaption>
+</figure>
+</div>
+<div id="fig-connectivity-second" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-connectivity-second-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lol2@4x.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-connectivity-second-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;14: Ecological connectivity within the boundary of Guangzhou
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="cluster-profiles-1" class="level4">
+<h4 class="anchored" data-anchor-id="cluster-profiles-1">Cluster Profiles</h4>
+<p>K-means clustering of Guangzhou’s grid cells produced five ecological profiles. Table X presents the mean values per cluster for betweenness centrality, patch count, and patch capacity.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>gz <span class="ot">&lt;-</span> <span class="fu">cluster_grid</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/gz_grid_clustering.gpkg"</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">bc_col          =</span> <span class="st">"bc_d500_p0.5_beta1_graph10000_mean"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">patch_count_col =</span> <span class="st">"dpc_sum_count"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">patch_cap_col   =</span> <span class="st">"dpc_sum_mean"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">lcz_col         =</span> <span class="st">"lcz_majority_grids_lcz__majority"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">role_to_id      =</span> gz_role_to_id,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">role_to_color   =</span> role_to_color</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(gz<span class="sc">$</span>profile, <span class="at">caption =</span> <span class="st">"Guangzhou cluster profiles"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Guangzhou cluster profiles</caption>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 37%">
+<col style="width: 7%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">cluster_id</th>
+<th style="text-align: left;">cluster_role</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">bc_mean</th>
+<th style="text-align: right;">patches</th>
+<th style="text-align: right;">capacity</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">Fragmented green</td>
+<td style="text-align: right;">760</td>
+<td style="text-align: right;">0.4115</td>
+<td style="text-align: right;">3.00</td>
+<td style="text-align: right;">0.0123</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Urban matrix</td>
+<td style="text-align: right;">1502</td>
+<td style="text-align: right;">0.0008</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Transition zones</td>
+<td style="text-align: right;">713</td>
+<td style="text-align: right;">0.0049</td>
+<td style="text-align: right;">1.43</td>
+<td style="text-align: right;">0.0223</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Isolated quality patches</td>
+<td style="text-align: right;">406</td>
+<td style="text-align: right;">0.0588</td>
+<td style="text-align: right;">1.08</td>
+<td style="text-align: right;">0.4227</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">Key corridors</td>
+<td style="text-align: right;">1455</td>
+<td style="text-align: right;">0.4281</td>
+<td style="text-align: right;">0.52</td>
+<td style="text-align: right;">0.0212</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Guangzhou’s clustering reveals a different ecological pattern from Rotterdam. Cluster 1 (urban matrix, n = 1,502) has no patches and no connectivity, which is comparable in role to Rotterdam’s largest cluster (also urban matrix). However, it is proportionally much smaller (about 31% of cells here, versus 47% in Rotterdam) which reflects Guangzhou’s denser green network. Cluster 4 (Key corridors, n = 1,455) and Cluster 0 (Fragmented green, n = 760) both show high betweenness centrality (BC mean around 0.41–0.43), indicating that high-connectivity corridors are far more widespread in Guangzhou than in Rotterdam. Cluster 0 combines high BC with the highest average patch count of any cluster (3.00 per cell), suggesting fragmented but well-connected green space. Cluster 3 (Isolated quality patches, n = 406) is the clearest cross-city match: like Rotterdam’s equivalent, it shows the highest patch capacity of any Guangzhou cluster (0.4227) alongside comparatively low BC (0.0588). Cluster 2 (Transition zones, n = 713) shows a low-quality green presence with weak connectivity.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: gz-lcz</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>gz<span class="sc">$</span>lcz_summary <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lcz_label =</span> lcz_labels[<span class="fu">as.character</span>(lcz_majority_grids_lcz__majority)]) <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(cluster_id, <span class="fu">desc</span>(n)) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(cluster_id) <span class="sc">|&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">rank  =</span> <span class="fu">paste0</span>(<span class="st">"Rank "</span>, <span class="fu">row_number</span>()),</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">entry =</span> <span class="fu">paste0</span>(lcz_label, <span class="st">" (n="</span>, n, <span class="st">")"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(cluster_id, rank, entry) <span class="sc">|&gt;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> rank, <span class="at">values_from =</span> entry) <span class="sc">|&gt;</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(cluster_id) <span class="sc">|&gt;</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Top LCZ classes per Guangzhou cluster"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Top LCZ classes per Guangzhou cluster</caption>
+<colgroup>
+<col style="width: 10%">
+<col style="width: 29%">
+<col style="width: 29%">
+<col style="width: 29%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">cluster_id</th>
+<th style="text-align: left;">Rank 1</th>
+<th style="text-align: left;">Rank 2</th>
+<th style="text-align: left;">Rank 3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">LCZ 6 – Open low-rise (n=346)</td>
+<td style="text-align: left;">LCZ 8 – Large low-rise (n=218)</td>
+<td style="text-align: left;">LCZ 4 – Open high-rise (n=63)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">LCZ 8 – Large low-rise (n=580)</td>
+<td style="text-align: left;">LCZ 4 – Open high-rise (n=221)</td>
+<td style="text-align: left;">NA (n=192)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">LCZ A – Dense trees (n=186)</td>
+<td style="text-align: left;">LCZ 6 – Open low-rise (n=175)</td>
+<td style="text-align: left;">LCZ 8 – Large low-rise (n=175)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">LCZ A – Dense trees (n=351)</td>
+<td style="text-align: left;">LCZ 6 – Open low-rise (n=41)</td>
+<td style="text-align: left;">LCZ B – Scattered trees (n=6)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">LCZ 8 – Large low-rise (n=541)</td>
+<td style="text-align: left;">LCZ 4 – Open high-rise (n=239)</td>
+<td style="text-align: left;">LCZ A – Dense trees (n=205)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>In Guangzhou, the Isolated quality patches cluster is dominated by LCZ A (Dense trees, 351 of 406 cells — 86%), proving it to be a forest rather than open vegetation. The Transition zones cluster is also led by LCZ A (Dense trees, 186 cells), though more evenly mixed with LCZ 6 (Open low-rise, 175 cells) and LCZ 8 (Large low-rise, 175 cells), suggesting a blend of wooded and low-rise built contexts. The Key corridors cluster is dominated by LCZ 8 (Large low-rise, 541 cells) and LCZ 4 (Open high-rise, 239 cells), with LCZ A (Dense trees, 205 cells). This is a notable contrast with Rotterdam, where the equivalent Key corridors cluster ran almost entirely through LCZ D (open, low-vegetation land); in Guangzhou, the busiest ecological corridors instead cut through dense, large low-rise and high-rise urban fabric, implying these links function more as built-environment green threads than open-landscape pathways. The Fragmented green cluster follows the same built-dominated pattern, led by LCZ 6 (Open low-rise, 346 cells) and LCZ 8 (Large low-rise, 218 cells), with no tree-cover class appearing in its top three at all.</p>
+<section id="spatial-distribution-1" class="level5">
+<h5 class="anchored" data-anchor-id="spatial-distribution-1">Spatial Distribution</h5>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">9</span>))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(gz<span class="sc">$</span>grid), <span class="at">col =</span> gz<span class="sc">$</span>grid<span class="sc">$</span>cluster_color, <span class="at">border =</span> <span class="cn">NA</span>, <span class="at">main =</span> <span class="cn">NULL</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x =</span> <span class="fu">par</span>(<span class="st">"usr"</span>)[<span class="dv">2</span>], <span class="at">y =</span> <span class="fu">par</span>(<span class="st">"usr"</span>)[<span class="dv">4</span>],</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">names</span>(role_to_color), <span class="at">fill =</span> role_to_color,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="at">bty =</span> <span class="st">"n"</span>, <span class="at">xpd =</span> <span class="cn">NA</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="report_files/figure-html/gz-map-1.png" class="img-fluid figure-img" width="864"></p>
+<figcaption>Guangzhou — spatial distribution of clusters</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The spatial distribution map shows the Isolated quality patches cluster forms a single, large block in the north of the study area, consistent with the dense, forested LCZ A landscape identified in the LCZ analysis. Unlike Rotterdam, where the key corridors cluster formed one narrow line along the edge of the isolated patches, Guangzhou’s Key corridors cluster forms an extensive, web-like network spanning most of the lower two-thirds of the study area, intertwined with fragmented green cells. This reflects Guangzhou’s much larger high-connectivity network, running primarily through the built urban fabric. The urban matrix cluster and transition zones cells fill the remaining gaps, more concentrated toward the southwestern part of the envelope.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="sec-results-comp" class="level2">
+<h2 class="anchored" data-anchor-id="sec-results-comp">Comparing Results</h2>
+<section id="comparable-study-areas" class="level3">
+<h3 class="anchored" data-anchor-id="comparable-study-areas">Comparable Study Areas</h3>
+<p>Two pairs of comparable areas were identified based on similarity in ecological connectivity profiles and urban context.</p>
+<p>Rather than matching individual clusters one-to-one between cities, comparable study areas were identified by examining the spatial distribution of cluster types within each city’s own grid. In both cities, the isolated quality patches cluster (high-capacity green space with weak connectivity) was used as the starting point, since it represents the clearest opportunity for targeted connectivity intervention: ecologically valuable green space that is currently disconnected from the wider network. The immediate surroundings of these patches were examined to understand what type of green (or absence of it) borders them.</p>
+</section>
+<section id="zoom-ins-rotterdam" class="level3">
+<h3 class="anchored" data-anchor-id="zoom-ins-rotterdam">Zoom Ins Rotterdam</h3>
+<p><a href="#fig-zoomin-roffa" class="quarto-xref">Figure&nbsp;15</a> presents the two zoom-in locations selected for Rotterdam, chosen for their comparability and based on the clustering analysis overlapped with the potential links. The context of the two tiles, however, is very different: zoom-in 1 focuses on a heavily industrialised area at the Port of Rotterdam, while zoom-in 2 examines a neighbourhood situated at the boundary of the municipality. The additional analysis conducted on these smaller tiles is presented in the next section. The sizes of zoom-in areas for both cities are roughly the same.</p>
+<div id="fig-zoomin-roffa" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zoomin-roffa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Rotterdam_zoomin_intro.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zoomin-roffa-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15: Zoom in locations in Rotterdam
+</figcaption>
+</figure>
+</div>
+<section id="ecological-resistance-1" class="level4">
+<h4 class="anchored" data-anchor-id="ecological-resistance-1">Ecological Resistance</h4>
+<section id="ndvi-1" class="level5">
+<h5 class="anchored" data-anchor-id="ndvi-1">NDVI</h5>
+<p>The NDVI layer for zoom-in area 1 ranges from -0.49 to 0.90. Values above 0.6 indicate dense, healthy vegetation such as the subtropical forest patches dominant in the Tianhe District, visible as dark green areas in the map. Values between 0.2 and 0.5 correspond to sparse or stressed vegetation, while values below 0.1 represent bare soil, roads, or urban infrastructure. The map confirms the largely forested character of this zoom-in, with lower NDVI values concentrated in the urban fabric zones that interrupt the forest matrix.</p>
+</section>
+<section id="ndbi-1" class="level5">
+<h5 class="anchored" data-anchor-id="ndbi-1">NDBI</h5>
+<p>The NDBI layer ranges from -0.66 to 0.65. Positive values indicate built-up or urban areas, while negative values correspond to vegetated surfaces or water bodies. The spatial pattern closely mirrors the NDVI layer in reverse: the urban fabric zones that show low NDVI show high NDBI, confirming that the moderate-to-high resistance zones in this zoom-in are driven by built-up surfaces rather than roads alone.</p>
+</section>
+<section id="land-use-1" class="level5">
+<h5 class="anchored" data-anchor-id="land-use-1">Land Use</h5>
+<p>The land use resistance layer is classified on a 1-to-5 scale, where 1 represents trees and shrubs (lowest resistance) and 5 represents built-up surfaces (highest resistance). In zoom-in 1, the dominant class is low resistance (trees/shrub), consistent with the forested Tianhe landscape. The high-resistance built-up class (5) appears in the urban fabric zones between the forest patches, directly corresponding to the moderate-to-high resistance zones identified in the combined resistance map.</p>
+</section>
+<section id="road-density-1" class="level5">
+<h5 class="anchored" data-anchor-id="road-density-1">Road Density</h5>
+<p>The road density layer ranges from 0.00 to 0.25 km/km². Road density is overall low across most of the zoom-in area, reflecting the limited road network within the forested terrain. Higher values are concentrated in the urban fabric zones, where roads contribute an additional layer of very high resistance on top of the built-up surfaces. The relatively low maximum road density compared to the Rotterdam zoom-ins is consistent with the more dispersed, lower-intensity urban development pattern of the Tianhe District.</p>
+<div id="fig-ecores-roffa1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ecores-roffa1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/eco_resistance_roffa1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ecores-roffa1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;16: Ecological resistance analysis layers zoom in 1.
+</figcaption>
+</figure>
+</div>
+<div id="fig-ecores-roffa2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ecores-roffa2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/eco_resistance_roffa2.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ecores-roffa2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;17: Ecological resistance analysis layers zoom in 2.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="conclusion-maps" class="level5">
+<h5 class="anchored" data-anchor-id="conclusion-maps">Conclusion Maps</h5>
+<p>After combining all layers, the barriers facing each “potential” link become clear. In zoom-in 1 (Tianhe District), the primary barriers are the urban fabric zones and the roads embedded within them, where moderate to high resistance interrupts the otherwise continuous forest matrix. In zoom-in 2 (Haizhu District), three distinct barrier types are identified: a large river channel running diagonally through the area, roads of very high resistance cutting across the link trajectories, and broader zones of moderate to high resistance representing dense urban fabric between the parks. As shown in the bottom map of each figure, some “potential” links already follow an existing green corridor or element; from this stage onward, we therefore focus only on the missing links.</p>
+<p>In zoom-in 1, the dominant barrier is the Nieuwe Waterweg, a key shipping channel serving the Port of Rotterdam. The thinner barriers in this area are also waterways, reflecting its role as part of the Europoort of Rotterdam. When developing NBS in the next step, this industrial character and port functionality must be taken into account.</p>
+<p>Zoom-in 2 sits at the edge of the city, where residential neighbourhoods become the focus. The barriers here are correspondingly different: highways, roads, and railway tracks are the obstacles that need to be overcome.</p>
+<div id="fig-ecores-tot-roffa1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ecores-tot-roffa1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/total_eco_resistance_roffa1.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ecores-tot-roffa1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;18: Ecological resistance zoom in 1 (layers combined).
+</figcaption>
+</figure>
+</div>
+<div id="fig-ecores-tot-roffa2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-ecores-tot-roffa2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/total_eco_resistance_roffa2.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-ecores-tot-roffa2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;19: Ecological resistance zoom in 2 (layers combined).
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+</section>
+<section id="zoom-ins-guangzhou" class="level3">
+<h3 class="anchored" data-anchor-id="zoom-ins-guangzhou">Zoom Ins Guangzhou</h3>
+<div id="fig-zoomin-gz" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zoomin-gz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lol3@4x.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zoomin-gz-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20: Zoom in locations in Guangzhou
+</figcaption>
+</figure>
+</div>
+<p><a href="#fig-zoomin-gz" class="quarto-xref">Figure&nbsp;20</a> presents the two zoom-in locations selected for Guangzhou. The selection was guided primarily by link importance: areas concentrating the highest-importance links (very high and high, visible as the darkest, thickest lines on the map) were prioritised, as these represent the most critical missing connections in the network. To ensure comparability with the Rotterdam zoom-in areas in terms of spatial scale and analytical accuracy, the size of each tile was kept consistent with those selected for Rotterdam, with district boundaries taken into account when defining the extents.</p>
+<p>The two zoom-in areas reflect contrasting urban contexts within Guangzhou. Zoom-in 1 is located in the northern part of the study area, in the Tianhe District, where the landscape transitions toward hillier, more vegetated terrain. This area contains a concentration of very high and high importance links connecting green patches across a mixed urban-natural gradient. Zoom-in 2 is situated further south, in the Haizhu District, where the urban character is denser and more built-up. Here, the critical links run through a more fragmented urban fabric, presenting a different set of barriers and opportunities for Nature-based Solutions compared to zoom-in 1.</p>
+<section id="ecological-resistance-2" class="level4">
+<h4 class="anchored" data-anchor-id="ecological-resistance-2">Ecological Resistance</h4>
+<section id="ndvi-2" class="level5">
+<h5 class="anchored" data-anchor-id="ndvi-2">NDVI</h5>
+<p>The NDVI layer for zoom-in area 2 ranges from -0.60 to 0.93. The higher maximum value compared to zoom-in 1 reflects the presence of well-vegetated park patches within the Haizhu District, which show very high NDVI values. Negative values correspond to the river channel and water bodies, while low positive values (0 to 0.1) mark the impervious urban surfaces between the parks. The spatial contrast between the dark green park patches and the surrounding moderate-resistance urban fabric is clearly visible in the NDVI map.</p>
+</section>
+<section id="ndbi-2" class="level5">
+<h5 class="anchored" data-anchor-id="ndbi-2">NDBI</h5>
+<p>The NDBI layer ranges from -0.61 to 0.60. The spatial pattern confirms the fragmented character of this zoom-in: negative NDBI values coincide with the park patches and river channel, while positive values mark the built-up zones of moderate to high resistance between them. The river channel produces distinctly low NDBI values due to its high water content, which is consistent with the known spectral behaviour of water in the NIR band.</p>
+</section>
+<section id="land-use-2" class="level5">
+<h5 class="anchored" data-anchor-id="land-use-2">Land Use</h5>
+<p>The land use resistance layer follows the same 1-to-5 classification as zoom-in 1. In zoom-in 2, the distribution is more mixed, with both low- resistance classes (trees/shrub in the parks) and high-resistance classes (built-up surfaces and bare/water) present across the area. The river channel is classified as moderate-high resistance (class 4, bare/water), contributing to the barrier effect identified in the combined resistance map.</p>
+</section>
+<section id="road-density-2" class="level5">
+<h5 class="anchored" data-anchor-id="road-density-2">Road Density</h5>
+<p>The road density layer ranges from 0.00 to 0.22 km/km². Compared to zoom-in 1, the road network in zoom-in 2 is more evenly distributed across the built-up zones, reflecting the denser urban fabric of the Haizhu District. The highest road density values coincide with the main arterial roads visible as red lines of very high resistance in the combined map, confirming that roads are a key contributor to the connectivity barriers identified in this zoom-in area.</p>
+<div id="fig-zoom1-metrics" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zoom1-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/nr2@4x.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zoom1-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;21: Ecological resistance analysis layers zoom in 1.
+</figcaption>
+</figure>
+</div>
+<div id="fig-zoom2-metrics" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-zoom2-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/nr1@4x.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zoom2-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;22: Ecological resistance analysis layers zoom in 2.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="conclusion-maps-1" class="level5">
+<h5 class="anchored" data-anchor-id="conclusion-maps-1">Conclusion Maps</h5>
+<p>After combining all layers, the barriers facing each “potential” link become clear. As shown in the bottom map of each figure, some “potential” links already follow an existing green corridor or element; from this stage onward, we therefore focus only on the missing links.</p>
+<p>In zoom-in 1 (Tianhe District), the overall ecological resistance is predominantly very low to low, reflecting the large and continuous patches of subtropical forest visible in dark green across much of the area. The dominant barriers where the highest-importance links cross are broader zones of moderate to high resistance representing urban fabric — buildings, paved surfaces, and limited vegetation interrupting the otherwise continuous forest matrix. Within these urban zones, red lines indicate that roads add an additional layer of very high resistance. The barrier to connectivity is therefore a combination of urban built fabric and the roads embedded within it. When developing NbS in the next step, this mixed urban-natural character must be taken into account.</p>
+<p>Zoom-in 2 (Haizhu District) presents a more fragmented picture, where existing parks with very low resistance are separated by three distinct barrier types clearly visible on the map: a large river channel running diagonally through the area, roads appearing as red lines of very high resistance cutting across the link trajectories, and broader zones of moderate to high resistance representing the dense urban fabric between the parks. The barriers here are correspondingly more varied, and NbS will need to address all three simultaneously.</p>
+<div id="fig-resistance-first" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resistance-first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/nr4@4x.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resistance-first-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;23: Ecological resistance zoom in 1 (layers combined).
+</figcaption>
+</figure>
+</div>
+<div id="fig-resistance-second" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resistance-second-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/nr3@4x.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-resistance-second-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;24: Ecological resistance zoom in 2 (layers combined).
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+</section>
+</section>
+<section id="nature-based-solutions" class="level2">
+<h2 class="anchored" data-anchor-id="nature-based-solutions">Nature-based Solutions</h2>
+<p>To identify where Nature-based Solutions can most effectively improve ecological connectivity, the maps combining ecological resistance and link importance (Figures 14, 15, 18, 19) were used as the primary analytical basis. For each zoom-in area, the links with the highest betweenness centrality were overlaid with the combined ecological resistance surface. Where these high-importance links cross zones of very high resistance, shown in red on the maps, these intersections were identified as the critical barrier locations requiring intervention. For each of these locations, the underlying land use was then determined, as the nature of the barrier directly defines which NbS are feasible. This process was applied consistently across all four zoom-in areas, ensuring that the proposed NbS are spatially grounded rather than generically applied, and that they reflect the specific urban context of each location, ranging from industrial port infrastructure and residential neighbourhoods in Rotterdam to mixed urban-natural terrain and dense riverine fabric in Guangzhou.</p>
+<section id="rotterdam-zoom-in-1" class="level3">
+<h3 class="anchored" data-anchor-id="rotterdam-zoom-in-1">Rotterdam: Zoom-in 1</h3>
+<p>Overlaying the highest-importance links with the combined ecological resistance surface in zoom-in area 1 (Figure 14) shows that the most critical link crosses zones of very high resistance concentrated around the Nieuwe Waterweg and the surrounding port terminal surfaces. Examining the underlying land use reveals two distinct barrier types: the open shipping channel of the Nieuwe Waterweg itself, and the impervious built-up surfaces of the industrial port infrastructure on either side.</p>
+<p>For the industrial port surfaces, where high resistance is driven by impervious cover and near-absent vegetation, hybrid and adaptive edge solutions are proposed. This involves introducing native vegetation along quay edges and installing ecological habitat modules on existing hard port infrastructure bordering the link corridor. Marzio et al.&nbsp;(2025) identify this approach, retrofitting waterfront edges with hybrid green-grey solutions, as one of the three core NbS strategies for urban waterfronts, noting that such solutions allow natural processes to operate within built environments, providing a flexible approach in space-constrained areas without interfering with primary port functions.</p>
+<p>For the secondary harbour basins and quieter dock edges along the link corridor, constructed floating wetlands (FTWs) are proposed as aquatic stepping stones. Rome et al.&nbsp;(2023) demonstrate that FTWs planted with native species provide valuable wetland habitat and produce localised improvements in ecological quality even at small scales. Critically, Rome et al.&nbsp;(2023) also note that very few studies have explored FTWs in active urban waterways that continue to support industrial transportation, directly confirming that placement within the main Nieuwe Waterweg shipping channel is not feasible. FTWs are therefore proposed exclusively for quieter secondary basins, at intervals not exceeding 500 m, consistent with the dispersal distance used throughout this study.</p>
+<p>The main Nieuwe Waterweg channel itself constitutes a residual hard barrier that cannot be addressed through NbS. Active large-vessel navigation makes any in-channel intervention physically hazardous and infeasible, and this limitation should be acknowledged in broader connectivity planning for Rotterdam.</p>
+</section>
+<section id="rotterdam-zoom-in-2" class="level3">
+<h3 class="anchored" data-anchor-id="rotterdam-zoom-in-2">Rotterdam: Zoom-in 2</h3>
+<p>Overlaying the highest-importance links with the combined ecological resistance surface in zoom-in area 2 (Figure 15) shows that the most critical links cross zones of very high resistance concentrated along a network of roads, highways and railway lines running through the residential urban fabric. Unlike zoom-in 1, the wider matrix here shows moderate to low resistance, suggesting that the surrounding residential area already contains meaningful green elements; the primary connectivity problem is the fragmentation caused by these transport corridors cutting across the link trajectories.</p>
+<p>For the road and railway barriers, two complementary NbS are proposed. First, green verges and roadside vegetation enhancement along the transport corridors that the critical links cross. Cork et al.&nbsp;(2024) demonstrate in a systematic review that road and railway verges in temperate zones have significant potential for habitat connectivity, particularly for generalist species, and that verge habitat quality and continuity are key determinants of their effectiveness as ecological corridors. Enhancing existing verges through native planting, reduced mowing regimes, and structural diversification can meaningfully reduce resistance along these corridors without requiring major infrastructure changes. Second, for locations where the highest-importance links cross major roads or rail lines and verge enhancement alone is insufficient, green bridges or crossing structures are proposed as a more targeted intervention. Cork et al.&nbsp;(2024) also note that successful dispersal across railways requires specific crossing provisions, and that such structures are increasingly being integrated into transport infrastructure planning as credible NbS alternatives.</p>
+<p>For the residential matrix between the transport barriers, where resistance is already moderate to low, pocket parks and street tree networks are proposed to strengthen connectivity between existing green patches, reducing the effective ecological distance between the larger green areas visible in the northwest of the zoom-in area and the patches further east.</p>
+</section>
+<section id="guangzhou-zoom-in-1" class="level3">
+<h3 class="anchored" data-anchor-id="guangzhou-zoom-in-1">Guangzhou: Zoom-in 1</h3>
+<p>Overlaying the highest-importance links with the combined ecological resistance surface in zoom-in area 1 (Figure 18) shows that the overall resistance in the Tianhe District is predominantly very low to low, reflecting large and continuous patches of subtropical forest. However, the highest-importance links cross several broader zones of moderate to high resistance: wider patches of urban fabric with buildings, paved surfaces and limited vegetation that interrupt the otherwise continuous forest matrix. Within these urban zones, red lines indicate that roads add an additional layer of very high resistance. The barrier to connectivity is therefore a combination of urban built fabric and the roads embedded within it.</p>
+<p>Two complementary NbS are proposed. First, for the roads within the urban fabric, vegetated wildlife underpasses are proposed at the specific locations where the highest-importance links cross them. As demonstrated for Rotterdam zoom-in 2, Cork et al.&nbsp;(2024) confirm that native vegetation at and around crossing structures significantly increases their use by wildlife, and that verge continuity guides species movement toward crossing points. Given the subtropical forest context, underpasses should connect directly to existing forest edge vegetation on both sides.</p>
+<p>Second, for the broader urban fabric zones between the forest patches, green roofs, green walls and pocket parks are proposed as stepping stone NbS to increase the permeability of the urban matrix along the link corridors (<a href="#fig-greenroofs" class="quarto-xref">Figure&nbsp;25</a>). Madre et al.&nbsp;(2018) show that green roofs and green walls can function as stepping stones in fragmented urban areas, enhancing species dispersal through the urban matrix. This is further supported by Joshi &amp; Teller (2021), whose systematic review explicitly identifies green roofs as a medium for connecting urban green areas, providing potential for habitat connectivity and maintenance of the ecological network. Importantly, Joshi &amp; Teller (2021) note that building height is a determining factor for biodiversity effectiveness, and call for future research to include taller buildings in ecological network analyses, a relevant consideration given the high-rise character of parts of the Tianhe urban fabric. Green roofs should therefore be prioritised on lower-rise buildings along the link trajectory, where their connectivity potential is greatest.</p>
+<div id="fig-greenroofs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-greenroofs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/greenroofs.png" class="img-fluid figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-greenroofs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;25: Schematic representing the diverse processes involved in conventional roofs and green roofs (josh &amp; Teller).
+</figcaption>
+</figure>
+</div>
+<p>Together these two interventions address both barrier types: the roads through targeted crossing structures, and the urban matrix through a network of distributed green stepping stones.</p>
+</section>
+<section id="guangzhou-zoom-in-2" class="level3">
+<h3 class="anchored" data-anchor-id="guangzhou-zoom-in-2">Guangzhou: Zoom-in 2</h3>
+<p>Overlaying the highest-importance links with the combined ecological resistance surface in zoom-in area 2 (Figure 19) reveals a fragmented landscape where existing parks (very low resistance, dark green) are separated by three distinct barrier types: a large river channel running diagonally through the area, roads visible as red lines of very high resistance, and broader zones of moderate to high resistance representing dense urban fabric between the parks.</p>
+<p>Three complementary NbS are proposed. First, for the river channel and its banks, riparian vegetation restoration is proposed along both margins where the critical links cross the waterway. Machado &amp; Kim (2024) demonstrate that restoring native riparian vegetation along urban stream corridors directly improves ecological quality and connectivity function, creating a continuous vegetated margin that allows species to move parallel to and across the waterway via existing bridges and culverts.</p>
+<p>Second, for the roads where very high resistance is visible as red lines, vegetated road verges and crossing enhancements are proposed, as previously described for Rotterdam zoom-in 2 and Guangzhou zoom-in 1 (Cork et al., 2024), at the specific locations where critical links intersect them.</p>
+<p>Third, for the broader urban fabric zones of moderate to high resistance between the parks, green roofs and green walls are proposed as stepping stone NbS along the link trajectories. As described for Guangzhou zoom-in 1 (Madre et al., 2018; Joshi &amp; Teller, 2021), these interventions increase the permeability of the urban matrix along the critical link corridors. The connectivity potential of green roofs is particularly strong in Haizhu given its relatively low-rise urban fabric compared to Tianhe, since Joshi &amp; Teller (2021) specifically note that lower buildings support more effective biodiversity outcomes from green roof implementation.</p>
+<p>Together these three interventions directly target all identified resistance barriers, the river, the roads, and the urban matrix, along the trajectories of the highest-importance links connecting the existing park patches.</p>
+</section>
+<section id="concluding-nbs-table" class="level3">
+<h3 class="anchored" data-anchor-id="concluding-nbs-table">Concluding NbS table</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 10%">
+<col style="width: 22%">
+<col style="width: 16%">
+<col style="width: 14%">
+<col style="width: 18%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>City</th>
+<th>Zoom-in</th>
+<th>Barrier (Land Use)</th>
+<th>Proposed NbS</th>
+<th>Advantages</th>
+<th>Disadvantages</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Rotterdam</td>
+<td>1 — Port area</td>
+<td>Impervious port surfaces</td>
+<td>Hybrid green-grey edge retrofitting</td>
+<td>Compatible with active port operations; allows natural processes within built infrastructure; flexible in space-constrained areas</td>
+<td>Limited landscape-scale ecological impact; dependent on port authority cooperation</td>
+<td>Marzio et al.&nbsp;(2025)</td>
+</tr>
+<tr class="even">
+<td>Rotterdam</td>
+<td>1 — Port area</td>
+<td>Secondary harbour basins</td>
+<td>Constructed floating wetlands (FTWs)</td>
+<td>Creates aquatic stepping stones; improves local water quality; scalable in quiet basins</td>
+<td>Not suitable for active shipping lanes; maintenance required; limited terrestrial connectivity</td>
+<td>Rome et al.&nbsp;(2023)</td>
+</tr>
+<tr class="odd">
+<td>Rotterdam</td>
+<td>1 — Port area</td>
+<td>Nieuwe Waterweg shipping channel</td>
+<td>No NbS feasible — residual hard barrier</td>
+<td>N/A</td>
+<td>Active large-vessel navigation makes any in-channel intervention physically hazardous and legally infeasible</td>
+<td>Rome et al.&nbsp;(2023)</td>
+</tr>
+<tr class="even">
+<td>Rotterdam</td>
+<td>2 — Residential</td>
+<td>Roads and railway lines</td>
+<td>Green verges and roadside vegetation</td>
+<td>No major infrastructure changes needed; cost-effective; immediate resistance reduction</td>
+<td>Limited effectiveness for wide or fast roads; dependent on mowing regime policy changes</td>
+<td>Cork et al.&nbsp;(2024)</td>
+</tr>
+<tr class="odd">
+<td>Rotterdam</td>
+<td>2 — Residential</td>
+<td>Major road/rail crossings</td>
+<td>Green bridges and crossing structures</td>
+<td>Ecologically effective; benefits wide range of species; largest gain in nature value</td>
+<td>High construction costs; cost-effectiveness modest compared to other measures; long implementation timeline</td>
+<td>Vos et al.&nbsp;(2020)</td>
+</tr>
+<tr class="even">
+<td>Rotterdam</td>
+<td>2 — Residential</td>
+<td>Residential matrix</td>
+<td>Pocket parks and street tree networks</td>
+<td>Function as green stepping stones complementing larger parks; cost-effective; improve urban liveability</td>
+<td>Small individual ecological impact; require many interventions for meaningful connectivity gain; policy support needed for short-term interventions</td>
+<td>Geng et al.&nbsp;(2022); Rosso et al.&nbsp;(2022)</td>
+</tr>
+<tr class="odd">
+<td>Guangzhou</td>
+<td>1 — Tianhe</td>
+<td>Roads within urban fabric</td>
+<td>Vegetated wildlife underpasses</td>
+<td>Allows species movement beneath roads; connects directly to existing forest edges; benefits range of taxonomic groups</td>
+<td>Construction disruption; effectiveness depends on species-specific behaviour; requires monitoring</td>
+<td>Cork et al.&nbsp;(2024)</td>
+</tr>
+<tr class="even">
+<td>Guangzhou</td>
+<td>1 — Tianhe</td>
+<td>Urban fabric between forest patches</td>
+<td>Green roofs, green walls, pocket parks</td>
+<td>Stepping stones through built matrix; multiple co-benefits (cooling, stormwater, biodiversity); scalable</td>
+<td>Less effective on high-rise buildings; dependent on private building owner cooperation; high installation costs</td>
+<td>Madre et al.&nbsp;(2018); Joshi &amp; Teller (2021)</td>
+</tr>
+<tr class="odd">
+<td>Guangzhou</td>
+<td>2 — Haizhu</td>
+<td>River channel and banks</td>
+<td>Riparian vegetation restoration</td>
+<td>Improves water quality and flood attenuation; low cost; creates continuous habitat corridor</td>
+<td>Slow establishment; regeneration constrained by propagule availability and invasive species competition; may conflict with existing flood control infrastructure</td>
+<td>Machado &amp; Kim (2024); Salinas-García et al.&nbsp;(2025)</td>
+</tr>
+<tr class="even">
+<td>Guangzhou</td>
+<td>2 — Haizhu</td>
+<td>Roads (red lines)</td>
+<td>Vegetated road verges and crossing enhancements</td>
+<td>Targeted at specific high-resistance points; cost-effective; immediate resistance reduction</td>
+<td>Limited by road width and traffic intensity; requires maintenance and policy support</td>
+<td>Cork et al.&nbsp;(2024)</td>
+</tr>
+<tr class="odd">
+<td>Guangzhou</td>
+<td>2 — Haizhu</td>
+<td>Urban fabric between parks</td>
+<td>Green roofs and green walls</td>
+<td>Particularly effective given low-rise character of Haizhu; multiple co-benefits</td>
+<td>Dependent on private owner uptake; installation costs; limited ground-level connectivity</td>
+<td>Madre et al.&nbsp;(2018); Joshi &amp; Teller (2021)</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+</section>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>This chapter reflects on the limitations of the methods used in this research, as well as key methodological choices made throughout the process. It addresses the consequences of the envelope size, the choice of Graphab as the connectivity analysis tool, the differences and similarities observed between Rotterdam and Guangzhou, clustering implications, and finally the implications of these findings for Nature-based Solutions.</p>
+<section id="envelope-implications" class="level3">
+<h3 class="anchored" data-anchor-id="envelope-implications">Envelope Implications</h3>
+<p>When defining the study area, several considerations arose regarding the spatial boundaries of the analysis, each carrying methodological implications.</p>
+<p>Initially, the connectivity analysis was run only within the administrative boundary of Rotterdam, which meant that surrounding green patches were excluded. This produced results that may not accurately reflect real-world ecological connectivity, since relevant habitat can extend well beyond city limits. To address this, we computed a minimum bounding box around the city shape and added a 5 km buffer to incorporate the surrounding landscape. However, this approach still introduces limitations. The envelope edge inevitably cuts through patches, making some appear smaller than they actually are. Since tools like Graphab base their calculations on patch size and inter-patch distances, patches clipped by the envelope edge directly affect the resulting connectivity metrics.</p>
+<p>To keep computation times feasible within the given time frame, we chose not to extend the envelope further, even though a larger study area would likely produce more ecologically meaningful results. Ideally, the spatial boundary should have no influence on patch size or link characteristics, but the larger the area, the greater the computational load. Extending the envelope was therefore not practical under the current constraints. This is nonetheless an important limitation to acknowledge, given its direct effect on the connectivity outcomes.</p>
+</section>
+<section id="conefor-vs.-graphab" class="level3">
+<h3 class="anchored" data-anchor-id="conefor-vs.-graphab">Conefor vs.&nbsp;Graphab</h3>
+<p>During the ecological connectivity analysis, we explored and tested several software applications before settling on a final approach. Initially, we used Conefor, a software package designed to quantify the importance of habitat areas and links for maintaining or improving connectivity, and to evaluate the impacts of habitat and landscape changes on connectivity (Saura &amp; Torné, 2009). In principle, Conefor serves the same purpose as Graphab, but the two applications differ in their available methods and workflows.</p>
+<p>Conefor’s computation time proved to be a significant practical obstacle. Running the analysis on the Rotterdam envelope took an entire day, while the Guangzhou envelope took almost a full week, far from practical given the limited time frame of this project. Beyond the computation time, the results themselves raised questions. In Rotterdam, the highest-importance links connected smaller, less significant patches to one another rather than linking the most ecologically important patches. This was unexpected, since larger patches generally have a greater ecological impact, and we would therefore anticipate their connections to carry greater ecological weight as well. Unfortunately, the long run times meant we were unable to verify these results or investigate the underlying cause further.</p>
+<p>We therefore looked for an alternative that could support a similar analytical workflow while delivering more understandable results within a reasonable time frame. Graphab offered an accessible graphical interface, handled large landscapes efficiently, and was substantially faster than Conefor. Its results also aligned better with our expectations. Nevertheless, beginning with Conefor was not without value: working through its metrics deepened our understanding of connectivity analysis as a whole and helped us make a more informed decision about where and how to zoom in on for our further analysis.</p>
+</section>
+<section id="clustering-implications" class="level3">
+<h3 class="anchored" data-anchor-id="clustering-implications">Clustering Implications</h3>
+<p>When creating typologies for both cities using 500 x 500 m grid cells simplifies the city too much, so small but ecologically important features can be missed or merged into the same cell. Moreover, too ensure efficient computation the typology reduces most of the varaibles to one cluster label. In reality, a single grid cell can contain mixed land uses, land covers, and connectivity conditions. Furthermore, patch-link connectivity represents connectivity in an abstract way through straight line links, so the actual ecological corridors may have a somewhat different shape. Nevertheless, summarising betweenness centrality and patch-based metrics still provides an approximation of connectivity conditions within each grid cell. Therefore this typology should be seen as a general overview rather than a detailed map of ecological variation.</p>
+</section>
+<section id="differences-and-similarities-between-cities" class="level3">
+<h3 class="anchored" data-anchor-id="differences-and-similarities-between-cities">Differences and Similarities Between Cities</h3>
+<section id="similarities" class="level4">
+<h4 class="anchored" data-anchor-id="similarities">Similarities</h4>
+<p>In both study areas, the urban matrix clusters appear to be the most dominant land use type by cell count, covering 47% of Rotterdam’s area and 31% of Guangzhou’s. Furthermore, the most ecologically valuable patches (isolated quality patches) exhibit low BC (Betweenness-Centrality) in both areas, pointing to a shared fundamental pattern of poor connectivity of the wider network. Additionally, despite different urban fabrics, transport infrastructure seems to be a universal barrier type. An additional high-activity shipping river barrier appears in both cities at least once (Nieuwe Waterweg in Rotterdam, Zhujiang in Haizhu District), a hard barrier that NbS alone cannot fully overcome. Lastly, the proposed NbS such as green roofs, road verge enhancements and crossing structures overlap significantly suggesting that the toolkit for urban ecological connectivity is relatively transferable even across diverging delta city contexts.</p>
+</section>
+<section id="differences" class="level4">
+<h4 class="anchored" data-anchor-id="differences">Differences</h4>
+<p>Although Rotterdаm and Guаngzhou share a delta urban context аnd a common challenge of ecological fragmentation, their green networks differ in scale, composition, landscape context, and spatial distribution. The overall green network in Guаngzhou seems to be substantially more extensive and spatially distributed than the one in Rotterdam. Key corridor cells of Guаngzhou account for approximately 30% of the grid as compared to а mere 1% in Rotterdam highlighting a fundamentally greater difference in ecological connectivity across the study area. Additionally, while isolated quality patches occupy a comparable share of the grid in both study areas, approximately 7% in Rotterdam and 8.4% in Guangzhou, their ecological classification differs significantly. Rotterdam’s isolated quality patches consist predominantly of low plants (open polder grasslands), while Guаngzhou’s are almost entirely composed of dense trees (subtropical forest). The landscape context through which the green network extends through diverges as well. While Rotterdam’s corridors run through open, low-vegetation polder land, Guangzhou’s extend through dense urban fabric. As for the spаtial distribution of the key corridors, Rotterdam has a single continuous corridor аlong the southwestern edge of the study area directly inside the biggest cluster of the isolated quality patch, whereas in Guаngzhou’s corridors form аn extensive web-like network spanning from the northern biggest isolated quality pаtch to the lower two-thirds of the study аrea. ### Implications for NbS The Nature-based Solutions proposed in this study are directly grounded in the spatial analysis, but several methodological choices made earlier in the research have implications for how these proposals should be interpreted.</p>
+<p>The ecological resistance analysis was performed only at the zoom-in scale, using four layers: NDVI, NDBI, land use, and road density. While these layers capture the main categories of ecological resistance in urban environments (Wade et al., 2015), they do not account for all relevant barriers. Factors such as noise pollution, artificial light at night, and fine-scale vegetation structure were not included, meaning that the resistance surface represents an approximation rather than a complete picture of species movement constraints. The proposed NbS should therefore be seen as a starting point for intervention rather than a definitive plan.</p>
+<p>The NbS proposals were developed without specifying a target species, following the same generalised approach used in the connectivity analysis. This makes the proposals broadly applicable but limits their ecological specificity. In practice, different species respond differently to the same intervention a wildlife underpass that works well for amphibians may be ineffective for birds. Future implementation would therefore benefit from species-specific assessments to confirm which interventions are most appropriate for the local fauna of each zoom-in area.</p>
+<p>The comparison between Rotterdam and Guangzhou reveals that the same NbS types appear in both cities: green roofs, road verge enhancements, and crossing structures but the urban contexts in which they are applied differ substantially. In Rotterdam, NbS must work within a densely built, low-rise residential and industrial fabric with limited available space. In Guangzhou, particularly in the Tianhe District, the largely intact forest matrix means that even small, targeted interventions at road crossings could have a disproportionately large effect on overall connectivity. This suggests that the cost-effectiveness of NbS varies significantly between cities, and that the same investment in green infrastructure may yield greater ecological returns in Guangzhou than in Rotterdam under current conditions.</p>
+<p>Finally, it is worth noting that the most effective NbS locations in practice would often be brownfields, abandoned land, or underused spaces, where interventions face fewer competing demands. Due to data limitations and time constraints, such sites were not systematically identified in this study, particularly for Guangzhou. Future research that integrates land availability data into the NbS selection process would likely produce more targeted and implementable proposals.</p>
+</section>
+</section>
+</section>
+<section id="recommendations-further-research" class="level2">
+<h2 class="anchored" data-anchor-id="recommendations-further-research">Recommendations &amp; Further Research</h2>
+<p>For future research, our methodology could be strengthened by addressing the limitations identified in this study. First, the envelope boundary strategy was introduced to reduce computation time, but applying the analysis to a larger area without this restriction could produce a more realistic representation of connectivity and lead to more meaningful results. Second, the same analytical pipeline could be applied to multiple species rather than a single generalised case. Because species differ in dispersal distance and probability of movement, a multi-species approach would likely provide clearer insight into which methodological choices matter most.</p>
+<p>Another improvement would be to assess ecological resistance earlier in the process, rather than only at the zoom-in scale. Integrating resistance analysis at an earlier stage could reveal important barriers sooner and potentially influence the selection of zoom-in areas. In addition, including more layers to building up the overall ecological resistance could provide a more comprehensive understanding of movement constraints.</p>
+<p>A major recommendation is to strengthen comparability between the two cities, since they differ in scale and data context. A more detailed preliminary analysis of both areas would improve contextual understanding and support better decision-making throughout the research process. For Rotterdam and Dutch case studies more broadly, detailed neighbourhood typologies are available and could add valuable insight at larger zoom-in scales. However, comparable detail could not be produced for China within the available time frame. Establishing a stronger methodological bridge between both contexts would therefore be highly beneficial and may resolve several of the comparability issues encountered in this study.</p>
+<p>Finally, the Nature-based Solutions chapter could be developed further. Due to time constraints, this part relied heavily on literature to justify design choices, but future research could make it more visual and operational. Classifying solutions into typologies would improve reproducibility and make them easier to transfer to other areas. Representing these solutions as building blocks that can be applied in other contexts would be a strong final step to connect the analysis to implementation.</p>
+</section>
+<section id="reproducibility-statement" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility-statement">Reproducibility Statement</h2>
+<p>This report was written in Quarto (.qmd) and is meant to be reproducible from source. The rendered output (report.html) is generated directly from report.qmd, which combines all written text, R code, and figure references.</p>
+<section id="code-and-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="code-and-workflow">Code and workflow</h3>
+<p>The clustering analysis is built as a reusable R function (cluster_grid) that is embedded directly in the report. When the report is rendered, k-means clustering runs automatically on the input data, and all tables and cluster maps are regenerated. To make sure the results stay consistent across renders, we set a fixed random seed (seed = 42) before every kmeans() call. Cluster labels are also assigned by ecological profile rather than by the raw k-means cluster number, so the typology stays the same regardless of how k-means happens to number its clusters on any given run.</p>
+</section>
+<section id="data-1" class="level3">
+<h3 class="anchored" data-anchor-id="data-1">Data</h3>
+<p>The two input files: data/rt_grid_clustering.gpkg (Rotterdam) and data/gz_grid_clustering.gpkg (Guangzhou) are included in the repository and contain all variables needed for the clustering step. Other datasets used are listed in the Data section of the Methods.</p>
+</section>
+<section id="dependencies" class="level3">
+<h3 class="anchored" data-anchor-id="dependencies">Dependencies</h3>
+<p>The report requires four packages in R: sf, dplyr, tidyr, and knitr. These are listed at the top of report.qmd and installed automatically if missing when the report is rendered. Figures. Maps and figures produced outside the R workflow were generated in QGIS and Google Earth Engine and are stored in the images/ folder. These steps are documented in the Methods section but are not re-executed at render time. To reproduce this report, clone the repository, open asa2025-report.Rproj in RStudio, and run quarto render report.qmd.</p>
+</section>
+</section>
+<section id="ai-statement" class="level2">
+<h2 class="anchored" data-anchor-id="ai-statement">AI Statement</h2>
+<p>In some cases, AI was used as a teacher to understand the complex applications and quickly grasp the results they produced. It helped us fix mistakes and spot inconsistencies in our results. Additionally, AI was used to perform spelling checks on parts of text to assist with analysis steps in QGIS. It also aided with generating code components for RStudio, debugging errors. AI was particularly useful for explaining syntax errors, suggesting code clean-up.</p>
+</section>
+<section id="reference-list" class="level2">
+<h2 class="anchored" data-anchor-id="reference-list">Reference List</h2>
+<p>Atlas Leefomgeving. (2024). Groenkaart van Nederland. https://www.atlasleefomgeving.nl/groenkaart-van-nederland</p>
+<p>Braaker, S., Kormann, U., Bontadina, F., &amp; Obrist, M. K. (2017). Prediction of genetic connectivity in urban ecosystems by combining detailed movement data, genetic data and multi-path modelling. Landscape and Urban Planning, 160, 107–114. https://doi.org/10.1016/j.landurbplan.2016.12.011</p>
+<p>Centraal Bureau voor de Statistiek. (n.d.). Bevolking; kerncijfers [Dataset]. CBS StatLine. https://opendata.cbs.nl/#/CBS/nl/dataset/70072ned/table?searchKeywords=inwoners%20rotterdam</p>
+<p>Cork, N. A., Fisher, R. S., Strong, N., Ferranti, E. J. S., &amp; Quinn, A. D. (2024). A systematic review of factors influencing habitat connectivity and biodiversity along road and rail routes in temperate zones. Frontiers in Environmental Science, 12, 1369072. https://doi.org/10.3389/fenvs.2024.1369072</p>
+<p>Dolman, N., &amp; Verlinde, J. (2024). Achieving a Water-Resilient Rotterdam: Past, Present and Future Perspectives. Blue Papers, 3(1). https://doi.org/10.58981/bluepapers.2024.1.13</p>
+<p>European Space Agency (ESA). (2021). ESA WorldCover 10 m 2021 v200. https://developers.google.com/earth-engine/datasets/catalog/ESA_WorldCover_v200</p>
+<p>Estrada, E., &amp; Bodin, Ö. (2008). Using network centrality measures to manage landscape connectivity. Ecological Applications, 18(7), 1810–1825. https://doi.org/10.1890/07-1419.1</p>
+<p>Estreguil, C., Caudullo, G., &amp; de Rigo, D. (2014). Connectivity of Natura 2000 forest sites in Europe. F1000Posters, 5, 485. https://doi.org/10.6084/m9.figshare.1063300</p>
+<p>European Commission, Joint Research Centre. (n.d.). MSPA. Forest. Retrieved June 18, 2026, from https://forest.jrc.ec.europa.eu/en/activities/lpa/mspa/</p>
+<p>Graphab. (n.d.). Graphab. https://thema.umlp.fr/productions/software/graphab/en/home.html</p>
+<p>IUCN Urban Alliance. (2021, April 25). Cities and nature: The issues. https://iucnurbanalliance.org/cities-and-biodiversity-the-issues/</p>
+<p>Joshi, M. Y., &amp; Teller, J. (2021). Urban integration of green roofs: Current challenges and perspectives. Sustainability, 13(22), 12378. https://doi.org/10.3390/su132212378</p>
+<p>Kirk, H., Soanes, K., Amati, M., Bekessy, S., Harrison, L., Parris, K., Ramalho, C., van de Ree, R., &amp; Threlfall, C. (2023). Ecological connectivity as a planning tool for the conservation of wildlife in cities. MethodsX, 10, 101989. https://doi.org/10.1016/j.mex.2022.101989</p>
+<p>Machado, J. T., &amp; Kim, G. (2024). Ecological landscape assessment of restored urban stream to guide adaptive management. Heliyon, 10(13), e33880. https://doi.org/10.1016/j.heliyon.2024.e33880</p>
+<p>Madre, F., Vergnes, A., Machon, N., &amp; Clergeau, P. (2018). Green roofs and green walls for biodiversity conservation: A contribution to urban connectivity? Sustainability, 10(4), 985. https://doi.org/10.3390/su10040985</p>
+<p>Marzio, S., Tosi, J., Poggi, F., &amp; Amado, M. (2025). Nature-based solutions for urban waterfront regeneration: a systematic review of frameworks, strategies and applications. City and Environment Interactions, 29, 100281. https://doi.org/10.1016/j.cacint.2025.100281</p>
+<p>McRae, B.H., Dickson, B.G., Keitt, T.H. &amp; Shah, V.B. (2008). Using circuit theory to model connectivity in ecology, evolution, and conservation. Ecology, 89(10), 2712–2724. — The foundational paper on circuit theory applied to landscape connectivity.</p>
+<p>Metro Vancouver. (2025). Evaluation of regional ecosystem connectivity. https://metrovancouver.org/services/regional-planning/Documents/evaluation-of-regional-ecosystem-connectivity.pdf</p>
+<p>Minor, E. S., &amp; Urban, D. L. (2008). A graph-theory framework for evaluating landscape connectivity and conservation planning. Conservation Biology, 22(2), 297–307. https://doi.org/10.1111/j.1523-1739.2007.00871.x</p>
+<p>Mollashahi, H., Szymura, M., &amp; Szymura, T. H. (2020). Connectivity assessment and prioritization of urban grasslands as a helpful tool for effective management of urban ecosystem services. PLOS ONE, 15(12), e0244452. https://doi.org/10.1371/journal.pone.0244452</p>
+<p>Rome, M., Happel, A., Dahlenburg, C., Nicodemus, P., Schott, E., Mueller, S., Lovell, K., &amp; Beighley, R. E. (2023). Application of floating wetlands for the improvement of degraded urban waters: Findings from three multi-year pilot-scale installations. Science of the Total Environment, 877, 162669. https://doi.org/10.1016/j.scitotenv.2023.162669</p>
+<p>Saura, S., &amp; Torné, J. (2009). Conefor Sensinode 2.2: A software package for quantifying the importance of habitat patches for landscape connectivity. Environmental Modelling &amp; Software, 24(1), 135–139. https://doi.org/10.1016/j.envsoft.2008.05.005</p>
+<p>Soille, P., &amp; Vogt, P. (2009). Morphological segmentation of binary patterns. Pattern Recognition Letters, 30(4), 456–459. https://doi.org/10.1016/j.patrec.2008.10.015</p>
+<p>Stewart, I. D., &amp; Oke, T. R. (2012). Local climate zones for urban temperature studies. Bulletin of the American Meteorological Society, 93(12), 1879–1900. https://doi.org/10.1175/BAMS-D-11-00019.1</p>
+<p>Typology. (2026, June 20). In Wikipedia. https://en.wikipedia.org/wiki/Typology</p>
+<p>Wade, A.A., McKelvey, K.S. &amp; Schwartz, M.K. (2015). Resistance-surface-based wildlife conservation connectivity modeling. USDA Forest Service General Technical Report RMRS-GTR-333. — Practical guidance on building resistance surfaces from landscape variables.</p>
+<p>World Population Review. (2026, June 16). Guangzhou population 2026. https://worldpopulationreview.com/cities/china/guangzhou</p>
+<p>World Population Review. (2026, June 16). Rotterdam population 2026. https://worldpopulationreview.com/cities/netherlands/rotterdam</p>
+<p>World Urban Database and Access Portal Tools (WUDAPT). (n.d.). Local climate zones. https://www.wudapt.org/lcz/</p>
+<p>Wu, J., Li, X., Luo, Y., &amp; Zhang, D. (2021). Spatiotemporal effects of urban sprawl on habitat quality in the Pearl River Delta from 1990 to 2018. <em>Scientific Reports</em>, <em>11</em>, Article 13981. https://doi.org/10.1038/s41598-021-92916-3</p>
+<p>Zeller, K.A., McGarigal, K. &amp; Whiteley, A.R. (2012). Estimating landscape resistance to movement: a review. Landscape Ecology, 27(6), 777–797. — The main review paper on resistance surfaces, covering 96 studies.</p>
+<p>Zhuohong Li, Wei He, Mofan Cheng, Jingxin Hu, Xiao An, Yan Huang, Guangyi Yang, &amp; Hongyan Zhang. (2023). SinoLC-1: the first 1-meter resolution national-scale land-cover map of China created with the deep learning framework and open-access data (User guide V2.4) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.8214871</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

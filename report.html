@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.36">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="report_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="report_files/libs/quarto-html/anchor.min.js"></script>
 <link href="report_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="report_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="report_files/libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="report_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="report_files/libs/bootstrap/bootstrap-138a6193a3bd40baf1e627da441a4734.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="report_files/libs/bootstrap/bootstrap-efbb37e9afcc02144ebbc7afd12a776f.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -152,7 +152,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <blockquote class="blockquote">
 <p><em>To what extent does green infrastructure connectivity vary across urban areas in delta cities Rotterdam and Guangzhou, and what does this imply for targeted Nature-based Solutions?</em></p>
 </blockquote>
-<p>The main objective of this research is to develop an informed Nature-based Solutions plan tailored to spatially comparable areas in both cities. The objective is explored and pursued using following steps: (1) assessing the current status of ecological connectivity using betweenness centrality and patch connectivity analysis; (2) identifying comparable areas across both cities based on a multi-criteria clustering approach combining Local Climate Zones, connectivity metrics, and patch characteristics; (3) conducting a deeper spatial analysis of these comparable areas; and (4) proposing targeted Nature-based Solutions for them.</p>
+<p>The main objective of this research is to develop an informed Nature-based Solutions plan tailored to spatially comparable areas in both cities, with the aim of strengthening ecological connectivity across fragmented urban green networks. The objective is explored and pursued using following steps: (1) assessing the current status of ecological connectivity using betweenness centrality and patch connectivity analysis; (2) identifying comparable areas across both cities based on a multi-criteria clustering approach combining Local Climate Zones, connectivity metrics, and patch characteristics; (3) conducting a deeper spatial analysis of these comparable areas; and (4) proposing targeted Nature-based Solutions for them.</p>
 <p>This report is structured as follows. Section 2 introduces the two case study cities, Rotterdam and Guangzhou, and describes the datasets used. Section 3 outlines the methods, while sections 4 and 5 present the results for Rotterdam and Guangzhou respectively. Section 6 compares the findings across both cities and identifies comparable study areas. Section 7 proposes targeted Nature-based Solutions for each zoom-in location based on the identified barriers. The report concludes with a discussion of limitations, conclusions and recommendations for further research.</p>
 </section>
 <section id="case-study-area" class="level2">
@@ -201,7 +201,7 @@ Figure&nbsp;1: General introduction of cities.
 <div id="fig-methodology" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-methodology-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/methods_flowchart.png" class="img-fluid figure-img" style="width:100.0%">
+<img src="images/methods.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-methodology-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Methodological workflow of the study.
@@ -253,7 +253,7 @@ Figure&nbsp;4: Envelope creation in Guanzhou
 </section>
 <section id="local-climate-zones" class="level4">
 <h4 class="anchored" data-anchor-id="local-climate-zones">Local Climate Zones</h4>
-<p>In order to make a comparable the description of urban morphology across both cities, the Local Climate Zone (LCZ) classification scheme developed by Stewart and Oke (2012) was used. The classification identifies 17 zones based urban on surface structure (e.g.&nbsp;building and tree height and density) and surface cover (previous versus impervious).</p>
+<p>To enable a comparable description of urban morphology across both cities, the Local Climate Zone (LCZ) classification scheme developed by Stewart and Oke (2012) was used. The classification identifies 17 zones based on surface structure (e.g.&nbsp;building and tree height and density) and surface cover (pervious versus impervious).</p>
 <p>The LCZ typology is a universal urban classification it focuses specifically on urban and rural landscape types, distinguished through 10 built types (ranging from compact high-rise to heavy industry) and 7 land cover types (ranging from dense trees to water). Its main advantage lies in the diversity of urban classes, which are easily interpretable and globally consistent.</p>
 <p><a href="#fig-lczrt" class="quarto-xref">Figure&nbsp;5</a> and <a href="#fig-lczgz" class="quarto-xref">Figure&nbsp;6</a> below, depict the distribution of Local Climate Zones in the chosen cities.</p>
 <div id="fig-lczrt" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -321,7 +321,7 @@ Figure&nbsp;8: Graph visualisation.
 </section>
 <section id="typology-construction" class="level4">
 <h4 class="anchored" data-anchor-id="typology-construction">Typology Construction</h4>
-<p>After Patches and Link Importance analysis and MSPA, it is possible to develop typologies based on their outcomes for broader understanding of ecological connectity and urban/green matrix in both cities. Typology is a classification of areas based on shared combinations of characteristics (Wikipedia, 2026). To identify spatial character of ecology and its connectivity in Rotterdam and Guangzhou, a typology was constructed for both cities using the same set of variables and spatial unit, allowing direct quantitative comparison between the two cities.</p>
+<p>After Patches and Link Importance analysis and MSPA, it is possible to develop typologies based on their outcomes for broader understanding of ecological connectity and urban/green matrix in both cities. Typology is a classification of areas based on shared combinations of characteristics (Wikipedia, 2026). In this study, the typology groups grid cells into five distinct ecological profiles urban matrix, key corridors, isolated quality patches, fragmented green, and transition zones each representing a different combination of connectivity strength and green patch quality. By classifying the entire city into these profiles, it becomes possible to identify at a glance where the green network is functioning well, where it is fragmented, and where the most critical gaps are located. This provides a structured and reproducible basis for selecting zoom-in areas that are ecologically meaningful and spatially comparable across both cities. To identify the spatial character of ecology and its connectivity in Rotterdam and Guangzhou, a typology was therefore constructed for both cities using the same set of variables and spatial unit, allowing direct quantitative comparison between the two cities.</p>
 <p>While the typology is relatively general and simplified, partly because grid cells were used as the spatial unit, it was developed before examining the smaller selected study areas in greater detail to provide an overview of the preceding analysis and identify the overall pattern. Combined with the MSPA and patch/link importance results (<a href="#sec-results-ecoconnect" class="quarto-xref">Section&nbsp;4.1</a>), this typology was used to guide the selection of the smaller zoom-in study areas examined in more detail later in this report.</p>
 <p>To construct this typology, two crucial aspects need to be defined: the variables used to characterise each area, and the spatial unit at which these variables were measured. The variables used were Local Climate Zones, ecological connectivity (betweenness centrality), and green patch characteristics, as these together capture both the urban characteristics and the ecological functioning of an area. The spatial unit used was a fixed-size grid of 500 × 500 m cells (see <a href="#sec-spatialgrid" class="quarto-xref">Section&nbsp;3.1.2</a>). A fixed grid was used because it allows different variables to be aggregated and compared.</p>
 <p>This typology serves as a broad ecological overview of both cities that summarises, at a coarse spatial resolution, where green connectivity is strong, where it is weak or absent, and what kind of green structure dominates each area. It is not intended to pinpoint specific intervention sites, but to provide the wider ecological context which enables more detailed analyses performed further.</p>
@@ -984,7 +984,7 @@ Figure&nbsp;17: Ecological resistance analysis layers zoom in 2.
 </section>
 <section id="conclusion-maps" class="level5">
 <h5 class="anchored" data-anchor-id="conclusion-maps">Conclusion Maps</h5>
-<p>After combining all layers, the barriers facing each “potential” link become clear. As shown in the bottom map of each figure, some “potential” links already follow an existing green corridor or element; from this stage onward, we therefore focus only on the missing links.</p>
+<p>After combining all layers, the barriers facing each “potential” link become clear. In zoom-in 1 (Tianhe District), the primary barriers are the urban fabric zones and the roads embedded within them, where moderate to high resistance interrupts the otherwise continuous forest matrix. In zoom-in 2 (Haizhu District), three distinct barrier types are identified: a large river channel running diagonally through the area, roads of very high resistance cutting across the link trajectories, and broader zones of moderate to high resistance representing dense urban fabric between the parks. As shown in the bottom map of each figure, some “potential” links already follow an existing green corridor or element; from this stage onward, we therefore focus only on the missing links.</p>
 <p>In zoom-in 1, the dominant barrier is the Nieuwe Waterweg, a key shipping channel serving the Port of Rotterdam. The thinner barriers in this area are also waterways, reflecting its role as part of the Europoort of Rotterdam. When developing NBS in the next step, this industrial character and port functionality must be taken into account.</p>
 <p>Zoom-in 2 sits at the edge of the city, where residential neighbourhoods become the focus. The barriers here are correspondingly different: highways, roads, and railway tracks are the obstacles that need to be overcome.</p>
 <div id="fig-ecores-tot-roffa1" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -1118,7 +1118,7 @@ Figure&nbsp;24: Ecological resistance zoom in 2 (layers combined).
 <img src="images/greenroofs.png" class="img-fluid figure-img" style="width:100.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-greenroofs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;25: Schematic representing the diverse processes involved in conventional roofs and green roofs (Joshi &amp; Teller, 2021).
+Figure&nbsp;25: Schematic representing the diverse processes involved in conventional roofs and green roofs (josh &amp; Teller).
 </figcaption>
 </figure>
 </div>
@@ -1134,12 +1134,6 @@ Figure&nbsp;25: Schematic representing the diverse processes involved in convent
 </section>
 <section id="concluding-nbs-table" class="level3">
 <h3 class="anchored" data-anchor-id="concluding-nbs-table">Concluding NbS table</h3>
-<div id="tbl-nbs-overview" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-nbs-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Overview of proposed Nature-based Solutions per zoom-in area, including advantages, disadvantages and supporting literature.
-</figcaption>
-<div aria-describedby="tbl-nbs-overview-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
 <colgroup>
 <col style="width: 7%">
@@ -1263,11 +1257,6 @@ Table&nbsp;1: Overview of proposed Nature-based Solutions per zoom-in area, incl
 </tr>
 </tbody>
 </table>
-</div>
-</figure>
-</div>
-<p>Maybe add here land use -&gt; NbS –&gt; how it fits the land use/its benefits –&gt; source to have all of them for RT and GZ in one place.</p>
-<p>And after it mention that of course it would be most effective to find places such as brownfields - but we did not, or abandoned/unused areas but again, time limitation and scope limitation and the fact that we do not have enough data for GZ to do that.</p>
 </section>
 </section>
 <section id="conclusion" class="level2">
@@ -1297,6 +1286,11 @@ Table&nbsp;1: Overview of proposed Nature-based Solutions per zoom-in area, incl
 </section>
 <section id="implications-for-nbs" class="level3">
 <h3 class="anchored" data-anchor-id="implications-for-nbs">Implications for NbS</h3>
+<p>The Nature-based Solutions proposed in this study are directly grounded in the spatial analysis, but several methodological choices made earlier in the research have implications for how these proposals should be interpreted.</p>
+<p>The ecological resistance analysis was performed only at the zoom-in scale, using four layers: NDVI, NDBI, land use, and road density. While these layers capture the main categories of ecological resistance in urban environments (Wade et al., 2015), they do not account for all relevant barriers. Factors such as noise pollution, artificial light at night, and fine-scale vegetation structure were not included, meaning that the resistance surface represents an approximation rather than a complete picture of species movement constraints. The proposed NbS should therefore be seen as a starting point for intervention rather than a definitive plan.</p>
+<p>The NbS proposals were developed without specifying a target species, following the same generalised approach used in the connectivity analysis. This makes the proposals broadly applicable but limits their ecological specificity. In practice, different species respond differently to the same intervention a wildlife underpass that works well for amphibians may be ineffective for birds. Future implementation would therefore benefit from species-specific assessments to confirm which interventions are most appropriate for the local fauna of each zoom-in area.</p>
+<p>The comparison between Rotterdam and Guangzhou reveals that the same NbS types appear in both cities: green roofs, road verge enhancements, and crossing structures but the urban contexts in which they are applied differ substantially. In Rotterdam, NbS must work within a densely built, low-rise residential and industrial fabric with limited available space. In Guangzhou, particularly in the Tianhe District, the largely intact forest matrix means that even small, targeted interventions at road crossings could have a disproportionately large effect on overall connectivity. This suggests that the cost-effectiveness of NbS varies significantly between cities, and that the same investment in green infrastructure may yield greater ecological returns in Guangzhou than in Rotterdam under current conditions.</p>
+<p>Finally, it is worth noting that the most effective NbS locations in practice would often be brownfields, abandoned land, or underused spaces, where interventions face fewer competing demands. Due to data limitations and time constraints, such sites were not systematically identified in this study, particularly for Guangzhou. Future research that integrates land availability data into the NbS selection process would likely produce more targeted and implementable proposals.</p>
 </section>
 </section>
 <section id="recommendations-further-research" class="level2">
@@ -1311,7 +1305,7 @@ Table&nbsp;1: Overview of proposed Nature-based Solutions per zoom-in area, incl
 </section>
 <section id="ai-statement" class="level2">
 <h2 class="anchored" data-anchor-id="ai-statement">AI Statement</h2>
-<p>In some cases, AI was used as a teacher to understand the complex applications and quickly grasp the results they produced. It helped us fix mistakes and spot inconsistencies in our results.</p>
+<p>In some cases, AI was used as a teacher to understand the complex applications and quickly grasp the results they produced. It helped us fix mistakes and spot inconsistencies in our results. Additionally, AI was used to perform spelling checks on parts of text to assist with analysis steps in QGIS.</p>
 </section>
 <section id="reference-list" class="level2">
 <h2 class="anchored" data-anchor-id="reference-list">Reference List</h2>

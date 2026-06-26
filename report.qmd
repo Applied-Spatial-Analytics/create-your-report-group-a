@@ -68,8 +68,10 @@ This research focuses on two case studies: one in the Netherlands and one in Chi
 Rotterdam is one of the biggest cities in the Netherlands with an urban population around 900 thousand and around 670 thousand people residing within the city borders(Centraal Bureau voor de Statistiek, n.d.). The municipality of Rotterdam’s area spans over 325.79 kilometers squared and its population density is 3,043 residents per kilometer square (World Population Review, 2026). 
 
 As a significant juxtaposition, Guangzhou’s population reaches above 18 million people (World Population Review, 2026).  It is the third largest city in China  and a capital of China’s Guangdong province. Located on the Pearl River is a major international hub (World Population Review, 2026). 
-The area is  7,434.4 square kilometers and the density of Guangzhou is around 2,000 people per square kilometer (World Population Review, 2026). 
-Add here sth about how they diff !!!
+The area is 7,434.4 square kilometers and the density of Guangzhou is around 2,000 people per square kilometer (World Population Review, 2026). 
+
+In spite of these major differences, both Rotterdam and Guangzhou represent delta port cities. Therefore, this comparative analysis can provide rich insights on variations of ecological connectivity in this urban setting. 
+
 
 To get a better understanding of the current ecological state in both cities, we looked for datasets that map green spaces in each urban environment. For Rotterdam, we used the "Groenkaart," developed by the Rijksinstituut voor Volksgezondheid en Milieu (RIVM) (Atlas Leefomgeving, 2024). This map shows the locations of green vegetation across the Netherlands, including trees, shrubs, and plants, and distinguishes between different types of green areas, such as agricultural land, nature, and urban green space, to show how green cover is distributed across the country.
 
@@ -104,7 +106,7 @@ To perform this analysis several geospatial datasets on Rotterdam and Guangzhou 
 - ESA WorldCover 10 m v200: A global 2021 land-cover map at 10 m resolution, based on Sentinel-1 and Sentinel-2 imagery, with 11 land-cover classes. It was used for classifying surface cover, identifying green and non-green areas and NDBI and NDVI indices calculation. 
 - Local Climate Zone (LCZ) maps: LCZ maps for Rotterdam and Guangzhou were obtained from the LCZ Generator. 
 - Rotterdam municipal boundary: The official municipal boundary from PDOK was used to define the spatial extent of Rotterdam.
-- Guangzhou administrative boundaries: OpenStreetMap boundary data 
+- Guangzhou administrative boundaries and landuse: OpenStreetMap  
 - Street network data: OpenStreetMap street data for both cities were used to represent the urban road network structure.
 - Groenkaart: The Groenkaart, developed by the RIVM and presented in Atlas Leefomgeving, provided additional information on green areas in Rotterdam. 
 - SinoLC-1: 1-meter-resolution national land-cover map of China was used to obtain a clearer picture of green areas in Guangzhou.
@@ -922,6 +924,9 @@ the highest-importance links connecting the existing park patches.
 
 
 
+
+## Conclusion
+
 ## Discussion
 This chapter reflects on the limitations of the methods used in this research, as well as key methodological choices made throughout the process. It addresses the consequences of the envelope size, the choice of Graphab as the connectivity analysis tool, the differences and similarities observed between Rotterdam and Guangzhou, clustering implications, and finally the implications of these findings for Nature-based Solutions.
 
@@ -946,17 +951,6 @@ Furthermore, patch-link connectivity represents connectivity in an abstract way 
  
 
 ### Differences and Similarities Between Cities
-
-#### Similarities
-
-In both study areas, the urban matrix clusters appear to be the most dominant land use type by cell count, covering 47% of Rotterdam's area and 31% of Guangzhou's. Furthermore, the most ecologically valuable patches (isolated quality patches) exhibit low BC (Betweenness-Centrality) in both areas,  pointing to a shared fundamental pattern of poor connectivity of the wider network. Additionally, despite different urban fabrics, transport infrastructure seems to be a universal barrier type. An additional high-activity shipping river barrier appears in both cities at least once (Nieuwe Waterweg in Rotterdam, Zhujiang in Haizhu District), a hard barrier that NbS alone cannot fully overcome. Lastly, the proposed NbS such as green roofs, road verge enhancements and crossing structures overlap significantly suggesting that the toolkit for urban ecological connectivity is relatively transferable even across diverging delta city contexts. 
-
-#### Differences
-
-Although Rotterdаm and Guаngzhou share a delta urban context аnd a common challenge of ecological fragmentation, their green networks differ in scale, composition, landscape context, and spatial distribution. The overall green network in Guаngzhou seems to be substantially more extensive and spatially distributed than the one in Rotterdam. Key corridor cells of Guаngzhou account for approximately 30% of the grid as compared to а mere 1% in Rotterdam highlighting a fundamentally greater difference in ecological connectivity across the study area. Additionally, while isolated quality patches occupy a comparable share of the grid in both study areas, approximately 7% in Rotterdam and 8.4% in Guangzhou, their ecological classification differs significantly. Rotterdam’s isolated quality patches consist predominantly of low plants (open polder grasslands), while Guаngzhou’s are almost entirely composed of dense trees (subtropical forest). 
-The landscape context through which the green network extends through diverges as well. While Rotterdam’s corridors run through open, low-vegetation polder land, Guangzhou’s extend through dense urban fabric.
-As for the spаtial distribution of the key corridors, Rotterdam has a single continuous corridor аlong the southwestern edge of the study area directly inside the biggest cluster of the isolated quality patch, whereas in Guаngzhou’s corridors form аn extensive web-like network spanning from the northern biggest isolated quality pаtch to the lower two-thirds of the study аrea. 
-
 
 ### Implications for NbS
 The Nature-based Solutions proposed in this study are directly grounded in the 
@@ -1002,10 +996,6 @@ particularly for Guangzhou. Future research that integrates land availability
 data into the NbS selection process would likely produce more targeted and 
 implementable proposals.
 
-## Conclusion
-
-
-
 
 ## Recommendations & Further Research
 For future research, our methodology could be strengthened by addressing the limitations identified in this study. First, the envelope boundary strategy was introduced to reduce computation time, but applying the analysis to a larger area without this restriction could produce a more realistic representation of connectivity and lead to more meaningful results. Second, the same analytical pipeline could be applied to multiple species rather than a single generalised case. Because species differ in dispersal distance and probability of movement, a multi-species approach would likely provide clearer insight into which methodological choices matter most.
@@ -1018,9 +1008,26 @@ Finally, the Nature-based Solutions chapter could be developed further. Due to t
 
 ## Reproducibility Statement
 
+This report was written in Quarto (.qmd) and is meant to be reproducible from source. The rendered output (report.html) is generated directly from report.qmd, which combines all written text, R code, and figure references. 
+
+### Code and workflow
+
+The clustering analysis is built as a reusable R function (cluster_grid) that is embedded directly in the report. When the report is rendered, k-means clustering runs automatically on the input data, and all tables and cluster maps are regenerated. To make sure the results stay consistent across renders, we set a fixed random seed (seed = 42) before every kmeans() call. Cluster labels are also assigned by ecological profile rather than by the raw k-means cluster number, so the typology stays the same regardless of how k-means happens to number its clusters on any given run. 
+
+### Data 
+The two input files: data/rt_grid_clustering.gpkg (Rotterdam) and data/gz_grid_clustering.gpkg (Guangzhou) are included in the repository and contain all variables needed for the clustering step. Other datasets used are listed in the Data section of the Methods.
+
+
+### Dependencies
+The report requires four packages in R: sf, dplyr, tidyr, and knitr. These are listed at the top of report.qmd and installed automatically if missing when the report is rendered. 
+Figures. Maps and figures produced outside the R workflow were generated in QGIS and Google Earth Engine and are stored in the images/ folder. These steps are documented in the Methods section but are not re-executed at render time. 
+To reproduce this report, clone the repository, open asa2025-report.Rproj in RStudio, and run quarto render report.qmd. 
+
 ## AI Statement
 
-In some cases, AI was used as a teacher to understand the complex applications and quickly grasp the results they produced. It helped us fix mistakes and spot inconsistencies in our results. Additionally, AI was used to perform spelling checks on parts of text to assist with analysis steps in QGIS.
+In some cases, AI was used as a teacher to understand the complex applications and quickly grasp the results they produced. It helped us fix mistakes and spot inconsistencies in our results. Additionally, AI was used to perform spelling checks on parts of text to assist with analysis steps in QGIS. It also aided with generating code components for RStudio, debugging errors. AI was particularly useful for explaining syntax errors, suggesting code clean-up.
+
+
 
 
 ## Reference List
@@ -1106,7 +1113,10 @@ Typology. (2026, June 20). In Wikipedia. https://en.wikipedia.org/wiki/Typology
 
 Wade, A.A., McKelvey, K.S. & Schwartz, M.K. (2015). Resistance-surface-based wildlife conservation connectivity modeling. USDA Forest Service General Technical Report RMRS-GTR-333. — Practical guidance on building resistance surfaces from landscape variables.
 
+World Population Review. (2026, June 16). Guangzhou population 2026. https://worldpopulationreview.com/cities/china/guangzhou
+
 World Population Review. (2026, June 16). Rotterdam population 2026. https://worldpopulationreview.com/cities/netherlands/rotterdam
+
 
 World Urban Database and Access Portal Tools (WUDAPT). (n.d.). Local climate zones. https://www.wudapt.org/lcz/
 

@@ -159,7 +159,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="case-study-area">Case Study Area</h2>
 <p>This research focuses on two case studies: one in the Netherlands and one in China. The Dutch study area is the port city of Rotterdam; in China, Guangzhou was chosen.</p>
 <p>Rotterdam is one of the biggest cities in the Netherlands with an urban population around 900 thousand and around 670 thousand people residing within the city borders(Centraal Bureau voor de Statistiek, n.d.). The municipality of Rotterdam’s area spans over 325.79 kilometers squared and its population density is 3,043 residents per kilometer square (World Population Review, 2026).</p>
-<p>As a significant juxtaposition, Guangzhou’s population reaches above 18 million people (World Population Review, 2026). It is the third largest city in China and a capital of China’s Guangdong province. Located on the Pearl River is a major international hub (World Population Review, 2026). The area is 7,434.4 square kilometers and the density of Guangzhou is around 2,000 people per square kilometer (World Population Review, 2026). Add here sth about how they diff !!!</p>
+<p>As a significant juxtaposition, Guangzhou’s population reaches above 18 million people (World Population Review, 2026). It is the third largest city in China and a capital of China’s Guangdong province. Located on the Pearl River is a major international hub (World Population Review, 2026). The area is 7,434.4 square kilometers and the density of Guangzhou is around 2,000 people per square kilometer (World Population Review, 2026).</p>
+<p>In spite of these major differences, both Rotterdam and Guangzhou represent delta port cities. Therefore, this comparative analysis can provide rich insights on variations of ecological connectivity in this urban setting.</p>
 <p>To get a better understanding of the current ecological state in both cities, we looked for datasets that map green spaces in each urban environment. For Rotterdam, we used the “Groenkaart,” developed by the Rijksinstituut voor Volksgezondheid en Milieu (RIVM) (Atlas Leefomgeving, 2024). This map shows the locations of green vegetation across the Netherlands, including trees, shrubs, and plants, and distinguishes between different types of green areas, such as agricultural land, nature, and urban green space, to show how green cover is distributed across the country.</p>
 <p>Since Guangzhou is much larger in scale, we could not find a map with a comparable resolution and level of detail that would remain readable at the city scale, so we used an alternative instead. SinoLC-1, a 1-meter-resolution national-scale land-cover map of China, gave us a clear picture of where green areas are located at the city level. <a href="#fig-introduction-pair" class="quarto-xref">Figure&nbsp;1</a> presents both maps. As shown in the map of Guangzhou on the right, the main distinction is between tree cover (dark green) and built environment (dark orange). A more detailed breakdown of the classifications and legend can be found in Li et al.&nbsp;(2023), but for the purposes of this stage, this level of detail was sufficient. Together, both maps give us a general understanding of each area before we zoom in for deeper analysis.</p>
 <div id="fig-introduction-pair" class="quarto-layout-panel">
@@ -218,7 +219,8 @@ Figure&nbsp;2: Methodological workflow of the study.
 <li>ESA WorldCover 10 m v200: A global 2021 land-cover map at 10 m resolution, based on Sentinel-1 and Sentinel-2 imagery, with 11 land-cover classes. It was used for classifying surface cover, identifying green and non-green areas and NDBI and NDVI indices calculation.</li>
 <li>Local Climate Zone (LCZ) maps: LCZ maps for Rotterdam and Guangzhou were obtained from the LCZ Generator.</li>
 <li>Rotterdam municipal boundary: The official municipal boundary from PDOK was used to define the spatial extent of Rotterdam.</li>
-<li>Guangzhou administrative boundaries: OpenStreetMap boundary data</li>
+<li>Guangzhou administrative boundaries and landuse: OpenStreetMap<br>
+</li>
 <li>Street network data: OpenStreetMap street data for both cities were used to represent the urban road network structure.</li>
 <li>Groenkaart: The Groenkaart, developed by the RIVM and presented in Atlas Leefomgeving, provided additional information on green areas in Rotterdam.</li>
 <li>SinoLC-1: 1-meter-resolution national land-cover map of China was used to obtain a clearer picture of green areas in Guangzhou.</li>
@@ -1305,10 +1307,23 @@ Figure&nbsp;25: Schematic representing the diverse processes involved in convent
 </section>
 <section id="reproducibility-statement" class="level2">
 <h2 class="anchored" data-anchor-id="reproducibility-statement">Reproducibility Statement</h2>
+<p>This report was written in Quarto (.qmd) and is meant to be reproducible from source. The rendered output (report.html) is generated directly from report.qmd, which combines all written text, R code, and figure references.</p>
+<section id="code-and-workflow" class="level3">
+<h3 class="anchored" data-anchor-id="code-and-workflow">Code and workflow</h3>
+<p>The clustering analysis is built as a reusable R function (cluster_grid) that is embedded directly in the report. When the report is rendered, k-means clustering runs automatically on the input data, and all tables and cluster maps are regenerated. To make sure the results stay consistent across renders, we set a fixed random seed (seed = 42) before every kmeans() call. Cluster labels are also assigned by ecological profile rather than by the raw k-means cluster number, so the typology stays the same regardless of how k-means happens to number its clusters on any given run.</p>
+</section>
+<section id="data-1" class="level3">
+<h3 class="anchored" data-anchor-id="data-1">Data</h3>
+<p>The two input files: data/rt_grid_clustering.gpkg (Rotterdam) and data/gz_grid_clustering.gpkg (Guangzhou) are included in the repository and contain all variables needed for the clustering step. Other datasets used are listed in the Data section of the Methods.</p>
+</section>
+<section id="dependencies" class="level3">
+<h3 class="anchored" data-anchor-id="dependencies">Dependencies</h3>
+<p>The report requires four packages in R: sf, dplyr, tidyr, and knitr. These are listed at the top of report.qmd and installed automatically if missing when the report is rendered. Figures. Maps and figures produced outside the R workflow were generated in QGIS and Google Earth Engine and are stored in the images/ folder. These steps are documented in the Methods section but are not re-executed at render time. To reproduce this report, clone the repository, open asa2025-report.Rproj in RStudio, and run quarto render report.qmd.</p>
+</section>
 </section>
 <section id="ai-statement" class="level2">
 <h2 class="anchored" data-anchor-id="ai-statement">AI Statement</h2>
-<p>In some cases, AI was used as a teacher to understand the complex applications and quickly grasp the results they produced. It helped us fix mistakes and spot inconsistencies in our results. Additionally, AI was used to perform spelling checks on parts of text to assist with analysis steps in QGIS.</p>
+<p>In some cases, AI was used as a teacher to understand the complex applications and quickly grasp the results they produced. It helped us fix mistakes and spot inconsistencies in our results. Additionally, AI was used to perform spelling checks on parts of text to assist with analysis steps in QGIS. It also aided with generating code components for RStudio, debugging errors. AI was particularly useful for explaining syntax errors, suggesting code clean-up.</p>
 </section>
 <section id="reference-list" class="level2">
 <h2 class="anchored" data-anchor-id="reference-list">Reference List</h2>
@@ -1338,6 +1353,7 @@ Figure&nbsp;25: Schematic representing the diverse processes involved in convent
 <p>Stewart, I. D., &amp; Oke, T. R. (2012). Local climate zones for urban temperature studies. Bulletin of the American Meteorological Society, 93(12), 1879–1900. https://doi.org/10.1175/BAMS-D-11-00019.1</p>
 <p>Typology. (2026, June 20). In Wikipedia. https://en.wikipedia.org/wiki/Typology</p>
 <p>Wade, A.A., McKelvey, K.S. &amp; Schwartz, M.K. (2015). Resistance-surface-based wildlife conservation connectivity modeling. USDA Forest Service General Technical Report RMRS-GTR-333. — Practical guidance on building resistance surfaces from landscape variables.</p>
+<p>World Population Review. (2026, June 16). Guangzhou population 2026. https://worldpopulationreview.com/cities/china/guangzhou</p>
 <p>World Population Review. (2026, June 16). Rotterdam population 2026. https://worldpopulationreview.com/cities/netherlands/rotterdam</p>
 <p>World Urban Database and Access Portal Tools (WUDAPT). (n.d.). Local climate zones. https://www.wudapt.org/lcz/</p>
 <p>Wu, J., Li, X., Luo, Y., &amp; Zhang, D. (2021). Spatiotemporal effects of urban sprawl on habitat quality in the Pearl River Delta from 1990 to 2018. <em>Scientific Reports</em>, <em>11</em>, Article 13981. https://doi.org/10.1038/s41598-021-92916-3</p>

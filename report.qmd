@@ -912,12 +912,6 @@ the highest-importance links connecting the existing park patches.
 | Guangzhou | 2 — Haizhu | Roads (red lines) | Vegetated road verges and crossing enhancements | Targeted at specific high-resistance points; cost-effective; immediate resistance reduction | Limited by road width and traffic intensity; requires maintenance and policy support | Cork et al. (2024) |
 | Guangzhou | 2 — Haizhu | Urban fabric between parks | Green roofs and green walls | Particularly effective given low-rise character of Haizhu; multiple co-benefits | Dependent on private owner uptake; installation costs; limited ground-level connectivity | Madre et al. (2018); Joshi & Teller (2021) |
 
-: Overview of proposed Nature-based Solutions per zoom-in area, including advantages, disadvantages and supporting literature. {#tbl-nbs-overview}
-
-Maybe add here land use -> NbS --> how it fits the land use/its benefits --> source to have all of them for RT and GZ in one place. 
-
-And after it mention that of course it would be most effective to find places such as brownfields - but we did not, or abandoned/unused areas but again, time limitation and scope limitation and the fact that we do not have enough data for GZ to do that. 
-
 
 
 

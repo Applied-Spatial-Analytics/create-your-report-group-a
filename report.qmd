@@ -50,7 +50,8 @@ While previous studies have shown that urban sprawl can reduce habitat quality a
 > Nature-based Solutions?*
 
 The main objective of this research is to develop an informed Nature-based Solutions 
-plan tailored to spatially comparable areas in both cities. 
+plan tailored to spatially comparable areas in both cities, with the aim of 
+strengthening ecological connectivity across fragmented urban green networks. 
 The objective is explored and pursued using following steps: (1) assessing the current status of ecological connectivity using betweenness centrality and patch connectivity 
 analysis; (2) identifying comparable areas across both cities based on a 
 multi-criteria clustering approach combining Local Climate Zones, connectivity 
@@ -122,7 +123,12 @@ construction process, providing a consistent spatial unit for aggregating and co
 A cell size of 500 × 500 m was chosen to match the dispersal distance parameter (d = 500 m) used in the Graphab connectivity analysis (see @sec-patches). The same distance ensures that each cell somewhat corresponds to the spatial scale at which ecological connectivity is assessed, making the typology meaningful in relation to the crucial connectivity metrics.
 
 #### Local Climate Zones
-In order to make a comparable the description of urban morphology across both cities, the Local Climate Zone (LCZ) classification scheme developed by Stewart and Oke (2012) was used. The classification identifies 17 zones based urban on surface structure (e.g. building and tree height and density) and surface cover (previous versus impervious). 
+To enable a comparable description of urban morphology across both cities, the 
+Local Climate Zone (LCZ) classification scheme developed by Stewart and Oke 
+(2012) was used. The classification identifies 17 zones based on surface 
+structure (e.g. building and tree height and density) and surface cover 
+(pervious versus impervious).
+ 
 
 The LCZ typology is a universal urban classification it focuses specifically on urban and rural landscape types, distinguished through 10 built types (ranging from compact high-rise to heavy industry) and 7 land cover types (ranging from dense trees to water). Its main advantage lies in the diversity of urban classes, which are easily interpretable and globally consistent. 
 
@@ -174,7 +180,20 @@ After the calculations are computed, each patch and each link now contained dPC 
 In the Results (@sec-result-ecoconnect-roffa and @sec-result-ecoconnect-gz), the outcome of this analysis for Rotterdam and Guangzhou is presented, which will be used as one of the inputs for the clustering analysis in the next section.
 
 #### Typology Construction
-After Patches and Link Importance analysis and MSPA, it is possible to develop typologies based on their outcomes for broader understanding of ecological connectity and urban/green matrix in both cities. Typology is a classification of areas based on shared combinations of characteristics (Wikipedia, 2026). To identify spatial character of ecology and its connectivity in Rotterdam and Guangzhou, a typology was constructed for both cities using the same set of variables and spatial unit, allowing direct quantitative comparison between the two cities. 
+After Patches and Link Importance analysis and MSPA, it is possible to develop typologies based on their outcomes for broader understanding of ecological connectity and urban/green matrix in both cities. Typology is a classification of areas based on shared combinations of 
+characteristics (Wikipedia, 2026). In this study, the typology groups grid 
+cells into five distinct ecological profiles urban matrix, key corridors, 
+isolated quality patches, fragmented green, and transition zones each 
+representing a different combination of connectivity strength and green patch 
+quality. By classifying the entire city into these profiles, it becomes possible 
+to identify at a glance where the green network is functioning well, where it 
+is fragmented, and where the most critical gaps are located. This provides a 
+structured and reproducible basis for selecting zoom-in areas that are 
+ecologically meaningful and spatially comparable across both cities. To identify 
+the spatial character of ecology and its connectivity in Rotterdam and Guangzhou, 
+a typology was therefore constructed for both cities using the same set of 
+variables and spatial unit, allowing direct quantitative comparison between the 
+two cities.
 
 While the typology is relatively general and simplified, partly because grid cells were used as the spatial unit, it was developed before examining the smaller selected study areas in greater detail to provide an overview of the preceding analysis and identify the overall pattern. Combined with the MSPA and patch/link importance results (@sec-results-ecoconnect), this typology was used to guide the selection of the smaller zoom-in study areas examined in more detail later in this report.
 
@@ -613,7 +632,16 @@ dispersed, lower-intensity urban development pattern of the Tianhe District.
 
 ##### Conclusion Maps
 
-After combining all layers, the barriers facing each "potential" link become clear. As shown in the bottom map of each figure, some "potential" links already follow an existing green corridor or element; from this stage onward, we therefore focus only on the missing links.
+After combining all layers, the barriers facing each "potential" link become 
+clear. In zoom-in 1 (Tianhe District), the primary barriers are the urban fabric 
+zones and the roads embedded within them, where moderate to high resistance 
+interrupts the otherwise continuous forest matrix. In zoom-in 2 (Haizhu District), 
+three distinct barrier types are identified: a large river channel running 
+diagonally through the area, roads of very high resistance cutting across the 
+link trajectories, and broader zones of moderate to high resistance representing 
+dense urban fabric between the parks. As shown in the bottom map of each figure, 
+some "potential" links already follow an existing green corridor or element; from 
+this stage onward, we therefore focus only on the missing links.
 
 In zoom-in 1, the dominant barrier is the Nieuwe Waterweg, a key shipping channel serving the Port of Rotterdam. The thinner barriers in this area are also waterways, reflecting its role as part of the Europoort of Rotterdam. When developing NBS in the next step, this industrial character and port functionality must be taken into account.
 
@@ -977,7 +1005,6 @@ Finally, the Nature-based Solutions chapter could be developed further. Due to t
 ## Reproducibility Statement
 
 ## AI Statement
-
 
 In some cases, AI was used as a teacher to understand the complex applications and quickly grasp the results they produced. It helped us fix mistakes and spot inconsistencies in our results. Additionally, AI was used to perform spelling checks on parts of text to assist with analysis steps in QGIS.
 
